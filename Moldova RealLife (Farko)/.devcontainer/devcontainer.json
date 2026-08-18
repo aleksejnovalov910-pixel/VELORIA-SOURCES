@@ -1,0 +1,43 @@
+{
+  "dockerComposeFile": "compose.yaml",
+  "service": "vipuri",
+  "workspaceFolder": "/workspaces",
+  "remoteUser": "vscode",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "cweijan.vscode-database-client2",
+        "dbaeumer.vscode-eslint",
+        "bradlc.vscode-tailwindcss",
+        "redhat.vscode-yaml",
+        "ms-azuretools.vscode-docker"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "[typescript]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[yaml]": {
+          "editor.insertSpaces": true,
+          "editor.tabSize": 2,
+          "editor.autoIndent": "keep",
+          "diffEditor.ignoreTrimWhitespace": false,
+          "editor.defaultColorDecorators": "never",
+          "editor.quickSuggestions": {
+            "strings": true,
+            "other": true,
+            "comments": false
+          },
+          "editor.defaultFormatter": "redhat.vscode-yaml"
+        }
+      }
+    }
+  },
+  "postStartCommand": "chmod +x .devcontainer/init.sh && .devcontainer/init.sh"
+}

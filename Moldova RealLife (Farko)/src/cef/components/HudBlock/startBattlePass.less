@@ -1,0 +1,56 @@
+// Width variables (appears count calculates by raw css)
+@width0: (7 / 16) * 1 * 1rem; // Appears 2 times
+
+// Height variables (appears count calculates by raw css)
+@height0: (7 / 16) * 1 * 1rem; // Appears 2 times
+
+.hud-startBattlePass {
+  align-items: flex-start;
+  background: url("./images/startBattlePassBack.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right;
+  display: flex;
+  flex-direction: column;
+  gap: (11 / 16) * 1 * 1rem;
+  height: (116 / 16) * 1 * 1rem;
+  padding: (25 / 16) * 1 * 1rem (30 / 16) * 1 * 1rem;
+  position: absolute;
+  right: (663 / 16) * 1 * 1rem;
+  width: (284 / 16) * 1 * 1rem;
+  span {
+    color: #ffffff;
+    font-family: Akrobat;
+    font-size: (16 / 16) * 1 * 1rem;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    text-transform: uppercase;
+    width: (78 / 16) * 1 * 1rem;
+  }
+}
+.hud-startBattlePass-time {
+  align-items: center;
+  display: flex;
+  gap: (9 / 16) * 1 * 1rem;
+
+  & svg {
+    width: (16 / 16) * 1 * 1rem;
+    height: (16 / 16) * 1 * 1rem;
+  }
+}
+.hud-startBattlePass-close {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  height: @height0;
+  justify-content: center;
+  position: absolute;
+  right: (10 / 16) * 1 * 1rem;
+  top: (10 / 16) * 1 * 1rem;
+  width: @width0;
+  svg {
+    height: @height0;
+    width: @width0;
+  }
+}

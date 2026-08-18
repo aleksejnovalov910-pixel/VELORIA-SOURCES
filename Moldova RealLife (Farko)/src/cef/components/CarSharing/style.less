@@ -1,0 +1,600 @@
+@import "../../assets/less/uikit";
+
+* {
+  text-rendering: optimizeLegibility;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.rentCar {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  background: #141b1fe6
+    radial-gradient(
+      70.74% 70.74% at 50% 50%,
+      rgba(20, 27, 31, 0) 43.75%,
+      #141b1f 90%
+    );
+  overflow: hidden;
+
+  &__active {
+    opacity: 1 !important;
+  }
+
+  .exit {
+    position: absolute;
+    top: @40px;
+    left: @40px;
+    height: @40px;
+    width: @132px;
+    background-color: #141b1f80;
+    border-radius: @6px;
+    display: flex;
+    align-items: center;
+    z-index: 502 !important;
+    font-size: @16px;
+
+    &__icon {
+      width: @40px;
+      height: @40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #141b1fe3;
+      border-radius: @6px;
+    }
+
+    &__title {
+      text-align: center;
+      width: @91px;
+      color: white;
+    }
+
+    img {
+      width: @17px;
+      height: @17px;
+    }
+  }
+
+  * {
+    color: white !important;
+  }
+
+  &-tireTracksBackground {
+    position: absolute;
+    pointer-events: none;
+    height: 100vh;
+    top: 0;
+    left: 0;
+  }
+
+  &-sparksBackground {
+    position: absolute;
+    pointer-events: none;
+    mix-blend-mode: lighten;
+    height: 100vh;
+    top: 0;
+    left: 0;
+  }
+
+  &-carBackground {
+    position: absolute;
+    pointer-events: none;
+    width: @948px;
+    bottom: 0;
+    left: 0;
+  }
+
+  &-notify {
+    position: absolute;
+    width: @780px;
+    left: @1019px;
+    top: @374px;
+    background-color: #141b1f;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: @40px @50px @50px;
+
+    &__header {
+      line-height: @60px;
+      font-size: @50px !important;
+      text-align: center;
+      margin-bottom: @20px;
+      text-transform: uppercase;
+    }
+
+    &__text {
+      margin-bottom: @30px;
+      font-size: @20px;
+      text-align: center;
+      line-height: @24px;
+
+      opacity: 0.8;
+      text-shadow: 0 @10px @40px rgba(255, 255, 255, 0.4);
+
+      span {
+        word-wrap: break-word;
+      }
+    }
+
+    &__btn {
+      padding: @18px @32px;
+      text-align: center;
+
+      width: @154px;
+      height: @60px;
+      font-size: @20px;
+      text-shadow: 0 @10px @40px rgba(255, 255, 255, 0.4);
+
+      background: #FF6F7D;
+      border-radius: @4px;
+    }
+  }
+
+  &-content {
+    position: absolute;
+    width: @762px;
+    right: @130px;
+    text-align: center;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    color: #fff;
+    height: 100vh;
+
+    &__description {
+      font-size: @40px;
+      opacity: 0.4;
+      margin-top: @40px;
+    }
+
+    &__title {
+      font-size: @100px;
+      text-shadow: 0 @10px @40px #ffffff66;
+      margin-bottom: @20px;
+    }
+
+    &-cars {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: @30px;
+      overflow-y: scroll;
+      opacity: 0.2;
+
+      &-block {
+        border: @1px solid #ffffff33;
+        height: @434px;
+        width: @366px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 0 @24px;
+        position: relative;
+
+        &__image {
+          margin-top: @60px;
+          width: 100%;
+        }
+
+        &__name {
+          margin-top: @20px;
+          font-size: @24px;
+          text-shadow: 0 @8px @40px #fff9;
+          text-align: left;
+        }
+
+        &__button {
+          position: absolute;
+          height: @60px;
+          width: @193px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: @16px;
+          line-height: 120%;
+          background-color: #ffffff19;
+          bottom: @24px;
+          left: @24px;
+          opacity: 0.7;
+          img {
+            margin-right: @15px;
+            width: @24px;
+          }
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+
+        &__price {
+          position: absolute;
+          right: @24px;
+          bottom: @37px;
+          font-size: @26px;
+        }
+      }
+    }
+  }
+}
+
+.carsharing {
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: content-box;
+  &__pictures {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+
+    &__bg {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      min-width: @1920px;
+      min-height: @1080px;
+      width: 3000px;
+      height: 2000px;
+      padding: @20px;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    &__left {
+      position: absolute;
+      left: 0;
+      height: 600px;
+      top: calc(50% - 300px);
+    }
+
+    &__right {
+      position: absolute;
+      right: 0;
+      height: 600px;
+      top: calc(50% - 300px);
+    }
+
+    &__bottom {
+      position: absolute;
+      bottom: 0;
+      width: 420px;
+      right: 0;
+    }
+
+    &__top {
+      position: absolute;
+      top: 0;
+      width: 420px;
+      left: 0;
+    }
+  }
+
+  &__box {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__main {
+    width: 1329px;
+    height: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+  }
+
+  &__header {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+
+    &-exit {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+
+      p {
+        font-family: "Gilroy";
+        font-size: 16px;
+        font-weight: 400;
+      }
+
+      &-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 2px;
+        background: radial-gradient(
+          50% 50% at 50% 50%,
+          rgba(153, 153, 153, 0.0765) 0%,
+          rgba(255, 255, 255, 0.0795) 100%
+        );
+        border: 0.5px solid #ffffff26;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+          border: 0.5px solid #ff6f7d80;
+          background: radial-gradient(
+            50% 50% at 50% 50%,
+            rgba(255, 111, 125, 0.5) 0%,
+            rgba(255, 111, 125, 0.265) 100%
+          );
+        }
+      }
+    }
+    &-title {
+      margin-left: 30px;
+      h1 {
+        text-transform: uppercase;
+        font-family: "DKallisto";
+        font-size: 36px;
+        font-weight: 400;
+        text-align: left;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
+
+        span {
+          color: #FF6F7D;
+        }
+      }
+      h2 {
+        font-family: "Gilroy";
+        font-size: 16px;
+        font-weight: 400;
+        text-align: left;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
+      }
+    }
+    &-exit {
+      margin-right: 30px;
+    }
+  }
+
+  &__content {
+    // width: 100%;
+    // height: 100%;
+    width: 1300px;
+    height: 800px;
+    display: flex;
+    justify-content: start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 15px;
+    overflow-y: scroll;
+    margin-top: 20px;
+    margin-left: 30px;
+    gap: 10px;
+
+    /* Stilizeaza bara de scroll */
+    &::-webkit-scrollbar {
+      width: 5px; /* Latimea scrollbar-ului */
+      display: block;
+    }
+
+    /* Stilizeaza thumb-ul (partea care se mișca pe scroll) */
+    &::-webkit-scrollbar-thumb {
+      background: #ffffff; /* Culoarea thumb-ului */
+      border-radius: 5px; /* Colturi rotunjite */
+    }
+
+    /* Stilizeaza track-ul (fundalul scrollbar-ului) */
+    &::-webkit-scrollbar-track {
+      background: #ffffff1a; /* Culoare de fundal pentru scrollbar */
+      border-radius: 5px; /* Colturi rotunjite */
+    }
+  }
+
+  &__car {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    width: 280px;
+    height: 365px;
+    border-radius: 2px;
+    border-radius: 2px;
+    background: radial-gradient(
+      50% 50% at 50% 50%,
+      rgba(153, 153, 153, 0.0765) 0%,
+      rgba(255, 255, 255, 0.0795) 100%
+    );
+    border: 0.5px solid #ffffff26;
+
+    &:hover,
+    &.selected {
+      background: radial-gradient(
+          50% 50% at 50% 50%,
+          rgba(153, 153, 153, 0.0408) 0%,
+          rgba(255, 255, 255, 0.0424) 100%
+        ),
+        linear-gradient(
+          180deg,
+          rgba(255, 123, 0, 0) 0%,
+          rgba(255, 111, 125, 0.265) 100%
+        );
+      border: 0.5px solid #FF6F7D;
+    }
+
+    h1 {
+      font-family: "Gilroy";
+      font-size: 14px;
+      font-weight: 400;
+      margin-left: 15px;
+    }
+
+    h2 {
+      font-family: "Gilroy";
+      font-size: 14px;
+      font-weight: 500;
+      margin-right: 15px;
+    }
+
+    img {
+      max-width: 230px;
+      max-height: 152px;
+      margin-top: 50px;
+    }
+
+    &-name {
+      margin-bottom: 20px;
+      margin-left: 20px;
+      margin-top: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      h2 {
+        font-family: "DKallisto";
+        font-size: 24px;
+        font-weight: 400;
+        color: #FF6F7D;
+        text-shadow: 0px 0px 41.9px #FF6F7D80;
+
+        margin-bottom: 20px;
+        margin-top: 5px;
+      }
+
+      h1 {
+        font-family: "DKallisto";
+        font-size: 18px;
+        font-weight: 400;
+        margin-left: 0;
+      }
+    }
+    &-controls {
+      width: 254px;
+      height: 46px;
+      background: #FF6F7D1a;
+      border: none;
+      border: 1px solid #FF6F7D;
+      color: #ffffff;
+
+      font-family: "Gilroy";
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.3s;
+      &:hover {
+        background: radial-gradient(
+          50% 50% at 50% 50%,
+      rgba(255, 111, 125, 0.25) 0%,
+      rgba(255, 111, 125, 0.5) 100%
+
+        );
+        border: 1px solid #FF6F7D;
+      }
+    }
+  }
+
+  &__confirmation {
+    position: absolute;
+    z-index: 20;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    background: radial-gradient(
+      circle,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.7) 40%,
+      rgba(0, 0, 0, 0.3) 70%,
+      rgba(0, 0, 0, 0) 100%
+    );
+
+    &-title {
+      width: 600px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+
+      h1 {
+        font-family: "DKallisto";
+        font-size: 24px;
+        font-weight: 400;
+        color: #FF6F7D;
+        text-shadow: 0px 0px 44.2px #FF6F7D80;
+      }
+    }
+
+    &-content {
+      text-align: center;
+      width: 524px;
+
+      h2 {
+        font-family: "Gilroy";
+        font-size: 18px;
+        font-weight: 400;
+        margin-bottom: 20px;
+      }
+
+      &-btn {
+        width: 556px;
+        height: 46px;
+        background: radial-gradient(
+          50% 61.95% at 50% 50%,
+      #ff6f7d 0%,
+      #b83a56 100%
+
+        );
+
+        border: none;
+        border: 1px solid #FF6F7D;
+        color: #ffffff;
+
+        font-family: "Gilroy";
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: 0.3s;
+        &:hover {
+          background: radial-gradient(
+            50% 50% at 50% 50%,
+        rgba(255, 111, 125, 0.25) 0%,
+        rgba(255, 111, 125, 0.5) 100%
+
+          );
+          border: 1px solid #FF6F7D;
+        }
+      }
+    }
+  }
+}

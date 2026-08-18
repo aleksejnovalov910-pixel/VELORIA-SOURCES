@@ -1,0 +1,424 @@
+.clothes_browser {
+  width: 100vw;
+  height: 100vh;
+
+  padding: 50px;
+
+  .clothes_top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    z-index: 100;
+
+    .clothes_title {
+      margin-bottom: 20px;
+
+      h1 {
+        margin-bottom: 0px;
+        display: flex;
+        justify-content: start;
+        align-items: start;
+        text-transform: uppercase;
+        gap: 7px;
+        font-size: 22px;
+        font-weight: 100;
+        font-family: "DKallisto", Arial, sans-serif;
+        span {
+          color: #1b9c21;
+        }
+      }
+
+      p {
+        font-family: "Gilroy", Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        margin-top: 10px;
+      }
+    }
+
+    .clothes_exit {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+
+      p {
+        font-family: "Gilroy";
+        font-size: 16px;
+        font-weight: 400;
+      }
+
+      .exit-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 2px;
+        background: radial-gradient(
+          50% 50% at 50% 50%,
+          rgba(153, 153, 153, 0.0765) 0%,
+          rgba(255, 255, 255, 0.0795) 100%
+        );
+        border: 0.5px solid #ffffff26;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+        border: 0.5px solid #1b9c21;
+        background: radial-gradient(
+          50% 50% at 50% 50%,
+          rgba(22, 201, 16, 0.5) 0%,
+          rgba(25, 141, 31, 0.265) 100%
+        );
+
+        }
+      }
+    }
+  }
+  .clothes__main {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+
+    &__list {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 10px;
+      padding: 20px;
+      width: 425px;
+      height: 850px;
+      border-radius: 10px;
+      box-sizing: content-box;
+      background: linear-gradient(0deg, #111113, #111113),
+        radial-gradient(
+          90.9% 72.78% at 100% 0%,
+          rgba(255, 123, 0, 0.06) 0%,
+          rgba(255, 123, 0, 0) 100%
+        ),
+        radial-gradient(
+          75.14% 50% at 0% 0%,
+          rgba(255, 255, 255, 0.06) 0%,
+          rgba(255, 255, 255, 0) 100%
+        );
+      &__item {
+        width: 100%;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+        height: 850px;
+      }
+      &__search {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          position: absolute;
+          left: 15px;
+        }
+        input {
+          color: #ffffff;
+          width: 275px;
+          height: 40px;
+          border-radius: 2px;
+          border: 0.5px solid #ffffff26;
+          box-sizing: content-box;
+          background: radial-gradient(
+            50% 50% at 50% 50%,
+            rgba(153, 153, 153, 0.051) 0%,
+            rgba(255, 255, 255, 0.053) 100%
+          );
+
+          padding-left: 50px;
+
+          &:focus {
+            border: 0.5px solid #ffffff26;
+            outline: none;
+          }
+        }
+      }
+    }
+
+    &__items {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      flex-direction: column;
+      gap: 10px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+
+      &::-webkit-scrollbar {
+        width: 5px;
+        display: block;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: #ffffff;
+        border-radius: 5px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: #ffffff1a;
+        border-radius: 5px;
+      }
+    }
+    &__item {
+      background: radial-gradient(
+        50% 50% at 50% 50%,
+        rgba(153, 153, 153, 0.051) 0%,
+        rgba(255, 255, 255, 0.053) 100%
+      );
+      border: 0.5px solid #ffffff26;
+      border-radius: 2px;
+      width: 281px;
+      height: 46px;
+      aspect-ratio: 1;
+      margin-right: 10px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 15px;
+      flex-shrink: 0;
+
+      h2 {
+        font-family: "Gilroy";
+        font-size: 14px;
+        font-weight: 400;
+      }
+
+      h3 {
+        font-family: "DKallisto";
+        font-size: 14px;
+        font-weight: 400;
+        color: #1b9c21;
+      }
+
+      &:hover,
+      &.selected {
+      border: 0.5px solid #1b9c21;
+      background: radial-gradient(
+        50% 50% at 50% 50%,
+        rgba(16, 173, 42, 0.5) 0%,
+        rgba(29, 143, 25, 0.265) 100%
+      );
+
+      }
+    }
+
+    &__categories {
+      display: flex;
+      justify-content: start;
+      align-items: start;
+      flex-direction: column;
+      gap: 10px;
+      height: 788px;
+    }
+
+    &__category {
+      background: radial-gradient(
+        50% 50% at 50% 50%,
+        rgba(153, 153, 153, 0.051) 0%,
+        rgba(255, 255, 255, 0.053) 100%
+      );
+      border: 0.5px solid #ffffff26;
+      border-radius: 2px;
+      width: 65px;
+      aspect-ratio: 1;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 7px;
+      transition: 0.3s;
+
+      img {
+        max-width: 40px;
+        max-height: 40px;
+      }
+
+      &:hover,
+      &.selected {
+      border: 0.5px solid #1b9c21;
+      background: radial-gradient(
+        50% 50% at 50% 50%,
+        rgba(21, 170, 16, 0.5) 0%,
+        rgba(0, 95, 5, 0.265) 100%
+      );
+
+      }
+    }
+
+    &__price {
+      display: flex;
+      align-items: end;
+      flex-direction: column;
+      gap: 20px;
+      box-sizing: content-box;
+
+      .clothing-types {
+        width: 100%;
+        .clothing-type {
+          padding: 0 10px;
+          width: 93%;
+          height: 46px;
+          background: radial-gradient(
+            50% 50% at 50% 50%,
+            rgba(153, 153, 153, 0.051) 0%,
+            rgba(255, 255, 255, 0.053) 100%
+          );
+          border: 0.5px solid #ffffff26;
+
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          h2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            margin-bottom: 0;
+            font-family: "Gilroy";
+            font-weight: 400;
+            font-size: 16px;
+          }
+
+          img {
+            border: 0.5px solid #ffffff26;
+            transition: 0.3s;
+
+            &:hover {
+              border: 0.5px solid #1b9c21;
+            }
+          }
+        }
+
+        h1 {
+          margin-top: 10px;
+          margin-bottom: 5px;
+        }
+      }
+
+      h1 {
+        font-family: "DKallisto";
+        font-weight: 400;
+        font-size: 0px; // aici trebue lasat 20
+      }
+
+      .clothing-total-price-box {
+        width: 348px;
+        height: 155px;
+        border-radius: 10px;
+        padding: 20px;
+
+        background: linear-gradient(0deg, #111113, #111113),
+          radial-gradient(
+            91.4% 157.21% at 100% 0%,
+            rgba(255, 123, 0, 0.06) 0%,
+            rgba(255, 123, 0, 0) 100%
+          ),
+          radial-gradient(
+            133.12% 98.27% at -2.97% -13.5%,
+            rgba(255, 255, 255, 0.06) 0%,
+            rgba(255, 255, 255, 0) 100%
+          );
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+
+        .clothing-total-price-top {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          h1 {
+            font-family: "DKallisto";
+            font-size: 18px;
+            font-weight: 400;
+          }
+
+          h2 {
+            font-family: "DKallisto";
+            font-size: 18px;
+            font-weight: 400;
+
+            color: #1b9c21;
+            text-shadow: 0px 0px 18.5px 0px #19bd21;
+
+            display: flex;
+            align-items: center;
+            gap: 5px;
+          }
+        }
+
+        .button {
+          color: #ffffff;
+          width: 348px;
+          height: 40px;
+          border-radius: 2px;
+          background: radial-gradient(
+            50% 50% at 50% 50%,
+            rgba(153, 153, 153, 0.051) 0%,
+            rgba(255, 255, 255, 0.053) 100%
+          );
+          border: 0.5px solid #ffffff26;
+          transition: 0.3s;
+          font-size: 14px;
+          font-weight: 500;
+
+          &:hover {
+          border: 0.5px solid #1b9c21;
+          background: radial-gradient(
+            50% 50% at 50% 50%,
+            rgba(17, 168, 17, 0.5) 0%,
+            rgba(0, 122, 10, 0.265) 100%
+          );
+
+          }
+        }
+      }
+    }
+  }
+}
+
+.clothes_bg {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &_shadow {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: radial-gradient(
+      50% 50% at 50% 50%,
+      rgba(17, 17, 19, 0) 0%,
+      rgba(17, 17, 19, 0.9) 100%
+    );
+  }
+}

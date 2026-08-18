@@ -1,0 +1,386 @@
+import React from "react";
+import "./assets/style.scss";
+import Draggable from "react-draggable";
+import {
+  LicenceType,
+  LicensesData,
+  ILicenceGetDataStore,
+} from "../../../shared/licence";
+const licIcon = Object.fromEntries(
+  Object.entries(import.meta.glob("./assets/pic/*.png", { eager: true })).map(
+    ([key, value]) => {
+      const name = key.match(/\/([^/]+)\.png$/)[1];
+      return [name, value.default];
+    }
+  )
+);
+import { CustomEvent } from "../../modules/custom.event";
+import { systemUtil } from "../../../shared/system";
+import { observer } from "mobx-react";
+import LicensesStore from "../../stores/Licenses";
+import { CEF } from "../../modules/CEF";
+
+const TYPE_TO_NAME: any = {
+  car: "CONDUCERE",
+  moto: "CONDUCERE",
+  truck: "CONDUCERE",
+  boat: "CONDUCERE",
+  air: "CONDUCERE",
+  weapon: "arma",
+  fishrod: "PERSCAR",
+  fishsell: "PERSCAR",
+  biz: "BUSINESS",
+  med: "medicala",
+  advokat: "AVOCAT",
+  military: "arma",
+  hunting: "vânator",
+  taxi: "TAXI",
+};
+
+@observer
+export class LicenseBlock extends React.Component<
+  {
+    store: LicensesStore;
+  },
+  {}
+> {
+  store: LicensesStore;
+  constructor(props: any) {
+    super(props);
+    this.store = this.props.store;
+
+    // If you need test data, use:
+    if (!this.store.items || this.store.items.length === 0) {
+      // this.store.setState({
+      //   items: [
+      //     {
+      //       code: "1234567890",
+      //       type: "car",
+      //       serial: 1234567890,
+      //       time: 1234567890,
+      //       player: "John Doe",
+      //       id: 1,
+      //       licenses: ["moto", "truck"],
+      //     },
+      //   ],
+      // });
+    }
+  }
+  render() {
+    return (
+      <>
+        {this.store.items.map((item: ILicenceGetDataStore, index) => {
+          return (
+            <LicensesItem
+              key={item.code}
+              type={item.type}
+              serial={item.serial}
+              time={item.time}
+              player={item.player}
+              code={item.code}
+              licenses={item.licenses}
+              gender={item.gender}
+              home={item.home}
+              id={item.id}
+              close={() => {
+                const items: ILicenceGetDataStore[] = [...this.store.items];
+                items.splice(
+                  items.findIndex((q) => q.code === item.code),
+                  1
+                );
+                this.store.setState({ items });
+              }}
+            />
+          );
+        })}
+      </>
+    );
+  }
+}
+
+export class LicensesItem extends React.Component<ILicenceGetDataStore, { signatureUrl: string }> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      signatureUrl: ''
+    };
+  }
+
+  // Получаем объект вида { ILicenceGetDataStore }
+
+  componentDidMount() {
+    window.addEventListener("keydown", this.escClick);
+    this.loadSignature();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("keydown", this.escClick);
+  }
+
+  closeClick = () => {
+    this.props.close();
+  };
+
+  getLicCfg = () => {
+    return LicensesData.find((q) => q.id === this.props.type);
+  };
+
+  escClick = (event: any) => {
+    if (event.keyCode === 27) this.closeClick();
+  };
+
+  async loadSignature() {
+    try {
+      const signature = await CEF.getSignatureURL(this.props.id, 'idcard');
+      this.setState({ signatureUrl: signature });
+    } catch (error) {
+      console.error("Error loading signature:", error);
+    }
+  }
+
+  getImage() {
+    return CEF.getPassportImageURL(`${this.props?.id}_passport`);
+  }
+  // componentDidMount = () => {
+  //     document.addEventListener("keyup", this.escClick, false);
+
+  //     (window as any).testget = (data: any) => {
+  //         this.getLicensesData(data);
+  //     }
+  // }
+  // componentWillUnmount = () => {
+  //     document.removeEventListener("keyup", this.escClick, false);
+  // }
+
+  render() {
+    return (
+      <>
+        <Draggable handle=".license">
+          <div className="license" style={{}}>
+            <div
+              className="license-box"
+              style={{
+                backgroundImage: `url(${licIcon[this.getLicCfg().pic]})`,
+              }}
+            >
+              <div className="license_image">
+                <div className="license_image_block">
+                  {this.getImage().length > 0 ? (
+                    <img className="license_image_img" src={this.getImage()} />
+                  ) : (
+                    ""
+                  )}
+                </div>
+              </div>
+              <div className="license-data">
+                <div className="license-name">
+                  <div className="license-name-title">
+                    <b>
+                      {this.getLicCfg().id == "med" ? "Asigurare" : "licenta"}
+                    </b>{" "}
+                    {this.getLicCfg().id == "med" ? "" : "de"}{" "}
+                    {TYPE_TO_NAME[this.getLicCfg().id]}
+                  </div>
+                  <div className="license-name-serial">
+                    <div className="license-name-serial-label">Seria</div>
+                    <div className="license-name-serial-spacer">|</div>
+                    <div className="license-name-serial-value">
+                      {this.props.serial}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="license-data-info">
+                  <div className="license-data-row">
+                    <div className="license-data-row-small">
+                      <div className="license-data-row-small-label">Numele</div>
+                      <div className="license-data-row-small-spacer">|</div>
+                      <div className="license-data-row-small-value">
+                        {this.props.player.split(" ")[0]}
+                      </div>
+                    </div>
+                    <div className="license-data-row-small">
+                      <div className="license-data-row-label">preNumele</div>
+                      <div className="license-data-row-spacer">|</div>
+                      <div className="license-data-row-value">
+                        {this.props.player.split(" ")[1]}
+                      </div>
+                    </div>
+                  </div>
+
+                  {["car", "moto", "truck", "boat", "air"].includes(
+                    this.getLicCfg().id
+                  ) && (
+                    <>
+                      <div className="license-data-row">
+                        <div className="license-data-row-medium">
+                          <div className="license-data-row-small-label">
+                            Genul
+                          </div>
+                          <div className="license-data-row-small-spacer">|</div>
+                          <div className="license-data-row-small-value">
+                            {this.props.gender || "N/A"}
+                          </div>
+                        </div>
+                        <div className="license-data-row-medium">
+                          <div className="license-data-row-small-label">
+                            Categoria
+                          </div>
+                          <div className="license-data-row-small-spacer">|</div>
+                          <div className="license-data-row-small-value">
+                            {/* {this.props.gender || "N/A"} */}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="license-data-row">
+                        <div className="license-data-row-medium">
+                          <div className="license-data-row-small-label">
+                            REȘEDINȚA
+                          </div>
+                          <div className="license-data-row-small-spacer">|</div>
+                          <div className="license-data-row-small-value">
+                            {this.props.home || "N/A"}
+                          </div>
+                        </div>
+                        <div className="license-data-row-medium">
+                          <div className="license-data-row-small-label">
+                            Vehicle
+                          </div>
+                          <div className="license-data-row-small-value">
+                            <input
+                              type="checkbox"
+                              checked={this.props.licenses?.includes("car")}
+                              disabled
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="license-data-row">
+                        <div className="license-data-row-medium">
+                          <div className="license-data-row-small-label">
+                            SEMNĂTURĂ
+                          </div>
+                          <div className="license-data-row-small-spacer">|</div>
+                          <div className="license-data-row-small-value">
+                            {this.getSignature().length > 0 ? (
+                              <img src={this.getSignature()} />
+                            ) : (
+                              ""
+                            )}
+                          </div>
+                        </div>
+                        <div className="license-data-row-medium">
+                          <div className="license-data-row-small-label">
+                            motocicleta
+                          </div>
+                          <div className="license-data-row-small-value">
+                            <input
+                              type="checkbox"
+                              checked={this.props.licenses?.includes("moto")}
+                              disabled
+                            />
+                          </div>
+                        </div>
+                      </div>
+											<div className="license-data-row">
+												<div className="license-data-row-medium">
+                          <div className="license-data-row-small-label">
+                            Valabil
+                          </div>
+                          <div className="license-data-row-small-spacer">|</div>
+                          <div className="license-data-row-small-value">
+                            {systemUtil.timeStampString(this.props.time)}
+                          </div>
+                        </div>
+												<div className="license-data-row-medium">
+													<div className="license-data-row-small-label">
+														camion
+													</div>
+													<div className="license-data-row-small-value">
+														<input type="checkbox" name="" id="" checked={this.props.licenses?.includes("truck")} disabled />
+													</div>
+												</div>
+											</div>
+											<div className="license-data-row">
+												<div className="license-data-row-medium">
+                        </div>
+												<div className="license-data-row-medium">
+													<div className="license-data-row-small-label">
+														Boar
+													</div>
+													<div className="license-data-row-small-value">
+														<input type="checkbox" name="" id="" checked={this.props.licenses?.includes("boat")} disabled />
+													</div>
+												</div>
+											</div>
+											<div className="license-data-row">
+												<div className="license-data-row-medium">
+                        </div>
+												<div className="license-data-row-medium">
+													<div className="license-data-row-small-label">
+														air
+													</div>
+													<div className="license-data-row-small-value">
+														<input type="checkbox" name="" id="" checked={this.props.licenses?.includes("air")} disabled />
+													</div>
+												</div>
+											</div>
+                    </>
+                  )}
+
+                  {!["car", "moto", "truck", "boat", "air"].includes(
+                    this.getLicCfg().id
+                  ) && (
+                    <>
+                      <div className="license-data-row">
+                        <div className="license-data-row-medium">
+                          <div className="license-data-row-small-label">
+                            Valabil
+                          </div>
+                          <div className="license-data-row-small-spacer">|</div>
+                          <div className="license-data-row-small-value">
+                            {systemUtil.timeStampString(this.props.time)}
+                          </div>
+                        </div>
+                        <div className="license-data-row-medium">
+                          {/* <div className="license-data-row-small-label">
+                            Vehicle
+                          </div>
+                          <div className="license-data-row-small-value">
+                            <input
+                              type="checkbox"
+                              name=""
+                              id=""
+                              checked={this.props.licenses?.includes("car")}
+                              disabled
+                            />
+                          </div> */}
+                        </div>
+                      </div>
+                      <div className="license-data-row">
+                        <div className="license-data-row-medium">
+                          <div className="license-data-row-small-label">
+                            SEMNĂTURĂ
+                          </div>
+                          <div className="license-data-row-small-spacer">|</div>
+                          <div className="license-data-row-small-value">
+                            {this.getSignature().length > 0 ? (
+                              <img src={this.getSignature()} />
+                            ) : (
+                              ""
+                            )}
+                          </div>
+                        </div>
+                        <div className="license-data-row-medium"></div>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </Draggable>
+      </>
+    );
+  }
+}

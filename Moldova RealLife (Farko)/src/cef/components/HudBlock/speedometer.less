@@ -1,0 +1,166 @@
+// Color variables (appears count calculates by raw css)
+@color0: #ffffff; // Appears 6 times
+
+// Width variables (appears count calculates by raw css)
+@width0: (14 / 16) * 1 * 1rem; // Appears 2 times
+
+// Height variables (appears count calculates by raw css)
+@height1: (14 / 16) * 1 * 1rem; // Appears 3 times
+@height3: (4 / 16) * 1 * 1rem; // Appears 2 times
+
+.hud-speedometer {
+  bottom: (33 / 16) * 1 * 1rem;
+  display: flex;
+  gap: (31 / 16) * 1 * 1rem;
+  position: absolute;
+  right: (30 / 16) * 1 * 1rem;
+}
+.hud-speedometer-info {
+  display: flex;
+  flex-direction: column;
+  gap: (17 / 16) * 1 * 1rem;
+  margin-top: (15 / 16) * 1 * 1rem;
+}
+.hud-speedometer-info-text {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+}
+.hud-speedometer-info-text-speed {
+  span {
+    &:nth-child(1) {
+      color: rgba(255, 255, 255, 0.3);
+      font-family: Gilroy;
+      font-size: (55 / 16) * 1 * 1rem;
+      font-style: normal;
+      font-weight: 600;
+      letter-spacing: 1.6px;
+      line-height: normal;
+    }
+    &:nth-child(2) {
+      color: @color0;
+      font-family: Gilroy;
+      font-size: (55 / 16) * 1 * 1rem;
+      font-style: normal;
+      font-weight: 600;
+      letter-spacing: 1.6px;
+      line-height: normal;
+      text-shadow: 0px 0px 14px rgba(255, 255, 255, 0.75);
+    }
+  }
+}
+.hud-speedometer-info-text-class {
+  color: @color0;
+  font-family: Gilroy;
+  font-size: (13 / 16) * 1 * 1rem;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: 0.26px;
+  line-height: normal;
+}
+.hud-speedometer-info-stats {
+  align-items: center;
+  display: flex;
+  gap: (16 / 16) * 1 * 1rem;
+}
+.hud-speedometer-info-stats-fuel {
+  align-items: center;
+  display: flex;
+  gap: (8 / 16) * 1 * 1rem;
+  span {
+    color: @color0;
+    font-family: Gilroy;
+    font-size: (13 / 16) * 1 * 1rem;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+  }
+  svg {
+    height: @height1;
+    width: @width0;
+  }
+}
+.hud-speedometer-info-stats-fuel-line {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: (6 / 16) * 1 * 1rem;
+  height: @height3;
+  width: (70 / 16) * 1 * 1rem;
+}
+.hud-speedometer-info-stats-fuel-line-inner {
+  background: @color0;
+  border-radius: (6 / 16) * 1 * 1rem;
+  height: @height3;
+}
+.hud-speedometer-info-stats-mileage {
+  align-items: center;
+  display: flex;
+  gap: (9 / 16) * 1 * 1rem;
+  svg {
+    height: @height1;
+    width: @width0;
+  }
+}
+.hud-speedometer-info-stats-mileage-count {
+  span {
+    font-family: Gilroy;
+    font-size: (13 / 16) * 1 * 1rem;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    &:nth-child(1) {
+      color: rgba(255, 255, 255, 0.3);
+    }
+    &:nth-child(2) {
+      color: @color0;
+    }
+  }
+}
+.hud-speedometer-info-stats-engine {
+  align-items: center;
+  display: flex;
+  gap: (7 / 16) * 1 * 1rem;
+  span {
+    color: @color0;
+    font-family: Gilroy;
+    font-size: (13 / 16) * 1 * 1rem;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+  }
+  svg {
+    height: (13 / 16) * 1 * 1rem;
+    width: (18 / 16) * 1 * 1rem;
+    path {
+      opacity: 1;
+    }
+  }
+}
+.hud-speedometer-controllers {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: (6 / 16) * 1 * 1rem;
+}
+.hud-speedometer-controllers-controller {
+  align-items: center;
+  border-radius: (4 / 16) * 1 * 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  display: flex;
+  height: (32 / 16) * 1 * 1rem;
+  justify-content: center;
+  width: (32 / 16) * 1 * 1rem;
+  svg {
+    height: @height1;
+    width: (12 / 16) * 1 * 1rem;
+  }
+}
+.hud-speedometer-controllers-controller-active {
+  background: #ffe86f;
+  border: none;
+  svg {
+    path {
+      fill: #202020;
+      opacity: 1;
+    }
+  }
+}

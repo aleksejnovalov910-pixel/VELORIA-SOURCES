@@ -1,0 +1,27 @@
+services:
+  vipuri:
+    image: mcr.microsoft.com/devcontainers/base:ubuntu
+    command: sleep infinity
+    links:
+      - database
+    ports:
+      - 22005:22005/udp
+      - 22006:22006/tcp
+    environment:
+      - ENV=development
+      - MARIADB_ROOT_PASSWORD=vipuri
+      - MARIADB_USER=vipuri
+      - MARIADB_PASSWORD=vipuri
+      - MARIADB_DATABASE=vipuri
+    volumes:
+      - ..:/workspaces
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  database:
+    image: mariadb
+    environment:
+      - MARIADB_ROOT_PASSWORD=vipuri
+      - MARIADB_USER=vipuri
+      - MARIADB_PASSWORD=vipuri
+      - MARIADB_DATABASE=vipuri
+      - TZ=UTC

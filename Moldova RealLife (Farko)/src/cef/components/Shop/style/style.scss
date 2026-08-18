@@ -1,0 +1,491 @@
+// @font-face {
+//   font-family: "DKallisto";
+//   src: url("../fonts/d_kallisto.otf") format("opentype");
+//   font-weight: normal;
+//   font-style: normal;
+// }
+
+// @font-face {
+//   font-family: "Gilroy";
+//   src: url("../fonts/Gilroy-Light.otf") format("truetype");
+//   font-weight: normal;
+//   font-style: normal;
+// }
+
+.shop-container-box {
+  padding: 9.259vh;
+  color: #ffffff;
+  font-family: "Quicksand", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 1.667vh;
+  font-weight: 500;
+  width: 100vw;
+  height: 100vh;
+  padding: 1.852vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background: #111113E6;
+}
+
+.shop {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: column;
+
+  .top {
+    display: flex;
+    justify-content: space-between;
+    height: 9.259vh;
+    align-items: center;
+    width: 100%;
+
+    .title {
+      font-size: 2.037vh;
+      font-weight: 100;
+      margin-bottom: 1.852vh;
+
+      h1 {
+        margin-bottom: 0vh;
+        text-transform: uppercase;
+        font-family: "DKallisto", Arial, sans-serif;
+        font-size: 3.333vh;
+        font-weight: 37.037vh;
+
+        span {
+          color: #218617;
+        }
+      }
+
+      p {
+        font-family: Gilroy;
+        font-size: 1.481vh;
+        font-weight: 400;
+        line-height: normal;
+      }
+    }
+
+    .exit {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.926vh;
+
+      p {
+        font-family: "Gilroy";
+        font-size: 1.481vh;
+        font-weight: 400;
+      }
+
+      .exit-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 3.704vh;
+        height: 3.704vh;
+        border-radius: 0.185vh;
+        background: radial-gradient(50% 50% at 50% 50%,
+            rgba(153, 153, 153, 0.0765) 0%,
+            rgba(255, 255, 255, 0.0795) 100%);
+        border: 0.046vh solid #ffffff26;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+          border: 0.046vh solid #218617;
+          background: radial-gradient(50% 50% at 50% 50%, rgba(8, 107, 8, 0.5) 0%, rgba(8, 107, 8, 0.265) 100%);
+        }
+      }
+    }
+  }
+
+  .all-shop {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    gap: 1.852vh;
+
+    .shop-menu-items {
+      display: flex;
+      justify-content: start;
+      align-items: start;
+      flex-direction: column;
+      gap: 0.926vh;
+
+      .item {
+        position: relative;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 0.926vh;
+        padding: 0.926vh;
+
+        background: radial-gradient(50% 50% at 50% 50%,
+            rgba(153, 153, 153, 0.0765) 0%,
+            rgba(255, 255, 255, 0.0795) 100%);
+        width: 27.778vh;
+        border-radius: 0.185vh;
+        border: 0.046vh solid #ffffff26;
+        cursor: pointer;
+
+        &.selected,
+        &:hover {
+          border: 0.046vh solid #218617;
+          background: radial-gradient(50% 50% at 50% 50%, rgba(8, 107, 8, 0.5) 0%, rgba(8, 107, 8, 0.265) 100%);
+
+          .item-image {
+            background: radial-gradient(50% 50% at 50% 50%, rgba(8, 107, 8, 0.5) 0%, rgba(8, 107, 8, 0.265) 100%);
+            border: 0.046vh solid #218617;
+          }
+        }
+
+
+
+
+
+        .item-image {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 2.778vh;
+          height: 2.778vh;
+          border-radius: 0.185vh;
+          border: 0.046vh;
+          background: radial-gradient(50% 50% at 50% 50%,
+              rgba(153, 153, 153, 0.0765) 0%,
+              rgba(255, 255, 255, 0.0795) 100%);
+          border: 0.046vh solid #ffffff26;
+
+          img {
+            width: 1.296vh;
+            height: 1.667vh;
+          }
+        }
+
+        h2 {
+          font-family: "Gilroy";
+          font-size: 1.296vh;
+          font-weight: 400;
+          text-align: left;
+        }
+      }
+    }
+
+
+
+    .shop-items {
+      display: flex;
+      align-content: flex-start;
+      justify-content: start;
+      align-items: start;
+      flex-wrap: wrap;
+      gap: 1.389vh;
+      width: 111.111vh;
+      max-height: 74.074vh;
+      min-height: 74.074vh;
+      overflow-y: scroll;
+
+      .item {
+
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 26.389vh;
+        height: 26.389vh;
+        border-radius: 0.185vh;
+        opacity: 0vh;
+        background: radial-gradient(50% 50% at 50% 50%, rgba(153, 153, 153, 0.051) 0%, rgba(255, 255, 255, 0.053) 100%);
+        border: 0.046vh solid #ffffff26;
+
+        .item-info {
+          position: absolute;
+          right: 2.315vh;
+          top: 1.852vh;
+
+          svg {
+            opacity: 0.7;
+            width: 1.481vh;
+            height: 1.481vh;
+            transition: all 0.15s ease-in-out;
+          }
+
+          p {
+            position: absolute;
+            top: 90%;
+            left: 0;
+            transform: translateX(-45%);
+            min-width: 15.741vh;
+            width: fit-content;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease-in-out;
+            padding: 0.926vh;
+
+            border-radius: 0.463vh;
+            border: 0.046vh solid rgba(255, 255, 255, 0.20);
+            background: linear-gradient(135deg, rgba(217, 217, 217, 0.30) 0%, rgba(74, 74, 74, 0.30) 100%);
+
+            font-size: 1.296vh;
+            font-family: Gilroy;
+          }
+
+          &:hover {
+            svg {
+              opacity: 1;
+            }
+
+            p {
+              opacity: 1;
+              visibility: visible;
+            }
+          }
+        }
+
+
+        .item-image {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 23.519vh;
+          height: 15.741vh;
+          border-radius: 0.185vh 0vh 0vh 0vh;
+          border: 0.046vh;
+          background: radial-gradient(50% 50% at 50% 50%,
+              rgba(153, 153, 153, 0.051) 0%,
+              rgba(255, 255, 255, 0.053) 100%);
+          border: 0.046vh solid #ffffff26;
+
+          img {
+            max-width: 6.019vh;
+            max-height: 8.333vh;
+          }
+        }
+
+        .item-description {
+          margin-top: 0.926vh;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .item-details {
+            margin-left: 1.852vh;
+            font-family: "Gilroy", Arial, sans-serif;
+
+            h2 {
+              font-size: 1.481vh;
+              font-weight: 500;
+              color: #ffffff;
+              margin-bottom: 0.463vh;
+            }
+
+            p {
+              font-size: 1.111vh;
+              font-weight: 400;
+              color: #218617;
+              max-height: 1.296vh;
+              overflow: hidden;
+            }
+          }
+
+          .item-price {
+            margin-right: 1.852vh;
+
+            p {
+              font-family: "DKallisto", Arial, sans-serif;
+              font-size: 1.481vh;
+              font-weight: 400;
+              color: #21ff46;
+            }
+          }
+        }
+
+        .item-button {
+          margin-top: 0.926vh;
+          cursor: pointer;
+          font-family: "Gilroy", Arial, sans-serif;
+          background: radial-gradient(50% 61.95% at 50% 50%,
+              rgba(255, 255, 255, 0.08) 0%,
+              rgba(170, 170, 170, 0.08) 100%);
+          box-shadow: 0vh 0vh 4.63vh 0vh #ffffff1a inset;
+          border: none;
+          width: 23.519vh;
+          height: Fixed 3.704vh;
+          padding: 1.204vh 1.852vh;
+          border-radius: 0.463vh;
+          color: #ffffff;
+          transition: 0.3s;
+
+          &:hover {
+            background: radial-gradient(50% 61.95% at 50% 50%, #218617 0%, #04810a99 100%);
+            box-shadow: 0vh 0vh 4.63vh #218617 inset;
+          }
+        }
+      }
+    }
+
+    .shopping-cart {
+      display: flex;
+      justify-content: space-between;
+      height: 100%;
+      min-width: 23.148vh;
+      align-items: end;
+      flex-direction: column;
+
+      .cart-items {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+        gap: 0.926vh;
+        height: 55.556vh;
+        max-height: 55.556vh;
+        overflow-y: scroll;
+
+        p {
+          width: 100%;
+          text-align: end;
+          margin-bottom: 0.463vh;
+        }
+
+        .cart-item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 25.556vh;
+          height: 6.481vh;
+          border-radius: 0.185vh;
+          border: 0.046vh;
+          background: radial-gradient(50% 50% at 50% 50%,
+              rgba(153, 153, 153, 0.0765) 0%,
+              rgba(255, 255, 255, 0.0795) 100%);
+          border: 0.046vh solid #ffffff26;
+
+          .cart-img {
+            margin-left: 0.926vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 4.259vh;
+            height: 4.259vh;
+            border-radius: 0.185vh;
+            border: 0.046vh;
+            background: radial-gradient(50% 50% at 50% 50%,
+                rgba(153, 153, 153, 0.0765) 0%,
+                rgba(255, 255, 255, 0.0795) 100%);
+            border: 0.046vh solid #ffffff26;
+
+            img {
+              max-width: 1.481vh;
+              max-height: 2.037vh;
+            }
+          }
+
+          h2 {
+            width: 14.815vh;
+            height: 1.759vh;
+            font-family: "Gilroy";
+            font-size: 1.481vh;
+            font-weight: 400;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          .item-remove-button {
+            margin-right: 0.926vh;
+            width: 2.778vh;
+            height: 2.778vh;
+            border-radius: 0.463vh;
+            background: radial-gradient(50% 61.95% at 50% 50%, #fa2d2d 0%, #952626 100%);
+            box-shadow: 0vh 0vh 1.852vh 0vh #fa2d2d inset;
+            cursor: pointer;
+            border: none;
+            transition: 0.3s;
+
+            &:hover {
+              box-shadow: 0vh 0vh 1.852vh #380b0b inset;
+            }
+          }
+        }
+      }
+
+      .cart-total {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        flex-direction: column;
+        gap: 0.463vh;
+        width: 25.556vh;
+
+        hr {
+          width: 25.556vh;
+          height: 0.093vh;
+          background: #353536;
+        }
+
+        p {
+          font-family: "Gilroy";
+          font-size: 1.481vh;
+          font-weight: 400;
+        }
+
+        h1 {
+          font-family: "DKallisto";
+          font-size: 1.667vh;
+          font-weight: 400;
+          color: #218617;
+          margin-bottom: 0.926vh;
+        }
+
+        .checkout-button {
+          width: 25.556vh;
+          height: 4.63vh;
+          padding: 1.389vh 4.815vh;
+          border-radius: 0.463vh;
+          background: radial-gradient(50% 61.95% at 50% 50%, #218617 0%, #21861799 100%);
+          box-shadow: 0vh 0vh 4.63vh 0vh #218617 inset;
+          color: #ffffff;
+          transition: 0.3s;
+          cursor: pointer;
+          font-family: "Gilroy";
+          font-size: 1.481vh;
+          border: none;
+
+          &:hover {
+            box-shadow: 0vh 0vh 1.852vh #22a716 inset;
+          }
+        }
+      }
+    }
+  }
+
+  /* Stilizeaza bara de scroll */
+  ::-webkit-scrollbar {
+    width: 0.463vh;
+    /* Latimea scrollbar-ului */
+  }
+
+  /* Stilizeaza thumb-ul (partea care se misca pe scroll) */
+  ::-webkit-scrollbar-thumb {
+    background: #ffffff;
+    /* Culoarea thumb-ului */
+    border-radius: 0.463vh;
+    /* Colturi rotunjite */
+  }
+
+  /* Stilizeaza track-ul (fundalul scrollbar-ului) */
+  ::-webkit-scrollbar-track {
+    background: #ffffff1a;
+    /* Culoare de fundal pentru scrollbar */
+    border-radius: 0.463vh;
+    /* Colturi rotunjite */
+  }
+}

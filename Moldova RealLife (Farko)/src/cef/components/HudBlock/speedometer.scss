@@ -1,0 +1,260 @@
+@font-face {
+  font-family: "DKallisto";
+  src: url("./fonts/d_kallisto.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("./fonts/Gilroy-Light.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body, html {
+  font-size: 1.482vmin;
+}
+
+.speedo-container-box {
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  flex-direction: column;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 55.56vh;
+  height: 37.04vh;
+  //background: black;
+  padding-bottom: 1.85vh;
+  padding-right: 5.56vh;
+
+  .speedometer {
+    position: relative;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    
+    .svg-speed {
+      position: absolute;
+      transform: rotateZ(224deg);
+      left: -1.39vh;
+      bottom: -0.65vh;
+      z-index: 3;
+
+      svg {
+        width: 24.07vh;
+        height: 22.69vh;
+      }
+    }
+    
+    .svg-speed-bg {
+      position: absolute;
+      transform: rotateZ(224deg);
+      left: -1.39vh;
+      bottom: -0.65vh;
+      z-index: 2;
+      transition: 0.3s;
+
+      svg {
+        width: 24.07vh;
+        height: 22.69vh;
+      }
+    }
+    
+    .svg-speed-yellow {
+      position: absolute;
+      transform: rotateZ(224deg);
+      left: 0vh;
+      bottom: 0.74vh;
+    
+      svg {
+        width: 21.3vh;
+        height: 19.91vh;
+      }
+    }
+
+    .middle {
+      font-family: "DKallisto", Arial, sans-serif;
+      color: #ffffff;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 21.3vh;
+      height: 21.3vh;
+  
+      // background-image: url(./img/middle-bg.svg);
+  
+      .speed {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-bottom: 1.85vh;
+  
+        .speed-value {
+          font-size: 4.44vh;
+          font-weight: 400;
+          text-align: right;
+          text-decoration-skip-ink: none;
+          text-shadow: 0vh 0vh 3.52vh #ffffff40;
+          margin-top: 5.09vh;
+        }
+  
+        .unit {
+          color: #FFF;
+
+          text-align: center;
+          font-family: Gilroy;
+          font-size: 1.48vh;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+        }
+  
+        p {
+          width: auto;
+          height: auto;
+
+          display: flex;
+          padding: 0.37vh 1.2vh;
+          justify-content: center;
+          align-items: center;
+
+          border-radius: 0.19vh;
+          background: rgba(255, 255, 255, 0.10);
+        }
+      }
+  
+      .controls {
+        margin-top: 1.39vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+  
+        .car-milage {
+          font-family: "Gilroy", Arial, sans-serif;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-right: 1.39vh;
+        }
+  
+        .control {
+          margin-top: 1.39vh;
+          cursor: pointer;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 0.93vh;
+
+          img {
+            width: 3.7vh;
+            height: 2.31vh;
+          }
+      
+        }
+      }
+    }
+  
+    .engine-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 0.93vh;
+      position: absolute;
+      bottom: 4.63vh;
+      right: -6.48vh;
+      .box {
+        position: relative;
+        width: 12.59vh;
+        height: 12.59vh;
+        display: flex;
+        align-items: flex-end;
+  
+        .empty {
+          width: 12.59vh;
+          height: 12.59vh;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          z-index: 2;
+        }
+  
+        .fill {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          background-color: #FF0000;
+          filter: drop-shadow(0px 2px 20px rgba(255, 123, 0, 0.50));
+          transition: height 0.5s ease-in-out;
+          z-index: 10;
+          mask-image: url(./img/engine-red.svg);
+          mask-size: 9.07vh 12.59vh;
+          -webkit-mask-position: bottom;
+          mask-position: bottom;
+        }
+      }
+  
+      img {
+        position: absolute;
+        bottom: -1.02vh;
+        right: 6.94vh;
+        width: 1.3vh;
+      }
+    }
+  
+    .fuel-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 0.93vh;
+      position: absolute;
+      bottom: 4.63vh;
+      left: -6.57vh;
+      .box {
+        position: relative;
+        width: 12.59vh;
+        height: 12.59vh;
+        display: flex;
+        align-items: flex-end;
+  
+        .empty {
+          // width: 12.59vh;
+          // height: 12.59vh;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          z-index: 2;
+        }
+  
+        .fill {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          background-color: white;
+          transition: height 0.5s ease-in-out;
+          z-index: 10;
+          mask-image: url(./img/fuel-red.svg);
+          mask-size: 9.2vh 13.2vh;
+          -webkit-mask-position: bottom;
+          mask-position: bottom;
+        }
+      }
+  
+      img {
+        position: absolute;
+        bottom: -2.5vh;
+        left: 6.8vh;
+
+        width: 1.48vh;
+        height: 1.85vh;
+      }
+    }
+  }
+}

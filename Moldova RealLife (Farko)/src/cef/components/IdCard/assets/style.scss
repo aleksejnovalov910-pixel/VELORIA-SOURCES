@@ -1,0 +1,247 @@
+@use "sass:math";
+
+@function pxToRem($pxValue, $scale: 1) {
+  @return math.div($pxValue, 16px) * $scale * 1rem;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.section-middle-block {
+  z-index: 200;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+}
+
+
+.passport_main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+
+  .passport_box {
+    width: pxToRem(770px);
+    height: pxToRem(440px);
+    // background: linear-gradient(130deg, rgba(255,255,255,0) 0%, rgba(129,151,227,0.3) 150%) no-repeat,
+              //  url('./bg.png'),  no-repeat;
+    background: url('./bg.png') no-repeat;
+    background-size: cover;
+    opacity: 1;
+
+    border-radius: pxToRem(40px);
+
+    font-size: 1.482vmin;
+
+
+    position: relative;
+
+    .passport_container {
+      width: 100%;
+      height: 100%;
+
+      // display: flex;
+      // flex-direction: row;
+      // justify-content: flex-start;
+      // align-items: flex-start;
+
+      display: grid;
+      grid-template-columns: 2fr 4fr 1fr;
+
+      gap: pxToRem(30px);
+
+      padding: pxToRem(30px);
+
+      .passport_image {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        width: 100%;
+        height: 100%;
+
+        position: relative;
+
+        &_block{ 
+          width: 100%;
+          height: 100%;
+
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: flex-start;
+
+          position: relative;
+        }
+
+        &_img {
+          display: flex;
+          justify-content: flex-start;
+          align-items: flex-start;
+
+          width: 100%;
+          height: auto;
+
+          border-radius: pxToRem(10px);
+
+          object-fit: cover;
+
+          transform: rotate(90deg);
+
+          aspect-ratio: 4/3;
+
+          scale: 1.2;
+
+          margin-top: pxToRem(50px);
+        }
+      }
+
+      .passport-data {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        font-family: 'Poppins', sans-serif;
+        color: rgb(32, 32, 32);
+
+        gap: pxToRem(20px);
+       
+        .passport_title {
+          display: flex;
+          justify-content: flex-start;
+          align-items: flex-start;
+          
+          font-size: pxToRem(24px);
+          font-weight: 400;
+          color: rgb(65,64, 66);
+  
+          text-transform: uppercase;
+
+          // letter-spacing: pxToRem(5px);
+          word-spacing: pxToRem(2px);
+  
+          b {
+            font-weight: 700;
+            color: rgb(65,64, 66);
+
+            margin-right: pxToRem(10px);
+          }
+        }
+
+        .passport_number {
+          display: flex;
+          justify-content: flex-start;
+          align-items: flex-start;
+          gap: pxToRem(5px);
+          
+          font-size: pxToRem(16px);
+          font-weight: 400;
+          color: #000;
+
+          text-transform: uppercase;
+
+          // span {
+          //   // font-weight: 700;
+          //   // color: #000;
+
+          //   margin-left: pxToRem(10px);
+          // }
+        }
+
+        .passport_info {
+          width: 100%;
+          height: 100%;
+
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
+          
+          padding-top: pxToRem(20px);
+
+          gap: pxToRem(20px);
+
+          .passport-info-row {
+            width: 100%;
+            height: auto;
+
+            display: grid;
+            grid-template-columns: 3fr 1fr 5fr;
+            // display: flex;
+            // flex-direction: row;
+            // justify-content: space-between;
+            // align-items: flex-start;
+
+            &-spacer {
+              width: 100%;
+              height: auto;
+
+              display: flex;
+              justify-content: flex-start;
+              align-items: flex-start;
+            }
+
+            &-value, &-label {
+              width: 100%;
+              height: auto;
+              
+              font-family: 'Poppins', sans-serif;
+              font-size: pxToRem(16px);
+              font-weight: 400;
+              color: rgb(32, 32, 32);
+
+              text-transform: uppercase;
+              
+              &.regular {
+                font-weight: 400;
+              }
+
+              img {
+                width: 100%;
+                height: auto;
+              }
+            }
+
+          }
+
+          .passport_sign {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            
+            width: pxToRem(200px);
+            height: pxToRem(100px); 
+
+            img {
+              width: 100%;
+              height: 100%;
+
+              // border-radius: pxToRem(10px);
+            }
+          }
+        }
+      }
+
+      .passport_watermark {
+        display: flex;
+        justify-content: flex-end;
+  
+        width: 100%;
+        height: 100%;
+  
+        img {
+          width: pxToRem(100px);
+          height: pxToRem(100px);
+        }
+      }
+    }
+  }
+}

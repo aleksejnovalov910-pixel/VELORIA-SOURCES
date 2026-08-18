@@ -1,0 +1,533 @@
+// RESET CSS START
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+//RESET CSS END
+
+@font-face {
+  font-family: "DKallisto";
+  src: url("../../Interaction/assets/fonts/d_kallisto.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("../../Interaction/assets/fonts/Gilroy-Light.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.casino-container-box {
+  user-select: none;
+  position: fixed;
+  inset: 0;
+
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  background-image: url(./img/BG.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  .casino-box {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    width: 1920px;
+    height: 1080px;
+    color: #ffffff;
+
+    .casino-exit {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+
+      position: absolute;
+      top: 50px;
+      right: 50px;
+      z-index: 99;
+
+      p {
+        font-family: "Gilroy";
+        font-size: 16px;
+        font-weight: 400;
+
+        color: #ffffff;
+      }
+
+      .exit-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 2px;
+        background: radial-gradient(50% 50% at 50% 50%,
+            rgba(153, 153, 153, 0.0765) 0%,
+            rgba(255, 255, 255, 0.0795) 100%);
+        border: 0.5px solid #ffffff26;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+          background: #FF6F7D33;
+          border: 1px solid #FF6F7D;
+        }
+      }
+    }
+
+    .character-img {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+
+    .chips {
+      margin-top: 150px;
+      margin-left: 100px;
+      width: 855px;
+      height: 730px;
+
+      .buy-chips {
+        display: flex;
+        justify-content: start;
+        align-items: start;
+        flex-direction: column;
+        width: 100%;
+
+        .top {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .title {
+            h1 {
+              font-family: "DKallisto";
+              font-weight: 400;
+              font-size: 24px;
+              text-transform: uppercase;
+
+              span {
+                color: #FF6F7D;
+              }
+            }
+
+            p {
+              font-family: "Gilroy";
+              font-weight: 400;
+              font-size: 16px;
+            }
+          }
+
+          .balance {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+
+            h1 {
+              font-family: "Gilroy";
+              font-weight: 400;
+              font-size: 18px;
+              margin-left: -250px;
+
+            }
+
+            .balance-box {
+              width: 121px;
+              height: 50px;
+              border-radius: 2px;
+
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              gap: 10px;
+
+              background: radial-gradient(50% 50% at 50% 50%,
+                  rgba(153, 153, 153, 0.0408) 0%,
+                  rgba(255, 255, 255, 0.0424) 100%);
+              border: 0.5px solid #ffffff26;
+
+              img {
+                max-width: 18px;
+                max-height: 18px;
+              }
+
+              h2 {
+                font-family: "Gilroy";
+                font-weight: 600;
+                font-size: 16px;
+              }
+            }
+          }
+        }
+
+        .buy-sell {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 15px;
+          margin-top: 20px;
+
+          .buy-sell-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+            gap: 5px;
+            height: 60px;
+            background: radial-gradient(50% 50% at 50% 50%,
+                rgba(153, 153, 153, 0.0408) 0%,
+                rgba(255, 255, 255, 0.0424) 100%);
+            border: 0.5px solid #ffffff26;
+
+            h1 {
+              font-family: "Gilroy";
+              font-weight: 400;
+              font-size: 16px;
+              color: #FF6F7D;
+            }
+
+            .math {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              gap: 10px;
+              font-family: "Gilroy";
+              font-weight: 600;
+              font-size: 16px;
+
+              img {
+                width: 18px;
+              }
+            }
+          }
+        }
+
+        .offers {
+          height: 420px;
+          width: 100%;
+          margin-top: 10px;
+          display: flex;
+          gap: 10px;
+          flex-wrap: wrap;
+          overflow-y: auto;
+
+          .offer {
+            width: 374px;
+            padding: 20px;
+            height: 160px;
+            border-radius: 2px;
+            background: #99999914;
+            border: 0.5px solid #ffffff26;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: start;
+
+            .offer-qty {
+              display: flex;
+              justify-content: start;
+              align-items: center;
+              gap: 10px;
+
+              img {
+                width: 30px;
+              }
+
+              h1 {
+                font-family: "Gilroy";
+                font-weight: 600;
+                font-size: 24px;
+              }
+            }
+
+            .offer-price {
+              display: flex;
+              width: 100%;
+              justify-content: space-between;
+              align-items: center;
+
+              h1 {
+                font-family: "Gilroy";
+                font-weight: 500;
+                font-size: 24px;
+                color: #FF6F7D;
+              }
+
+              button {
+                width: 160px;
+                height: 50px;
+                border-radius: 2px;
+                background: #FF6F7D33;
+                border: 1px solid #FF6F7D;
+                font-family: "Gilroy";
+                font-weight: 500;
+                font-size: 18px;
+                color: #ffffff;
+                transition: 0.3s;
+
+                &:hover {
+                  background: #FF6F7D7c;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .sell-chips {
+        margin-top: 20px;
+
+        .title {
+          margin-bottom: 15px;
+
+          h1 {
+            font-family: "DKallisto";
+            font-weight: 400;
+            font-size: 24px;
+            text-transform: uppercase;
+
+            span {
+              color: #FF6F7D;
+            }
+          }
+
+          p {
+            font-family: "Gilroy";
+            font-weight: 400;
+            font-size: 16px;
+
+          }
+        }
+
+        p {
+          font-family: "Gilroy";
+          font-weight: 500;
+          font-size: 18px;
+          margin-bottom: 10px;
+        }
+
+        .controls {
+          display: flex;
+          justify-content: start;
+          align-items: center;
+          gap: 10px;
+
+          .element {
+            padding: 0 10px;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            gap: 10px;
+            background: radial-gradient(50% 50% at 50% 50%,
+                rgba(153, 153, 153, 0.0408) 0%,
+                rgba(255, 255, 255, 0.0424) 100%);
+            border: 0.5px solid #ffffff26;
+            width: 180px;
+            height: 50px;
+            border-radius: 2px;
+
+            img {
+              max-width: 20px;
+              max-height: 20px;
+            }
+
+            input {
+              font-family: "Gilroy";
+              font-weight: 500;
+              font-size: 18px;
+              border: none;
+              background: transparent;
+              color: #ffffff;
+
+              &:focus {
+                outline: none;
+                border: none;
+              }
+            }
+
+            input[type="number"]::-webkit-inner-spin-button,
+            input[type="number"]::-webkit-outer-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+            }
+
+            input[type="number"] {
+              -moz-appearance: textfield;
+            }
+          }
+
+          button {
+            width: 180px;
+            height: 50px;
+            border-radius: 2px;
+            background: #ff444433;
+            border: 1px solid #ff4444;
+            color: #ffffff;
+            font-family: "Gilroy";
+            font-weight: 500;
+            font-size: 16px;
+            transition: 0.3s;
+
+            &:hover {
+              background: #ff444470;
+            }
+          }
+
+          h1 {
+            font-family: "Gilroy";
+            font-weight: 500;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #ffffff;
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #ffffff1a;
+    border-radius: 5px;
+  }
+}

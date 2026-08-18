@@ -1,0 +1,283 @@
+// RESET CSS START
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+//RESET CSS END
+
+// VARIABILE IN PIXELI PENTRU VH
+$vh-map: ();
+@for $i from 1 through 1300 {
+  $vh-map: map-merge(
+    $vh-map,
+    (
+      $i: #{($i / 1080) * 100}vh,
+    )
+  );
+}
+
+@font-face {
+  font-family: "DKallisto";
+  src: url("../fonts/d_kallisto.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("../fonts/Gilroy-Light.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.congratulations-container-box {
+  user-select: none;
+  position: fixed;
+  inset: 0;
+
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  background-image: url(./img/BG.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  .congratulations-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .congratulations-exit {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: map-get($vh-map, 10);
+
+      position: absolute;
+      top: map-get($vh-map, 50);
+      right: 50px;
+
+      p {
+        font-family: "Gilroy";
+        font-size: map-get($vh-map, 16);
+        font-weight: 400;
+        color: #ffffff;
+      }
+
+      .exit-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: map-get($vh-map, 40);
+        height: map-get($vh-map, 40);
+        border-radius: map-get($vh-map, 2);
+        background: radial-gradient(
+          50% 50% at 50% 50%,
+          rgba(153, 153, 153, 0.0765) 0%,
+          rgba(255, 255, 255, 0.0795) 100%
+        );
+        border: 0.5px solid #ffffff26;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+          background: linear-gradient(
+            92.5deg,
+            #4369e5 0%,
+            #43b6e5 50%,
+            #4369e5 100%
+          );
+          box-shadow: 0px 4px 13.5px 0px #43b6e5 inset;
+          border: 0.5px solid #43b6e5;
+        }
+      }
+    }
+
+    .congratulations {
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: map-get($vh-map, 20);
+      h1 {
+        font-family: "DKallisto";
+        font-weight: 400;
+        font-size: map-get($vh-map, 48);
+        color: #FF6F7D;
+      }
+      p {
+        font-family: "Gilroy";
+        font-weight: 400;
+        font-size: map-get($vh-map, 24);
+        color: #ffffff;
+      }
+      button {
+        background: linear-gradient(
+          92.5deg,
+          #e45715 0%,
+          #FF6F7D 50%,
+          #e45715 100%
+        );
+        box-shadow: 0px 4px 13.5px 0px #ffb200 inset;
+        color: #ffffff;
+        border: none;
+        width: map-get($vh-map, 530);
+        height: map-get($vh-map, 50);
+        border-radius: map-get($vh-map, 5);
+        font-family: "Gilroy";
+        font-weight: 500;
+        font-size: map-get($vh-map, 18);
+      }
+    }
+
+    img.top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 80vh;
+    }
+
+    img.bottom {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 80vh;
+    }
+  }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #ffffff;
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #ffffff1a;
+    border-radius: 5px;
+  }
+}

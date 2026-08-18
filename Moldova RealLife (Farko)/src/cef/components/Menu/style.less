@@ -1,0 +1,345 @@
+.test_menu {
+    width: 100vw;
+    height: 100vh;
+    //    background-image: url('./../Personage/assets/bg_person.jpg');
+    position: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu_circular {
+    background-image: url('./img/bg.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 120vw;
+    height: 120vw;
+    margin-left: 175vw;
+    position: absolute;
+    animation-name: menu_rotation;
+    animation-duration: 60s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    overflow: hidden;
+}
+
+@keyframes menu_rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(359deg);
+    }
+}
+
+.popup-menu {
+    position: absolute;
+    height: calc(90vh);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    top: 12.037vh;
+    right: 24.815vh;
+    user-select: none;
+    z-index: 9999;
+}
+
+.popup-menu:hover {
+    cursor: default;
+}
+
+.popup-menu .right {
+    float: right;
+}
+
+.menu_item_desc {
+    box-sizing: border-box;
+    width: 37.037vh;
+
+    margin-top: 0.926vh;
+    padding: 2.407vh;
+
+    border-radius: 0.926vh;
+    background: radial-gradient(54.37% 50.77% at 0% 0%, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.00) 100%), radial-gradient(90.99% 76.2% at 100% 0%, rgba(255, 123, 0, 0.06) 0%, rgba(255, 123, 0, 0.00) 100%), #111113;
+    
+    color: #FFF;
+    font-family: Gilroy;
+    font-size: 1.296vh;
+    font-weight: 400;
+
+    & .menu_colorpick {
+        margin-top: 0.8vh;
+        height: 12vw;
+        max-height: 15vh;
+        display: flex;
+
+        & .menu_colorbox {
+            height: 100%;
+            width: 90%;
+            position: relative;
+        }
+
+        & .menu_colorhui {
+            position: relative;
+            height: 100%;
+            width: 6%;
+            margin-left: 5%;
+        }
+    }
+
+    & .menu_item_desc_text {
+        display: flex;
+        align-items: center; //flex-start;
+        max-height: 16vh;
+
+        & img {
+            height: 2.778vh;
+            flex-shrink: 0;
+        }
+
+        & .menu_desc_text {
+            display: flex;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            max-height: 100%;
+            max-height: 12vh;
+
+
+            &::-webkit-scrollbar {
+                width: 0.08vw;
+            }
+
+            &::-webkit-scrollbar-track {
+                box-shadow: inset 0 0 0.2rem rgba(85, 85, 85, 0.1);
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: rgba(169, 169, 169, 0.5);
+                outline: 0.1rem solid rgba(112, 128, 144, 0.5);
+            }
+
+            & p {
+                margin-left: 1.111vh;
+            }
+        }
+    }
+}
+
+.menu_header {
+    user-select: none;
+    box-sizing: border-box;
+    width: 37.037vh;
+    max-height: 61.111vh;
+    max-width: 60vh;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+
+    border-radius: 0.926vh;
+    background: radial-gradient(54.37% 50.77% at 0% 0%, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.00) 100%), radial-gradient(90.99% 76.2% at 100% 0%, rgba(255, 123, 0, 0.06) 0%, rgba(255, 123, 0, 0.00) 100%), #111113;
+    padding-bottom: 2.407vh;
+
+    & .menu_title {
+        pointer-events: none;
+        width: 100%;
+        position: absolute;
+        z-index: 9999;
+        pointer-events: none;
+    }
+
+    & :not(:first-child) {
+        z-index: 10000;
+    }
+
+    & h1 {
+        min-height: 32px;
+        margin-top: 3.5vw;
+        margin-bottom: 2.5vw;
+
+        font-style: normal;
+        font-weight: 800;
+        font-size: 1.65vw;
+        line-height: 100%;
+        text-align: center;
+        color: #FFFFFF;
+    }
+
+    & h2 {
+        min-height: 1.481vh;
+        margin-bottom: 0.45vw;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 0.75vw;
+        line-height: 110%;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #FFFFFF;
+        opacity: 0.8;
+    }
+
+    & .menu_items {
+        margin-top: 1.111vh;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.741vh;
+        justify-content: flex-start;
+        align-items: center;
+
+        &::-webkit-scrollbar {
+            width: 0.1rem;
+        }
+
+        &::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 0.2rem rgba(85, 85, 85, 0.2);
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: rgba(169, 169, 169, 0.616);
+            outline: 0.1rem solid rgba(112, 128, 144, 0.788);
+        }
+
+        //        height: max-content;
+        & .menu_item {
+            border-radius: 0.185vh;
+            border: 0.046vh solid rgba(255, 255, 255, 0.15);
+            background: radial-gradient(50% 50% at 50% 50%, rgba(153, 153, 153, 0.05) 0%, rgba(255, 255, 255, 0.05) 100%);
+            box-sizing: border-box;
+            width: 32.222vh;
+            min-height: 4.259vh;
+
+            font-family: Gilroy;
+            font-size: 1.296vh;
+            font-weight: 400;
+            color: #FFF;
+            
+            &:first-child {
+                margin: 0.45vw 0 0 0;
+            }
+
+            &:last-child {
+                margin: 0 0 0.9vw 0;
+            }
+
+            padding: 1.389vh;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &.active {
+                background: rgba(255, 255, 255, 0.15);
+                p {
+                    color: #218617;
+                }
+            }
+
+            & p {
+                &>img {
+                    margin-left: -0.4vw;
+                }
+
+                text-transform: capitalize;
+            }
+
+            & span {
+                min-width: 3vw;
+                height: 1.5vw;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                font-style: normal;
+                font-weight: normal;
+                font-size: 0.85vw;
+                line-height: 110%;
+                color: #FFFFFF;
+                margin-right: -0.741vh;
+                padding: 0.648vh;
+
+                border-radius: 0.185vh;
+                border: 0.093vh solid rgba(255, 255, 255, 0.20);
+                background: rgba(255, 255, 255, 0.10);
+
+            }
+
+            & img {
+                height: 1.5vw;
+                margin-right: 0.4vw;
+            }
+
+            & .menu_color {
+                border: 0.185vh solid #FFFFFF;
+                box-sizing: border-box;
+                border-radius: 0.37vh;
+                transform: matrix(-1, 0, 0, 1, 0, 0);
+                min-width: 4vw;
+                height: 1.5vw;
+            }
+
+            & .menu_range {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                & .menu_list_select {
+                    background: #FFFFFF33;
+                    border-radius: 0.37vh;
+                    min-width: 3vw;
+                    height: 1.5vw;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 0.85vw;
+                    line-height: 110%;
+                    color: #FFFFFF;
+                    margin: 0 0.5vw;
+                    padding-top: 0.3vw;
+                }
+
+                & div:first-child,
+                div:last-child {
+                    height: 1.5vw;
+                    background: rgba(255, 255, 255, 0.15);
+                    border: 0.093vh solid rgba(255, 255, 255, 0.8);
+                    box-sizing: border-box;
+                    border-radius: 0.37vh;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 1.5vw;
+                    cursor: pointer;
+
+                    & img {
+                        margin: 0;
+                        height: 1vw;
+                    }
+
+                    &:last-child {
+                        transform: rotate(180deg);
+                    }
+
+                    &:hover {
+                        background: #218617;
+                        box-shadow: 0vh 0.37vh 2.963vh rgba(4, 99, 24, 0.5);
+                    }
+                }
+            }
+        }
+    }
+
+    // &:not( &:first-child ) {
+    //     z-index: 99999999;
+    // }
+}

@@ -1,0 +1,421 @@
+// RESET CSS START
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+//RESET CSS END
+
+@font-face {
+  font-family: "DKallisto";
+  src: url("../fonts/d_kallisto.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("../fonts/Gilroy-Light.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.busdriver-container-box {
+  user-select: none;
+  position: fixed;
+  inset: 0;
+
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  // background-image: url(../img/BG.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  .busdriver-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1920px;
+    height: 1080px;
+
+    .busdriver-gas-station-box {
+      color: #ffffff;
+      padding: 30px 50px;
+      width: 908px;
+      height: 730px;
+      border-radius: 10px;
+      background: linear-gradient(0deg, #111113, #111113),
+        radial-gradient(90.9% 72.78% at 100% 0%,
+          rgba(255, 123, 0, 0.06) 0%,
+          rgba(255, 123, 0, 0) 100%),
+        radial-gradient(75.14% 50% at 0% 0%,
+          rgba(255, 255, 255, 0.06) 0%,
+          rgba(255, 255, 255, 0) 100%);
+
+      .busdriver-top {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 20px;
+
+
+        .busdriver-exit {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+
+          position: absolute;
+          top: 50px;
+          right: 50px;
+          z-index: 99;
+
+          p {
+            font-family: "Gilroy";
+            font-size: 16px;
+            font-weight: 400;
+            color: #ffffff;
+          }
+
+          .exit-img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 2px;
+            background: radial-gradient(50% 50% at 50% 50%,
+                rgba(153, 153, 153, 0.0765) 0%,
+                rgba(255, 255, 255, 0.0795) 100%);
+            border: 0.5px solid #ffffff26;
+            cursor: pointer;
+            transition: 0.3s;
+
+            &:hover {
+              background: #1f6316;
+              border: 1px solid #329b24;
+            }
+          }
+
+        }
+
+        .busdriver-title {
+          font-size: 24px;
+          font-weight: 100;
+
+          display: flex;
+          justify-content: center;
+          align-items: start;
+          flex-direction: column;
+
+          .busdriver-title-img {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            border-radius: 2px;
+            margin-top: -50px; // <- adaugă asta
+            margin-left: -20px;    // mai la stanga
+
+        
+
+
+            h1 {
+              margin-bottom: 0px;
+              text-transform: uppercase;
+              font-family: "DKallisto", Arial, sans-serif;
+              text-shadow: 0px 0px 50px #ffffff99;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              gap: 10px;
+
+              span {
+                color: #329b24;
+              }
+            }
+          }
+
+          p {
+            font-family: "Gilroy", Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+          }
+
+          .busdriver-your-experience {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 30px;
+            width: 260px;
+            height: 50px;
+            background: radial-gradient(50% 50% at 50% 50%,
+                rgba(153, 153, 153, 0.0408) 0%,
+                rgba(255, 255, 255, 0.0424) 100%);
+            border-radius: 2px;
+            border: 0.5px solid #ffffff26;
+
+            h3 {
+              font-family: "Gilroy";
+              font-size: 16px;
+              font-weight: 400;
+            }
+
+            h4 {
+              font-family: "Gilroy";
+              font-size: 16px;
+              font-weight: 400;
+              color: #329b24;
+            }
+          }
+        }
+
+        img.busdriver-bus {
+          height: 289px;
+          margin-right: -50px;
+          filter: hue-rotate(160deg);
+        }
+      }
+
+      .busdriver-content {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+
+        flex-wrap: wrap;
+
+        .busdriver-level {
+          height: 182px;
+          background: radial-gradient(50% 50% at 50% 50%,
+              rgba(153, 153, 153, 0.0408) 0%,
+              rgba(255, 255, 255, 0.0424) 100%);
+          border: 0.5px solid #ffffff26;
+          padding: 21px;
+
+          display: flex;
+          justify-content: space-between;
+          flex-direction: column;
+          align-items: start;
+
+          .busdriver-level-title {
+            h1 {
+              font-family: "DKallisto";
+              font-size: 16px;
+              font-weight: 400;
+              color: #329b24;
+
+              span {
+                color: #575657;
+              }
+            }
+
+            p {
+              margin-top: 5px;
+              font-family: "Gilroy";
+              font-size: 14px;
+              font-weight: 400;
+            }
+          }
+
+          .busdriver-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            gap: 10px;
+
+            .busdriver-buttons-top {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 218px;
+              height: 36px;
+              border-radius: 2px;
+
+              background: #ffffff1a;
+              border: 1px solid #ffffff80;
+
+              font-family: "Gilroy";
+              font-size: 14px;
+              font-weight: 400;
+              color: #ffffff;
+            }
+
+
+            .busdriver-button {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 218px;
+              height: 36px;
+              border-radius: 2px;
+              background: linear-gradient(92.5deg, #329b24 0%, #39b828 50%, #329b24 100%);
+              box-shadow: 0px 4px 13.5px 0px #2ec51a inset;
+
+              color: #111113;
+              font-family: "Gilroy";
+              font-size: 14px;
+              font-weight: 400;
+              transition: 0.3s;
+              border: none;
+
+              &:hover {
+              background: linear-gradient(92.5deg, #26751c 0%, #329b24 50%, #226b18 100%);
+              box-shadow: 0px 4px 13.5px 0px #3ab829 inset;
+
+              }
+            }
+          }
+        }
+
+        .busdriver-level {
+          width: calc(33.33% - 10px);
+          margin-bottom: 10px;
+        }
+
+        .busdriver-level:nth-child(4),
+        .busdriver-level:nth-child(5) {
+          width: calc(50% - 10px);
+        }
+
+        .busdriver-level:nth-child(4) .busdriver-buttons-top,
+        .busdriver-level:nth-child(5) .busdriver-buttons-top {
+          width: 353px;
+        }
+
+      }
+
+
+    }
+  }
+}

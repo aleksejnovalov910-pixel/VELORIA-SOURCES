@@ -1,0 +1,20 @@
+<svg width="50.774902" height="50.774902" viewBox="0 0 50.7749 50.7749" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<filter id="filter_20_102_dd" x="0.000000" y="0.000000" width="50.774902" height="50.774902" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+			<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+			<feOffset dx="0" dy="0"/>
+			<feGaussianBlur stdDeviation="4.4"/>
+			<feComposite in2="hardAlpha" operator="out" k2="-1" k3="1"/>
+			<feColorMatrix type="matrix" values="0 0 0 0 0.788 0 0 0 0 0.529 0 0 0 0 0.071 0 0 0 1 0"/>
+			<feBlend mode="normal" in2="BackgroundImageFix" result="effect_dropShadow_1"/>
+			<feBlend mode="normal" in="SourceGraphic" in2="effect_dropShadow_1" result="shape"/>
+		</filter>
+	</defs>
+	<g filter="url(#filter_20_102_dd)">
+		<path id="1" d="M19.96 28.42L17.33 31.05C16.38 30.1 14.85 30.1 13.9 31.05C12.96 31.99 12.96 33.53 13.9 34.47C14.37 34.94 14.98 35.17 15.58 35.18C15.59 35.79 15.83 36.4 16.29 36.86C17.24 37.81 18.77 37.81 19.72 36.86C20.66 35.92 20.66 34.38 19.72 33.44L22.35 30.81L19.96 28.42ZM35.31 15.45C32.2 12.42 27.21 12.44 24.13 15.53C22.82 16.84 22.06 18.49 21.85 20.19C21.61 22.16 21.01 24.06 20.04 25.78C19.68 26.42 19.79 27.21 20.3 27.73L23.04 30.46C23.55 30.98 24.35 31.09 24.98 30.73C26.7 29.76 28.61 29.15 30.58 28.91C32.28 28.7 33.93 27.95 35.24 26.64C38.32 23.55 38.35 18.57 35.31 15.45Z" fill="#C98712" fill-opacity="1.000000" fill-rule="nonzero"/>
+	</g>
+</svg>

@@ -1,0 +1,254 @@
+// RESET CSS START
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+//RESET CSS END
+
+@font-face {
+  font-family: "DKallisto";
+  src: url("../fonts/d_kallisto.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("../fonts/Gilroy-Light.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.container-box {
+  user-select: none;
+  position: fixed;
+  inset: 0;
+
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+
+  // background-image: url(../logo-2.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+
+  .box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1920px;
+    height: 1080px;
+
+    .information-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 900px;
+      height: 500px;
+      border-radius: 1px;
+
+      .picture {
+        background-image: url(../img/BG-left.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        min-width: 400px;
+        height: 600px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          width: 225px;
+        }
+      }
+
+      .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        color: #ffffff;
+
+        height: 100%;
+        padding: 50px;
+        background: linear-gradient(0deg, #111113, #111113),
+          radial-gradient(
+              72.78% 72.78% at 100% 0%,
+              rgba(255, 123, 0, 0.06) 0%,
+              rgba(255, 123, 0, 0) 100%
+            )
+            /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
+          radial-gradient(
+              50% 50% at 0% 0%,
+              rgba(255, 255, 255, 0.06) 0%,
+              rgba(255, 255, 255, 0) 100%
+            )
+            /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+
+        .top {
+          h1 {
+            font-family: "DKallisto";
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 15px;
+
+            span {
+              color: #1e861e;
+            }
+          }
+          p {
+            font-family: "Gilroy";
+            font-size: 16px;
+            font-weight: 400;
+          }
+        }
+
+        .button {
+          width: 420px;
+          height: 51px;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          background: #ffffff1a;
+          border-radius: 1px;
+          border: 1px solid #ffffff;
+          font-family: "Gilroy";
+          font-size: 16px;
+          font-weight: 500;
+          transition: 0.3s;
+
+          &:hover {
+            background: #ffffff26;
+            border: 1px solid #ffffff26;
+          }
+        }
+      }
+    }
+  }
+}

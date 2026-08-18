@@ -1,0 +1,50 @@
+@use "sass:math";
+
+@function pxToVh($px, $base: 1080) {
+    @return math.div($px, $base) * 100vh;
+}
+
+
+.mdt_criminal-form {
+
+    h2 {
+        color: #FFF;
+        font-family: "DKallisto";
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-transform: uppercase;
+    }
+
+    .criminal-form {
+        &-img {
+            margin: pxToVh(20) 0;
+            align-self: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: pxToVh(10);
+
+            color: #FFF;
+            text-align: center;
+            font-family: Gilroy;
+            font-size: pxToVh(24);
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+
+            img {
+                width: pxToVh(90);
+                height: pxToVh(90);
+                flex-shrink: 0;
+                border-radius: 50%;
+            }
+        }
+
+        &-row {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}

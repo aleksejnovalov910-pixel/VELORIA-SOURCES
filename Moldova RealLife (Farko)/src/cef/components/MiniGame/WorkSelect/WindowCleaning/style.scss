@@ -1,0 +1,430 @@
+// RESET CSS START
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+//RESET CSS END
+
+@font-face {
+  font-family: "DKallisto";
+  src: url("../assets/fonts/d_kallisto.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("../assets/fonts/Gilroy-Light.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.cleaner-container-box {
+  user-select: none;
+  position: fixed;
+  inset: 0;
+
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  // background-image: url(../img/BG.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  .box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1920px;
+    height: 1080px;
+
+    .cleaner-exit {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+
+      position: absolute;
+      top: 50px;
+      right: 50px;
+
+      p {
+        font-family: "Gilroy";
+        font-size: 16px;
+        font-weight: 400;
+        color: #ffffff;
+      }
+
+      .exit-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 2px;
+        background: radial-gradient(50% 50% at 50% 50%,
+            rgba(153, 153, 153, 0.0765) 0%,
+            rgba(255, 255, 255, 0.0795) 100%);
+        border: 0.5px solid #ffffff26;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+          background: linear-gradient(92.5deg,
+              #4369e5 0%,
+              #43b6e5 50%,
+              #4369e5 100%);
+          box-shadow: 0px 4px 13.5px 0px #43b6e5 inset;
+          border: 0.5px solid #43b6e5;
+        }
+      }
+    }
+
+    .cleaner-box {
+      color: #ffffff;
+      padding: 30px 50px;
+      display: flex;
+      justify-content: space-between;
+      width: 840px;
+      height: 439px;
+      border-radius: 10px;
+      background: linear-gradient(0deg, #111113, #111113),
+        radial-gradient(90.9% 72.78% at 100% 0%,
+          rgba(255, 123, 0, 0.06) 0%,
+          rgba(255, 123, 0, 0) 100%),
+        radial-gradient(75.14% 50% at 0% 0%,
+          rgba(255, 255, 255, 0.06) 0%,
+          rgba(255, 255, 255, 0) 100%);
+
+      .top {
+        display: flex;
+        // justify-content: space-around;
+        align-items: center;
+        gap: 20px;
+
+        .title {
+          font-size: 24px;
+          font-weight: 100;
+
+          display: flex;
+          justify-content: center;
+          align-items: start;
+          flex-direction: column;
+
+          .title-img {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            border-radius: 2px;
+            margin-left: -17px;
+
+            img {
+              width: 60px;
+            }
+
+            h1 {
+              margin-bottom: 0px;
+              text-transform: uppercase;
+              font-family: "DKallisto", Arial, sans-serif;
+              text-shadow: 0px 0px 50px 0px #ffffff99;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              gap: 10px;
+
+              span {
+                color: #43b6e5;
+              }
+            }
+          }
+
+          p {
+            font-family: "Gilroy", Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            max-height: 128px;
+          }
+
+          .your-experience {
+            padding: 0 21px;
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            width: 400px;
+            height: 50px;
+            background: radial-gradient(50% 50% at 50% 50%,
+                rgba(153, 153, 153, 0.0408) 0%,
+                rgba(255, 255, 255, 0.0424) 100%);
+            border-radius: 2px;
+            border: 0.5px solid #ffffff26;
+
+            h3 {
+              font-family: "Gilroy";
+              font-size: 16px;
+              font-weight: 400;
+            }
+
+            h4 {
+              font-family: "Gilroy";
+              font-size: 16px;
+              font-weight: 400;
+              color: #43b6e5;
+            }
+          }
+        }
+      }
+
+      .content {
+
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        //justify-content: center;
+        width: 100%;
+        max-height: 300px;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+        flex-wrap: wrap;
+
+        .level {
+          width: 400px;
+          margin-bottom: 10px;
+          margin-top: 10px;
+          height: 260px;
+          background: radial-gradient(50% 50% at 50% 50%,
+              rgba(153, 153, 153, 0.0408) 0%,
+              rgba(255, 255, 255, 0.0424) 100%);
+          border: 0.5px solid #ffffff26;
+          padding: 21px;
+
+          display: flex;
+          justify-content: space-between;
+          flex-direction: column;
+          align-items: start;
+
+          .level-title {
+            h1 {
+              font-family: "DKallisto";
+              font-size: 16px;
+              font-weight: 400;
+              color: #43b6e5;
+
+              span {
+                color: #575657;
+              }
+            }
+
+            p {
+              margin-top: 5px;
+              font-family: "Gilroy";
+              font-size: 14px;
+              font-weight: 400;
+            }
+          }
+
+          .controls {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            gap: 10px;
+            height: 70%;
+
+            .buttons-top {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 360px;
+              height: 36px;
+              border-radius: 2px;
+
+              background: #ffffff1a;
+              border: 1px solid #ffffff80;
+
+              font-family: "Gilroy";
+              font-size: 14px;
+              font-weight: 400;
+              color: #ffffff;
+            }
+
+            .button {
+              display: flex;
+              margin-top: 40px;
+              justify-content: center;
+              align-items: center;
+              width: 360px;
+              height: 40px;
+              border-radius: 2px;
+              background: linear-gradient(92.5deg,
+                  #4369e5 0%,
+                  #43b6e5 50%,
+                  #4369e5 100%);
+              box-shadow: 0px 4px 13.5px 0px #43b6e5 inset;
+              color: #111113;
+              font-family: "Gilroy";
+              font-size: 14px;
+              font-weight: 400;
+              transition: 0.3s;
+              border: none;
+
+              &:hover {
+                background: linear-gradient(92.5deg,
+                    #020e35 0%,
+                    #43b6e5 50%,
+                    #020e35 100%);
+                box-shadow: 0px 4px 13.5px 0px #43b6e5 inset;
+              }
+            }
+          }
+        }
+      }
+
+      .right {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img.cleaner-img {
+          width: 280px;
+          height: 290px;
+
+          filter: hue-rotate(355deg);
+        }
+      }
+    }
+  }
+}

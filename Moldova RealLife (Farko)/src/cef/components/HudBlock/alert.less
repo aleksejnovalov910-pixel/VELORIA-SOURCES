@@ -1,0 +1,159 @@
+// Color variables (appears count calculates by raw css)
+@color0: #6ad637; // Appears 4 times
+@color1: #ff313d; // Appears 3 times
+@color2: #a8a8a8; // Appears 2 times
+@color3: #ffe86f; // Appears 2 times
+@color4: #2d9cdb; // Appears 2 times
+
+// Width variables (appears count calculates by raw css)
+@width0: (338 / 16) * 1 * 1rem; // Appears 2 times
+@width1: (32 / 16) * 1 * 1rem; // Appears 2 times
+
+// Height variables (appears count calculates by raw css)
+@height0: (84 / 16) * 1 * 1rem; // Appears 2 times
+@height1: (32 / 16) * 1 * 1rem; // Appears 2 times
+
+.hud-notifications {
+  bottom: (252 / 16) * 1 * 1rem;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: (6 / 16) * 1 * 1rem;
+  left: (25 / 16) * 1 * 1rem;
+  position: absolute;
+}
+.hud-notifications-alert {
+  width: 290px;
+  min-height: (84 / 16) * 1 * 1rem;
+  border-radius: (6 / 16) * 1 * 1rem;
+  background: linear-gradient(
+    225deg,
+    rgba(0, 0, 0, 0.8) -34.95%,
+    rgba(32, 32, 32, 0.8) 133.03%
+  );
+  padding: (26 / 16) * 1 * 1rem (23 / 16) * 1 * 1rem;
+  display: flex;
+  gap: 13px;
+  align-items: center;
+}
+.hud-notifications-alert-icon {
+  align-items: center;
+  border-radius: (6 / 16) * 1 * 1rem;
+  display: flex;
+  height: @height1;
+  justify-content: center;
+  width: @width1;
+}
+.hud-notifications-alert-text {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  span {
+    &:nth-child(1) {
+      color: @color0;
+      font-family: Gilroy;
+      font-size: (15 / 16) * 1 * 1rem;
+      font-style: normal;
+      font-weight: 800;
+      line-height: normal;
+      text-transform: uppercase;
+    }
+    &:nth-child(2) {
+      color: @color2;
+      font-family: Gilroy;
+      font-size: (15 / 16) * 1 * 1rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+    }
+  }
+}
+.hud-notifications-alert-success {
+
+  .hud-notifications-alert-text {
+    span {
+      &:nth-child(1) {
+        color: @color0;
+      }
+    }
+  }
+}
+.hud-notifications-alert-warning {
+  .hud-notifications-alert-text {
+    span {
+      &:nth-child(1) {
+        color: @color3;
+      }
+    }
+  }
+}
+.hud-notifications-alert-error {
+  .hud-notifications-alert-text {
+    span {
+      &:nth-child(1) {
+        color: @color1;
+      }
+    }
+  }
+}
+.hud-notifications-alert-info {
+  .hud-notifications-alert-text {
+    span {
+      &:nth-child(1) {
+        color: @color4;
+      }
+    }
+  }
+}
+.hud-notifications-request {
+  align-items: center;
+  background: linear-gradient(
+    225deg,
+    rgba(0, 0, 0, 0.8) -34.95%,
+    rgba(32, 32, 32, 0.8) 133.03%
+  );
+  border-radius: (6 / 16) * 1 * 1rem;
+  display: flex;
+  flex-shrink: 0;
+  gap: (15 / 16) * 1 * 1rem;
+  height: @height0;
+  padding-left: (23 / 16) * 1 * 1rem;
+  width: @width0;
+}
+.hud-notifications-request-buttons {
+  align-items: center;
+  display: flex;
+  gap: (6 / 16) * 1 * 1rem;
+}
+.hud-notifications-request-button {
+  align-items: center;
+  border-radius: (6 / 16) * 1 * 1rem;
+  cursor: pointer;
+  display: flex;
+  height: @height1;
+  justify-content: center;
+  width: @width1;
+}
+.hud-notifications-request-text {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  span {
+    &:nth-child(1) {
+      color: #ffffff;
+      font-family: Gilroy;
+      font-size: (15 / 16) * 1 * 1rem;
+      font-style: normal;
+      font-weight: 800;
+      line-height: normal;
+      text-transform: uppercase;
+    }
+    &:nth-child(2) {
+      color: @color2;
+      font-family: Gilroy;
+      font-size: (15 / 16) * 1 * 1rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+    }
+  }
+}

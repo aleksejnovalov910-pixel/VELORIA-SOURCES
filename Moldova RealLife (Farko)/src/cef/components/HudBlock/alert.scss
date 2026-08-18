@@ -1,0 +1,190 @@
+@use "sass:math";
+
+@function pxToRem($px) {
+  @return math.div($px, 16px) * 1rem;
+}
+
+@font-face {
+  font-family: "DKallisto";
+  src: url("./fonts/d_kallisto.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("../../assets/fonts/Gilroy/Gilroy-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("../../assets/fonts/Gilroy/Gilroy-Medium.ttf") format("truetype");
+  font-weight: 500; 
+  font-style: normal;
+}
+
+body, html {
+  font-size: 1.482vmin !important;
+}
+
+.notificationsWraper {
+  color: #ffffff;
+  position: absolute;
+  bottom: pxToRem(250px);
+  left: pxToRem(30px);
+
+  max-height: pxToRem(550px);
+  width: pxToRem(270px);
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column-reverse;
+  gap: pxToRem(10px);
+
+
+  .notification {
+    position: relative;
+    // margin-bottom: 10px;
+    animation: fadeInAnimation 0.3s linear ;
+    width: 100%;
+    height: fit-content;
+    border-radius: pxToRem(5px);
+    // margin-left: 20px;
+
+    background: #001402;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: pxToRem(10px);
+
+    padding: pxToRem(18px);
+
+    @keyframes fadeInAnimation {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .notification-img {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: pxToRem(5px);
+
+      width: fit-content;
+      height: fit-content;
+      // margin-right: 25px;
+
+      h1 {
+        font-family: "Gilroy";
+        font-size: pxToRem(14px);
+        font-weight: 700;
+        line-height: normal;
+        color: #ffffff;
+        background: rgb(0, 0, 0);
+
+        width: pxToRem(25px);
+        aspect-ratio: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: pxToRem(5px);
+        cursor: pointer;
+      }
+
+      h2 {
+        font-family: "Gilroy";
+        font-size: pxToRem(14px);
+        font-weight: 700;
+        line-height: normal;
+        color: #ffffff;
+        background: #000000;
+
+        width: pxToRem(25px);
+        aspect-ratio: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: pxToRem(5px);
+        cursor: pointer;
+      }
+    }
+
+    img {
+      // margin-left: -30px;
+      width: pxToRem(24px);
+      height: pxToRem(24px);
+    }
+
+    .notification-content {
+      // margin-left: -40px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: start;
+      flex-direction: column;
+      gap: pxToRem(4px);
+      // padding: 10px;
+
+      &.trade {
+        // margin-left: -20px;
+      }
+
+      h1 {
+        color: #FF9D00;
+        font-family: "DKallisto";
+        font-size: pxToRem(14px);
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+
+        text-transform: uppercase;
+      }
+
+      h2 {
+        color: #FFF;
+        font-family: Gilroy;
+        font-size: pxToRem(12px);
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+      }
+    }
+
+    .notification-loading {
+      top: pxToRem(10px);
+      right: pxToRem(10px);
+
+      position: absolute;
+      display: flex;
+      justify-content: start;
+      width: pxToRem(16px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: #504b49;
+      // margin-top: -40px;
+
+      &.trade {
+        margin-left: -30px;
+      }
+
+      .notification-circle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: pxToRem(12px);
+        height: pxToRem(12px);
+        border-radius: 50%;
+        background: #003805;
+        animation: rotate 2s linear infinite;
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+// Lang file ready
+import "./lsc"
+import "./autosalon"
+import "./order.zone"
+import "./fuel"
+import "./barber"
+import "./lsc.chip"
+import "./shop"

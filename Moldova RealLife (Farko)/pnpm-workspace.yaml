@@ -1,0 +1,7 @@
+onlyBuiltDependencies:
+  - '@ffprobe-installer/linux-x64'
+  - '@parcel/watcher'
+  - '@swc/core'
+  - bson
+  - esbuild
+  - ws

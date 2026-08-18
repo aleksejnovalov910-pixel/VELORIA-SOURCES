@@ -1,0 +1,6 @@
+server/
+node_modules/
+.devcontainer/
+.pnpm-store/
+.env.example/
+.gitignore

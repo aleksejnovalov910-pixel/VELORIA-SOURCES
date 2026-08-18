@@ -1,0 +1,464 @@
+// RESET CSS START
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+//RESET CSS END
+
+@font-face {
+  font-family: "DKallisto";
+  src: url("../fonts/d_kallisto.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("../fonts/Gilroy-Light.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.marihuanajob-tonys-garage-container-box {
+  user-select: none;
+  position: fixed;
+  inset: 0;
+
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  // background-image: url(../img/BG.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  .marihuanajob-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1920px;
+    height: 1080px;
+
+
+    .marihuanajob-exit {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+
+      position: absolute;
+      top: 50px;
+      right: 50px;
+      z-index: 99;
+
+      p {
+        font-family: "Gilroy";
+        font-size: 16px;
+        font-weight: 400;
+        color: #ffffff;
+      }
+
+      .exit-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 2px;
+        background: radial-gradient(50% 50% at 50% 50%,
+            rgba(153, 153, 153, 0.0765) 0%,
+            rgba(255, 255, 255, 0.0795) 100%);
+        border: 0.5px solid #ffffff26;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+          background: radial-gradient(50% 50% at 50% 50%,
+        rgba(255, 105, 180, 0.5) 0%,
+        rgba(255, 105, 180, 0.265) 100%);
+
+          border: 1px solid #FF6F7D;
+        }
+      }
+
+    }
+
+    .marihuanajob-tonys-garage-exit {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+
+      position: absolute;
+      top: 50px;
+      right: 50px;
+
+      p {
+        font-family: "Gilroy";
+        font-size: 16px;
+        font-weight: 400;
+        color: #ffffff;
+      }
+
+      .marihuanajob-exit-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 2px;
+        background: radial-gradient(50% 50% at 50% 50%,
+            rgba(153, 153, 153, 0.0765) 0%,
+            rgba(255, 255, 255, 0.0795) 100%);
+        border: 0.5px solid #ffffff26;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+        border: 0.5px solid #ff69b480;
+        background: radial-gradient(
+          50% 50% at 50% 50%,
+          rgba(255, 105, 180, 0.5) 0%,
+          rgba(255, 105, 180, 0.265) 100%);
+
+        }
+      }
+    }
+
+    .marihuanajob-gas-station-box {
+      color: #ffffff;
+      padding: 30px 30px;
+      width: 842px;
+      height: 638px;
+      border-radius: 10px;
+      background: linear-gradient(0deg, #111113, #111113),
+        radial-gradient(90.9% 72.78% at 100% 0%,
+          rgba(255, 123, 0, 0.06) 0%,
+          rgba(255, 123, 0, 0) 100%),
+        radial-gradient(75.14% 50% at 0% 0%,
+          rgba(255, 255, 255, 0.06) 0%,
+          rgba(255, 255, 255, 0) 100%);
+
+      .marihuanajob-top {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        gap: 20px;
+
+        .marihuanajob-title {
+          font-size: 24px;
+          font-weight: 100;
+
+          display: flex;
+          justify-content: center;
+          align-items: start;
+          flex-direction: column;
+
+          .marihuanajob-title-img {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            border-radius: 2px;
+            gap: 12px;
+            margin-bottom: 10px;
+
+            h1 {
+              margin-bottom: 0px;
+              text-transform: uppercase;
+              font-family: "DKallisto", Arial, sans-serif;
+              text-shadow: 0px 0px 50px #ffffff99;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              gap: 10px;
+
+              span {
+                color: #FF6F7D;
+              }
+            }
+          }
+
+          p {
+            font-family: "Gilroy", Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            height: 192px;
+            overflow-y: auto;
+          }
+
+          .marihuanajob-your-experience {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            width: 400px;
+            height: 50px;
+            background: radial-gradient(50% 50% at 50% 50%,
+                rgba(153, 153, 153, 0.0408) 0%,
+                rgba(255, 255, 255, 0.0424) 100%);
+            border-radius: 2px;
+            border: 0.5px solid #ffffff26;
+
+            h3 {
+              font-family: "Gilroy";
+              font-size: 16px;
+              font-weight: 400;
+              margin-left: 15px;
+            }
+
+            h4 {
+              font-family: "Gilroy";
+              font-size: 16px;
+              font-weight: 400;
+              color: #FF6F7D;
+              margin-right: 15px;
+            }
+          }
+        }
+
+        img.marihuanajob-bus {
+          height: 289px;
+        }
+      }
+
+      .marihuanajob-content {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+
+        flex-wrap: wrap;
+
+        .marihuanajob-level {
+          height: 265px;
+          background: radial-gradient(50% 50% at 50% 50%,
+              rgba(153, 153, 153, 0.0408) 0%,
+              rgba(255, 255, 255, 0.0424) 100%);
+          border: 0.5px solid #ffffff26;
+          padding: 21px;
+
+          display: flex;
+          justify-content: space-between;
+          flex-direction: column;
+          align-items: start;
+
+          .marihuanajob-level-title {
+            h1 {
+              font-family: "DKallisto";
+              font-size: 16px;
+              font-weight: 400;
+              color: #FF6F7D;
+              text-shadow: 0px 0px 50px 0px #ffffff99;
+
+              span {
+                color: #575657;
+              }
+            }
+
+            p {
+              margin-top: 5px;
+              font-family: "Gilroy";
+              font-size: 14px;
+              font-weight: 400;
+
+              overflow: auto;
+              height: 40px;
+            }
+          }
+
+          .marihuanajob-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            gap: 6px;
+
+            .marihuanajob-buttons-top {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 218px;
+              height: 36px;
+              border-radius: 2px;
+
+              background: #ffffff1a;
+              border: 1px solid #ffffff80;
+
+              font-family: "Gilroy";
+              font-size: 14px;
+              font-weight: 400;
+              color: #ffffff;
+            }
+
+            .marihuanajob-button {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 218px;
+              height: 36px;
+              border-radius: 2px;
+              background: linear-gradient(
+                92.5deg,
+                #ff69b4 0%,
+                #ffb6c1 50%,
+                #ff69b4 100%
+              );
+
+              box-shadow: 0px 4px 13.5px 0px #ff8fc0 inset;
+
+
+              color: #111113;
+              font-family: "Gilroy";
+              font-size: 14px;
+              font-weight: 400;
+              transition: 0.3s;
+              border: none;
+
+              &:hover {
+                box-shadow: 0px 4px 13.5px 0px #2a6100 inset;
+              }
+            }
+          }
+        }
+
+        .marihuanajob-level {
+          width: calc(33.33% - 10px);
+          margin-bottom: 10px;
+        }
+
+        .marihuanajob-level:nth-child(4),
+        .marihuanajob-level:nth-child(5) {
+          width: calc(50% - 10px);
+        }
+      }
+    }
+  }
+}

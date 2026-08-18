@@ -1,0 +1,462 @@
+// RESET CSS START
+
+
+@font-face {
+  font-family: "DKallisto";
+  src: url("../fonts/d_kallisto.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("../fonts/Gilroy-Light.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.driving-school-container-box {
+  user-select: none;
+  position: fixed;
+  inset: 0;
+
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  //background-image: url(../img/BG.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+
+  .driving-school-exit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.926vh;
+
+    position: absolute;
+    top: 4.63vh;
+    right: 4.63vh;
+
+    p {
+      font-family: "Gilroy";
+      font-size: 1.481vh;
+      font-weight: 400;
+      color: #ffffff;
+    }
+
+    .exit-img {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 3.704vh;
+      height: 3.704vh;
+      border-radius: 0.185vh;
+      background: radial-gradient(50% 50% at 50% 50%,
+          rgba(153, 153, 153, 0.0765) 0%,
+          rgba(255, 255, 255, 0.0795) 100%);
+      border: 0.046vh solid #ffffff26;
+      cursor: pointer;
+      transition: 0.3s;
+
+      &:hover {
+        border: 0.0935vh solid #ff6f7d80;
+        background: radial-gradient(
+          50% 50% at 50% 50%,
+          rgba(255, 111, 125, 0.5) 0%,
+          rgba(255, 111, 125, 0.265) 100%
+        );
+      }
+    }
+  }
+  .driving-school-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+
+    .driving-school-content-box {
+      position: relative;
+      color: #ffffff;
+      padding: 3vh 3vh;
+      width: auto;
+      border-radius: 1vh;
+      background: linear-gradient(0deg, #111113, #111113),
+        radial-gradient(
+          90.9% 72.78% at 100% 0%,
+          rgba(255, 123, 0, 0.06) 0%,
+          rgba(255, 123, 0, 0) 100%
+        ),
+        radial-gradient(
+          75.14% 50% at 0% 0%,
+          rgba(255, 255, 255, 0.06) 0%,
+          rgba(255, 255, 255, 0) 100%
+        );
+
+        .element-bg {
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+
+      .driving-school-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        gap: 2vh;
+        z-index: 10;
+
+        .driving-school-title {
+          font-size: 2.4vh;
+          font-weight: 100;
+          width: 51vh;
+          margin-bottom: 1.5vh;
+
+          display: flex;
+          justify-content: center;
+          align-items: start;
+          flex-direction: column;
+
+          .driving-school-title-img {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            border-radius: 0.2vh;
+
+            h1 {
+              margin-bottom: 0;
+              text-transform: uppercase;
+              font-family: "DKallisto", Arial, sans-serif;
+              text-shadow: 0 0 5vh 0 #ffffff99;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              gap: 1vh;
+              margin-bottom: 0.5vh;
+
+              span {
+                color: #FF6F7D;
+              }
+            }
+          }
+
+          p {
+            font-family: "Gilroy", Arial, sans-serif;
+            font-size: 1.6vh;
+            font-weight: 400;
+          }
+        }
+
+        img {
+          transition: 0.3s;
+          scale: 0.8;
+          &:hover {
+            scale: 1;
+          }
+        }
+      }
+
+      .driving-school-content {
+        margin-top: 1vh;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+
+        flex-wrap: wrap;
+
+        .driving-school-selector {
+
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          gap: 1vh;
+        }
+
+        .driving-school-category {
+          height: 18vh;
+          background: radial-gradient(
+            50% 50% at 50% 50%,
+            rgba(153, 153, 153, 0.0408) 0%,
+            rgba(255, 255, 255, 0.0424) 100%
+          );
+
+          width: 26vh;
+          height: 41vh;
+          border: 0.1vh solid #ffffff26;
+          padding: 2vh;
+
+          display: flex;
+          justify-content: space-between;
+          flex-direction: column;
+          align-items: center;
+
+          &-price {
+            width: 100%;
+            font-family: "Gilroy";
+            font-weight: 400;
+            font-size: 1.6vh;
+            // margin-top: 0.3vh;
+
+            text-align: right;
+
+            color: #FF6F7D;
+          }
+
+          .driving-school-category-title {
+            display: flex;
+            justify-content: start;
+            flex-direction: column;
+            align-items: start;
+            width: 100%;
+
+            h3 {
+              font-family: "Gilroy";
+              font-weight: 400;
+              font-size: 1.6vh;
+              color: #565553;
+            }
+
+            h1 {
+              font-family: "DKallisto";
+              font-weight: 400;
+              font-size: 2.4vh;
+              margin-top: 0.5vh;
+            }
+          }
+
+          img {
+            max-width: 26vh;
+            max-height: 17vh;
+          }
+        }
+
+        button {
+          width: 95%;
+          height: 4.6vh;
+          border-radius: 0.5vh;
+          background: linear-gradient(
+            92.5deg,
+            #ce465a 0%,
+            #ff6f7d 50%,
+            #ce465a 100%
+          );
+          box-shadow: 0 0.4vh 1.3vh 0 #ff95a5 inset;
+          border: none;
+          transition: 0.3s;
+          font-family: "Gilroy";
+          font-weight: 400;
+          font-size: 1.6vh;
+
+          &:hover {
+            box-shadow: 0 0 0 0 #ff95a5 inset;
+          }
+
+
+        }
+      }
+
+      .driving-school-questions {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        gap:  1vh;
+
+        .driving-school-question-progress {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap:  1vh;
+
+          h1 {
+            font-family: "DKallisto";
+            font-weight: 400;
+            font-size: 1.6vh;
+          }
+
+          h2 {
+            width: 6vh;
+            height: 3vh;
+            border-radius: 0.2vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(
+              50% 50% at 50% 50%,
+              rgba(153, 153, 153, 0.051) 0%,
+              rgba(255, 255, 255, 0.053) 100%
+            );
+            font-family: "Gilroy";
+            font-weight: 400;
+            font-size: 1.4vh;
+          }
+        }
+
+        .driving-school-question {
+          h1 {
+            font-family: "Gilroy";
+            font-weight: 400;
+            font-size: 1.6vh;
+          }
+        }
+
+        img {
+          width: 88vh;
+          margin-bottom:  1vh;
+        }
+
+        .question {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap:  1vh;
+
+          .checkbox {
+            width: 3vh;
+            height: 3vh;
+            background: radial-gradient(
+              50% 50% at 50% 50%,
+              rgba(153, 153, 153, 0.0408) 0%,
+              rgba(255, 255, 255, 0.0424) 100%
+            );
+            border: 0.1vh solid #ffffff26;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            h1 {
+              width: 2vh;
+              height: 2vh;
+              background: #FF6F7D;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+          }
+
+          p {
+            font-family: "Gilroy";
+            font-weight: 400;
+            font-size: 1.4vh;
+          }
+        }
+
+        button {
+          width: 94vh;
+          color: white;
+          margin-top: 1vh;
+        }
+      }
+
+      &.validate {
+        height: 30vh;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+
+        .driving-school-top {
+          .driving-school-title {
+            .driving-school-title-img {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              padding: 0 2vh;
+              height: 5vh;
+              border-radius: 0.2vh;
+              background: #FF6F7D33;
+
+              h1 {
+                color: #FF6F7D;
+              }
+            }
+          }
+
+          img {
+            width: 4vh;
+            height: 4vh;
+
+            &:hover {
+              scale: 1.1;
+            }
+          }
+        }
+
+        p {
+          font-family: "Gilroy";
+          font-weight: 400;
+          font-size: 1.8vh;
+          margin-bottom: 2vh;
+        }
+
+        button {
+          width: 100%;
+          height: 5vh;
+          border-radius: 0.2vh;
+          background: radial-gradient(
+            50% 61.95% at 50% 50%,
+            #ff6f7d 0%,
+            #b83a56 100%
+          );
+          box-shadow: 0 0 5vh 0 #ff95a5 inset;
+          transition: 0.3s;
+          font-family: "Gilroy";
+          font-weight: 400;
+          font-size: 1.8vh;
+          color: #ffffff;
+
+          &:hover {
+            box-shadow: 0 0 0 0 #ff95a5 inset;
+          }
+        }
+      }
+
+      .accept-reject {
+        margin-top: 2vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+
+        h1 {
+          font-family: "DKallisto";
+          font-weight: 400;
+          font-size: 2.4vh;
+
+          text-align: center;
+          margin-bottom: 3vh;
+        }
+
+        button {
+          background: linear-gradient(
+            92.5deg,
+          #ce465a 0%,
+          #ff6f7d 50%,
+          #ce465a 100%
+          );
+          box-shadow: 0 0.4vh 1.3vh 0 #ff95a5 inset;
+          color: #ffffff;
+          width: 49vh;
+          height: 4vh;
+          margin-top:  1vh;
+
+          font-family: "Gilroy";
+          font-weight: 500;
+          font-size: 1.4vh;
+
+          transition: 0.3s;
+
+          &:hover {
+            box-shadow: 0 0 0 0 #ff95a5 inset;
+            color: #000000;
+          }
+        }
+      }
+    }
+  }
+}

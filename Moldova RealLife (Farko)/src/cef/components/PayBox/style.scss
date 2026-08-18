@@ -1,0 +1,189 @@
+.shop_paybox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999999;
+
+    background: radial-gradient(50% 50% at 50% 50%, rgba(17, 17, 19, 0.90) 42.31%, rgba(17, 17, 19, 0.00) 100%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &_box {
+        position: relative;
+
+        .paybox-title {
+            display: flex;
+            flex-direction: column;
+            gap: 1.111vh;
+
+            color: #FFF;
+            text-align: center;
+            font-family: "DKallisto";
+            font-size: 2.222vh;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
+
+        .payment-methods {
+            display: flex;
+            justify-content: center;
+            gap: 1.481vh;
+
+            .payment-method {
+                font-family: Gilroy;
+
+                display: flex;
+                gap: 1.111vh;
+
+                padding: 0.926vh;
+                width: 25vh;
+                height: 6.481vh;
+
+                flex-shrink: 0;
+
+                border-radius: 0.185vh;
+                border: 0.046vh solid rgba(255, 255, 255, 0.15);
+                background: radial-gradient(50% 50% at 50% 50%, rgba(153, 153, 153, 0.08) 0%, rgba(255, 255, 255, 0.08) 100%);
+
+                &:hover,
+                &.selected {
+                    background: rgba(255, 255, 255, 0.15);
+                }
+
+                h2 {
+                    font-size: 1.296vh;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                }
+
+                input {
+                    font-size: 1.481vh;
+                    font-weight: 500;
+                    line-height: normal;
+                }
+
+                .payment-summ {
+                    margin: auto 0 0.648vh 0;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+
+                .card-password-input {
+                    margin-top: auto;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+
+                    label {
+                        font-size: 1.296vh;
+                        font-weight: 400;
+                        line-height: normal;
+                    }
+
+                    input {
+                        font-size: 1.481vh;
+                        font-weight: 500;
+                    }
+                }
+
+                .payment-img {
+                    width: 4.63vh;
+                    height: 4.63vh;
+                    flex-shrink: 0;
+
+                    border-radius: 0.185vh;
+                    background: radial-gradient(50% 50% at 50% 50%, rgba(153, 153, 153, 0.08) 0%, rgba(255, 255, 255, 0.08) 100%);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                }
+            }
+
+
+        }
+
+        .payment-error {
+            font-size: 1.481vh;
+            font-weight: 400;
+            line-height: normal;
+        }
+    }
+
+    &-exit {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.926vh;
+
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(100%, -100%);
+
+        p {
+            font-family: "Gilroy";
+            font-size: 1.481vh;
+            font-weight: 400;
+            color: #ffffff;
+        }
+
+        .exit-img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 3.704vh;
+            height: 3.704vh;
+            border-radius: 0.185vh;
+            background: radial-gradient(50% 50% at 50% 50%,
+                    rgba(153, 153, 153, 0.0765) 0%,
+                    rgba(255, 255, 255, 0.0795) 100%);
+            border: 0.046vh solid #ffffff26;
+            cursor: pointer;
+            transition: 0.3s;
+
+            &:hover {
+                background: linear-gradient(92.5deg,
+                        #4369e5 0%,
+                        #43b6e5 50%,
+                        #4369e5 100%);
+                box-shadow: 0vh 0.37vh 1.25vh 0vh #43b6e5 inset;
+                border: 0.046vh solid #43b6e5;
+            }
+        }
+
+    }
+
+    &-button {
+        width: 100%;
+        border-radius: 0.185vh;
+        background: radial-gradient(
+        61.95% 50% at 50% 50%,
+        #148a1d 0%,
+        #0a5f11 100%
+        );
+        box-shadow: 0vh 0vh 4.63vh 0vh #148a1d inset;
+
+        padding: 1.389vh 0;
+
+        color: #FFF;
+        font-family: Gilroy;
+        font-size: 1.481vh;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+
+        &:hover {
+            filter: brightness(0.8);
+        }
+    }
+
+
+}

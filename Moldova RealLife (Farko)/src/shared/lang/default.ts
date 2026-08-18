@@ -1,0 +1,1 @@
+export const DEFAULT_SELECTED_LANG = 'en' as any

@@ -1,0 +1,15 @@
+
+{
+	"maxplayers" : 500,
+	"name" : "[NEW][UPDATE]⭐️ Shadow RolePlay", 
+	"gamemode" : "roleplay",
+	"language" : "ru",
+	"stream-distance" : 500.0,
+	"announce" : false,
+	"enable-nodejs" : false,
+	"csharp" : true,
+	"port": 22005,
+	"voice-chat": true,
+	"voice-chat-sample-rate": 48000,
+	"api-threading-debugging": false
+}

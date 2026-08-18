@@ -12,3 +12,9 @@ obj/
 *.zip
 *.rar
 *.7z
+.idea/
+*_Zone.Identifier
+**/.idea/
+*_Zone.Identifier
+*Zone.Identifier
+.idea/

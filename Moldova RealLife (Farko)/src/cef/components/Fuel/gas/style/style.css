@@ -1,0 +1,434 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+@font-face {
+  font-family: "DKallisto";
+  src: url("../fonts/d_kallisto.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Gilroy";
+  src: url("../fonts/Gilroy-Light.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+.container-box {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-image: url(../img/BG.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.container-box .box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1920px;
+  height: 1080px;
+}
+.container-box .box .gas-station-box {
+  color: #ffffff;
+  padding: 30px 50px;
+  width: 908px;
+  height: 720px;
+  border-radius: 10px;
+  background: linear-gradient(0deg, #111113, #111113), radial-gradient(90.9% 72.78% at 100% 0%, rgba(255, 123, 0, 0.06) 0%, rgba(255, 123, 0, 0) 100%), radial-gradient(75.14% 50% at 0% 0%, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0) 100%);
+}
+.container-box .box .gas-station-box .top {
+  display: flex;
+  justify-content: space-between;
+  height: 100px;
+  align-items: center;
+  width: 904px;
+}
+.container-box .box .gas-station-box .top .title {
+  font-size: 22px;
+  font-weight: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.container-box .box .gas-station-box .top .title .title-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 2px;
+  background: linear-gradient(135deg, #329b24 0%, #34c720 50%, #329b24 100%);
+  box-shadow: 0px 6px 29.1px 0px #39c727 inset;
+  box-shadow: 0px 0px 34.5px 0px rgba(12, 255, 12, 0.302);
+}
+.container-box .box .gas-station-box .top .title .title-text h1 {
+  margin-bottom: 0px;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  text-transform: uppercase;
+  font-family: "DKallisto", Arial, sans-serif;
+  gap: 10px;
+}
+.container-box .box .gas-station-box .top .title .title-text h1 span {
+  color: #FF6F7D;
+}
+.container-box .box .gas-station-box .top .title .title-text p {
+  font-family: "Gilroy", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 5px;
+}
+.container-box .box .gas-station-box .top .exit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.container-box .box .gas-station-box .top .exit p {
+  font-family: "Gilroy";
+  font-size: 16px;
+  font-weight: 400;
+}
+.container-box .box .gas-station-box .top .exit .exit-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 2px;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(153, 153, 153, 0.0765) 0%, rgba(255, 255, 255, 0.0795) 100%);
+  border: 0.5px solid rgba(255, 255, 255, 0.1490196078);
+  cursor: pointer;
+  transition: 0.3s;
+}
+.container-box .box .gas-station-box .top .exit .exit-img:hover {
+  border: 0.5px solid rgba(255, 140, 33, 0.5019607843);
+  background: radial-gradient(50% 50% at 50% 50%, rgba(33, 255, 33, 0.5) 0%, rgba(255, 140, 33, 0.265) 100%);
+}
+.container-box .box .gas-station-box .fuel-type {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 904px;
+  height: 40px;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(153, 153, 153, 0.0408) 0%, rgba(255, 255, 255, 0.0424) 100%);
+  border: 0.5px solid rgba(255, 255, 255, 0.1490196078);
+}
+.container-box .box .gas-station-box .fuel-type h1 {
+  margin-left: 15px;
+  font-family: "DKallisto";
+  font-size: 16px;
+  font-weight: 400;
+}
+.container-box .box .gas-station-box .fuel-list {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5.5px;
+}
+.container-box .box .gas-station-box .fuel-list .fuel-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px 10px;
+  width: 200px;
+  height: 280px;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(153, 153, 153, 0.0408) 0%, rgba(255, 255, 255, 0.0424) 100%);
+  border: 0.5px solid rgba(255, 255, 255, 0.1490196078);
+}
+.container-box .box .gas-station-box .fuel-list .fuel-item img {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.container-box .box .gas-station-box .fuel-list .fuel-item .fuel-item-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 5;
+}
+.container-box .box .gas-station-box .fuel-list .fuel-item .fuel-item-header h1 {
+  font-family: "Gilroy";
+  font-size: 16px;
+  font-weight: 400;
+}
+.container-box .box .gas-station-box .fuel-list .fuel-item .fuel-item-header h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 30px;
+  background: rgba(21, 255, 0, 0.2);
+  border: 1px solid #329b24;
+  font-family: "DKallisto";
+  font-size: 12px;
+  font-weight: 400;
+}
+.container-box .box .gas-station-box .fuel-list .fuel-item button {
+  z-index: 5;
+  width: 188px;
+  height: 40px;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(153, 153, 153, 0.051) 0%, rgba(255, 255, 255, 0.053) 100%);
+  border: 0.5px solid rgba(255, 255, 255, 0.1490196078);
+  color: #ffffff;
+  font-family: "Gilroy";
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+.container-box .box .gas-station-box .fuel-list .fuel-item button:hover, .container-box .box .gas-station-box .fuel-list .fuel-item button.selected {
+  background: rgba(0, 255, 13, 0.2);
+  border: 1px solid #329b24;
+}
+.container-box .box .gas-station-box .fuel-box {
+  height: 60px;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(153, 153, 153, 0.0408) 0%, rgba(255, 255, 255, 0.0424) 100%);
+  border: 0.5px solid rgba(255, 255, 255, 0.1490196078);
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  align-items: center;
+}
+.container-box .box .gas-station-box .fuel-box p {
+  width: 100px;
+  height: 40px;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(153, 153, 153, 0.0408) 0%, rgba(255, 255, 255, 0.0424) 100%);
+  border: 0.5px solid rgba(255, 255, 255, 0.1490196078);
+  font-family: "DKallisto";
+  font-size: 16px;
+  font-weight: 400;
+}
+.container-box .box .gas-station-box .fuel-box .fuel-line {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.container-box .box .gas-station-box .fuel-box .fuel-line input {
+  width: 738px;
+  height: 6px;
+}
+.container-box .box .gas-station-box .fuel-box .fuel-line input[type=range] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 4px;
+  outline: none;
+}
+.container-box .box .gas-station-box .fuel-box .fuel-line input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 8px;
+  border-radius: 50px;
+  background-color: #ffffff;
+  cursor: pointer;
+  -webkit-transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
+}
+.container-box .box .gas-station-box .fuel-box .fuel-line input[type=range]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  cursor: pointer;
+  -moz-transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
+}
+.container-box .box .gas-station-box .fuel-box .fuel-line input[type=range]::-ms-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  cursor: pointer;
+  -ms-transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
+}
+.container-box .box .gas-station-box .total-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.container-box .box .gas-station-box .total-price h2 {
+  margin-right: 15px;
+  font-family: "DKallisto";
+  font-size: 14px;
+  font-weight: 400;
+  color: #329b24;
+  text-shadow: 0px 0px 19.4px 0px rgba(9, 255, 0, 0.4);
+}
+.container-box .box .gas-station-box .controls {
+  margin-top: 10px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.container-box .box .gas-station-box .controls button {
+  width: 446px;
+  height: 50px;
+  color: #ffffff;
+  background: rgba(51, 255, 0, 0.2);
+  border: 1px solid #329b24;
+  font-family: "Gilroy";
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+.container-box .box .gas-station-box .controls button:hover {
+  background: rgba(30, 255, 0, 0.443);
+  border: 0.5px solid #329b24;
+}
+.container-box .box .gas-station-box .controls button.card {
+  background: radial-gradient(50% 50% at 50% 50%, rgba(153, 153, 153, 0.051) 0%, rgba(255, 255, 255, 0.053) 100%);
+  border: 0.5px solid rgba(255, 255, 255, 0.1490196078);
+}
+.container-box .box .gas-station-box .controls button.card:hover {
+  background: radial-gradient(50% 50% at 50% 50%, rgba(153, 153, 153, 0.063) 0%, rgba(255, 255, 255, 0.065) 100%);
+  border: 0.5px solid rgba(255, 255, 255, 0.2);
+}/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,49 @@
+@font-face {
+  font-family: "DKallisto";
+  src: url("./fonts/d_kallisto.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("./fonts/Gilroy-Light.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.hud-interaction-wrapper {
+  position: fixed; // Теперь позиционирование идет относительно окна браузера
+  top: 50%;
+  left: 50%;
+  width: auto; // Убираем 100%, чтобы блок не растягивался
+  height: auto; // То же самое для высоты
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-50%, -50%);
+  padding: 20px; // Чтобы контент не прилипал к краям
+
+  .box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    .enter-the-action {
+      width: 40px;
+      height: 40px;
+      background-image: url(./img/enterTheAction.svg);
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    h1 {
+      font-family: "DKallisto";
+      font-size: 16px;
+      font-weight: 400;
+      color: #ffffff;
+    }
+  }
+}
+

@@ -1,0 +1,80 @@
+@font-face {
+  font-family: "DKallisto";
+  src: url("./fonts/d_kallisto.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("./fonts/Gilroy-Light.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.family-box {
+  font-family: "DKallisto", Arial, sans-serif;
+  color: #ffffff;
+  font-weight: 300;
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+
+  .title {
+    margin-bottom: 10px;
+    font-family: "DKallisto";
+    font-size: 18px;
+    font-weight: 400;
+    color: #FF6F7D;
+  }
+
+  h2 {
+    font-size: 14px;
+    font-family: "Gilroy";
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .bar-box {
+    position: relative;
+    margin-top: 20px;
+    width: 250px;
+    height: 4px;
+    background: #4e5e7b;
+    border-radius: 10px;
+
+    .bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background: #ff7b00;
+      border-radius: 10px;
+      transition: width 0.5s ease-in-out;
+    }
+  }
+
+  .progress-box {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    h1,
+    h2 {
+      font-family: "DKallisto";
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    h2 {
+    color: #4e5e7b;
+    }
+  }
+}

@@ -1,0 +1,53 @@
+services:
+  database:
+    image: mariadb
+    environment:
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+      - MARIADB_PASSWORD=${MARIADB_PASSWORD}
+      - MARIADB_DATABASE=${MARIADB_DATABASE}
+      - TZ=Europe/Bucharest
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+      - ./conf.d:/etc/mysql/conf.d:ro
+
+  server:
+    build: .
+    depends_on:
+      - database
+    dns:
+      - 193.226.61.1
+    links:
+      - database
+    environment:
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+      - MARIADB_PASSWORD=${MARIADB_PASSWORD}
+      - MARIADB_DATABASE=${MARIADB_DATABASE}
+      - ENV=${ENV}
+      - RAGE_NAME=${RAGE_NAME}
+      - RAGE_LANGUAGE=${RAGE_LANGUAGE}
+      - RAGE_GAMEMODE=${RAGE_GAMEMODE}
+      - RAGE_ANNOUNCE=${RAGE_ANNOUNCE}
+      - RAGE_MAXPLAYERS=${RAGE_MAXPLAYERS}
+      - RAGE_VOICE_CHAT=${RAGE_VOICE_CHAT}
+      - RAGE_BIND=${RAGE_BIND}
+      - RAGE_PORT=${RAGE_PORT}
+      - RAGE_RESOURCES_COMPRESSION_LEVEL=${RAGE_RESOURCES_COMPRESSION_LEVEL}
+      - RAGE_CREATE_FASTDL_SNAPSHOT=${RAGE_CREATE_FASTDL_SNAPSHOT}
+      - RAGE_FASTDL_HOST=${RAGE_FASTDL_HOST}
+    ports:
+      - "22005:22005/udp"
+      - "22006:22006/tcp"
+
+      # For tests
+      - "22008:22008/udp"
+      - "22009:22009/tcp"
+
+      - "63222:63222/tcp"
+    volumes:
+      - ./server/game_resources:/ragemp/ragemp-srv/client_packages/game_resources
+
+volumes:
+  mariadb_data:
+  game_client_data:

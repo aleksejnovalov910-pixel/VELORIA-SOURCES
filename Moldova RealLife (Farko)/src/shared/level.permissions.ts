@@ -1,0 +1,23 @@
+export const enum LEVEL_PERMISSIONS {
+  SCAFANDRU = 200,
+  MINER = 60,
+  MARIHUANA = 50,
+  ELECTRICIAN = 0,
+  BUSSMAN = 0,
+  GARBAGE = 0,
+  CONSTRUCTOR = 25,
+  GRADINAR = 15,
+  GEAMURI = 200,
+  DELIVER = 200,
+  PESCAR = 200,
+  HUNTING = 150,
+  TAXI = 10,
+  CASIOENTER = 10,
+  GR6 = 250,
+  VOTE = 100, /// ai dreptul la vot
+  WEDDING = 100,
+  // PETROLIST = 100,
+  JAFVEHICLE = 0,
+  ROOM = 2,
+  CASINO_DEALER = 15,
+}

@@ -1,0 +1,355 @@
+@font-face {
+  font-family: "DKallisto";
+  src: url("./fonts/d_kallisto.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("./fonts/Gilroy-Light.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+.hud-header-container-box {
+  display: flex;
+  justify-content: start;
+  align-items: end;
+  flex-direction: column;
+  padding-top: 40px;
+  padding-right: 40px;
+  color: #ffffff;
+  //background: black; //REMOVE THIS !!!
+
+  .section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+
+    .section-left {
+      display: flex;
+      justify-content: flex-end;
+      align-items: end;
+      flex-direction: column;
+      gap: 5px;
+      margin-right: 20px;
+
+      h3.server-name {
+        font-family: "DKallisto";
+        font-size: 18px;
+        color: #ffffff;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      .section-details {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        .details {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 5px;
+          background: #151815;
+          padding: 0px 9px;
+
+          .ico {
+            width: 30px;
+            height: 30px;
+            text-shadow: 0px 0px 6px 0px #167c08;
+          }
+
+          h1 {
+            font-family: "DKallisto";
+            font-size: 14px;
+            font-weight: 400;
+            color: #167c08;
+            text-shadow: 0px 0px 6px 0px #178f07;
+            padding: 7px;
+          }
+
+          h4 {
+            font-family: "Gilroy";
+            font-size: 14px;
+            font-weight: 500;
+          }
+
+          h5 {
+            font-family: "Gilroy";
+            font-size: 14px;
+            font-weight: 700;
+            padding: 0.5px 0;
+            color: #5b5b5d;
+            margin-left: 8px;
+          }
+        }
+      }
+    }
+  }
+
+  .section-cashmoney,
+  .section-bankmoney {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
+    font-family: "Gilroy";
+
+    .money {
+      color: #a1ff43;
+      font-family: "Gilroy";
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 18.83px;
+      text-shadow: 0px 0px 10.9px 0px #a1ff434d;
+    }
+
+    span {
+      width: 28px;
+      height: 28px;
+      border-radius: 5px;
+      background: #151518;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        text-shadow: 0px 0px 10.9px 0px #a1ff434d;
+      }
+    }
+  }
+
+  .section-quest {
+    margin-top: 1.852vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 0.741vh;
+    font-family: "Gilroy";
+
+    width: 18.5vh; // Changed from 17.87vh to 18.5vh to better text alignment
+    padding: 1.481vh;
+    position: relative;
+
+    border-radius: 0.463vh 0vh 0vh 0.463vh;
+    background: linear-gradient(90deg, rgba(21, 21, 24, 0.00) 0%, #151518 100%);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 0.185vh;
+      height: 100%;
+      background: #167c08;
+    }
+
+
+
+    &_header {
+      display: flex;
+      align-items: center;
+      gap: 0.556vh;
+
+      h6 {
+        color: #FFF;
+        font-family: "DKallisto";
+        font-size: 1.296vh;
+        font-weight: 400;
+        line-height: normal;
+
+        text-align: right;
+        width: max-content;
+        max-width: 15.741vh;
+      }
+
+      img {
+        flex-shrink: 0;
+        width: 0.926vh;
+        height: 0.926vh;
+      }
+
+    }
+
+    &_item {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 0.556vh;
+
+      &-info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        text-align: right;
+        gap: 0.185vh;
+        color: rgba(255, 255, 255, 0.3);
+        font-size: 1.296vh;
+        font-weight: 500;
+      }
+
+      &-description {
+        color: rgba(255, 255, 255, 0.3);
+        font-size: 1.111vh;
+        font-weight: 500;
+      }
+
+      &-status {
+        flex-shrink: 0;
+        width: 0.556vh;
+        height: 0.556vh;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      &.active {
+        .section-quest_item {
+          &-info {
+            color: #FFF;
+          }
+
+          &-status {
+            background: #167c08;
+          }
+        }
+      }
+
+
+
+    }
+
+    .advanced-quest {
+      &_name {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 0.556vh;
+
+        h4 {
+          color: #FFF;
+          font-size: 1.481vh;
+          font-family: "DKallisto";
+          font-weight: 400;
+        }
+
+        img {
+          flex-shrink: 0;
+          width: 0.926vh;
+          height: 0.926vh;
+        }
+      }
+
+      &_progress {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.556vh;
+      }
+
+      &_task {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+    }
+
+
+
+  }
+
+
+
+  .section-weapon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+
+    width: 172px;
+    height: 46px;
+    background: linear-gradient(90deg,
+        rgba(21, 21, 24, 0.6) 0%,
+        rgba(21, 21, 24, 0.3) 100%);
+    border-radius: 5px;
+
+    .weapon-img {
+      width: 72px;
+    }
+
+    .weapon-bullets {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+
+      background: #141416cc;
+      width: 68px;
+      height: 30px;
+      border-radius: 5px;
+
+      img {
+        width: 12px;
+      }
+
+      h4 {
+        font-family: "DKallisto";
+        font-size: 10px;
+        font-weight: 400;
+        line-height: 12px;
+        color: #5b5b5d;
+
+        span {
+          color: #FFFFFF;
+        }
+      }
+    }
+  }
+
+  .section-server {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 20px;
+
+    .command {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 5px;
+
+      h4,
+      span {
+        font-family: "Gilroy";
+        font-size: 14px;
+      }
+
+      span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        aspect-ratio: 1;
+        background: #151815cc;
+        border-radius: 3px;
+      }
+    }
+  }
+
+  .section-logo {
+    width: 60px;
+    border-radius: 9px;
+  }
+}

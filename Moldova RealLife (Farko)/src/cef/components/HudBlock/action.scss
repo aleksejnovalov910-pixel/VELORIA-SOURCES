@@ -1,0 +1,300 @@
+// RESET CSS START
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+//RESET CSS END
+
+
+@font-face {
+  font-family: "DKallisto";
+  src: url("../fonts/d_kallisto.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("../fonts/Gilroy-Light.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.bonus-box-container-box {
+  user-select: none;
+  position: fixed;
+  inset: 0;
+
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  background-image: url(../img/BG.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  .bonus-box-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .bonus-box {
+      display: flex;
+      width: 83.333vh;
+      height: 55.556vh;
+      border-radius: 0.926vh;
+      .left {
+        position: relative;
+        width: 37.037vh;
+        height: 55.556vh;
+        img {
+          width: 37.037vh;
+          height: 55.556vh;
+        }
+        h1 {
+          position: absolute;
+          top: calc(50% - 5.093vh);
+          left: calc(50% - 12.5vh);
+          font-family: "dKallisto";
+          font-weight: 400;
+          font-size: 5.926vh;
+          color: #ffffff;
+        }
+      }
+      .right {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        width: 46.296vh;
+        padding: 4.167vh;
+        color: #ffffff;
+        border-radius: 0 0.926vh 0.926vh 0;
+        background: linear-gradient(0deg, #111113, #111113),
+          radial-gradient(
+            72.78% 72.78% at 100% 0%,
+            rgba(255, 123, 0, 0.06) 0%,
+            rgba(255, 123, 0, 0) 100%
+          ),
+          radial-gradient(
+            50% 50% at 0% 0%,
+            rgba(255, 255, 255, 0.06) 0%,
+            rgba(255, 255, 255, 0) 100%
+          );
+
+        .right-top {
+          h1 {
+            text-transform: uppercase;
+            font-family: "DKallisto";
+            font-weight: 400;
+            font-size: 2.222vh;
+            span {
+              color: #14851d;
+            }
+          }
+          p {
+            margin-top: 10.001px;
+            font-family: "Gilroy";
+            font-weight: 400;
+            font-size: 1.481vh;
+          }
+        }
+
+        .right-controls {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          button {
+            width: 18.519vh;
+            height: 4.63vh;
+            border-radius: 0.185vh;
+            background: #ffffff1a;
+            border: 0.093vh solid #ffffff;
+            font-family: "Gilroy";
+            font-weight: 500;
+            font-size: 1.481vh;
+            color: #ffffff;
+            scale: 1;
+            transition: 0.2s;
+            &:hover {
+              scale: 1.02;
+            }
+          }
+
+          .dont-show {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.926vh;
+
+            .dont-show-box {
+              position: relative;
+              width: 6.296vh;
+              height: 3.704vh;
+              border-radius: 46.296vh;
+              background: #FFFFFF0F;
+              border: 0.093vh solid #FFFFFF1A;
+
+              .dont-show-circle {
+                top: 0.463vh;
+                left: 0.463vh;
+                position: absolute;
+                width: 2.593vh;
+                height: 2.593vh;
+                border-radius: 46.296vh;
+                background: #ffffff;
+                transition: 0.3s;
+              }
+
+              &.show-more {
+                .dont-show-circle {
+                  transform: translateX(2.778vh);
+                  background: #1f7417;
+                }
+              }
+            }
+
+            h3 {
+              font-family: "Gilroy";
+              font-weight: 500;
+              font-size: 1.296vh;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  ::-webkit-scrollbar {
+    width: 0.463vh;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #ffffff;
+    border-radius: 0.463vh;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #ffffff1a;
+    border-radius: 0.463vh;
+  }
+}

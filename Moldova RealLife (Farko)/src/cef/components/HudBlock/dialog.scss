@@ -1,0 +1,63 @@
+.hud-new-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+
+    &_container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        padding: 20px;
+        border-radius: 5px;
+        border: 1px solid rgba(255, 255, 255, 0.00);
+        background: radial-gradient(153.76% 203.87% at 87.05% -57.5%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.00) 100%), #151518;
+
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        p {
+            font-size: 16px;
+            font-weight: 500;
+            color: #fff;
+            font-family: "DKallisto";
+        }
+
+        &-buttons {
+            display: flex;
+            gap: 12px;
+
+            button {
+                width: 100%;
+                height: 40px;
+                border-radius: 5px;
+                border: 1px solid rgba(255, 255, 255, 0.00);
+                background: #151518;
+
+                border-radius: 5px;
+                background: radial-gradient(61.95% 50% at 50% 50%, rgba(255, 255, 255, 0.08) 0%, rgba(170, 170, 170, 0.08) 100%);
+                box-shadow: 0px 0px 50px 0px rgba(255, 255, 255, 0.10) inset;
+
+                transition: 0.15s;
+
+                font-family: Gilroy;
+                font-size: 14px;
+                font-weight: 500;
+
+                &:hover {
+                    filter: brightness(0.7);
+                }
+
+                &.hud-dialog-btn {
+                    background: radial-gradient(61.95% 50% at 50% 50%, #0a5208 0%, #0b8511 100%);
+                    box-shadow: 0px 0px 50px 0px #1c8108 inset;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,645 @@
+@font-face {
+  font-family: "DKallisto";
+  src: url("../fonts/d_kallisto.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("../fonts/Gilroy-Light.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+// html,
+// body,
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// p {
+//   margin: 0;
+//   padding: 0;
+// }
+
+// body {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   -webkit-user-select: none;
+//   -moz-user-select: none;
+//   user-select: none;
+//   font-family: "Quicksand", sans-serif;
+//   overflow: hidden;
+//   position: relative;
+//   color: #ffffff;
+//   height: 100vh;
+//   margin: 0;
+// }
+
+.parking-container-box {
+  position: relative;
+  color: #ffffff;
+  font-family: "Quicksand", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  padding: 20px;
+  // background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  //   url(../img/BG.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  .car-shop {
+    width: 1400px;
+    height: 900px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    background: radial-gradient(54.37% 50.77% at 0% 0%, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.00) 100%), radial-gradient(90.99% 76.2% at 100% 0%, rgba(255, 123, 0, 0.06) 0%, rgba(255, 123, 0, 0.00) 100%), #111113;
+
+    .exit {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+
+      p {
+        font-family: "Gilroy";
+        font-size: 16px;
+        font-weight: 400;
+      }
+
+      .exit-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 2px;
+        background: radial-gradient(50% 50% at 50% 50%,
+            rgba(153, 153, 153, 0.0765) 0%,
+            rgba(255, 255, 255, 0.0795) 100%);
+        border: 0.5px solid #ffffff26;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+        border: 0.5px solid #ff69b480;
+        background: radial-gradient(
+          50% 50% at 50% 50%,
+          rgba(255, 105, 180, 0.5) 0%,
+          rgba(255, 105, 180, 0.265) 100%);
+        }
+      }
+    }
+    .search {
+      width: 100%;
+      margin-top: 20px;
+      display: flex;
+      gap: 12px;
+
+      .searchbar {
+        width: 100%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          position: absolute;
+          left: 15px;
+        }
+
+        input {
+          color: #ffffff;
+          width: 100%;
+          height: 40px;
+          border-radius: 2px;
+          border: 0.5px solid #ffffff26;
+          background: radial-gradient(50% 50% at 50% 50%,
+              rgba(153, 153, 153, 0.0765) 0%,
+              rgba(255, 255, 255, 0.0795) 100%);
+          padding-left: 50px;
+
+          &:focus {
+            border: 0.5px solid #ffffff26;
+            outline: none;
+          }
+        }
+
+
+      }
+
+      .dropdown-wrapper {
+        position: relative;
+        border-radius: 2px;
+        border: 0.5px solid rgba(255, 255, 255, 0.15);
+        background: radial-gradient(50% 50% at 50% 50%, rgba(153, 153, 153, 0.05) 0%, rgba(255, 255, 255, 0.05) 100%);
+
+        width: 123px;
+        height: 40px;
+
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: rgba(255, 255, 255, 0.5);
+        padding: 5px 10px;
+        border-radius: 2px;
+        transition: 0.2s;
+
+        color: #FFF;
+        font-family: Gilroy;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.05);
+          color: rgba(255, 255, 255, 0.8);
+        }
+
+        .dropdown-arrow {
+          margin-left: auto;
+        }
+
+        .filter-dropdown {
+          position: absolute;
+          top: 100%;
+          right: 0;
+          margin-top: 5px;
+          width: 120px;
+          background: #1E1E20;
+          border: 0.5px solid #ffffff26;
+          border-radius: 2px;
+          z-index: 10;
+          overflow: hidden;
+
+          .filter-option {
+            padding: 10px 15px;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            &:hover {
+             background: rgba(255, 105, 180, 0.2);
+            }
+
+            &.active {
+              background: rgba(255, 105, 180, 0.3);
+              color: #FF6F7D;
+            }
+          }
+        }
+      }
+    }
+
+    .header {
+      width: 100%;
+      min-height: 50px;
+      /* Устанавливаем минимальную высоту */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      /* Выравнивание по вертикали */
+
+      .titleWrapper {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+
+        &-logo {
+          position: relative;
+          width: 50px;
+          height: 50px;
+          flex-shrink: 0;
+          border-radius: 2px;
+          background: linear-gradient(135deg, #8e2f47 0%, #ff6f7d 50%, #8e2f47 100%);
+          box-shadow: 
+            0px 0px 34.5px 0px rgba(255, 111, 125, 0.3),
+            0px 6px 29.1px 0px #ff95a5 inset;
+
+
+          img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 28px;
+            height: 28px;
+          }
+        }
+
+        h1 {
+          text-shadow: 0px 0px 50px rgba(255, 255, 255, 0.60);
+          text-transform: uppercase;
+          font-family: "DKallisto";
+          font-size: 36px;
+          font-weight: 400;
+          text-align: left;
+          text-underline-position: from-font;
+          text-decoration-skip-ink: none;
+
+          span {
+            color: #FF6F7D;
+          }
+        }
+
+        h2 {
+          font-family: "Gilroy";
+          font-size: 16px;
+          font-weight: 400;
+          text-align: left;
+          text-underline-position: from-font;
+          text-decoration-skip-ink: none;
+        }
+      }
+
+      .exitWrapper {
+        margin-right: 30px;
+        display: flex;
+        width: 100px;
+        align-items: center;
+        /* Центрируем кнопку по вертикали */
+      }
+
+      .exit-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        p {
+          font-family: "Gilroy";
+          font-size: 16px;
+          font-weight: 400;
+        }
+
+        .exit-img {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 40px;
+          height: 40px;
+          border-radius: 2px;
+          background: radial-gradient(50% 50% at 50% 50%, rgba(153, 153, 153, 0.0765) 0%, rgba(255, 255, 255, 0.0795) 100%);
+          border: 0.5px solid #ffffff26;
+          cursor: pointer;
+          transition: 0.3s;
+
+          &:hover {
+            border: 0.5px solid #ff6f7d80;
+            background: radial-gradient(
+              50% 50% at 50% 50%,
+              rgba(255, 111, 125, 0.5) 0%,
+              rgba(255, 111, 125, 0.265) 100%
+            );
+          }
+        }
+      }
+    }
+
+
+
+    .content_parking {
+      margin-top: 20px;
+      width: 100%;
+      height: 688px;
+      display: flex;
+      justify-content: space-between;
+
+      &-list {
+        flex-shrink: 0;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        height: 100%;
+        width: 920px;
+        gap: 19px;
+        overflow: auto;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+
+
+      }
+
+      &-item {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        width: 294px;
+        height: 378px;
+
+        border-radius: 2px;
+        border: 0.5px solid rgba(255, 255, 255, 0.15);
+        background: radial-gradient(50% 50% at 50% 50%, rgba(153, 153, 153, 0.04) 0%, rgba(255, 255, 255, 0.04) 100%);
+
+        &.selected {
+          border-radius: 2px;
+          border: 0.5px solid #FF6F7D;
+          background: linear-gradient(180deg, rgba(255, 123, 0, 0.00) 0%, rgba(255, 111, 125, 0.3) 100%), radial-gradient(50% 50% at 50% 50%, rgba(153, 153, 153, 0.04) 0%, rgba(255, 255, 255, 0.04) 100%);
+        }
+
+        .parking-item {
+          &-title {
+            display: flex;
+            flex-direction: column;
+
+            span {
+              color: #FFF;
+              font-family: Gilroy;
+              font-size: 14px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: normal;
+              opacity: 0.3;
+            }
+
+            h6 {
+              color: #FFF;
+              font-family: "DKallisto";
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: normal;
+              text-transform: capitalize;
+            }
+          }
+
+          &-image {
+            align-self: center;
+            margin: 10px 0 5px;
+            max-width: 254px;
+            max-height: 152px;
+            flex-shrink: 0;
+            width: 100%;
+            height: 100%;
+          }
+
+          &-plate {
+            align-self: center;
+
+            background: url(../img/plate.svg) no-repeat center center;
+            background-size: cover;
+            padding: 13px;
+            border-radius: 3px;
+            min-width: 166px;
+            min-height: 58px;
+            width: fit-content;
+            height: fit-content;
+
+            color: #1A3C66;
+            text-align: center;
+            font-family: Gilroy;
+            font-size: 28px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            text-transform: uppercase;
+          }
+
+          &-select {
+            border-radius: 2px;
+            border: 1px solid #FF6F7D;
+            background: rgba(255, 123, 0, 0.10);
+
+            color: #FFF;
+            font-family: Gilroy;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+
+            width: 100%;
+            padding: 13px;
+            margin-top: auto;
+            transition: 0.3s;
+
+            &:hover {
+              background: radial-gradient(50% 50% at 50% 50%, rgba(255, 111, 125, 0.3) 0%, rgba(231, 64, 81, 0.589) 100%);
+            }
+          }
+        }
+      }
+
+      &-details {
+        flex-shrink: 0;
+        width: 380px;
+        height: 100%;
+        padding: 20px;
+
+        display: flex;
+        flex-direction: column;
+
+        background: radial-gradient(50% 50% at 50% 50%,
+            rgba(153, 153, 153, 0.0408) 0%,
+            rgba(255, 255, 255, 0.0424) 100%);
+
+        h1 {
+          text-align: center;
+          font-family: "DKallisto";
+          font-size: 20px;
+          font-weight: 400;
+          min-width: 200px;
+          padding: 9px 15px;
+          height: 40px;
+          background: #FF6F7D;
+          text-transform: capitalize;
+        }
+
+        .img-container {
+          align-self: center;
+          width: 300px;
+          height: 260px;
+          background-image: url(../img/car-bg.svg);
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-position: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin: 20px 0;
+
+          img {
+            width: 300px;
+            max-height: 260px;
+          }
+        }
+
+        h2 {
+          font-family: "DKallisto";
+          font-size: 16px;
+          font-weight: 400;
+          margin-bottom: 10px;
+        }
+
+        .parameters {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+
+          .parameter {
+            margin-bottom: 7px;
+            width: 320px;
+            height: 36px;
+            border-radius: 5px;
+            background: #ffffff0d;
+            padding: 10px 10px 5px 10px;
+
+            .parameter-top {
+              display: flex;
+              justify-content: space-between;
+
+              h3,
+              h2 {
+                font-family: "Gilroy";
+                font-size: 14px;
+              }
+            }
+
+            .parameter-bar {
+              position: relative;
+              width: 100%;
+              height: 3px;
+              background: #3b3b3d;
+
+              .progress-bar-fill {
+                position: absolute;
+                background: #ffffff;
+                height: 100%;
+              }
+            }
+          }
+        }
+
+        .controls {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          margin-top: auto;
+          gap: 10px;
+
+          .spawn-car {
+            color: #ffffff;
+            transition: 0.3s;
+            cursor: pointer;
+            width: 165px;
+            height: 40px;
+            border-radius: 2px;
+            background: #FF6F7D1a;
+            border: 1px solid #FF6F7D;
+
+            &:hover {
+              background: radial-gradient(50% 50% at 50% 50%,
+                  rgba(153, 153, 153, 0.0408) 0%,
+                  rgba(255, 255, 255, 0.0424) 100%),
+                linear-gradient(180deg,
+                  rgba(255, 123, 0, 0) 0%,
+                  rgba(255, 111, 125, 0.3) 100%);
+              border: 0.5px solid #FF6F7D;
+            }
+          }
+        }
+
+        .unpark-car {
+          color: #ffffff;
+          transition: 0.3s;
+          cursor: pointer;
+          width: 165px;
+          height: 40px;
+          border-radius: 2px;
+          background: #FFFFFF1A;
+          border: 1px solid #FFFFFF;
+
+          &:hover {
+            background: radial-gradient(50% 50% at 50% 50%,
+                rgba(153, 153, 153, 0.0408) 0%,
+                rgba(255, 255, 255, 0.0424) 100%),
+          }
+        }
+      }
+
+      &-specs {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        &-item {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+
+          border-radius: 5px;
+          background: rgba(255, 255, 255, 0.05);
+          width: 100%;
+          height: 46px;
+          padding: 10px;
+
+
+          &-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+
+            font-family: Gilroy;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+
+          }
+
+          &-progress {
+            overflow: hidden;
+            width: 100%;
+            height: 2px;
+            position: relative;
+            background: rgba(255, 255, 255, 0.10);
+           
+            span {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 50%;
+              height: 100%;
+              background: #ffffff;
+            }
+          }
+        }
+      }
+    }
+
+    // /* Stilizeaza bara de scroll */
+    // ::-webkit-scrollbar {
+    //   width: 5px; /* Latimea scrollbar-ului */
+    // }
+
+    // /* Stilizeaza thumb-ul (partea care se misca pe scroll) */
+    // ::-webkit-scrollbar-thumb {
+    //   background: #ffffff; /* Culoarea thumb-ului */
+    //   border-radius: 5px; /* Colturi rotunjite */
+    // }
+
+    // /* Stilizeaza track-ul (fundalul scrollbar-ului) */
+    // ::-webkit-scrollbar-track {
+    //   background: #ffffff1a; /* Culoare de fundal pentru scrollbar */
+    //   border-radius: 5px; /* Colturi rotunjite */
+    // }
+  }
+}

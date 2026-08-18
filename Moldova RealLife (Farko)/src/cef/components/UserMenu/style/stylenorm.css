@@ -1,0 +1,7650 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: "";
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+@font-face {
+    font-family: "DKallisto";
+    src: url("../font/d_kallisto.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Gilroy";
+    src: url("../font/Gilroy-Light.otf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.container-box {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: url(../img/BG.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.container-box .box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    max-width: 1920px;
+    max-height: 1080px;
+    min-width: 320px;
+    min-height: 180px;
+}
+
+.container-box .box .menu {
+    /* фрейм 10 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1840px;
+    max-height: 880px;
+    min-width: 300px;
+    min-height: 200px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 120px;
+}
+
+.container-box .box .menu .header {
+    /* фрейм 3 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 372px;
+    max-height: 54px;
+    left: 9px;
+    top: -62px;
+}
+
+.container-box .box .menu .header .title {
+    /* CHARACTER MENU */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 248px;
+    max-height: 29px;
+    min-width: 200px;
+    min-height: 20px;
+    left: 0;
+    top: 0;
+    font-family: DKallisto;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29px;
+    letter-spacing: 0%;
+    color: #FFFFFF;
+    text-align: left;
+}
+
+.container-box .box .menu .header .title span {
+    color: #176e14;
+}
+
+.container-box .box .menu .header .subtitle {
+    /* Lorem ipsum dolor sit amet, consectetur adipiscing */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 377px;
+    max-height: 19px;
+    min-width: 250px;
+    min-height: 15px;
+    left: 0;
+    top: 6px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+.container-box .box .menu .close {
+    /* Frame 11 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 76px;
+    max-height: 40px;
+    min-width: 60px;
+    min-height: 30px;
+    left: calc(100% - 696px);
+    top: -112px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10;
+    padding: 0px;
+}
+
+.container-box .box .menu .close .text {
+    /* Exit */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 26px;
+    max-height: 19px;
+    min-width: 20px;
+    min-height: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10;
+    padding: 0px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 10px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .close .icon {
+    /* Frame 10 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 40px;
+    max-height: 40px;
+    min-width: 30px;
+    min-height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10;
+    padding: 12px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 0px 10px;
+    box-sizing: border-box;
+    border: 0.5px solid rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.08), rgba(255, 255, 255, 0.08) 100%);
+}
+
+.container-box .box .menu .close .icon img {
+    width: 100%;
+    height: auto;
+    max-width: 16px;
+    max-height: 16px;
+    min-width: 12px;
+    min-height: 12px;
+}
+
+
+.container-box .box .menu .items {
+    /* фрейм 2 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1840px;
+    max-height: 90px;
+    min-width: 300px;
+    min-height: 50px;
+    left: 0;
+    right: 0;
+    top: -42px;
+    bottom: 0;
+    display: flex;
+}
+
+.container-box .box .menu .items .item {
+    /* Frame 3 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 157px;
+    max-height: 90px;
+    min-width: 100px;
+    min-height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    padding: 10px 16px 0px 16px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+    margin-left: 10px;
+    transition: all 0.3s ease-in-out;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.08), rgba(255, 255, 255, 0.08) 100%);
+}
+
+.container-box .box .menu .items .item:hover {
+    transform: scale(1.05);
+    border: 1px solid rgba(113, 255, 94, 0.3);
+    background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(126, 255, 94, 0.08) 0%,
+    rgba(121, 255, 94, 0.15) 100%
+    );
+}
+
+.selected-menu-item {
+    border: 1px solid rgba(132, 255, 94, 0.3) !important;
+    background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(121, 255, 94, 0.08),
+    rgba(121, 255, 94, 0.15) 100%
+    ) !important;
+}
+
+.container-box .box .menu .items .item img {
+    /* Group */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 24.05px;
+    max-height: 32px;
+    min-width: 18px;
+    min-height: 24px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 10px 0px;
+}
+
+.container-box .box .menu .items .item .text {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 98px;
+    max-height: 16px;
+    min-width: 70px;
+    min-height: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 10px 0px;
+    top: -7px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+.container-box .box .menu .profile {
+    /* фрейм 9 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1840px;
+    max-height: 796px;
+    min-width: 300px;
+    min-height: 400px;
+    left: 0;
+    right: 0;
+    top: -36px;
+    bottom: 0;
+}
+
+.container-box .box .menu .profile .character-info {
+    /* фрейм 1 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 326px;
+    max-height: 796px;
+    min-width: 240px;
+    min-height: 794px;
+    left: 10px;
+    top: -35px;
+    bottom: 0;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .profile .character-info .nickname {
+    /* Group 4 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 286px;
+    max-height: 80px;
+    min-width: 200px;
+    min-height: 60px;
+    left: 20px;
+    right: 20px;
+    top: 20px;
+    bottom: 696px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+
+.container-box .box .menu .profile .character-info .nickname img {
+    width: 100%;
+    left: 14px;
+    top: 12px;
+    position: relative;
+    height: auto;
+    max-width: 52px;
+    max-height: 52px;
+    min-width: 26px;
+    min-height: 26px;
+}
+
+.container-box .box .menu .profile .character-info .nickname .title {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 137px;
+    max-height: 19px;
+    min-width: 100px;
+    min-height: 15px;
+    left: 80px;
+    top: -33px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .profile .character-info .nickname .subtitle {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 120px;
+    max-height: 16px;
+    min-width: 90px;
+    min-height: 12px;
+    left: 79px;
+    top: -29px;
+    opacity: 0.55;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+.container-box .box .menu .profile .character-info .info {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 286px;
+    max-height: 110px;
+    min-width: 220px;
+    min-height: 80px;
+    left: 20px;
+    right: 20px;
+    top: 36px;
+    bottom: 547px;
+}
+
+.container-box .box .menu .profile .character-info .info .title {
+    /* Info about character */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 150px;
+    max-height: 17px;
+    min-width: 100px;
+    min-height: 12px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .profile .character-info .info .citems {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 293px;
+    max-height: 110px;
+    min-width: 200px;
+    min-height: 80px;
+    left: -8px;
+    top: 12px;
+    bottom: 547px;
+    display: flex;
+}
+
+.container-box .box .menu .profile .character-info .info .citems .citem {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 95px;
+    max-height: 110px;
+    min-width: 70px;
+    min-height: 103px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-left: 8px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .profile .character-info .info .citems .citem svg {
+    width: 62px;
+    height: 62px;
+    position: relative;
+    top: 11px;
+    left: 13px;
+}
+
+.container-box .box .menu .profile .character-info .info .citems .citem .progress {
+    position: relative;
+    left: 0;
+    top: 0;
+    border-radius: 7.56px;
+}
+
+
+.progress-ring-container {
+    position: relative !important;
+    display: inline-block !important;
+    width: 62px !important;
+    height: 62px !important;
+}
+
+.main-ring {
+    width: 0 !important;
+    height: 0 !important;
+    position: absolute !important;
+    width: 62px !important;
+    height: 62px !important;
+}
+
+.progress-ring {
+    position: absolute !important;
+    top: -4px !important;
+    left: -10px !important;
+    width: 107px !important;
+    height: 91px !important;
+}
+
+.container-box .box .menu .profile .character-info .info .citems .citem img {
+    /* 1 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 54.38px;
+    max-height: 44.38px;
+    min-width: 27px;
+    min-height: 21px;
+    left: 18px;
+    top: 21px;
+}
+
+.water-icon {
+    max-width: 53.38px !important;
+    max-height: 26.38px !important;
+    top: 32px !important;
+    left: 16px !important;
+}
+
+.container-box .box .menu .profile .character-info .info .citems .citem .percent {
+    /* 24% */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 26px;
+    max-height: 17px;
+    min-width: 15px;
+    min-height: 10px;
+    left: 32px;
+    top: 11px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 17px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+.percent-water {
+    top: 31px !important;
+}
+
+.container-box .box .menu .profile .character-info .info .citems .citem .level {
+    /* 32 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 18px;
+    max-height: 19px;
+    min-width: 12px;
+    min-height: 10px;
+    left: 31px;
+    top: -38px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+.container-box .box .menu .profile .character-info .info .citems .citem .exp {
+    /* 8/12 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 24px;
+    max-height: 14px;
+    min-width: 15px;
+    min-height: 10px;
+    left: 25px;
+    top: -38px;
+    opacity: 0.3;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 14px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+
+.container-box .box .menu .profile .character-info .info .citems .citem .text {
+    /* Level */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 33px;
+    max-height: 16px;
+    min-width: 20px;
+    min-height: 12px;
+    left: 26px;
+    top: -14px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+.citem-text {
+    top: 20px !important;
+}
+
+.citem-water {
+    top: 38px !important;
+}
+
+.container-box .box .menu .profile .character-info .categories {
+    /* Group 22 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 286px;
+    max-height: 224px;
+    min-width: 200px;
+    min-height: 150px;
+    left: 19px;
+    top: 82px;
+}
+
+.container-box .box .menu .profile .character-info .categories .item {
+    /* Rectangle 3 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 286px;
+    max-height: 50px;
+    min-width: 200px;
+    min-height: 48px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-bottom: 8px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .profile .character-info .categories .item .text {
+    /* Play time */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 64px;
+    max-height: 16px;
+    min-width: 40px;
+    min-height: 12px;
+    left: 17px;
+    top: 16px;
+    opacity: 0.55;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .profile .character-info .categories .item .value {
+    /* 246 H 13 M */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 67px;
+    max-height: 16px;
+    min-width: 40px;
+    min-height: 12px;
+    left: 197px;
+    top: -1px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: right;
+}
+
+.container-box .box .menu .profile .character-info .categories .item .value img {
+    width: 18px;
+    height: 18px;
+    margin-left: 4px;
+}
+
+.container-box .box .menu .profile .character-info .bankacc {
+    /* Group 29 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 286px;
+    max-height: 79px;
+    min-width: 200px;
+    min-height: 60px;
+    left: 19px;
+    top: 95px;
+}
+
+.container-box .box .menu .profile .character-info .bankacc .title {
+    /* Bank account */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 103px;
+    max-height: 17px;
+    min-width: 70px;
+    min-height: 12px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .profile .character-info .bankacc .box {
+    /* Rectangle 3 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 286px;
+    max-height: 56px;
+    min-width: 200px;
+    min-height: 51px;
+    top: 8px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .profile .character-info .bankacc .box img {
+    /* Rectangle 18 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 26px;
+    max-height: 26px;
+    min-width: 20px;
+    min-height: 20px;
+    left: 13px;
+    top: -2px;
+}
+
+.container-box .box .menu .profile .character-info .bankacc .box .title {
+    /* #3ADF5AF425615212A */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 116px;
+    max-height: 14px;
+    min-width: 80px;
+    min-height: 10px;
+    left: 21px;
+    top: -10px;
+    opacity: 0.55;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .profile .character-info .bankacc .box .text {
+    /* $ 999 999 999 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 89px;
+    max-height: 16px;
+    min-width: 60px;
+    min-height: 12px;
+    left: -95px;
+    top: 7px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .profile .character-info .bankacc .box .icon {
+    /* Frame 13 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 30px;
+    max-height: 30px;
+    min-width: 20px;
+    min-height: 29px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    border-radius: 5px;
+    box-shadow: inset 0px 4px 13.5px 0px rgb(255, 179, 0);
+    background: linear-gradient(135.00deg, rgb(228, 87, 21) 0%, rgb(255, 123, 0) 50%, rgb(228, 87, 21) 100%);
+}
+
+.container-box .box .menu .profile .character-info .bankacc .box .icon img {
+    width: 100%;
+    height: auto;
+    max-width: 13px;
+    max-height: 18px;
+    min-width: 10px;
+    min-height: 12px;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.container-box .box .menu .profile .character-info .bonus {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 286px;
+    max-height: 103px;
+    min-width: 200px;
+    min-height: 80px;
+    left: 19px;
+    top: 122px;
+}
+
+.container-box .box .menu .profile .character-info .bonus .title {
+    /* Project bonus */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 103px;
+    max-height: 17px;
+    min-width: 70px;
+    min-height: 12px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .profile .character-info .bonus .box {
+    /* Rectangle 3 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 286px;
+    max-height: 80px;
+    min-width: 200px;
+    min-height: 75px;
+    top: 11px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .profile .character-info .bonus .box .icon {
+    /* Rectangle 19 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 52px;
+    max-height: 52px;
+    min-width: 40px;
+    min-height: 49px;
+    left: -15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    box-shadow: inset 0px 4px 13.5px 0px rgb(255, 179, 0);
+    background: linear-gradient(135.00deg, rgb(178, 92, 11) 0%, rgb(255, 123, 0) 50%, rgb(178, 92, 11) 100%);
+}
+
+.container-box .box .menu .profile .character-info .bonus .box .icon img {
+    width: 100%;
+    height: auto;
+    max-width: 26px;
+    max-height: 28px;
+    min-width: 20px;
+    min-height: 20px;
+}
+
+.container-box .box .menu .profile .character-info .bonus .box .text {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 103px;
+    max-height: 34px;
+    min-width: 70px;
+    min-height: 24px;
+    left: 0px;
+    top: -1px;
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 18px;
+    letter-spacing: 0%;
+    text-align: left;
+    color: #FFFFFF;
+}
+
+.container-box .box .menu .profile .character-info .bonus .box .text span {
+    color: #14851d;
+}
+
+.container-box .box .menu .profile .character-info .bonus .box .timer {
+    /* Frame 14 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 70px;
+    max-height: 28px;
+    min-width: 50px;
+    min-height: 28px;
+    left: 13px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    border-radius: 2px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0%;
+    text-align: left;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.08), rgba(255, 255, 255, 0.08) 100%);
+}
+
+
+.container-box .box .menu .profile .property {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1044px;
+    max-height: 796px;
+    min-width: 800px;
+    min-height: 600px;
+    left: 356px;
+    right: 440px;
+    top: -833px;
+}
+
+.container-box .box .menu .profile .property .title {
+    /* Your property */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 177px;
+    max-height: 29px;
+    min-width: 120px;
+    min-height: 20px;
+    left: 0;
+    top: 0;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .profile .property .line {
+    /* Vector 1 */
+    position: relative;
+    width: 100%;
+    height: 0;
+    max-width: 849px;
+    left: 195px;
+    top: -13px;
+    border: 1px solid rgb(255, 255, 255);
+    opacity: 0.1;
+}
+
+.container-box .box .menu .profile .property .pitems {
+    position: relative;
+    width: 102%;
+    height: auto;
+    max-width: 1066px;
+    max-height: 755px;
+    min-width: 800px;
+    min-height: 600px;
+    left: 0;
+    top: 12px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.container-box .box .menu .profile .property .pitems .item {
+    /* Rectangle 1 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 512px;
+    max-height: 367px;
+    min-width: 300px;
+    min-height: 367px;
+    left: -19px;
+    top: 0;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+    overflow: hidden;
+}
+
+.container-box .box .menu .profile .property .pitems .item .icon {
+    /* Rectangle 22 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 50px;
+    max-height: 50px;
+    min-width: 35px;
+    min-height: 48px;
+    left: 26px;
+    top: 26px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0px 4px 13.5px 0px rgb(255, 179, 0);
+    background: linear-gradient(135.00deg, rgb(228, 87, 21) 0%, rgb(255, 123, 0) 50%, rgb(228, 87, 21) 100%);
+}
+
+.container-box .box .menu .profile .property .pitems .item .icon img {
+    width: 100%;
+    height: auto;
+    position: relative;
+    max-width: 25px;
+    max-height: 25px;
+    min-width: 20px;
+    min-height: 20px;
+    top: 0;
+    left: 0;
+}
+
+.container-box .box .menu .profile .property .pitems .item .title {
+    /* Frame 39 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 250px;
+    max-height: 50px;
+    min-width: 200px;
+    min-height: 49px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    top: -23px;
+    left: 86px;
+    border-radius: 2px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0%;
+    text-align: center;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.08), rgba(255, 255, 255, 0.08) 100%);
+}
+
+.container-box .box .menu .profile .property .pitems .item img {
+    /* 11 1 */
+    position: absolute;
+    width: 100%;
+    height: auto;
+    max-width: 291px;
+    max-height: 367px;
+    min-width: 200px;
+    min-height: 250px;
+    left: 221px;
+    top: -3px;
+}
+
+.pitem-business {
+    top: 14px !important;
+}
+
+.pitem-work {
+    top: 79px !important;
+}
+
+.pitem-org {
+    top: 49px !important;
+}
+
+.container-box .box .menu .profile .property .pitems .item .subtitle {
+    /* Wild-Outs-Driver #356 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 211px;
+    max-height: 19px;
+    min-width: 257px;
+    min-height: 15px;
+    left: 27px;
+    top: -16px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .profile .property .pitems .item .post {
+    /* Group 39 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 179px;
+    max-height: 19px;
+    min-width: 100px;
+    min-height: 15px;
+    left: 27px;
+    top: -3px;
+    color: #9D9C9E;
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .profile .property .pitems .item .post span {
+    color: rgb(255, 255, 255);
+    margin-left: 40px;
+}
+
+.container-box .box .menu .profile .property .pitems .item .subtitle img {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 18px;
+    max-height: 25px;
+    min-width: 10px;
+    min-height: 15px;
+    left: 0;
+    top: 7px;
+    margin-right: 10px;
+}
+
+.container-box .box .menu .profile .property .pitems .item button {
+    /* Frame 40 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 220px;
+    max-height: 46px;
+    min-width: 150px;
+    min-height: 47px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 6;
+    top: 176px;
+    left: 26px;
+    border-radius: 5px;
+    box-shadow: inset 0px 4px 13.5px 0px rgb(255, 179, 0);
+    background: linear-gradient(135.00deg, rgb(228, 87, 21) 0%, rgb(255, 123, 0) 50%, rgb(228, 87, 21) 100%);
+}
+
+.container-box .box .menu .profile .property .pitems .item button img {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 23px;
+    max-height: 36px;
+    min-width: 8px;
+    min-height: 16px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    left: 50px;
+    top: 2px;
+}
+
+.search-img {
+    top: -1px !important;
+    max-width: 19px !important;
+    max-height: 30px !important;
+}
+
+.container-box .box .menu .profile .property .pitems .item button .text {
+    /* Set a route */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 197px;
+    max-height: 19px;
+    min-width: 140px;
+    min-height: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 0px 6px;
+    color: rgb(0, 0, 0);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .profile .advert {
+    /* фрейм 6 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 410px;
+    max-height: 796px;
+    min-width: 300px;
+    min-height: 745px;
+    left: 1430px;
+    right: 0;
+    top: -1623px;
+    bottom: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    border: 1px solid rgba(29, 155, 29, 0.2);
+    border-radius: 2px;
+    background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(94, 255, 121, 0.06),
+    rgba(99, 255, 94, 0.08) 100%);
+
+}
+
+.container-box .box .menu .profile .advert .bg {
+    position: absolute;
+    width: 1508px;
+    height: 861.58px;
+    left: -527.26px;
+    top: 0;
+    transform: rotate(46.57deg);
+    background: url(../img/profile/car-bg.png) no-repeat center;
+    background-size: cover;
+    opacity: 0.14;
+}
+
+.container-box .box .menu .profile .advert .title {
+    /* DONATE */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 108px;
+    max-height: 29px;
+    min-width: 70px;
+    min-height: 20px;
+    left: 26px;
+    top: 22px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+.container-box .box .menu .profile .advert .subtitle {
+    /* CAR DEALERSHIP */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 344px;
+    max-height: 43px;
+    min-width: 250px;
+    min-height: 30px;
+    left: 26px;
+    top: 22px;
+    color: rgb(36, 124, 19);
+    font-family: DKallisto;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 43px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+
+.container-box .box .menu .profile .advert .desc {
+    /* Lorem ipsum dolor sit amet, consectetur adipiscing */
+    position: relative;
+    width: 292px;
+    height: 38px;
+    left: 26px;
+    top: 27px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .profile .advert .car {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 394px;
+    max-height: 318px;
+    min-width: 227px;
+    min-height: 192px;
+    left: 31px;
+    top: 312px;
+}
+
+.container-box .box .menu .profile .advert .car img {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 348px;
+    max-height: 298.86px;
+    min-width: 200px;
+    min-height: 150px;
+}
+
+.container-box .box .menu .profile .advert button {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 358px;
+    max-height: 60px;
+    min-width: 250px;
+    min-height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 6;
+    /* padding: 6px 53px 6px 53px; */
+    top: 292px;
+    left: 25px;
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+    font-family: Gilroy;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 21px;
+    letter-spacing: 0%;
+    text-align: left;
+    box-shadow: inset 0px 4px 13.5px 0px rgb(255, 179, 0);
+    background: linear-gradient(135.00deg, rgb(228, 87, 21) 0%, rgb(255, 123, 0) 50%, rgb(228, 87, 21) 100%);
+}
+
+.container-box .box .menu .profile .vectors {
+    /* Frame 37 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 410px;
+    max-height: 46px;
+    min-width: 300px;
+    min-height: 30px;
+    display: flex;
+    top: -1610px;
+    left: 1415px;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16;
+    padding: 0px;
+}
+
+.container-box .box .menu .profile .vectors .item {
+    /* Frame 38 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 197px;
+    max-height: 46px;
+    min-width: 140px;
+    min-height: 42px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin-left: 16px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .profile .vectors .item img {
+    /* Vector */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 17px;
+    max-height: 14px;
+    min-width: 10px;
+    min-height: 8px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 10px 0px;
+}
+
+.container-box .box .menu .profile .vectors .item:last-child {
+    transform: rotate(180.00deg);
+}
+
+.container-box .box .menu .profile .work-list {
+    /* Rectangle 64 */
+    position: absolute;
+    width: 100%;
+    height: auto;
+    max-width: 1920px;
+    max-height: 1080px;
+    min-width: 300px;
+    min-height: 1031px;
+    left: 0;
+    top: -152px;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.container-box .box .menu .profile .work-list .box {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1000px;
+    max-height: 606px;
+    min-width: 600px;
+    min-height: 603px;
+    left: 460px;
+    top: 237px;
+    border-radius: 5px;
+    background: radial-gradient(59.41% 50.54% at 14.000000000000002% 101%, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0) 100%),
+        radial-gradient(55.15% 69.87% at 93% 0%, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0) 100%),
+        rgb(17, 17, 19);
+}
+
+.container-box .box .menu .profile .work-list .box .title {
+    /* WORK LIST */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 142px;
+    max-height: 29px;
+    min-width: 100px;
+    min-height: 20px;
+    left: 30px;
+    top: -260px;
+
+    font-family: DKallisto;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29px;
+    letter-spacing: 0%;
+    text-align: left;
+    color: #FFFFFF;
+}
+
+
+.container-box .box .menu .profile .work-list .box .title span {
+    color: #176e14;
+}
+
+.container-box .box .menu .profile .work-list .box .text {
+    /* Lorem ipsum dolor sit amet, consectetur adipiscing elit */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 201px;
+    max-height: 38px;
+    min-width: 150px;
+    min-height: 30px;
+    left: -110px;
+    top: -222px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .profile .work-list .box .vacancy {
+    /* фрейм 12 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 240px;
+    max-height: 459px;
+    min-width: 200px;
+    min-height: 300px;
+    top: 41px;
+    left: -311px;
+    overflow: scroll;
+}
+
+.container-box .box .menu .profile .work-list .box .vacancy .item {
+    /* Rectangle 66 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 240px;
+    max-height: 87px;
+    min-width: 150px;
+    min-height: 91px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-bottom: 8px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .profile .work-list .box .vacancy .item .title {
+    /* Name of work */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 214px;
+    max-height: 19px;
+    min-width: 70px;
+    min-height: 15px;
+    left: 16px;
+    top: 16px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .profile .work-list .box .vacancy .item .text {
+    /* Lorem ipsum dolor sit amet, consectetur adipiscing elit */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 214px;
+    max-height: 32px;
+    min-width: 120px;
+    min-height: 20px;
+    left: 16px;
+    top: 22px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+
+.container-box .box .menu .profile .work-list .box .content {
+    /* Group 214 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 680px;
+    max-height: 155px;
+    min-width: 400px;
+    min-height: 100px;
+    left: -292px;
+    top: -200px;
+}
+
+.container-box .box .menu .profile .work-list .box .content .title {
+    /* NAME OF WORK */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 347px;
+    max-height: 29px;
+    min-width: 150px;
+    min-height: 20px;
+    left: 0;
+    top: 0;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .profile .work-list .box .content .icon {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 40px;
+    max-height: 40px;
+    min-width: 30px;
+    min-height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 326px;
+    top: -33px;
+    border-radius: 5px;
+    background: rgb(14, 112, 14);
+}
+
+
+.container-box .box .menu .profile .work-list .box .content .icon img {
+    /* Vector */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 16px;
+    max-height: 22.09px;
+    min-width: 10px;
+    min-height: 15px;
+    left: 0;
+    top: 0;
+}
+
+.container-box .box .menu .profile .work-list .box .content .close {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 40px;
+    max-height: 40px;
+    min-width: 30px;
+    min-height: 40px;
+    top: -113px;
+    left: 49px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    box-sizing: border-box;
+    border: 0.5px solid rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.08), rgba(255, 255, 255, 0.08) 100%);
+}
+
+.container-box .box .menu .profile .work-list .box .content .close img {
+    /* Vector */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 16px;
+    max-height: 16px;
+    min-width: 10px;
+    min-height: 10px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 10px;
+}
+
+
+.container-box .box .menu .profile .work-list .box .content .description {
+    /* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 718px;
+    max-height: 95px;
+    min-width: 691px;
+    min-height: 60px;
+    left: 0;
+    top: -96px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .advance {
+    /* фрейм 1 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1840px;
+    max-height: 796px;
+    min-width: 1200px;
+    min-height: 600px;
+    left: 12px;
+    top: -104px;
+}
+
+.container-box .box .menu .advance .progress {
+    /* d990aa0f-28e7-4e64-a0d0-877eb9572eb5 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 410px;
+    max-height: 796px;
+    min-width: 417px;
+    min-height: 831px;
+    left: 0;
+    top: 0;
+    background: url(../img/advance/bg.png) no-repeat center;
+    background-size: cover;
+}
+
+.container-box .box .menu .advance .progress .text {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 265px;
+    max-height: 101px;
+    min-width: 180px;
+    min-height: 70px;
+    left: 72px;
+    top: 352px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 84.17px;
+    font-weight: 400;
+    line-height: 39px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .advance .progress .text span {
+    font-size: 36px;
+}
+
+.container-box .box .menu .advance .progress svg {
+    width: 90px;
+    height: 90px;
+    position: relative;
+    top: 572px;
+    left: 160px;
+}
+
+.container-box .box .menu .advance .progress .pamount {
+    width: 36px;
+    height: 42px;
+    position: relative;
+    top: 525px;
+    left: 186px;
+    color: #FFFFFF;
+    font-family: Gilroy;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 0px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+.container-box .box .menu .advance .progress .pamount span {
+    color: #645F60;
+}
+
+.container-box .box .menu .advance .aitems {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1400px;
+    max-height: 796px;
+    min-width: 1428px;
+    min-height: 831px;
+    left: 407px;
+    right: 40px;
+    top: -829px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: scroll;
+}
+
+.container-box .box .menu .advance .aitems .aitem {
+    /* фрейм 16 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 335px;
+    max-height: 273px;
+    min-width: 200px;
+    min-height: 210px;
+    left: 0;
+    right: calc(100% - 335px);
+
+    top: 0;
+    bottom: 470px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.aitem-get {
+    border: 1px solid rgba(64, 240, 103, 0.2) !important;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(64, 240, 103, 0.1), rgba(64, 240, 103, 0.11) 100%) !important;
+}
+
+.container-box .box .menu .advance .aitems .aitem img {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 340px;
+    max-height: 143px;
+    min-width: 335px;
+    min-height: 100px;
+    left: -1px;
+    top: -1px;
+
+}
+
+.container-box .box .menu .advance .aitems .aitem .daily {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    max-width: 80px;
+    max-height: 30px;
+    min-width: 60px;
+    min-height: 28px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 6;
+    top: -332px;
+    left: 15px;
+    border-radius: 2px;
+    box-shadow: inset 0px 4px 13.5px 0px rgb(255, 179, 0);
+    background: rgb(255, 123, 0);
+    color: rgb(0, 0, 0);
+    font-family: DKallisto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+.daily-get {
+    box-shadow: inset 0px 4px 13.5px 0px rgb(134, 255, 161) !important;
+    background: rgb(64, 240, 103) !important;
+}
+
+.container-box .box .menu .advance .aitems .aitem .title {
+    /* Task name */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 260px;
+    max-height: 19px;
+    min-width: 180px;
+    min-height: 15px;
+    left: 14px;
+    top: 2px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .advance .aitems .aitem .subtitle {
+    /* Lorem ipsum dolor sit amet, consectetur adipiscing */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 256px;
+    max-height: 32px;
+    min-width: 180px;
+    min-height: 20px;
+    left: 16px;
+    top: 11px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .advance .aitems .aitem .proggress {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 304px;
+    max-height: 24px;
+    min-width: 200px;
+    min-height: 16px;
+    left: 14px;
+    right: 15px;
+    top: 24px;
+    bottom: 72px;
+}
+
+.container-box .box .menu .advance .aitems .aitem .proggress .bar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 295px;
+    max-height: 2px;
+    min-width: 143px;
+    min-height: 4px;
+    display: flex;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.bar-get {
+    background: rgb(64, 240, 103) !important;
+}
+
+.container-box .box .menu .advance .aitems .aitem .proggress .bar .active {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 151px;
+    max-height: 2px;
+    min-width: 100px;
+    min-height: 4px;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+    background: rgb(255, 255, 255);
+}
+
+
+.container-box .box .menu .advance .aitems .aitem .proggress .bar .text {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 71px;
+    max-height: 16px;
+    min-width: 5px;
+    min-height: 10px;
+    left: -149px;
+    top: 10px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.text-right {
+    text-align: right !important;
+    left: 0px !important;
+}
+
+
+.container-box .box .menu .advance .aitems .aitem .payment {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 317px;
+    max-height: 40px;
+    min-width: 150px;
+    min-height: 30px;
+    display: flex;
+    top: 54px;
+    left: -4px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.container-box .box .menu .advance .aitems .aitem .payment button {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 152px;
+    max-height: 40px;
+    min-width: 100px;
+    min-height: 38px;
+    top: 0px;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    box-sizing: border-box;
+    border: 1px solid rgb(33, 122, 21);
+    border-radius: 2px;
+    margin-left: 18px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0%;
+    background: none;
+    text-align: center;
+}
+
+
+.container-box .box .menu .advance .aitems .aitem button {
+    /* Frame 41 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 303px;
+    max-height: 40px;
+    min-width: 200px;
+    min-height: 36px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    top: 54px;
+    left: 13px;
+    box-sizing: border-box;
+    border: 1px solid rgb(64, 240, 103);
+    background: rgba(64, 240, 103, 0.2);
+    border-radius: 2px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+
+.container-box .box .menu .players {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1840px;
+    max-height: 796px;
+    min-width: 1200px;
+    min-height: 600px;
+    left: 9px;
+    right: 40px;
+    top: -82px;
+    bottom: 160px;
+}
+
+.container-box .box .menu .players .title {
+    /* PLAYER LIST */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 329px;
+    max-height: 58px;
+    min-width: 200px;
+    min-height: 40px;
+    left: 0;
+    top: 0;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 58px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .players .subtitle {
+    /* Lorem ipsum dolor sit amet */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 197px;
+    max-height: 19px;
+    min-width: 140px;
+    min-height: 15px;
+    left: 0;
+    top: 4px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+.container-box .box .menu .players .categories {
+    /* фрейм 20 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 329px;
+    max-height: 262px;
+    min-width: 220px;
+    min-height: 150px;
+    left: 0;
+    right: 0;
+    top: -26px;
+    bottom: 0;
+}
+
+
+.container-box .box .menu .players .categories .item {
+    /* Frame 45 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 329px;
+    max-height: 46px;
+    min-width: 220px;
+    min-height: 43px;
+    left: 0;
+    top: 54px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: center;
+    margin-bottom: 8px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .players .categories .item:hover,
+.container-box .box .menu .office .categories button:hover,
+.container-box .box .menu .work-list .vacancy .item:hover,
+.container-box .box .menu .shop .roulette .open .amount button:hover {
+    border: 1px solid rgba(94, 255, 94, 0.5);
+    background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(94, 255, 94, 0.1),
+    rgba(94, 255, 129, 0.2) 100%);
+    transform: scale(1.05);
+}
+
+.players-item-selected,
+.office-catactive,
+.worklist-active,
+.amount-active {
+    border: 1px solid rgba(16, 112, 16, 0.3) !important;
+    background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(94, 255, 108, 0.08),
+    rgba(94, 255, 108, 0.15) 100%
+    ) !important;
+}
+
+.container-box .box .menu .players .list {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1291px;
+    max-height: 796px;
+    min-width: 900px;
+    min-height: 796px;
+    left: 359px;
+    right: 190px;
+    top: -327px;
+    bottom: 0;
+    overflow: scroll;
+}
+
+.container-box .box .menu .players .list .item {
+    /* Rectangle 31 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1291px;
+    max-height: 60px;
+    min-width: 900px;
+    min-height: 40px;
+    left: 0;
+    margin-bottom: 10px;
+    top: 0;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+
+.container-box .box .menu .players .list .item .number {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 40px;
+    max-height: 40px;
+    min-width: 30px;
+    min-height: 37px;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    border-radius: 2px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.08), rgba(255, 255, 255, 0.08) 100%);
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+
+.container-box .box .menu .players .list .item .text {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 234px;
+    max-height: 16px;
+    min-width: 80px;
+    min-height: 12px;
+    left: 62px;
+    top: -14px;
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+    color: #FFFFFF;
+}
+
+.container-box .box .menu .players .list .item .text span {
+    color: #8F8F90;
+}
+
+.container-box .box .menu .players .list .item .value {
+    /* Frame 39 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 170px;
+    max-height: 40px;
+    min-width: 120px;
+    min-height: 38px;
+    top: -44px;
+    left: 1108px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    border-radius: 2px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0%;
+    text-align: center;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.08), rgba(255, 255, 255, 0.08) 100%);
+}
+
+
+.container-box .box .menu .players .info {
+    /* фрейм 19 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 160px;
+    max-height: 212px;
+    min-width: 100px;
+    min-height: 150px;
+    left: 1671px;
+    right: 0;
+    top: -1124px;
+}
+
+.container-box .box .menu .players .info .box {
+    /* Rectangle 29 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 160px;
+    max-height: 100px;
+    min-width: 100px;
+    min-height: 70px;
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-bottom: 12px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .players .info .box .number {
+    /* 165 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 66px;
+    max-height: 38px;
+    min-width: 40px;
+    min-height: 25px;
+    left: 35px;
+    top: -11px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 34px;
+    font-weight: 400;
+    line-height: 43px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+.container-box .box .menu .players .info .box .text {
+    /* Online */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 81px;
+    max-height: 16px;
+    min-width: 50px;
+    min-height: 10px;
+    left: -36px;
+    top: 23px;
+    opacity: 0.3;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+
+.container-box .box .menu .hotkeys {
+    /* фрейм 23 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1840px;
+    max-height: 796px;
+    min-width: 1200px;
+    min-height: 600px;
+    left: 7px;
+    right: 40px;
+    top: -117px;
+    bottom: 160px;
+}
+
+.container-box .box .menu .hotkeys .title {
+    /* Hotkeys */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 212px;
+    max-height: 58px;
+    min-width: 150px;
+    min-height: 40px;
+    left: 0;
+    top: 0;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 58px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .hotkeys button {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 212px;
+    max-height: 46px;
+    min-width: 150px;
+    min-height: 45px;
+    left: 1px;
+    top: 35px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: center;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .hotkeys .subtitle {
+    /* Lorem ipsum dolor sit amet */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 197px;
+    max-height: 19px;
+    min-width: 140px;
+    min-height: 15px;
+    left: 0;
+    top: -43px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+
+.container-box .box .menu .hotkeys .content {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1617px;
+    max-height: 796px;
+    min-width: 1000px;
+    min-height: 836px;
+    left: 242px;
+    right: 0;
+    top: -118px;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: scroll;
+}
+
+.container-box .box .menu .hotkeys .content .title {
+    /* General */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: 77px;
+    min-width: 70px;
+    min-height: 49px;
+    left: 0;
+    top: 0;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29px;
+    letter-spacing: 0%;
+    text-align: left;
+    break-after: always;
+}
+
+.container-box .box .menu .hotkeys .content .hitem {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 385px;
+    max-height: 76px;
+    min-width: 250px;
+    min-height: 58px;
+    margin-left: 19px;
+    margin-bottom: 20px;
+    left: -17px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+
+
+.container-box .box .menu .hotkeys .content .hitem .text {
+    /* Action */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 203px;
+    max-height: 22px;
+    min-width: 40px;
+    min-height: 15px;
+    left: 24px;
+    top: 9px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.hotkey-text-small {
+    font-size: 15px !important;
+}
+
+.hotkey-text-very-small {
+    font-size: 12px !important;
+}
+
+.container-box .box .menu .hotkeys .content .hitem select {
+    width: 140px;
+    height: 38px;
+    position: relative;
+    top: -11px;
+    left: 232px;
+    border-radius: 2px;
+    background: rgb(255, 255, 255);
+    padding-left: 10px;
+    color: rgb(0, 0, 0);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .hotkeys .content .hitem img {
+    /* Vector 335 */
+    position: relative;
+    width: 12px;
+    height: 6px;
+    left: 201px;
+    top: -12px;
+
+}
+
+.hotkey-rotate {
+    transform: rotate(180.00deg);
+}
+
+.container-box .box .menu .support {
+    /* фрейм 29 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1839px;
+    max-height: 797px;
+    min-width: 1200px;
+    min-height: 795px;
+    left: 12px;
+    top: -100px;
+}
+
+.container-box .box .menu .support .title {
+    /* Support */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 209px;
+    max-height: 58px;
+    min-width: 150px;
+    min-height: 40px;
+    left: 0;
+    top: 0;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 58px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .support .subtitle {
+    /* Lorem ipsum dolor sit amet */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 197px;
+    max-height: 19px;
+    min-width: 140px;
+    min-height: 15px;
+    left: 0;
+    top: 11px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+.container-box .box .menu .support .list {
+    /* фрейм 27 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 329px;
+    max-height: 694px;
+    min-width: 200px;
+    min-height: 500px;
+    left: 0;
+    right: 1511px;
+    top: 32px;
+    bottom: 0;
+}
+
+
+.container-box .box .menu .support .list button {
+    /* Frame 45 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 329px;
+    max-height: 46px;
+    min-width: 220px;
+    min-height: 44px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: center;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+    margin-bottom: 8px;
+    transition: all 0.3s ease-in-out;
+}
+
+.support-active {
+    border: 1px solid rgba(29, 155, 29, 0.3) !important;
+    background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(29, 155, 29, 0.08),
+    rgba(29, 155, 29, 0.15) 100%
+    ) !important;
+}
+
+.container-box .box .menu .support .list button:hover {
+    border: 1px solid rgba(113, 255, 94, 0.5);
+    background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(94, 255, 121, 0.1),
+    rgba(108, 255, 94, 0.2) 100%
+    );
+    transform: scale(1.05);
+}
+
+.container-box .box .menu .support .content {
+    /* фрейм 28 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1481px;
+    max-height: 96px;
+    min-width: 1000px;
+    min-height: 50px;
+    left: 359px;
+    top: -585px;
+}
+
+.container-box .box .menu .support .content .title {
+    /* Question title */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 333px;
+    max-height: 29px;
+    min-width: 200px;
+    min-height: 20px;
+    left: 0;
+    top: 0;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .support .content .text {
+    /* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1481px;
+    max-height: 57px;
+    min-width: 1000px;
+    min-height: 40px;
+    left: 0;
+    top: 39px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+
+.container-box .box .menu .rewards {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1839px;
+    max-height: 797px;
+    min-width: 1200px;
+    min-height: 600px;
+    left: 6px;
+    right: 41px;
+    top: -108px;
+    bottom: 159px;
+}
+
+.container-box .box .menu .rewards .title {
+    /* Daily Rewards */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 362px;
+    max-height: 58px;
+    min-width: 250px;
+    min-height: 40px;
+    left: 0;
+    top: 0;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 58px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+
+.container-box .box .menu .rewards .subtitle {
+    /* Lorem ipsum dolor sit amet */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 197px;
+    max-height: 19px;
+    min-width: 140px;
+    min-height: 15px;
+    left: 0;
+    top: 7px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .rewards .info {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 359px;
+    max-height: 50px;
+    min-width: 250px;
+    min-height: 30px;
+    left: 1486px;
+    right: 0;
+    top: -51px;
+    bottom: 733px;
+    display: flex;
+}
+
+.container-box .box .menu .rewards .info .box {
+    /* Frame 183 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 174px;
+    max-height: 50px;
+    min-width: 120px;
+    min-height: 44px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0%;
+    text-align: left;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+    margin-left: 11px;
+}
+
+.container-box .box .menu .rewards .list {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1500px;
+    max-height: 700px;
+    min-width: 1864px;
+    min-height: 500px;
+    left: 0;
+    right: 0;
+    top: -19px;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: scroll;
+}
+
+
+.container-box .box .menu .rewards .list .item {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 174px;
+    max-height: 302px;
+    min-width: 120px;
+    min-height: 322px;
+    left: -5px;
+    top: 43px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-left: 11px;
+    margin-bottom: 56px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.reward-item-collected {
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    background: radial-gradient(80.00% 80.00% at 50% 50%, rgba(44, 162, 70, 0.1), rgba(64, 240, 103, 0.1) 100%) !important;
+}
+
+.container-box .box .menu .rewards .list .item .checkmark {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 30px;
+    max-height: 30px;
+    min-width: 20px;
+    min-height: 31px;
+    border-radius: 40px;
+    left: 69px;
+    top: -44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .rewards .list .item .checkmark img {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 14px;
+    max-height: 12px;
+    min-width: 8px;
+    min-height: 6px;
+    left: 0;
+    top: 0;
+}
+
+.reward-checkmark-collected {
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    background: radial-gradient(80.00% 80.00% at 50% 50%, rgb(44, 162, 70), rgb(64, 240, 103) 100%) !important;
+}
+
+.container-box .box .menu .rewards .list .item .day {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 142px;
+    max-height: 30px;
+    min-width: 100px;
+    min-height: 36px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    left: 16px;
+    top: -15px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0%;
+    text-align: center;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .rewards .list .item img {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 142px;
+    max-height: 139.46px;
+    min-width: 100px;
+    min-height: 90px;
+    left: 16px;
+    right: 16px;
+    top: 7px;
+    bottom: 60.54px;
+}
+
+.container-box .box .menu .rewards .list .item .text {
+    /* Name of Prize */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 88px;
+    max-height: 16px;
+    min-width: 60px;
+    min-height: 12px;
+    left: 42px;
+    top: 22px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+
+.container-box .box .menu .rewards .list .item button {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 142px;
+    max-height: 36px;
+    min-width: 100px;
+    min-height: 38px;
+    top: 38px;
+    left: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0%;
+    text-align: center;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+    transition: all 0.3s ease-in-out;
+}
+
+.container-box .box .menu .rewards .list .item button:hover,
+.container-box .box .menu .rewards .reward .rbox button:hover {
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(255, 255, 255, 0.1), rgba(153, 153, 153, 0.1) 100%);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    transform: scale(1.05);
+
+}
+
+
+.reward-btn-collected {
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    background: radial-gradient(80.00% 80.00% at 50% 50%, rgb(44, 162, 70), rgb(64, 240, 103) 100%) !important;
+}
+
+.reward-btn-unavailble {
+    color: #686768 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%) !important;
+}
+
+.container-box .box .menu .rewards .reward {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1911px;
+    max-height: 1080px;
+    min-width: 1841px;
+    min-height: 1033px;
+    left: 3px;
+    top: -899px;
+    background: rgba(17, 17, 19, 0.5);
+}
+
+
+.container-box .box .menu .rewards .reward .rbox {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 192px;
+    max-height: 307px;
+    min-width: 126px;
+    min-height: 322px;
+    left: 859px;
+    top: 363px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    background: radial-gradient(105.12% 105.19% at -12% 107%, rgba(64, 240, 103, 0.1), rgba(64, 240, 103, 0) 100%)
+        /* Предупреждение: градиент использует вращение, не поддерживаемое CSS, и может работать не так, как ожидается. */
+        , radial-gradient(130.23% 84.08% at 112.99999999999999% -10%, rgba(64, 240, 103, 0.1), rgba(64, 240, 103, 0) 100%)
+        /* Предупреждение: градиент использует вращение, не поддерживаемое CSS, и может работать не так, как ожидается. */
+        , rgb(17, 17, 19);
+}
+
+.container-box .box .menu .rewards .reward .rbox .day {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 142px;
+    max-height: 30px;
+    min-width: 100px;
+    min-height: 36px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    left: 22px;
+    top: 29px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0%;
+    text-align: center;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .rewards .reward .rbox img {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 142px;
+    max-height: 139.46px;
+    min-width: 100px;
+    min-height: 90px;
+    left: 22px;
+    right: 16px;
+    top: 42px;
+    bottom: 60.54px;
+}
+
+.container-box .box .menu .rewards .reward .rbox .text {
+    /* Name of Prize */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 88px;
+    max-height: 16px;
+    min-width: 60px;
+    min-height: 12px;
+    left: 45px;
+    top: 45px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+
+.container-box .box .menu .rewards .reward .rbox button {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 142px;
+    max-height: 36px;
+    min-width: 100px;
+    min-height: 38px;
+    top: 62px;
+    left: 21px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    box-sizing: border-box;
+    border-radius: 2px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0%;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    background: radial-gradient(80.00% 80.00% at 50% 50%, rgb(44, 162, 70), rgb(64, 240, 103) 100%) !important;
+    transition: all 0.3s ease-in-out;
+}
+
+.container-box .box .menu .statss {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1839px;
+    max-height: 797px;
+    min-width: 1200px;
+    min-height: 600px;
+    left: 12px;
+    top: -106px;
+}
+
+
+.container-box .box .menu .statss .title {
+    /* Stats */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 138px;
+    max-height: 58px;
+    min-width: 100px;
+    min-height: 40px;
+    left: 0;
+    top: 6px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 58px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .statss .subtitle {
+    /* Lorem ipsum dolor sit amet */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 197px;
+    max-height: 19px;
+    min-width: 140px;
+    min-height: 15px;
+    left: 0;
+    top: 10px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .statss .info {
+    /* фрейм 40 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 329px;
+    max-height: 250px;
+    min-width: 220px;
+    min-height: 150px;
+    left: 0;
+    right: 920px;
+    top: 37px;
+    bottom: 122px;
+}
+
+
+.container-box .box .menu .statss .info .character {
+    /* Rectangle 2 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 329px;
+    max-height: 80px;
+    min-width: 220px;
+    min-height: 50px;
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .statss .info .character img {
+    /* Ellipse 1 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 36px;
+    max-height: 36px;
+    min-width: 51px;
+    min-height: 50px;
+    left: 14px;
+    border-radius: 40px;
+    top: 14px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(87.00% 50.00% at 50% 50%, rgba(255, 255, 255, 0.1), rgba(153, 153, 153, 0.05) 100%);
+}
+
+
+
+.container-box .box .menu .statss .info .character .name {
+    /* JAMES ADAMOVICH */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 175px;
+    max-height: 19px;
+    min-width: 120px;
+    min-height: 15px;
+    left: 76px;
+    top: -32px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .statss .info .character .static {
+    /* relative ID: #1455242 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 120px;
+    max-height: 16px;
+    min-width: 80px;
+    min-height: 12px;
+    left: 76px;
+    top: -26px;
+    opacity: 0.55;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+
+.container-box .box .menu .statss .info .item {
+    /* Rectangle 31 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 329px;
+    max-height: 46px;
+    min-width: 200px;
+    min-height: 30px;
+    left: 0;
+    top: 19px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-bottom: 8px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .statss .info .item img {
+    /* Vector */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 20px;
+    max-height: 20px;
+    min-width: 15px;
+    min-height: 15px;
+    left: 13px;
+    top: 11px;
+}
+
+.container-box .box .menu .statss .info .item .text {
+    /* Number of murders */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 122px;
+    max-height: 16px;
+    min-width: 90px;
+    min-height: 12px;
+    left: 46px;
+    top: -7px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+
+.container-box .box .menu .statss .info .item .value {
+    /* 165 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 63px;
+    max-height: 16px;
+    min-width: 45px;
+    min-height: 12px;
+    left: 249px;
+    top: -23px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: right;
+}
+
+.container-box .box .menu .statss .statistics {
+    /* фрейм 39 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 385px;
+    max-height: 469px;
+    min-width: 280px;
+    min-height: 350px;
+    left: 359px;
+    right: 505px;
+    top: -311px;
+    bottom: 0;
+}
+
+
+.container-box .box .menu .statss .statistics .title {
+    /* Information */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 143px;
+    max-height: 29px;
+    min-width: 100px;
+    min-height: 20px;
+    left: 0;
+    top: 0;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .statss .statistics .item {
+    /* Rectangle 31 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 385px;
+    max-height: 46px;
+    min-width: 250px;
+    min-height: 45px;
+    left: 0;
+    top: 20px;
+    margin-bottom: 8px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+
+.container-box .box .menu .statss .statistics .item .text {
+    /* Registration date */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 179px;
+    max-height: 16px;
+    min-width: 120px;
+    min-height: 12px;
+    left: 15px;
+    top: 15px;
+    opacity: 0.3;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .statss .statistics .item .value {
+    /* 23.01.2025 16:58 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 232px;
+    max-height: 16px;
+    min-width: 70px;
+    min-height: 12px;
+    left: 140px;
+    top: -1px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: right;
+}
+
+.container-box .box .menu .statss .works {
+    /* фрейм 42 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 475px;
+    max-height: 367px;
+    min-width: 300px;
+    min-height: 250px;
+    left: 777px;
+    top: -766px;
+}
+
+.container-box .box .menu .statss .works .title {
+    /* List of works */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 162px;
+    max-height: 29px;
+    min-width: 120px;
+    min-height: 20px;
+    left: 0;
+    top: 6px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .statss .works .vectors {
+    /* фрейм 44 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 90px;
+    max-height: 42px;
+    min-width: 60px;
+    min-height: 30px;
+    left: 385px;
+    right: 0;
+    top: -30px;
+    bottom: 325px;
+    display: flex;
+}
+
+.container-box .box .menu .statss .works .vectors .vector {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 42px;
+    max-height: 42px;
+    min-width: 30px;
+    min-height: 38px;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 6px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .statss .works .vectors .vector img {
+    /* Vector */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 12px;
+    max-height: 10px;
+    min-width: 8px;
+    min-height: 5px;
+}
+
+.works-vector-right {
+    transform: rotate(180deg);
+}
+
+
+.container-box .box .menu .statss .works .item {
+    /* Rectangle 31 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 475px;
+    max-height: 316px;
+    min-width: 300px;
+    min-height: 312px;
+    left: 0;
+    top: -22px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .statss .works .item img {
+    /* 28de24-BE2AAD85289D43A3E768E5333303E132 1 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 475px;
+    max-height: 120px;
+    min-width: 300px;
+    min-height: 90px;
+    left: 0;
+    top: 0px;
+}
+
+.container-box .box .menu .statss .works .item .best {
+    /* Frame 184 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 143px;
+    max-height: 36px;
+    min-width: 100px;
+    min-height: 33px;
+    top: -104px;
+    left: 18px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    border-radius: 2px;
+    background: rgb(243, 213, 91);
+    color: rgb(0, 0, 0);
+    font-family: DKallisto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0%;
+    text-align: right;
+}
+
+
+.container-box .box .menu .statss .works .item .title {
+    /* Tony`s Garage */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 124px;
+    max-height: 19px;
+    min-width: 90px;
+    min-height: 15px;
+    left: 18px;
+    top: -17px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .statss .works .item .boxes {
+    /* фрейм 45 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 439px;
+    max-height: 98px;
+    min-width: 300px;
+    min-height: 70px;
+    left: 17px;
+    top: -6px;
+}
+
+.container-box .box .menu .statss .works .item .boxes .box {
+    /* Rectangle 68 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 439px;
+    max-height: 46px;
+    min-width: 300px;
+    min-height: 45px;
+    left: 0;
+    top: 0;
+    margin-bottom: 6px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .statss .works .item .boxes .box .text {
+    /* Your Level */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 64px;
+    max-height: 16px;
+    min-width: 40px;
+    min-height: 12px;
+    left: -115px;
+    top: 0;
+    opacity: 0.3;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .statss .works .item .boxes .box .value {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 116px;
+    max-height: 16px;
+    min-width: 15px;
+    min-height: 12px;
+    left: 116px;
+    top: 0px;
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: right;
+    color: #FFFFFF;
+}
+
+.container-box .box .menu .statss .works .item .boxes .box .value span {
+    color: #6C6B6D;
+}
+
+
+.container-box .box .menu .statss .works .item .progress {
+    /* Rectangle 69 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 439px;
+    max-height: 2px;
+    min-width: 300px;
+    min-height: 4px;
+    left: 18px;
+    top: 10px;
+    border-radius: 10px;
+    background: rgb(255, 255, 255);
+    opacity: 0.1;
+}
+
+.container-box .box .menu .statss .works .item .progress .active {
+    /* Rectangle 70 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 258px;
+    max-height: 2px;
+    min-width: 200px;
+    min-height: 4px;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+    background: rgb(255, 255, 255);
+}
+
+.container-box .box .menu .sttorage {
+    /* фрейм 48 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1840px;
+    max-height: 796px;
+    min-width: 1200px;
+    min-height: 600px;
+    left: 9px;
+    right: 810px;
+    top: -118px;
+    bottom: 160px;
+}
+
+
+.container-box .box .menu .sttorage .title {
+    /* Storage */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 203px;
+    max-height: 58px;
+    min-width: 150px;
+    min-height: 40px;
+    left: 0;
+    top: 0;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 58px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .sttorage .subtitle {
+    /* Lorem ipsum dolor sit amet */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 197px;
+    max-height: 19px;
+    min-width: 140px;
+    min-height: 15px;
+    left: 0;
+    top: 0;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .sttorage .inv {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 520px;
+    max-height: 640px;
+    min-width: 350px;
+    min-height: 400px;
+    left: 0;
+    right: 0;
+    top: 14px;
+}
+
+.container-box .box .menu .sttorage .inv .title {
+    /* Your Inventory */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 140px;
+    max-height: 22px;
+    min-width: 100px;
+    min-height: 15px;
+    left: 0;
+    top: 0;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .sttorage .inv .size {
+    /* Group 165 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 58px;
+    max-height: 21px;
+    min-width: 40px;
+    min-height: 15px;
+    left: 462px;
+    right: 0;
+    top: -11px;
+}
+
+.container-box .box .menu .sttorage .inv .size img {
+    /* Vector */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 28px;
+    max-height: 14px;
+    min-width: 15px;
+    min-height: 10px;
+    left: 0;
+    top: 0;
+}
+
+.container-box .box .menu .sttorage .inv .size .text {
+    /* KG */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 24px;
+    max-height: 21px;
+    min-width: 15px;
+    min-height: 15px;
+    left: 36px;
+    top: -19px;
+    opacity: 0.3;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 21px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+.container-box .box .menu .sttorage .inv .sitems {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 520px;
+    max-height: 640px;
+    min-width: 531px;
+    min-height: 271px;
+    left: 0;
+    right: 0;
+    top: 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.sitems-content {
+    top: -638px !important;
+}
+
+.container-box .box .menu .sttorage .inv .sitems .sitem {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 80px;
+    max-height: 80px;
+    min-width: 60px;
+    min-height: 83px;
+    left: -7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    box-sizing: border-box;
+    border: 0.5px solid rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+    margin-left: 8px;
+    margin-bottom: 8px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.06), rgba(255, 255, 255, 0.06) 100%);
+}
+
+.container-box .box .menu .sttorage .inv .sitems .sitem .selected {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 80px;
+    max-height: 80px;
+    min-width: 60px;
+    min-height: 83px;
+    left: 0;
+    box-sizing: border-box;
+    border: 0.5px solid rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.2), rgba(255, 255, 255, 0.21) 100%);
+}
+
+.container-box .box .menu .sttorage .inv .sitems .sitem .selected img {
+    /* Group */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 38.53px;
+    max-height: 34px;
+    min-width: 20px;
+    min-height: 15px;
+    top: 19px;
+    left: 20.85px;
+}
+
+.container-box .box .menu .sttorage .inv .sitems .sitem .selected .amount {
+    /* x1 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 9px;
+    max-height: 12px;
+    min-width: 5px;
+    min-height: 8px;
+    left: 60px;
+    top: -27px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 12px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+
+.container-box .box .menu .sttorage .inv .sitems .sitem .selected .text {
+    /* Meat */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 24px;
+    max-height: 12px;
+    min-width: 15px;
+    min-height: 10px;
+    left: 28px;
+    top: 13px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 12px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+.container-box .box .menu .sttorage .donated {
+    /* Group 166 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 520px;
+    max-height: 699px;
+    min-width: 350px;
+    min-height: 500px;
+    left: 552px;
+    right: 0;
+    top: -623px;
+}
+
+.container-box .box .menu .sttorage .donated .title {
+    /* Storage of donated items */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 240px;
+    max-height: 22px;
+    min-width: 150px;
+    min-height: 15px;
+    left: 0;
+    top: 0;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+
+.container-box .box .menu .sttorage .donated .size {
+    /* Group 165 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 58px;
+    max-height: 21px;
+    min-width: 40px;
+    min-height: 15px;
+    left: 462px;
+    right: 0;
+    top: -11px;
+}
+
+.container-box .box .menu .sttorage .donated .size img {
+    /* Vector */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 28px;
+    max-height: 14px;
+    min-width: 15px;
+    min-height: 10px;
+    left: 0;
+    top: 0;
+}
+
+.container-box .box .menu .sttorage .donated .size .text {
+    /* KG */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 24px;
+    max-height: 21px;
+    min-width: 15px;
+    min-height: 15px;
+    left: 36px;
+    top: -19px;
+    opacity: 0.3;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 21px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+.container-box .box .menu .sttorage .donated .ditems {
+    /* Group 166 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 520px;
+    max-height: 699px;
+    min-width: 350px;
+    min-height: 500px;
+    left: 0;
+    right: 0;
+    top: -3px;
+    bottom: 0;
+    overflow: scroll;
+}
+
+.container-box .box .menu .sttorage .donated .ditems .ditem {
+    /* Rectangle 31 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 520px;
+    max-height: 80px;
+    min-width: 350px;
+    min-height: 84px;
+    left: 0;
+    top: 0;
+    margin-bottom: 8px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .sttorage .donated .ditems .ditem img {
+    /* porsche-normal 1 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 138px;
+    max-height: 40px;
+    min-width: 100px;
+    min-height: 30px;
+    left: 20px;
+    top: 22px;
+}
+
+.container-box .box .menu .sttorage .donated .ditems .ditem .text {
+    /* Porsche 911 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 81px;
+    max-height: 19px;
+    min-width: 60px;
+    min-height: 15px;
+    left: 178px;
+    top: -11px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+
+.container-box .box .menu .complaints {
+    /* фрейм 54 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1840px;
+    max-height: 796px;
+    min-width: 1200px;
+    min-height: 500px;
+    left: 12px;
+    right: 40px;
+    top: -120px;
+    bottom: 160px;
+}
+
+.container-box .box .menu .complaints .title {
+    /* Complaints */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 281px;
+    max-height: 58px;
+    min-width: 200px;
+    min-height: 40px;
+    left: 0;
+    top: 0;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 58px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .complaints .subtitle {
+    /* Lorem ipsum dolor sit amet */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 197px;
+    max-height: 19px;
+    min-width: 120px;
+    min-height: 15px;
+    left: 0;
+    top: 2px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+
+.container-box .box .menu .complaints .reports {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 420px;
+    max-height: 796px;
+    min-width: 300px;
+    min-height: 500px;
+    left: 1420px;
+    right: 0;
+    top: -69px;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-box .box .menu .complaints .reports .title {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 180px;
+    max-height: 29px;
+    min-width: 100px;
+    min-height: 20px;
+    left: 0;
+    top: 0;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .complaints .reports .item {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 420px;
+    max-height: 146px;
+    min-width: 300px;
+    min-height: 129px;
+    left: 0;
+    top: 14px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-bottom: 10px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+    opacity: 0.9;
+}
+
+.container-box .box .menu .complaints .reports .item .title {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 376px;
+    max-height: 21px;
+    min-width: 50px;
+    min-height: 15px;
+    left: 20px;
+    top: 20px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 21px;
+    letter-spacing: 0%;
+    text-align: left;
+
+}
+
+.container-box .box .menu .complaints .reports .item .title span {
+    color: rgb(255, 123, 0);
+}
+
+.container-box .box .menu .complaints .reports .item .text {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 351px;
+    max-height: 32px;
+    min-width: 250px;
+    min-height: 20px;
+    left: 20px;
+    top: 28px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .complaints .reports .item .time {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 113px;
+    max-height: 36px;
+    min-width: 80px;
+    min-height: 25px;
+    left: 20px;
+    top: 34px;
+    border-radius: 5px;
+    background: #403A3C;
+}
+
+.container-box .box .menu .complaints .reports .item .time img {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 12px;
+    max-height: 12px;
+    min-width: 8px;
+    min-height: 5px;
+    left: 11px;
+    top: 7px;
+}
+
+
+.container-box .box .menu .complaints .reports .item .time .text {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 73px;
+    max-height: 14px;
+    min-width: 50px;
+    min-height: 10px;
+    left: 33px;
+    top: -7px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .complaints .chat {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1400px;
+    max-height: 328px;
+    min-width: 800px;
+    min-height: 200px;
+    left: 0;
+    right: 0;
+    top: -48px;
+    bottom: 0;
+}
+
+.container-box .box .menu .complaints .chat .input {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1400px;
+    max-height: 52px;
+    min-width: 800px;
+    min-height: 30px;
+    left: 0;
+    top: 276px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+    opacity: 0.9;
+}
+
+
+.container-box .box .menu .complaints .chat .input input {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 337px;
+    max-height: 16px;
+    min-width: 250px;
+    min-height: 10px;
+    left: 18px;
+    top: 13px;
+    /* opacity: 0.3; */
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+.container-box .box .menu .complaints .chat .input .icon {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 28px;
+    max-height: 28px;
+    min-width: 20px;
+    min-height: 26px;
+    left: 1360px;
+    top: -8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    box-shadow: inset 0px 4px 13.5px 0px rgb(255, 179, 0);
+    background: linear-gradient(135.00deg, rgb(228, 87, 21) 0%, rgb(255, 123, 0) 50%, rgb(228, 87, 21) 100%);
+}
+
+.container-box .box .menu .complaints .chat .input .icon img {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 16px;
+    max-height: 16px;
+    min-width: 10px;
+    min-height: 8px;
+    left: 0;
+    top: 0;
+}
+
+
+.container-box .box .menu .complaints .chat .messages {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1400px;
+    max-height: 256px;
+    min-width: 800px;
+    min-height: 695px;
+    display: flex;
+    top: -479px;
+    flex-direction: column;
+    overflow: scroll;
+}
+
+.container-box .box .menu .complaints .chat .messages .msg {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 406px;
+    max-height: 118px;
+    min-width: 300px;
+    min-height: 119px;
+    left: 994px;
+    top: 293px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-top: 12px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+    opacity: 0.9;
+}
+
+.admin {
+    left: 0px !important;
+    border: 1px solid rgba(108, 255, 94, 0.3) !important;
+    background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(108, 255, 94, 0.08),
+    rgba(108, 255, 94, 0.15) 100%
+    ) !important;
+}
+
+.container-box .box .menu .complaints .chat .messages .msg .title {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 281px;
+    max-height: 19px;
+    min-width: 20px;
+    min-height: 15px;
+    left: 20px;
+    top: 20px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.admin-title {
+    color: rgb(30, 146, 7) !important;
+}
+
+
+.container-box .box .menu .complaints .chat .messages .msg .time {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 127px;
+    max-height: 17px;
+    min-width: 80px;
+    min-height: 12px;
+    left: 256px;
+    top: 3px;
+    opacity: 0.3;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0%;
+    text-align: right;
+}
+
+.container-box .box .menu .complaints .chat .messages .msg .text {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 366px;
+    max-height: 48px;
+    min-width: 250px;
+    min-height: 30px;
+    left: 20px;
+    top: 13px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .office {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1840px;
+    max-height: 796px;
+    min-width: 1200px;
+    min-height: 796px;
+    left: 9px;
+    right: 40px;
+    top: -111px;
+    bottom: 160px;
+}
+
+.container-box .box .menu .office .title {
+    /* Your Office */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 280px;
+    max-height: 58px;
+    min-width: 200px;
+    min-height: 40px;
+    left: 0;
+    right: 464px;
+    top: 0;
+    bottom: 409px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 58px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+
+.container-box .box .menu .office .subtitle {
+    /* Lorem ipsum dolor sit amet */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 197px;
+    max-height: 19px;
+    min-width: 120px;
+    min-height: 15px;
+    left: 0;
+    right: 547px;
+    top: 4px;
+    bottom: 390px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .office .categories {
+    /* фрейм 57 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 329px;
+    max-height: 370px;
+    min-width: 200px;
+    min-height: 250px;
+    left: 0;
+    right: 415px;
+    top: 29px;
+    bottom: 0;
+}
+
+.container-box .box .menu .office .categories button {
+    /* Frame 45 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 329px;
+    max-height: 46px;
+    min-width: 250px;
+    min-height: 46px;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: center;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+    margin-bottom: 8px;
+}
+
+.container-box .box .menu .office .password {
+    /* фрейм 56 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 385px;
+    max-height: 338px;
+    min-width: 250px;
+    min-height: 200px;
+    left: 359px;
+    top: -451px;
+}
+
+.container-box .box .menu .office .password img {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    max-width: 573px;
+    max-height: 796px;
+    min-width: 599px;
+    min-height: 546px;
+    left: 579px;
+    top: 39px;
+}
+
+.container-box .box .menu .office .password .title {
+    /* Change password */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 229px;
+    max-height: 29px;
+    min-width: 150px;
+    min-height: 20px;
+    left: 0;
+    right: 156px;
+    top: 0;
+    bottom: 309px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+
+.container-box .box .menu .office .password .subtitle {
+    /* Lorem ipsum dolor sit amet, consectetur adipiscing */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 372px;
+    max-height: 19px;
+    min-width: 250px;
+    min-height: 15px;
+    left: 0;
+    right: 80px;
+    top: 2px;
+    bottom: 680px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+.container-box .box .menu .office .password .prizes {
+    /* Group 147 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 452px;
+    max-height: 369px;
+    min-width: 300px;
+    min-height: 250px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.container-box .box .menu .office .password .prizes .title {
+    /* Prizes for invited players */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 205px;
+    max-height: 19px;
+    min-width: 150px;
+    min-height: 15px;
+    left: 0;
+    right: 247px;
+    top: 16px;
+    bottom: 350px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .office .password .prizes .box {
+    /* Rectangle 48 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 420px;
+    max-height: 60px;
+    min-width: 300px;
+    min-height: 40px;
+    left: 0;
+    top: 29px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-bottom: 10px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .office .password .prizes .box .icon {
+    /* Frame 72 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 60px;
+    max-height: 60px;
+    min-width: 40px;
+    min-height: 58px;
+    left: -73px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    border-radius: 2px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+
+.blue {
+    background: rgb(81, 162, 255);
+}
+
+.green {
+    background: rgb(58, 215, 86);
+}
+
+.yellow {
+    background: rgb(228, 127, 26);
+}
+
+.red {
+    background: rgb(255, 52, 52);
+}
+
+.pink {
+    background: rgb(255, 43, 191);
+}
+
+.container-box .box .menu .office .password .prizes .box .text {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 177px;
+    max-height: 21px;
+    min-width: 50px;
+    min-height: 15px;
+    left: -59px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .office .password .prizes .box .text span {
+    font-size: 14px;
+    color: rgb(255, 255, 255);
+    opacity: 0.3;
+}
+
+.container-box .box .menu .office .password .prizes .box img {
+    /* BMW (41) 1 */
+    position: absolute;
+    width: 100%;
+    height: auto;
+    max-width: 166px;
+    max-height: 78px;
+    min-width: 100px;
+    min-height: 60px;
+    left: 286px;
+    right: 0;
+    top: -19px;
+    bottom: -291px;
+}
+
+.container-box .box .menu .office .password .input {
+    /* Group 130 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 385px;
+    max-height: 71px;
+    min-width: 250px;
+    min-height: 50px;
+    left: 0;
+    right: 0;
+    top: 29px;
+    bottom: 228px;
+    margin-bottom: 19px;
+}
+
+.container-box .box .menu .office .password .input .title {
+    /* Old password */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 135px;
+    max-height: 19px;
+    min-width: 70px;
+    min-height: 15px;
+    left: 0;
+    right: 284px;
+    top: 0;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .office .password .input .box {
+    /* Rectangle 31 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 385px;
+    max-height: 46px;
+    min-width: 250px;
+    min-height: 42px;
+    left: 0;
+    top: 10px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+
+.container-box .box .menu .office .password .input .box input {
+    /* Enter the old password */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 147px;
+    max-height: 16px;
+    min-width: 100px;
+    min-height: 10px;
+    left: -104px;
+    top: 1px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .office .password button {
+    /* Frame 71 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 385px;
+    max-height: 46px;
+    min-width: 250px;
+    min-height: 46px;
+    left: 0;
+    top: 37px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    box-sizing: border-box;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 2px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+    background: rgba(126, 255, 94, 0.1);
+}
+
+.container-box .box .menu .office .password .features {
+    /* Group 146 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 305px;
+    max-height: 124px;
+    min-width: 200px;
+    min-height: 100px;
+    left: 0;
+    right: 0;
+    top: 62px;
+    bottom: 0;
+}
+
+.container-box .box .menu .office .password .features .title {
+    /* What does a promocode do? */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 243px;
+    max-height: 19px;
+    min-width: 150px;
+    min-height: 15px;
+    left: 0;
+    right: 62px;
+    top: 0;
+    bottom: 105px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .office .password .features .item {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 286px;
+    max-height: 16px;
+    min-width: 50px;
+    min-height: 12px;
+    left: 0;
+    right: 234px;
+    top: 16px;
+    margin-bottom: 12px;
+}
+
+
+.container-box .box .menu .office .password .features .item img {
+    /* Vector 616 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 12px;
+    max-height: 10px;
+    min-width: 8px;
+    min-height: 5px;
+    left: 0;
+    top: 0;
+}
+
+.container-box .box .menu .office .password .features .item .text {
+    /* Sapphire VIP on 7 days */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 146px;
+    max-height: 16px;
+    min-width: 100px;
+    min-height: 10px;
+    left: 22px;
+    right: 137px;
+    top: -14px;
+    bottom: -66px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+
+.container-box .box .menu .office .password .features .item .subtext {
+    /* + 1 EXP in PayDay, x2 hospital treatment rate */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 283px;
+    max-height: 16px;
+    min-width: 200px;
+    min-height: 10px;
+    left: 22px;
+    right: 0;
+    top: -3px;
+    bottom: -87px;
+    opacity: 0.3;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .office .volume {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+    max-height: 311px;
+    min-width: 416px;
+    min-height: 200px;
+    left: 293px;
+    right: 0;
+    top: -509px;
+    bottom: 156px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.aim-volume {
+    top: -400px !important;
+}
+
+.sett-volume {
+    top: -473px !important;
+}
+
+.container-box .box .menu .office .volume .title {
+    /* Volume */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 196px;
+    max-height: 29px;
+    min-width: 50px;
+    min-height: 20px;
+    left: -106px;
+    top: 49px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+
+.container-box .box .menu .office .volume .subtitle {
+    /* General settings */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 137px;
+    max-height: 19px;
+    min-width: 100px;
+    min-height: 15px;
+    left: -135px;
+    top: 72px;
+
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .office .volume .item {
+    /* Group 134 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+    max-height: 38px;
+    min-width: 250px;
+    min-height: 30px;
+    left: 0;
+    right: 0;
+    top: 61px;
+    bottom: 228px;
+    margin-bottom: 16px;
+}
+
+.aim-item {
+    top: 78px !important;
+}
+
+.container-box .box .menu .office .volume .item .title {
+    /* Volume of your microphone */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 353px;
+    max-height: 16px;
+    min-width: 120px;
+    min-height: 10px;
+    left: 0;
+    right: 226px;
+    top: 6px;
+    bottom: -23px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+
+.container-box .box .menu .office .volume .item .value {
+    /* 46% */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 26px;
+    max-height: 16px;
+    min-width: 15px;
+    min-height: 10px;
+    left: 374px;
+    right: 0;
+    top: -10px;
+    bottom: -23px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: right;
+}
+
+.container-box .box .menu .office .volume .item input {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    background: #ddd;
+    transition: background 0.2s;
+}
+
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: white;
+    border: 2px solid rgb(255, 123, 0);
+    border-radius: 50%;
+    cursor: grab;
+    margin-top: -6px;
+}
+
+input[type="range"]:focus {
+    background: linear-gradient(to right, rgb(255, 123, 0) 0%, rgb(255, 123, 0) 50%, rgba(255, 255, 255, 0.1) 50%);
+}
+
+
+
+.container-box .box .menu .office .volume button {
+    /* Frame 71 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 401px;
+    max-height: 46px;
+    min-width: 270px;
+    min-height: 46px;
+    left: 0;
+    top: 69px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    box-sizing: border-box;
+    border: 1px solid rgb(27, 150, 27);
+    border-radius: 2px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+    background: rgba(29, 155, 29, 0.1);
+}
+
+.container-box .box .menu .office .volume .buttons {
+    /* фрейм 83 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 289px;
+    max-height: 404px;
+    min-width: 200px;
+    min-height: 300px;
+    left: -56px;
+    right: 111px;
+    top: 78px;
+    bottom: 0;
+}
+
+.container-box .box .menu .office .volume .buttons .box {
+    /* Group 154 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 289px;
+    max-height: 26px;
+    min-width: 150px;
+    min-height: 20px;
+    left: -43px;
+    right: 0;
+    top: 0;
+    bottom: 378px;
+    margin-bottom: 14px;
+}
+
+.container-box .box .menu .office .volume .buttons .box .toggle-input {
+    display: none;
+}
+
+/* Фон кнопки (Rectangle 52) */
+.container-box .box .menu .office .volume .buttons .box .toggle-label {
+    position: relative;
+    width: 49px;
+    height: 29px;
+    left: 40px;
+    top: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    background: radial-gradient(50% 50% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background 0.3s;
+}
+
+/* Кружочек (Rectangle 53) */
+.container-box .box .menu .office .volume .buttons .box .toggle-inner {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    left: 4px;
+    top: 4px;
+    border-radius: 50px;
+    background: rgb(255, 255, 255);
+    transition: all 0.3s;
+}
+
+/* Когда включено */
+.container-box .box .menu .office .volume .buttons .box .toggle-input:checked+.toggle-label {
+    background: rgb(19, 146, 19);
+}
+
+.container-box .box .menu .office .volume .buttons .box .toggle-input:checked+.toggle-label .toggle-inner {
+    left: 24px;
+}
+
+
+.container-box .box .menu .office .volume .buttons .box .text {
+    /* Alerts about bag search on the map */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 233px;
+    max-height: 16px;
+    min-width: 150px;
+    min-height: 10px;
+    left: 56px;
+    right: 0;
+    top: 5px;
+    bottom: 5px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .office .volume .appreance {
+    /* фрейм 90 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 404px;
+    max-height: 469px;
+    min-width: 300px;
+    min-height: 300px;
+    left: 0;
+    right: 406px;
+    top: 97px;
+    bottom: 0;
+}
+
+.container-box .box .menu .office .volume .appreance .title {
+    /* Appearance */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 91px;
+    max-height: 17px;
+    min-width: 60px;
+    min-height: 10px;
+    left: 0;
+    right: 313px;
+    top: 0;
+    bottom: 452px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .office .volume .appreance .colorpicker {
+    /* Group 148 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 404px;
+    max-height: 216px;
+    min-width: 300px;
+    min-height: 150px;
+    left: 0;
+    right: 0;
+    top: 21px;
+}
+
+
+.container-box .box .menu .office .volume .appreance .colorpicker .title {
+    /* Aim color */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 129px;
+    max-height: 16px;
+    min-width: 40px;
+    min-height: 10px;
+    left: 0;
+    right: 344px;
+    top: -8px;
+    bottom: 200px;
+    opacity: 0.55;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .office .volume .appreance .aimtype {
+    /* фрейм 74 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 390px;
+    max-height: 718px;
+    min-width: 250px;
+    min-height: 500px;
+    left: 420px;
+    right: 0;
+    top: -697px;
+    bottom: 0;
+    display: flex;
+}
+
+.lsc_colorpick {
+    margin-bottom: 0.7vw !important;
+    max-height: 16vh !important;
+}
+
+.container-box .box .menu .office .volume .appreance .aimtype .title {
+    /* Type of Aim */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 99px;
+    max-height: 19px;
+    min-width: 101px;
+    min-height: 15px;
+    left: 0;
+    right: 291px;
+    top: 0;
+    bottom: 56px;
+}
+
+.container-box .box .menu .office .volume .appreance .aimtype button {
+    /* Frame 73 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 190px;
+    max-height: 46px;
+    min-width: 150px;
+    min-height: 30px;
+    top: 35px;
+    left: -109px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+    margin-left: 10px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+
+.container-box .box .menu .office .volume .appreance .aimtype .preview {
+    /* Group 152 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 390px;
+    max-height: 189px;
+    min-width: 250px;
+    min-height: 150px;
+    left: -420px;
+    top: 97px;
+}
+
+.container-box .box .menu .office .volume .appreance .aimtype .preview .title {
+    /* Preview */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 69px;
+    max-height: 19px;
+    min-width: 50px;
+    min-height: 15px;
+    left: 0;
+    right: 321px;
+    top: 0;
+    bottom: 170px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .office .volume .appreance .aimtype .preview img {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 390px;
+    max-height: 160px;
+    min-width: 312px;
+    min-height: 117px;
+    left: 0;
+    right: 0;
+    top: 13px;
+    bottom: -29px;
+    border-radius: 2px;
+    margin-left: 0;
+}
+
+
+.container-box .box .menu .office .volume .appreance .aimtype .preview .aim {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 36px;
+    max-height: 36px;
+    min-width: 25px;
+    background: none;
+    min-height: 25px;
+    top: -122px;
+    left: 91px;
+}
+
+.container-box .box .menu .office .volume .appreance .aimtype .btns {
+    /* фрейм 73 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 390px;
+    max-height: 46px;
+    min-width: 250px;
+    min-height: 30px;
+    left: -880px;
+    right: 0;
+    top: 657px;
+    display: flex;
+}
+
+.container-box .box .menu .office .volume .appreance .aimtype .btns button {
+    margin-left: 10px;
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 190px;
+    max-height: 46px;
+    min-width: 156px;
+    min-height: 30px;
+    left: 200px;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .shop {
+    /* фрейм 96 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1651px;
+    max-height: 796px;
+    min-width: 1000px;
+    min-height: 600px;
+    left: 12px;
+    top: -76px;
+}
+
+.container-box .box .menu .shop .title {
+    /* SHOP */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 150px;
+    max-height: 58px;
+    min-width: 100px;
+    min-height: 40px;
+    left: 0;
+    top: 0;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 58px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .shop .subtitle {
+    /* Lorem ipsum dolor sit amet */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 197px;
+    max-height: 19px;
+    min-width: 150px;
+    min-height: 15px;
+    left: 0;
+    top: 7px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+
+.container-box .box .menu .shop .balance {
+    /* Frame 51 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 330px;
+    max-height: 50px;
+    min-width: 200px;
+    min-height: 48px;
+    left: 0;
+    top: 31px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 0px;
+    letter-spacing: 0%;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 0;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .shop .balance span {
+    color: #14851d;
+}
+
+.container-box .box .menu .shop .categories {
+    /* фрейм 95 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 329px;
+    max-height: 316px;
+    min-width: 200px;
+    min-height: 150px;
+    left: 0;
+    right: 1322px;
+    top: -1px;
+    bottom: 313px;
+}
+
+
+.container-box .box .menu .shop .categories button {
+    /* Frame 45 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 329px;
+    max-height: 46px;
+    min-width: 250px;
+    min-height: 46px;
+    left: 0;
+    top: 54px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: center;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+    margin-bottom: 8px;
+    transition: all 0.3s ease-in-out;
+}
+
+.shop-active {
+    border: 1px solid rgba(29, 155, 29, 0.3) !important;
+    background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(29, 155, 29, 0.08),
+    rgba(29, 155, 29, 0.15) 100%
+    ) !important;
+}
+
+
+.container-box .box .menu .shop .categories button:hover {
+    transform: scale(1.05);
+    border: 1px solid rgba(29, 155, 29, 0.3);
+    background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(29, 155, 29, 0.08),
+    rgba(29, 155, 29, 0.15) 100%
+    );
+}
+
+.container-box .box .menu .shop .exxchange {
+    /* Group 72 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 330px;
+    max-height: 128px;
+    min-width: 200px;
+    min-height: 100px;
+    left: 0;
+    right: 0;
+    top: 80px;
+    bottom: 0;
+}
+
+.container-box .box .menu .shop .exxchange .title {
+    /* Exchange rate */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 137px;
+    max-height: 22px;
+    min-width: 100px;
+    min-height: 15px;
+    left: 0;
+    top: 0;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+
+.container-box .box .menu .shop .exxchange .box {
+    /* Frame 52 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 330px;
+    max-height: 50px;
+    min-width: 200px;
+    min-height: 49px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    top: 11px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: center;
+    color: #FFFFFF;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .shop .exxchange .box span {
+    color: #14851d ;
+    background: none;
+}
+
+.green-shop {
+    color: #179b22  !important;
+}
+
+.container-box .box .menu .shop .exxchange .text {
+    /* To top up your account balance, You need to go to our website: stage-rp.com */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 311px;
+    max-height: 38px;
+    min-width: 200px;
+    min-height: 20px;
+    left: 0;
+    top: 19px;
+    opacity: 0.3;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+
+.container-box .box .menu .shop .general {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1318px;
+    max-height: 798px;
+    min-width: 800px;
+    min-height: 500px;
+    left: 337px;
+    right: 0;
+    top: -544px;
+    bottom: 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    overflow: scroll;
+}
+
+.container-box .box .menu .shop .general .item {
+    /* Rectangle 31 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 636px;
+    max-height: 146px;
+    min-width: 400px;
+    min-height: 133px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .shop .general .item .title {
+    /* Name of the service */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 461px;
+    max-height: 22px;
+    min-width: 300px;
+    min-height: 15px;
+    left: 24px;
+    top: 22px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .shop .general .item .subtitle {
+    /* Lorem ipsum dolor sit amet, consectetur adipiscing */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 479px;
+    max-height: 16px;
+    min-width: 300px;
+    min-height: 10px;
+    left: 24px;
+    top: 26px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .shop .general .item .price {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 100px;
+    max-height: 36px;
+    min-width: 60px;
+    min-height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    left: 512px;
+    top: -13px;
+    border-radius: 2px;
+    font-family: DKallisto;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: center;
+    color: #FFFFFF;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.08), rgba(255, 255, 255, 0.08) 100%);
+}
+
+.container-box .box .menu .shop .general .item .price span {
+    color: #14851d ;
+}
+
+.container-box .box .menu .shop .general .item button {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 588px;
+    max-height: 40px;
+    min-width: 400px;
+    min-height: 34px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    top: 10px;
+    left: 22px;
+    box-sizing: border-box;
+    border: 1px solid rgb(29, 155, 29);
+    border-radius: 2px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+    background: rgba(29, 155, 29, 0.1);
+
+}
+
+.container-box .box .menu .shop .vip {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1480px;
+    max-height: 812px;
+    min-width: 1000px;
+    min-height: 621px;
+    left: 337px;
+    top: -564px;
+    display: flex;
+    overflow: scroll;
+}
+
+.container-box .box .menu .shop .vip .item {
+    /* Rectangle 31 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 355px;
+    max-height: 796px;
+    min-width: 357px;
+    min-height: 805px;
+    left: 0;
+    top: 0;
+    margin-left: 20px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .shop .vip .item .img {
+    /* Rectangle 35 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 307px;
+    max-height: 200px;
+    min-width: 200px;
+    min-height: 194px;
+    left: 24px;
+    top: 24px;
+    border-radius: 2px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-box .box .menu .shop .vip .item img {
+    width: 100%;
+    height: auto;
+    max-width: 150px;
+    max-height: 95.93px;
+    min-width: 100px;
+    min-height: 60px;
+}
+
+.container-box .box .menu .shop .vip .item .title {
+    /* Name of VIP Status */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 183px;
+    max-height: 22px;
+    min-width: 120px;
+    min-height: 15px;
+    left: 24px;
+    top: 37px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .shop .vip .item .subtitle {
+    /* The starter kit */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 88px;
+    max-height: 16px;
+    min-width: 60px;
+    min-height: 10px;
+    left: 24px;
+    top: 34px;
+    opacity: 0.3;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .shop .vip .item .features {
+    /* Group 87 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 294px;
+    max-height: 165px;
+    min-width: 150px;
+    min-height: 100px;
+    left: 24px;
+    right: 37px;
+    top: 50px;
+    bottom: 356px;
+}
+
+.container-box .box .menu .shop .vip .item .features .fitem {
+    /* фрейм 118 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 370px;
+    max-height: 16px;
+    min-width: 150px;
+    min-height: 10px;
+    margin-bottom: 10px;
+}
+
+.container-box .box .menu .shop .vip .item .features .fitem img {
+    /* Vector 616 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 12px;
+    max-height: 10px;
+    min-width: 8px;
+    min-height: 5px;
+    left: 0;
+    top: 3px;
+}
+
+.container-box .box .menu .shop .vip .item .features .fitem .text {
+    /* +1 bonus experience per hour */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 294px;
+    max-height: 16px;
+    min-width: 120px;
+    min-height: 10px;
+    left: 22px;
+    top: -13px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+
+.container-box .box .menu .shop .vip .item .price {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    max-width: 307px;
+    max-height: 46px;
+    min-width: 200px;
+    min-height: 46px;
+    left: 24px;
+    top: 679px;
+    border-radius: 2px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .shop .vip .item .price .text {
+    /* Price */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 32px;
+    max-height: 16px;
+    min-width: 20px;
+    min-height: 10px;
+    left: 15px;
+    top: 16px;
+    opacity: 0.55;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .shop .vip .item .price .amount {
+    /* 1 000 SC */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 270px;
+    max-height: 19px;
+    min-width: 50px;
+    min-height: 15px;
+    left: 24px;
+    top: -6px;
+    font-family: DKallisto;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0%;
+    text-align: right;
+    color: #FFFFFF;
+}
+
+.container-box .box .menu .shop .vip .item .price .amount span {
+    color: #14851d ;
+}
+
+
+
+.container-box .box .menu .shop .vip .item button {
+    /* Frame 56 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    width: 100%;
+    height: auto;
+    max-width: 307px;
+    max-height: 46px;
+    min-width: 200px;
+    min-height: 42px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    top: 737px;
+    left: 24px;
+    box-sizing: border-box;
+    border: 1px solid rgb(94, 255, 121);
+    border-radius: 2px;
+    background: rgba(29, 155, 29, 0.1);
+
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .shop .shops {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1316px;
+    max-height: 796px;
+    min-width: 800px;
+    min-height: 600px;
+    left: 340px;
+    right: 228px;
+    top: -548px;
+    display: flex;
+    bottom: 160px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: scroll;
+}
+
+
+.container-box .box .menu .shop .shops .item {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 636px;
+    max-height: 274px;
+    min-width: 400px;
+    min-height: 269px;
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .shop .shops .item img {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 636px;
+    max-height: 132px;
+    min-width: 400px;
+    min-height: 100px;
+    left: 0;
+    top: 0;
+    border-radius: 2px 2px 0px 0px;
+}
+
+.container-box .box .menu .shop .shops .item .title {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 260px;
+    max-height: 22px;
+    min-width: 60px;
+    min-height: 15px;
+    left: 24px;
+    top: 15px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+
+.container-box .box .menu .shop .shops .item .subtitle {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 325px;
+    max-height: 16px;
+    min-width: 200px;
+    min-height: 10px;
+    left: 24px;
+    top: 20px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .shop .shops .item button {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 588px;
+    max-height: 40px;
+    min-width: 400px;
+    min-height: 41px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    top: 37px;
+    left: 24px;
+    box-sizing: border-box;
+    border: 1px solid rgb(29, 155, 29);
+    border-radius: 2px;
+    background: rgba(29, 155, 29, 0.1);
+
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .shop .roulette {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1240px;
+    max-height: 518px;
+    min-width: 800px;
+    min-height: 591px;
+    left: 462px;
+    right: 160px;
+    top: -563px;
+    bottom: 411px;
+
+}
+
+.container-box .box .menu .shop .roulette .title {
+    /* ROULETTE */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 463px;
+    max-height: 96px;
+    min-width: 300px;
+    min-height: 60px;
+    left: 388px;
+    top: 0;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 80px;
+    font-weight: 400;
+    line-height: 96px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .shop .roulette .subtitle {
+    /* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 902px;
+    max-height: 19px;
+    min-width: 600px;
+    min-height: 10px;
+    left: 169px;
+    top: -2px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+.container-box .box .menu .shop .roulette .items {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1240px;
+    max-height: 400px;
+    min-width: 600px;
+    min-height: 403px;
+    top: 34px;
+    left: 0px;
+    display: flex;
+}
+
+
+.container-box .box .menu .shop .roulette .items .ritem {
+    /* Rectangle 31 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+    max-height: 400px;
+    min-width: 250px;
+    min-height: 250px;
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-left: 20px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .shop .roulette .items .ritem img {
+    /* 12 1 */
+    position: absolute;
+    width: 100%;
+    height: auto;
+    max-width: 173px;
+    max-height: 213px;
+    min-width: 100px;
+    min-height: 150px;
+    left: 113px;
+    top: 40px;
+}
+
+.container-box .box .menu .shop .roulette .items .ritem .name {
+    /* Name of Case */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 105px;
+    max-height: 19px;
+    min-width: 70px;
+    min-height: 10px;
+    left: 24px;
+    top: 288px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .shop .roulette .items .ritem .price {
+    /* 500 SC */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 118px;
+    max-height: 29px;
+    min-width: 70px;
+    min-height: 20px;
+    left: 265px;
+    top: 265px;
+    font-family: DKallisto;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29px;
+    letter-spacing: 0%;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+
+.container-box .box .menu .shop .roulette .items .ritem .price span {
+    color: #14851d;
+}
+
+.container-box .box .menu .shop .roulette .items .ritem button {
+    /* Frame 58 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 352px;
+    max-height: 46px;
+    min-width: 200px;
+    min-height: 42px;
+    top: 284px;
+    left: 21px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    box-sizing: border-box;
+    border: 1px solid rgb(29, 155, 29);
+    border-radius: 2px;
+    background: rgba(29, 155, 29, 0.1);
+
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .shop .roulette .open {
+    /* фрейм 112 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1481px;
+    max-height: 792.51px;
+    min-width: 1000px;
+    min-height: 600px;
+    left: -100px;
+    top: -23px;
+}
+
+
+.container-box .box .menu .shop .roulette .open .back {
+    /* Frame 11 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 87px;
+    max-height: 40px;
+    min-width: 60px;
+    min-height: 30px;
+    left: -16px;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10;
+    padding: 0px;
+}
+
+.container-box .box .menu .shop .roulette .open .back .icon {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 42px;
+    max-height: 40px;
+    min-width: 25px;
+    min-height: 46px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border: 0.5px solid rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.08), rgba(255, 255, 255, 0.08) 100%);
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 10px;
+}
+
+.container-box .box .menu .shop .roulette .open .back .icon img {
+    width: 100%;
+    height: auto;
+    max-width: 15px;
+    max-height: 6.5px;
+    min-width: 10px;
+    min-height: 5px;
+}
+
+
+.container-box .box .menu .shop .roulette .open .back .text {
+    /* Back */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 37px;
+    max-height: 19px;
+    min-width: 20px;
+    min-height: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10;
+    padding: 0px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: left;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 0px 10px;
+}
+
+.container-box .box .menu .shop .roulette .open .title {
+    /* Name of Case */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 174px;
+    max-height: 29px;
+    min-width: 120px;
+    min-height: 15px;
+    left: 643px;
+    top: -66px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+.container-box .box .menu .shop .roulette .open .title span {
+    color: #14851d;
+}
+
+.container-box .box .menu .shop .roulette .open button {
+    /* Frame 10 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 169px;
+    max-height: 40px;
+    min-width: 120px;
+    min-height: 40px;
+    left: 1299px;
+    top: -97px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    box-sizing: border-box;
+    border: 0.5px solid rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: center;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.08), rgba(255, 255, 255, 0.08) 100%);
+}
+
+.container-box .box .menu .shop .roulette .open .slots {
+    /* Rectangle 37 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1481px;
+    max-height: 218px;
+    min-width: 1472px;
+    min-height: 150px;
+    left: -5px;
+    top: -74px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.slots-winning {}
+
+.container-box .box .menu .shop .roulette .open .slots .vector-top {
+    /* Polygon 2 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 37px;
+    max-height: 63px;
+    min-width: 37px;
+    min-height: 43px;
+    left: 716px;
+    top: -28px;
+    background: url(../img/roulette-top.svg) no-repeat center;
+    background-size: cover;
+}
+
+.container-box .box .menu .shop .roulette .open .slots .vector-bottom {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 43px;
+    max-height: 70px;
+    min-width: 38px;
+    min-height: 45px;
+    left: 711px;
+    top: -70px;
+    background: url(../img/roulette-bottom.svg) no-repeat center;
+    background-size: cover;
+}
+
+.container-box .box .menu .shop .roulette .open .slots canvas {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1480px;
+    max-height: 299px;
+    min-width: 1000px;
+    min-height: 202px;
+    top: -33px;
+}
+
+.container-box .box .menu .shop .roulette .open .slots .items .item {
+    /* Rectangle 38 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 182px;
+    max-height: 182px;
+    min-width: 120px;
+    min-height: 120px;
+    left: 649px;
+    top: 0;
+    margin-left: 10px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .shop .roulette .open .slots .items .item img {
+    /* 13294_31 1 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 122px;
+    max-height: 54px;
+    min-width: 70px;
+    min-height: 40px;
+    left: 0;
+    top: 0;
+}
+
+.container-box .box .menu .shop .roulette .open .slots .items .item .name {
+    /* Porsche Carrera */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 103px;
+    max-height: 16px;
+    min-width: 70px;
+    min-height: 10px;
+    left: 0;
+    top: 15px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+
+.container-box .box .menu .shop .roulette .open .amount {
+    /* фрейм 119 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 162px;
+    max-height: 50px;
+    min-width: 100px;
+    min-height: 30px;
+    left: 423px;
+    top: -35px;
+    display: flex;
+}
+
+.container-box .box .menu .shop .roulette .win-page {
+    /* Rectangle 37 */
+    position: absolute;
+    width: 1481px;
+    height: 218px;
+    left: -103px;
+    top: 47px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    background: #252225c7;
+    z-index: 1;
+}
+
+.container-box .box .menu .shop .roulette .win-page .wtitle {
+    /* Congratulations! You've won Porsche Carrera */
+    position: relative;
+    width: 571px;
+    height: 29px;
+    left: 456px;
+    top: -114px;
+    font-family: DKallisto;
+
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29px;
+    letter-spacing: 0%;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.container-box .box .menu .shop .roulette .win-page .wtitle span {
+    color: #14851d;
+}
+
+.container-box .box .menu .shop .roulette .win-page .witems {
+    position: relative;
+    width: 1470px;
+    height: 182px;
+    left: 0;
+    top: -16px;
+    display: flex;
+    justify-content: center;
+}
+
+.container-box .box .menu .shop .roulette .win-page .witems .witem {
+    /* Rectangle 38 */
+    position: relative;
+    width: 182px;
+    height: 182px;
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-left: 10px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .shop .roulette .win-page .witems .witem img {
+    /* 13294_31 1 */
+    position: relative;
+    width: 122px;
+    height: 54px;
+    left: 30px;
+    top: 54px;
+
+}
+
+.container-box .box .menu .shop .roulette .win-page .witems .witem .text {
+    /* Porsche Carrera */
+    position: relative;
+    width: 103px;
+    height: 16px;
+    left: 39px;
+    top: 92px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+.container-box .box .menu .shop .roulette .win-page .wbtns {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 250px;
+    max-height: 50px;
+    min-width: 150px;
+    min-height: 30px;
+    top: 43px;
+    left: 326px;
+    display: flex;
+}
+
+.container-box .box .menu .shop .roulette .win-page .actionbutton {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 250px;
+    max-height: 50px;
+    min-width: 252px;
+    min-height: 48px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    border-radius: 2px;
+    margin-left: 12px;
+    box-shadow: inset 0px 4px 13.5px 0px rgba(255, 255, 255, 0.2);
+    background: linear-gradient(135.00deg, rgba(178, 178, 178, 0.16) 0%, rgba(255, 255, 255, 0.16) 50%, rgba(178, 178, 178, 0.16) 100%);
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+.centerbtn-win {
+    box-shadow: inset 0px 4px 13.5px 0px rgb(255, 179, 0) !important;
+    color: rgb(0, 0, 0) !important;
+    background: linear-gradient(135.00deg, rgb(228, 87, 21) 0%, rgb(255, 123, 0) 50%, rgb(228, 87, 21) 100%) !important;
+}
+
+.container-box .box .menu .shop .roulette .open .amount button {
+    /* Frame 65 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 50px;
+    max-height: 50px;
+    min-width: 30px;
+    min-height: 48px;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: center;
+    margin-left: 8px;
+    transition: all 0.3s ease-in-out;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .shop .roulette .open .caseopen {
+    /* Frame 62 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 250px;
+    max-height: 50px;
+    min-width: 150px;
+    min-height: 51px;
+    top: -84px;
+    left: 602px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    color: rgb(0, 0, 0);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: center;
+    box-shadow: inset 0px 4px 13.5px 0px rgb(255, 179, 0);
+    background: linear-gradient(135.00deg, rgb(228, 87, 21) 0%, rgb(255, 123, 0) 50%, rgb(228, 87, 21) 100%);
+}
+
+
+.container-box .box .menu .shop .roulette .open .fast {
+    /* фрейм 120 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 188px;
+    max-height: 50px;
+    min-width: 120px;
+    min-height: 30px;
+    left: 874px;
+    top: -135px;
+}
+
+.container-box .box .menu .shop .roulette .open .fast .checkbox-container {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    background: radial-gradient(50% 50% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+    cursor: pointer;
+    transition: background 0.8s ease-in-out, transform 0.6s ease-in-out;
+}
+
+.container-box .box .menu .shop .roulette .open .fast .checkbox-container:active {
+    transform: scale(0.95);
+}
+
+.container-box .box .menu .shop .roulette .open .fast .checkbox-checked {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    background: rgb(255, 123, 0);
+    transform: scale(0);
+    transition: transform 0.7s ease-in-out, background 0.8s ease-in-out;
+}
+
+.container-box .box .menu .shop .roulette .open .fast .checkbox-container.checked .checkbox-checked {
+    transform: scale(1);
+}
+
+
+
+.container-box .box .menu .shop .roulette .open .fast .title {
+    /* Fast Opening */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 100px;
+    max-height: 19px;
+    min-width: 70px;
+    min-height: 10px;
+    left: 62px;
+    top: -46px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .shop .roulette .open .fast .subtitle {
+    /* Without animations */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 126px;
+    max-height: 16px;
+    min-width: 80px;
+    min-height: 10px;
+    left: 62px;
+    top: -42px;
+    opacity: 0.3;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .shop .roulette .open .content {
+    /* фрейм 111 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1481px;
+    max-height: 394.51px;
+    min-width: 1000px;
+    min-height: 200px;
+    left: -13px;
+    right: 0;
+    top: -85px;
+    bottom: 0;
+}
+
+
+.container-box .box .menu .shop .roulette .open .content .title {
+    /* Contents of the case */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 198px;
+    max-height: 22px;
+    min-width: 150px;
+    min-height: 15px;
+    left: 8px;
+    top: -17px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+.container-box .box .menu .shop .roulette .open .content .items {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-height: 394.51px;
+    min-width: 1499px;
+    min-height: 200px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: scroll;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.container-box .box .menu .shop .roulette .open .content .items .critem {
+    /* Rectangle 40 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 176.51px;
+    max-height: 176.51px;
+    min-width: 120px;
+    min-height: 189px;
+    left: 0;
+    top: 0;
+    margin-left: 7.7px;
+    margin-bottom: 9.7px;
+    box-sizing: border-box;
+    border: 0.97px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.94px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .shop .roulette .open .content .items .critem img {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 157.32px;
+    max-height: 150.37px;
+    min-width: 86px;
+    min-height: 46px;
+    left: 11.1px;
+    top: 3.37px;
+}
+
+
+.container-box .box .menu .shop .roulette .open .content .items .critem .name {
+    /* Porsche Carrera */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 100px;
+    max-height: 16px;
+    min-width: 70px;
+    min-height: 10px;
+    left: 37.82px;
+    top: 1.48px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 13.58px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+.container-box .box .menu .shop .roulette .open .storage {
+    /* фрейм 115 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1482px;
+    max-height: 712px;
+    min-width: 1000px;
+    min-height: 500px;
+    left: 399px;
+    right: 39px;
+    top: 119px;
+    bottom: 249px;
+}
+
+.container-box .box .menu .shop .roulette .open .storage .back {
+    /* Frame 11 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 87px;
+    max-height: 40px;
+    min-width: 60px;
+    min-height: 30px;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10;
+    padding: 0px;
+}
+
+
+.container-box .box .menu .shop .roulette .open .storage .back .icon {
+    /* Frame 10 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 40px;
+    max-height: 40px;
+    min-width: 25px;
+    min-height: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10;
+    padding: 12px;
+    box-sizing: border-box;
+    border: 0.5px solid rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.08), rgba(255, 255, 255, 0.08) 100%);
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 10px;
+}
+
+.container-box .box .menu .shop .roulette .open .storage .back .icon img {
+    /* Vector 619 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 15px;
+    max-height: 6.5px;
+    min-width: 10px;
+    min-height: 5px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 10px;
+}
+
+.container-box .box .menu .shop .roulette .open .storage .back .text {
+    /* Back */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 37px;
+    max-height: 19px;
+    min-width: 20px;
+    min-height: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10;
+    padding: 0px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: left;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 0px 10px;
+}
+
+.container-box .box .menu .shop .roulette .open .storage .title {
+    /* PRIZE STORAGE */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 208px;
+    max-height: 29px;
+    min-width: 150px;
+    min-height: 20px;
+    left: 636px;
+    top: 5px;
+    color: rgb(255, 255, 255);
+    font-family: DKallisto;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+.container-box .box .menu .shop .roulette .open .storage .item {
+    /* Rectangle 40 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 232px;
+    max-height: 316px;
+    min-width: 150px;
+    min-height: 200px;
+    left: 0;
+    top: 0;
+    margin-left: 18px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: 0.97px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.94px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .shop .roulette .open .storage .item img {
+    /* 13294_31 1 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 144.79px;
+    max-height: 64.09px;
+    min-width: 100px;
+    min-height: 50px;
+    left: 44px;
+    top: 64.09px;
+}
+
+.container-box .box .menu .shop .roulette .open .storage .item .name {
+    /* Porsche Carrera */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 117px;
+    max-height: 19px;
+    min-width: 70px;
+    min-height: 10px;
+    left: 58px;
+    top: 176.02px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+
+.container-box .box .menu .shop .roulette .open .storage .item button {
+    /* Frame 76 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 200px;
+    max-height: 40px;
+    min-width: 150px;
+    min-height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    padding: 15px 141px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: center;
+    margin-bottom: 8px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .shop .roulette .open .storage .item button span {
+    color: #14851d;
+}
+
+.sell {
+    border: 1px solid rgba(29, 155, 29, 0.3);
+    background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(29, 155, 29, 0.08),
+    rgba(29, 155, 29, 0.15) 100%
+    );
+}
+
+.container-box .box .menu .shop .vehicle {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1505px;
+    max-height: 756px;
+    min-width: 1000px;
+    min-height: 818px;
+    left: 341px;
+    top: -581px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: scroll;
+}
+
+
+.container-box .box .menu .shop .vehicle .vitem {
+    /* Rectangle 31 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 355px;
+    max-height: 357px;
+    min-width: 250px;
+    min-height: 361px;
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    background: radial-gradient(50.00% 50.00% at 50% 50%, rgba(153, 153, 153, 0.05), rgba(255, 255, 255, 0.05) 100%);
+}
+
+.container-box .box .menu .shop .vehicle .vitem img {
+    /* 13294_31 1 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 273px;
+    max-height: 121px;
+    min-width: 150px;
+    min-height: 100px;
+    left: 41px;
+    top: 69px;
+}
+
+.container-box .box .menu .shop .vehicle .vitem .name {
+    /* Porsche Carrera */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 117px;
+    max-height: 19px;
+    min-width: 70px;
+    min-height: 10px;
+    left: 24px;
+    top: 140px;
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+.container-box .box .menu .shop .vehicle .vitem .price {
+    /* 500 SC */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 100px;
+    max-height: 29px;
+    min-width: 70px;
+    min-height: 20px;
+    left: 231px;
+    top: 118px;
+    font-family: DKallisto;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29px;
+    letter-spacing: 0%;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.container-box .box .menu .shop .vehicle .vitem .price span {
+    color: #14851d;
+}
+
+.container-box .box .menu .shop .vehicle .vitem button {
+    /* Frame 58 */
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 307px;
+    max-height: 46px;
+    min-width: 200px;
+    min-height: 39px;
+    top: 129px;
+    left: 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10;
+    box-sizing: border-box;
+    border: 1px solid rgb(29, 155, 29);
+    border-radius: 2px;
+    background: rgba(29, 155, 29, 0.1);
+    color: rgb(255, 255, 255);
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}

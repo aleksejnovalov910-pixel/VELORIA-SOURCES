@@ -1,0 +1,268 @@
+@use "sass:math";
+
+@function pxToRem($pxValue, $scale: 1) {
+  @return math.div($pxValue, 16px) * $scale * 1rem;
+}
+
+.split-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100100;
+  backdrop-filter: blur(pxToRem(5px));
+}
+
+.split-modal {
+  width: pxToRem(400px);
+  background: radial-gradient(50% 50% at 50% 50%, rgba(38, 38, 38, 0.95) 0%, rgba(24, 24, 24, 0.95) 100%);
+  border: pxToRem(1px) solid rgba(255, 255, 255, 0.15);
+  border-radius: pxToRem(4px);
+  padding: pxToRem(20px);
+  color: #FFF;
+  box-shadow: 0 pxToRem(8px) pxToRem(16px) rgba(0, 0, 0, 0.25);
+  
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: pxToRem(20px);
+    padding-bottom: pxToRem(10px);
+    border-bottom: pxToRem(1px) solid rgba(255, 255, 255, 0.1);
+    
+    h2 {
+      color: #FFF;
+      font-family: "DKallisto";
+      font-size: pxToRem(24px);
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      text-transform: uppercase;
+      margin: 0;
+    }
+    
+    .close-button {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: pxToRem(5px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      &:hover {
+        opacity: 0.8;
+      }
+      
+      img {
+        width: pxToRem(24px);
+        height: pxToRem(24px);
+      }
+    }
+  }
+  
+  &-content {
+    display: flex;
+    flex-direction: column;
+    gap: pxToRem(20px);
+  }
+  
+  &-item-info {
+    p {
+      font-family: "Gilroy", Arial, sans-serif;
+      font-size: pxToRem(16px);
+      font-weight: 400;
+      margin: pxToRem(5px) 0;
+    }
+  }
+  
+  &-form {
+    display: flex;
+    flex-direction: column;
+    gap: pxToRem(20px);
+  }
+  
+  &-input-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: pxToRem(10px);
+  }
+  
+  &-button {
+    width: pxToRem(40px);
+    height: pxToRem(40px);
+    border-radius: pxToRem(2px);
+    border: pxToRem(1px) solid rgba(255, 255, 255, 0.15);
+    background: radial-gradient(50% 50% at 50% 50%, rgba(153, 153, 153, 0.08) 0%, rgba(255, 255, 255, 0.08) 100%);
+    color: #FFF;
+    font-size: pxToRem(20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    
+    &:hover {
+      background: radial-gradient(50% 50% at 50% 50%, rgba(16, 139, 27, 0.5) 0%, rgba(16, 139, 27, 0.265) 100%);
+    }
+  }
+  
+  &-input {
+    width: pxToRem(80px);
+    height: pxToRem(40px);
+    border-radius: pxToRem(2px);
+    border: pxToRem(1px) solid rgba(255, 255, 255, 0.15);
+    background: rgba(0, 0, 0, 0.2);
+    color: #FFF;
+    font-family: "Gilroy", Arial, sans-serif;
+    font-size: pxToRem(16px);
+    text-align: center;
+    padding: 0 pxToRem(10px);
+    
+    &:focus {
+      outline: none;
+      // border-color: rgba(255, 140, 33, 0.5);
+    }
+    
+    /* Remove arrows from number input */
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      appearance: none;
+      margin: 0;
+    }
+    &[type=number] {
+      -moz-appearance: textfield;
+      appearance: textfield;
+      -webkit-appearance: textfield;
+    }
+  }
+  
+  &-slider {
+    display: flex;
+    flex-direction: column;
+    gap: pxToRem(8px);
+    padding: 0 pxToRem(5px);
+    margin: pxToRem(10px) 0;
+  }
+  
+  &-range-container {
+    position: relative;
+    height: pxToRem(30px);
+    display: flex;
+    align-items: center;
+  }
+  
+  &-range-track {
+    position: absolute;
+    width: 100%;
+    height: pxToRem(2px);
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: pxToRem(1px);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  &-range-progress {
+    position: absolute;
+    height: 100%;
+    left: 0;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: pxToRem(1px);
+  }
+  
+  &-range {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: pxToRem(30px);
+    background: transparent;
+    outline: none;
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    cursor: pointer;
+
+    &:focus {
+      background: none !important;
+    }
+    
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: pxToRem(16px);
+      height: pxToRem(16px);
+      border-radius: 50%;
+      background: #14851d;
+      cursor: pointer;
+      box-shadow: 0 pxToRem(1px) pxToRem(3px) rgba(0, 0, 0, 0.3);
+      transform: translateY(pxToRem(2px));
+      // margin-top: pxToRem(-28px); /* Center the thumb on the track */
+    }
+  }
+  
+  &-range-labels {
+    display: flex;
+    justify-content: space-between;
+    
+    span {
+      font-family: "Gilroy", Arial, sans-serif;
+      font-size: pxToRem(12px);
+      color: rgba(255, 255, 255, 0.6);
+    }
+  }
+  
+  &-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: pxToRem(10px);
+    margin-top: pxToRem(10px);
+  }
+  
+  &-submit,
+  &-cancel {
+    flex: 1;
+    height: pxToRem(40px);
+    border-radius: pxToRem(2px);
+    font-family: "Gilroy", Arial, sans-serif;
+    font-size: pxToRem(16px);
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  &-submit {
+    background: linear-gradient(180deg, #14851d 0%, #0a490f 100%);
+    border: pxToRem(1px) solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+
+    &:hover {
+      background: linear-gradient(180deg, #13971e 0%, #127a1b 100%);
+    }
+  }
+  
+  // &-submit {
+  //   background: linear-gradient(180deg, #FF8C21 0%, #FF6F7D 100%);
+  //   border: pxToRem(1px) solid rgba(255, 255, 255, 0.15);
+  //   color: #FFF;
+    
+  //   &:hover {
+  //     background: linear-gradient(180deg, #FF9C41 0%, #FF8B20 100%);
+  //   }
+  // }
+  
+  &-cancel {
+    background: transparent;
+    border: pxToRem(1px) solid rgba(255, 255, 255, 0.15);
+    color: #FFF;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+}

@@ -1,0 +1,308 @@
+// RESET CSS START
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+//RESET CSS END
+
+@font-face {
+  font-family: "DKallisto";
+  src: url("../Interaction/assets/fonts/d_kallisto.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("../Interaction/assets/fonts/Gilroy-Light.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.finishInitQuests-container {
+  user-select: none;
+  position: fixed;
+  inset: 0;
+
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  // background-image: url(./img/BG.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  .finishInitQuests-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1920px;
+    height: 1080px;
+
+    .finish-quest-exit {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+
+      position: absolute;
+      top: 30px;
+      right: 50px;
+
+      p {
+        font-family: "Gilroy";
+        font-size: 16px;
+        font-weight: 400;
+        color: #ffffff;
+      }
+
+      .exit-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 2px;
+        background: radial-gradient(50% 50% at 50% 50%,
+            rgba(153, 153, 153, 0.0765) 0%,
+            rgba(255, 255, 255, 0.0795) 100%);
+        border: 0.5px solid #ffffff26;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+          background: linear-gradient(92.5deg,
+              #4369e5 0%,
+              #43b6e5 50%,
+              #4369e5 100%);
+          box-shadow: 0px 4px 13.5px 0px #43b6e5 inset;
+          border: 0.5px solid #43b6e5;
+        }
+      }
+    }
+
+    .quest-box {
+      padding: 0 50px;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 150px;
+
+      .left {
+        width: 540px;
+        color: #ffffff;
+
+        h1 {
+          font-family: "DKallisto";
+          font-weight: 400;
+          font-size: 36px;
+
+          span {
+            color: #148a1d;
+            margin-left: 10px;
+          }
+        }
+
+        p {
+          font-family: "Gilroy";
+          font-weight: 500;
+          font-size: 18px;
+          margin-top: 20px;
+        }
+      }
+
+      .right {
+        display: flex;
+        gap: 20px;
+
+        h1 {
+          font-family: "DKallisto";
+          font-weight: 400;
+          font-size: 24px;
+          color: #148a1d;
+        }
+
+        p {
+          font-family: "Gilroy";
+          font-weight: 500;
+          font-size: 14px;
+          color: #ffffff;
+          margin-top: 10px;
+        }
+
+        .levels {
+          width: 370px;
+          display: flex;
+          flex-direction: column;
+
+          .level {
+            margin-top: -5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 10px;
+            background-repeat: no-repeat;
+            background-size: contain;
+
+            width: 350px;
+            height: 196px;
+
+            .details {
+              display: flex;
+              flex-direction: column;
+              height: 100%;
+              margin-top: 60px;
+              padding-right: 10px;
+              width: 170px;
+            }
+          }
+        }
+      }
+
+      .entertainment {
+        border-radius: 10px;
+        width: 350px;
+        height: 935px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: radial-gradient(75.37% 71.02% at 50% 7.39%, rgba(21, 255, 0, 0.1) 0%, rgba(60, 255, 0, 0) 100%), radial-gradient(75.63% 50.77% at 0% 0%, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.00) 100%), radial-gradient(92.71% 76.2% at 100% 0%, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.00) 100%), #111113;
+
+        p {
+          margin-top: 10px;
+        }
+
+        .top {
+          padding: 20px;
+        }
+      }
+    }
+  }
+}

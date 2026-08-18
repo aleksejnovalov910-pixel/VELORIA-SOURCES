@@ -1,0 +1,174 @@
+@font-face {
+  font-family: "DKallisto";
+  src: url("./fonts/d_kallisto.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("./fonts/Gilroy-Light.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+.hud-bottom-left {
+  position: absolute;
+  bottom: 10px;
+  left: 17%;
+  height: 200px;
+
+  .map {
+    width: 280px;
+    height: 190px;
+    background: lightseagreen;
+    border-radius: 8px;
+  }
+
+  .utils {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    padding: 5px 10px;
+    gap: 7px;
+
+    .util {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+
+      .img-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 5px;
+        background: #151518;
+
+        border: 1px solid #ffffff img {
+          width: 12px;
+        }
+      }
+
+      .bar-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        width: 210px;
+        height: 30px;
+        border-radius: 5px;
+        background: #151518;
+
+        .bar {
+          position: relative;
+          width: 194px;
+          height: 14px;
+          border-radius: 3px;
+          border: 0.5px solid #ffffff1a;
+
+          .line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: #5b5b5d;
+            transition: width 0.5s ease;
+            border-radius: 3px;
+          }
+        }
+      }
+    }
+  }
+
+  .mic-location {
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6px;
+
+    .mic-icon {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      border-radius: 5px;
+      background: #151518;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: 14px;
+        height: 20px;
+
+        &.mic-ico {
+          filter: brightness(10%) contrast(10%);
+        }
+      }
+
+      &.speak {
+        img.mic-ico {
+          filter: brightness(100%) contrast(100%);
+        }
+
+        .point {
+          background: #a1ff43;
+        }
+      }
+
+      .point {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        width: 4px;
+        aspect-ratio: 1;
+        background: #5b5b5d;
+        border-radius: 50%;
+      }
+    }
+
+    .location-text {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      border-radius: 5px;
+      height: 40px;
+      padding: 0 10px;
+      background: linear-gradient(0deg, #151518, #151518),
+        radial-gradient(106.25% 203.75% at 87.05% -57.5%,
+          rgba(255, 255, 255, 0.07) 0%,
+          rgba(255, 255, 255, 0) 100%)
+        /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
+      ;
+
+      span {
+        font-family: "DKallisto";
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
+  }
+
+  .hud-greenzone {
+    padding: 1.065vh;
+    font-family: "DKallisto";
+    font-size: 1.296vh;
+    font-weight: 400;
+    color: #7ce910;
+    border-radius: 0.463vh;
+    background: radial-gradient(122.45% 203.91% at 87.05% -57.5%, rgba(161, 255, 67, 0.10) 0%, rgba(161, 255, 67, 0.00) 100%), #161815;
+    
+    &.redzone {
+      color: #fd0000;
+      background: radial-gradient(122.45% 203.91% at 87.05% -57.5%, rgba(255, 67, 67, 0.10) 0%, rgba(255, 67, 67, 0.00) 100%), #161815;
+    }
+  }
+}

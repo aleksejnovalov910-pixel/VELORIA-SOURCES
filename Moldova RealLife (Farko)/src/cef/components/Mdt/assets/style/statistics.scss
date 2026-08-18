@@ -1,0 +1,272 @@
+@use "sass:math";
+@function pxToVh($px, $base: 1080) {
+    @return math.div($px, $base) * 100vh;
+}
+
+
+// Just a criminal record page here
+
+
+.statistics_criminal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: pxToVh(30);
+
+    overflow: auto;
+
+    &_item {
+        display: flex;
+        flex-direction: column;
+        gap: pxToVh(20);       
+        width: pxToVh(1095);
+        padding: pxToVh(20);
+
+        border: pxToVh(1) solid rgba(255, 255, 255, 0.10);
+        background: rgba(255, 255, 255, 0.02);
+
+        height: auto;
+
+        // overflow-y: auto;
+
+        .citem {
+            &-title {
+                font-size: pxToVh(16);
+                font-weight: 600;
+                color: #fff;
+
+                color: #FFF;
+                font-family: "DKallisto";
+                font-size: pxToVh(18);
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                text-transform: uppercase;
+
+                strong {
+                    color: #476FDD;
+                    font-weight: 400;
+                }
+            }
+
+            &_creator {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+
+                color: #FFF;
+                font-family: Gilroy;
+                font-size: pxToVh(24);
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+
+                img {
+                    border-radius: 50%;
+                    width: pxToVh(124);
+                    height: pxToVh(124);
+                    flex-shrink: 0;
+                    transform: rotate(90deg);
+                }
+
+                &-info {
+                    display: flex;
+                    flex-direction: column;
+                    gap: pxToVh(10);
+
+                    &-title {
+                        font-size: pxToVh(16);
+                        font-weight: 400;
+                        opacity: 0.3;
+                    }
+
+                    &-rank {
+                        font-size: pxToVh(16);
+                        font-weight: 500;
+                    }
+
+                }
+            }
+
+            &_record {
+                display: flex;
+                gap: pxToVh(20);
+
+                color: #FFF;
+                font-size: pxToVh(24);
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+
+
+                &-logo {
+                    border-radius: 50%;
+                    width: pxToVh(124);
+                    height: pxToVh(124);
+                    flex-shrink: 0;
+                    transform: rotate(90deg);
+                }
+
+                &-info {
+                    display: flex;
+                    flex-direction: column;
+                    gap: pxToVh(10);
+                    width: 100%;
+
+                    position: relative;
+
+                    &-content {
+                        display: flex;
+                        gap: 20px;
+
+                        color: #FFF;
+                        font-family: Gilroy;
+                        font-size: pxToVh(16);
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: normal;
+
+                        &-col {
+                            display: flex;
+                            flex-direction: column;
+                            gap: pxToVh(6);
+                            max-width: pxToVh(595);
+                            word-break: break-all;
+                            &.description {
+                                // width: 100%;
+                                text-align: left;
+
+              //                       white-space: nowrap;
+              // overflow: hidden;
+              // text-overflow: ellipsis;
+                            }
+                        }
+
+                        &-delete {
+                          width: pxToVh(28);
+                          height: pxToVh(28);
+
+                          border-radius: pxToVh(4);
+
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            background: rgba(254, 0, 0, 0.454);
+                            color: #FFF;
+                            font-weight: 600;
+                            font-size: pxToVh(16);
+                            // padding: pxToVh(5);
+                            cursor: pointer;
+
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+
+                            img {
+                              width: pxToVh(16);
+                              height: pxToVh(16);
+
+                              filter: brightness(0) invert(1);
+                            }
+                        }
+
+
+                        &-title {
+                            font-weight: 400;
+                            opacity: 0.3;
+                        }
+
+                        &-signature {
+                            width: pxToVh(160);
+                            height: pxToVh(80);
+                            flex-shrink: 0;
+                            object-fit: contain;
+                        }
+                    }
+                }
+            }
+
+        }
+
+
+
+    }
+}
+
+// Add carousel styles at the end of the file
+.citem_record-info-proofs {
+  width: 100%;
+  margin-top: 10px;
+  
+  .carousel-controls {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    
+    .carousel-control {
+      background: rgba(71, 111, 221, 0.3);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 2;
+      transition: background 0.3s;
+      
+      &:hover {
+        background: rgba(71, 111, 221, 0.6);
+      }
+      
+      &.prev {
+        margin-right: 10px;
+      }
+      
+      &.next {
+        margin-left: 10px;
+      }
+    }
+    
+    .carousel-image-container {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      
+      .carousel-image {
+        max-width: 100%;
+        max-height: 200px;
+        object-fit: contain;
+        border-radius: 5px;
+      }
+      
+      .carousel-indicators {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        
+        .carousel-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.3);
+          margin: 0 5px;
+          cursor: pointer;
+          transition: background 0.3s;
+          
+          &.active {
+            background: rgba(71, 111, 221, 0.8);
+          }
+          
+          &:hover {
+            background: rgba(255, 255, 255, 0.6);
+          }
+        }
+      }
+    }
+  }
+}

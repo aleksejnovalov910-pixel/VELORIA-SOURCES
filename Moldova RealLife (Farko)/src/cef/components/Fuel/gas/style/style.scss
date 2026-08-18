@@ -1,0 +1,543 @@
+// RESET CSS START
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+//RESET CSS END
+
+@font-face {
+  font-family: "DKallisto";
+  src: url("../fonts/d_kallisto.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("../fonts/Gilroy-Light.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.gasfuel-container-box {
+  user-select: none;
+  position: fixed;
+  inset: 0;
+
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  // background-image: url(../img/BG.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  .gasfuel-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1920px;
+    height: 1080px;
+
+    .gasfuel-gas-station-box {
+      color: #ffffff;
+      padding: 30px 50px;
+      width: 1005px;
+      height: 790px;
+      border-radius: 10px;
+      background: linear-gradient(0deg, #111113, #111113),
+        radial-gradient(
+          90.9% 72.78% at 100% 0%,
+          rgba(255, 123, 0, 0.06) 0%,
+          rgba(255, 123, 0, 0) 100%
+        ),
+        radial-gradient(
+          75.14% 50% at 0% 0%,
+          rgba(255, 255, 255, 0.06) 0%,
+          rgba(255, 255, 255, 0) 100%
+        );
+
+      .gasfuel-top {
+        display: flex;
+        justify-content: space-between;
+        height: 100px;
+        align-items: center;
+        width: 904px;
+
+        .gasfuel-title {
+          font-size: 22px;
+          font-weight: 100;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 20px;
+
+          .gasfuel-title-img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 2px;
+            background: linear-gradient(
+              135deg,
+              #994a00 0%,
+              #ff810c 50%,
+              #994a00 100%
+            );
+            box-shadow: 0px 6px 29.1px 0px #329b24 inset;
+
+            box-shadow: 0px 0px 34.5px 0px #236d19;
+          }
+
+          .gasfuel-title-text {
+            h1 {
+              margin-bottom: 0px;
+              display: flex;
+              justify-content: start;
+              align-items: start;
+              text-transform: uppercase;
+              font-family: "DKallisto", Arial, sans-serif;
+              gap: 10px;
+              span {
+                color: #329b24;
+              }
+            }
+
+            p {
+              font-family: "Gilroy", Arial, sans-serif;
+              font-size: 16px;
+              font-weight: 400;
+              margin-top: 5px;
+            }
+          }
+        }
+
+        .gasfuel-exit {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+
+          p {
+            font-family: "Gilroy";
+            font-size: 16px;
+            font-weight: 400;
+          }
+
+          .gasfuel-exit-img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 2px;
+            background: radial-gradient(
+              50% 50% at 50% 50%,
+              rgba(153, 153, 153, 0.0765) 0%,
+              rgba(255, 255, 255, 0.0795) 100%
+            );
+            border: 0.5px solid #ffffff26;
+            cursor: pointer;
+            transition: 0.3s;
+
+            &:hover {
+              border: 0.5px solid #329b24;
+              background: radial-gradient(
+                50% 50% at 50% 50%,
+                rgba(30, 175, 42, 0.5) 0%,
+                rgba(21, 255, 0, 0.265) 100%
+              );
+            }
+          }
+        }
+      }
+
+      .gasfuel-fuel-type {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        width: 904px;
+        height: 40px;
+        background: radial-gradient(
+          50% 50% at 50% 50%,
+          rgba(153, 153, 153, 0.0408) 0%,
+          rgba(255, 255, 255, 0.0424) 100%
+        );
+        border: 0.5px solid #ffffff26;
+
+        h1 {
+          margin-left: 15px;
+          font-family: "DKallisto";
+          font-size: 16px;
+          font-weight: 400;
+        }
+      }
+
+      .gasfuel-fuel-list {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5.5px;
+        .gasfuel-fuel-item {
+          position: relative;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          justify-content: space-between;
+          padding: 10px 10px;
+          width: 224px;
+          height: 280px;
+          background: radial-gradient(
+            50% 50% at 50% 50%,
+            rgba(153, 153, 153, 0.0408) 0%,
+            rgba(255, 255, 255, 0.0424) 100%
+          );
+          border: 0.5px solid #ffffff26;
+
+          img {
+            position: absolute;
+            left: 0;
+            top: -21px;
+          }
+
+          .gasfuel-fuel-item-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 5;
+
+            h1 {
+              font-family: "Gilroy";
+              font-size: 16px;
+              font-weight: 400;
+            }
+
+            h2 {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 100px;
+              height: 30px;
+              background: #1e6914;
+              border: 1px solid #329b24;
+
+              font-family: "DKallisto";
+              font-size: 12px;
+              font-weight: 400;
+            }
+          }
+
+          button {
+            z-index: 5;
+            width: 188px;
+            height: 40px;
+            background: radial-gradient(
+              50% 50% at 50% 50%,
+              rgba(153, 153, 153, 0.051) 0%,
+              rgba(255, 255, 255, 0.053) 100%
+            );
+            border: 0.5px solid #ffffff26;
+            color: #ffffff;
+            font-family: "Gilroy";
+            font-size: 14px;
+            font-weight: 400;
+            border-radius: 2px;
+            transition: 0.3s;
+
+            &:hover,
+            &.gasfuel-selected {
+              background: #1b9b1733;
+              border: 1px solid #329b24;
+            }
+          }
+        }
+      }
+
+      .gasfuel-fuel-box {
+        height: 60px;
+        background: radial-gradient(
+          50% 50% at 50% 50%,
+          rgba(153, 153, 153, 0.0408) 0%,
+          rgba(255, 255, 255, 0.0424) 100%
+        );
+        border: 0.5px solid #ffffff26;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        align-items: center;
+        p {
+          width: 100px;
+          height: 40px;
+          border-radius: 2px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: radial-gradient(
+            50% 50% at 50% 50%,
+            rgba(153, 153, 153, 0.0408) 0%,
+            rgba(255, 255, 255, 0.0424) 100%
+          );
+          border: 0.5px solid #ffffff26;
+          font-family: "DKallisto";
+          font-size: 16px;
+          font-weight: 400;
+        }
+        .gasfuel-fuel-line {
+          width: 100%;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          input {
+            width: 738px;
+            height: 6px;
+          }
+
+          input[type="range"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            height: 4px;
+            outline: none;
+          }
+
+          input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 8px;
+            border-radius: 50px;
+            background-color: #ffffff;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+          }
+
+          input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #ffffff;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+          }
+
+          input[type="range"]::-ms-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #ffffff;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+          }
+        }
+      }
+
+      .gasfuel-total-price {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h2 {
+          margin-right: 15px;
+          font-family: "DKallisto";
+          font-size: 14px;
+          font-weight: 400;
+          color: #329b24;
+          text-shadow: 0px 0px 19.4px 0px #206816;
+        }
+      }
+
+      .gasfuel-controls {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+
+        .gasfuel-pay-controls {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+
+          button {
+            &:hover, &.gasfuel-selected {
+              background: #206816;
+              border: 0.5px solid #329b24;
+            }
+          }
+        }
+
+        .gasfuel-alimenteaza {
+          height: 110px;
+          font-family: "DKallisto", Arial, sans-serif;
+          text-transform: uppercase;
+          font-size: 22px;
+          background: radial-gradient(
+            50% 50% at 50% 50%,
+            rgba(153, 153, 153, 0.051) 0%,
+            rgba(255, 255, 255, 0.053) 100%
+          );
+        }
+
+        button {
+          width: 446px;
+          height: 50px;
+          color: #ffffff;
+          background: #206816;
+          border: 1px solid #329b24;
+          font-family: "Gilroy";
+          font-size: 14px;
+          font-weight: 400;
+          border-radius: 2px;
+          transition: 0.3s;
+
+          &:hover {
+            background: #206816;
+            border: 0.5px solid #329b24;
+          }
+
+          &.gasfuel-card {
+            background: radial-gradient(
+              50% 50% at 50% 50%,
+              rgba(153, 153, 153, 0.051) 0%,
+              rgba(255, 255, 255, 0.053) 100%
+            );
+            border: 0.5px solid #ffffff26;
+
+            // &:hover {
+            //   background: radial-gradient(
+            //     50% 50% at 50% 50%,
+            //     rgba(153, 153, 153, 0.063) 0%,
+            //     rgba(255, 255, 255, 0.065) 100%
+            //   );
+            //   border: 0.5px solid #ffffff33;
+            // }
+          }
+        }
+      }
+    }
+  }
+}
