@@ -1,0 +1,14 @@
+node_modules/
+.cache/
+log/
+logs/
+backups/
+.vscode/
+bin/
+obj/
+*.log
+*.tmp
+.env
+*.zip
+*.rar
+*.7z
