@@ -1,5 +1,4 @@
 import { mysql } from '../../core/mysql';
-
 export type EquipmentSlot='hat'|'glasses'|'mask'|'top'|'undershirt'|'pants'|'shoes'|'accessory'|'watch'|'bracelet';
 const SLOTS:ReadonlySet<EquipmentSlot>=new Set(['hat','glasses','mask','top','undershirt','pants','shoes','accessory','watch','bracelet']);
 
@@ -35,4 +34,39 @@ export async function unequip(characterId:number,slot:EquipmentSlot){
   const item=(rows as any[])[0]?.item;
   await mysql.query('DELETE FROM character_equipment WHERE character_id=? AND slot=?',[characterId,slot]);
   if(item)await mysql.query('INSERT INTO inventory_logs(character_id,action,item,amount,details_json) VALUES(?,?,?,?,?)',[characterId,'unequip',String(item),1,JSON.stringify({slot})]);
+}
+
+function characterId(player:PlayerMp):number|null{
+  const value=player.getVariable('veloria:characterId')??player.getVariable('characterId');
+  return typeof value==='number'?value:null;
+}
+
+export function registerEquipmentModule():void{
+  mp.events.add('veloria:equipment:get',async(player:PlayerMp)=>{
+    const id=characterId(player);if(!id)return;
+    try{player.call('veloria:equipment:data',[JSON.stringify(await getEquipment(id))]);}
+    catch{player.call('veloria:notify',['error','Не удалось загрузить экипировку']);}
+  });
+
+  mp.events.add('veloria:equipment:equip',async(player:PlayerMp,rawSlot:string,item:string,rawMetadata?:string)=>{
+    const id=characterId(player);if(!id)return;
+    try{
+      const slot=String(rawSlot);
+      assertSlot(slot);
+      let metadata:Record<string,unknown>={};
+      if(rawMetadata){try{metadata=parseMetadata(rawMetadata);}catch{metadata={};}}
+      await equip(id,slot,item,metadata);
+      player.call('veloria:equipment:data',[JSON.stringify(await getEquipment(id))]);
+    }catch{player.call('veloria:notify',['error','Не удалось экипировать предмет']);}
+  });
+
+  mp.events.add('veloria:equipment:unequip',async(player:PlayerMp,rawSlot:string)=>{
+    const id=characterId(player);if(!id)return;
+    try{
+      const slot=String(rawSlot);
+      assertSlot(slot);
+      await unequip(id,slot);
+      player.call('veloria:equipment:data',[JSON.stringify(await getEquipment(id))]);
+    }catch{player.call('veloria:notify',['error','Не удалось снять предмет']);}
+  });
 }
