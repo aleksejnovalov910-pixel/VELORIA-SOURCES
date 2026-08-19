@@ -1,3 +1,3 @@
 import React from 'react';
-const apps=[['V-Market','market'],['Банк','bank'],['Транспорт','vehicles'],['Недвижимость','property'],['Работа','jobs'],['Семья','family'],['Организация','faction'],['Навигатор','navigator']] as const;
+const apps=[['V-Market','market'],['Банк','bank'],['Транспорт','vehicles'],['Недвижимость','property'],['Работа','jobs'],['Семья','family'],['Организация','faction'],['Бизнес','business'],['Экипировка','equipment'],['Навигатор','navigator']] as const;
 export function Tablet({onClose}:{onClose:()=>void}){const open=(app:string)=>window.mp?.trigger('veloria:cef:tablet:open',app);return <div className="tablet-shell"><header><div><b>VELORIA TABLET</b><small>Личный центр управления</small></div><button onClick={onClose}>×</button></header><div className="tablet-apps">{apps.map(([label,app])=><button key={app} onClick={()=>open(app)}><span>{label.slice(0,1)}</span>{label}</button>)}</div></div>}
