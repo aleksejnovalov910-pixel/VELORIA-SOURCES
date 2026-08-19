@@ -14,7 +14,8 @@ const required = [
   'client_packages/veloria/index.html',
   'client_packages/veloria/runtime/client/index.js',
   'scripts/migrate.mjs',
-  'scripts/dependency-smoke.mjs'
+  'scripts/dependency-smoke.mjs',
+  'scripts/host-preflight.mjs'
 ];
 
 for (const file of required) {
@@ -52,6 +53,7 @@ for (const dep of ['bcryptjs','dotenv','ioredis','mysql2']) {
 }
 if (!pkg.scripts?.migrate) throw new Error('Missing runtime migrate script');
 if (!pkg.scripts?.['deps:smoke']) throw new Error('Missing runtime dependency smoke script');
+if (!pkg.scripts?.preflight) throw new Error('Missing runtime host preflight script');
 if (!pkg.engines?.node) throw new Error('Missing runtime Node.js engine requirement');
 
 console.log(`VELORIA preflight OK: ${numbered.length} migrations, deploy layout complete`);
