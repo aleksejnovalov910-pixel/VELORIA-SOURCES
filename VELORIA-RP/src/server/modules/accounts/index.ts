@@ -3,6 +3,7 @@ import { ResultSetHeader, RowDataPacket } from 'mysql2';
 import { Events } from '../../../shared/events';
 import { db } from '../../database/mysql';
 import { logger } from '../../core/logger';
+import { sendCharacterList } from '../characters';
 
 interface AccountRow extends RowDataPacket {
   id: number;
@@ -10,37 +11,50 @@ interface AccountRow extends RowDataPacket {
   password_hash: string;
 }
 
+function setAuthenticated(player: PlayerMp, accountId: number) {
+  player.setVariable('accountId', accountId);
+  player.setVariable('veloria:authenticated', true);
+  player.setVariable('characterId', null);
+  player.setVariable('veloria:characterId', null);
+  (player as any).veloriaCharacterId = null;
+}
+
 async function register(player: PlayerMp, usernameRaw: string, password: string) {
-  const username = usernameRaw.trim().toLowerCase();
-  if (username.length < 3 || password.length < 6) {
-    return player.call(Events.AuthResult, [false, 'Логин от 3 символов, пароль от 6 символов']);
+  if (player.getVariable('veloria:authenticated') === true) return;
+  const username = String(usernameRaw ?? '').trim().toLowerCase();
+  password = String(password ?? '');
+  if (username.length < 3 || username.length > 64 || password.length < 6 || password.length > 128) {
+    return player.call(Events.AuthResult, [false, 'Логин 3–64 символа, пароль 6–128 символов']);
   }
 
   const [exists] = await db().query<AccountRow[]>('SELECT id, username, password_hash FROM accounts WHERE username = ? LIMIT 1', [username]);
   if (exists.length) return player.call(Events.AuthResult, [false, 'Аккаунт уже существует']);
 
   const passwordHash = await bcrypt.hash(password, 12);
-  const [result] = await db().execute<ResultSetHeader>(
-    'INSERT INTO accounts (username, password_hash, created_at) VALUES (?, ?, NOW())',
-    [username, passwordHash]
-  );
+  const [result] = await db().execute<ResultSetHeader>('INSERT INTO accounts (username, password_hash, created_at, last_login_at) VALUES (?, ?, NOW(), NOW())', [username, passwordHash]);
 
-  player.setVariable('accountId', result.insertId);
+  setAuthenticated(player, Number(result.insertId));
   player.call(Events.AuthResult, [true, 'REGISTERED']);
+  await sendCharacterList(player);
   logger.info(`Account registered: ${username} #${result.insertId}`);
 }
 
 async function login(player: PlayerMp, usernameRaw: string, password: string) {
-  const username = usernameRaw.trim().toLowerCase();
+  if (player.getVariable('veloria:authenticated') === true) return;
+  const username = String(usernameRaw ?? '').trim().toLowerCase();
+  password = String(password ?? '');
+  if (!username || !password) return player.call(Events.AuthResult, [false, 'Введите логин и пароль']);
+
   const [rows] = await db().query<AccountRow[]>('SELECT id, username, password_hash FROM accounts WHERE username = ? LIMIT 1', [username]);
   const account = rows[0];
   if (!account || !(await bcrypt.compare(password, account.password_hash))) {
     return player.call(Events.AuthResult, [false, 'Неверный логин или пароль']);
   }
 
-  player.setVariable('accountId', account.id);
+  setAuthenticated(player, account.id);
+  await db().execute('UPDATE accounts SET last_login_at=NOW() WHERE id=?', [account.id]);
   player.call(Events.AuthResult, [true, 'LOGGED_IN']);
-  player.call(Events.CharacterListRequest);
+  await sendCharacterList(player);
   logger.info(`Account logged in: ${username} #${account.id}`);
 }
 
