@@ -10,9 +10,15 @@ function characterId(player: PlayerMp): number | null {
 
 async function canControlVehicle(player: PlayerMp, vehicle: VehicleMp): Promise<boolean> {
   const id = characterId(player);
-  const vehicleId = Number((vehicle as any).veloriaVehicleId ?? 0);
+  const vehicleId = Number((vehicle as any).veloriaVehicleId ?? vehicle.getVariable('veloria:vehicleId') ?? 0);
   if (!id || !vehicleId) return false;
   return hasVehicleKey(vehicleId, id);
+}
+
+function findVehicle(rawId: number): VehicleMp | null {
+  const id = Number(rawId);
+  if (!Number.isFinite(id)) return null;
+  return mp.vehicles.at(id) ?? null;
 }
 
 export function registerGameplayModules() {
@@ -30,8 +36,8 @@ export function registerGameplayModules() {
     player.call(VeloriaEvents.PhoneToggle, [JSON.stringify(phone)]);
   });
 
-  mp.events.add(VeloriaEvents.VehicleLock, async (player: PlayerMp, remoteId: number) => {
-    const vehicle = mp.vehicles.atRemoteId(Number(remoteId));
+  mp.events.add(VeloriaEvents.VehicleLock, async (player: PlayerMp, vehicleIdRaw: number) => {
+    const vehicle = findVehicle(vehicleIdRaw);
     if (!vehicle) return;
     if (!(await canControlVehicle(player, vehicle))) {
       player.call(VeloriaEvents.Notify, ['error', 'У вас нет ключа от этого автомобиля']);
@@ -40,13 +46,13 @@ export function registerGameplayModules() {
 
     const locked = !(vehicle as any).locked;
     (vehicle as any).locked = locked;
-    const vehicleId = Number((vehicle as any).veloriaVehicleId ?? 0);
+    const vehicleId = Number((vehicle as any).veloriaVehicleId ?? vehicle.getVariable('veloria:vehicleId') ?? 0);
     if (vehicleId) await setVehicleState(vehicleId, { locked });
     player.call(VeloriaEvents.Notify, ['info', locked ? 'Автомобиль закрыт' : 'Автомобиль открыт']);
   });
 
-  mp.events.add(VeloriaEvents.VehicleEngine, async (player: PlayerMp, remoteId: number) => {
-    const vehicle = mp.vehicles.atRemoteId(Number(remoteId));
+  mp.events.add(VeloriaEvents.VehicleEngine, async (player: PlayerMp, vehicleIdRaw: number) => {
+    const vehicle = findVehicle(vehicleIdRaw);
     if (!vehicle || player.vehicle !== vehicle) return;
     if (!(await canControlVehicle(player, vehicle))) {
       player.call(VeloriaEvents.Notify, ['error', 'Для запуска двигателя нужен ключ']);
@@ -55,7 +61,7 @@ export function registerGameplayModules() {
 
     const engineOn = !(vehicle as any).engine;
     (vehicle as any).engine = engineOn;
-    const vehicleId = Number((vehicle as any).veloriaVehicleId ?? 0);
+    const vehicleId = Number((vehicle as any).veloriaVehicleId ?? vehicle.getVariable('veloria:vehicleId') ?? 0);
     if (vehicleId) await setVehicleState(vehicleId, { engineOn });
     player.call(VeloriaEvents.Notify, ['info', engineOn ? 'Двигатель запущен' : 'Двигатель заглушен']);
   });
