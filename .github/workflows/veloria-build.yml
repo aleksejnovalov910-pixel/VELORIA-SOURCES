@@ -18,11 +18,22 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
-          cache-dependency-path: |
-            VELORIA-RP/package.json
-            VELORIA-RP/src/cef/package.json
-      - run: npm install
-      - run: npm --prefix src/cef install
-      - run: npm run typecheck
-      - run: npm run build
+      - name: Install server/client dependencies
+        run: npm install
+      - name: Install CEF dependencies
+        run: npm --prefix src/cef install
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Build deploy bundle
+        run: npm run build
+      - name: Validate deploy layout
+        run: |
+          test -f deploy/conf.json
+          test -f deploy/packages/veloria/index.js
+          test -f deploy/client_packages/index.js
+          test -f deploy/client_packages/veloria/index.html
+      - uses: actions/upload-artifact@v4
+        with:
+          name: veloria-deploy
+          path: VELORIA-RP/deploy
+          if-no-files-found: error
