@@ -57,19 +57,33 @@ jobs:
 
       - name: Environment diagnostics
         run: |
-          node --version
-          npm --version
+          set -o pipefail
+          { node --version; npm --version; } 2>&1 | tee ci-environment.log
 
       - name: Install server/client dependencies
-        run: npm install --no-audit --no-fund
-
-      - name: Install CEF dependencies
-        run: npm --prefix src/cef install --no-audit --no-fund
-
-      - name: Typecheck
         run: |
           set -o pipefail
-          npm run typecheck 2>&1 | tee ci-typecheck.log
+          npm install --no-audit --no-fund 2>&1 | tee ci-install-root.log
+
+      - name: Install CEF dependencies
+        run: |
+          set -o pipefail
+          npm --prefix src/cef install --no-audit --no-fund 2>&1 | tee ci-install-cef.log
+
+      - name: Typecheck server
+        run: |
+          set -o pipefail
+          npm run typecheck:server 2>&1 | tee ci-typecheck-server.log
+
+      - name: Typecheck client
+        run: |
+          set -o pipefail
+          npm run typecheck:client 2>&1 | tee ci-typecheck-client.log
+
+      - name: Typecheck CEF
+        run: |
+          set -o pipefail
+          npm run typecheck:cef 2>&1 | tee ci-typecheck-cef.log
 
       - name: Migration smoke test
         run: |
@@ -99,7 +113,12 @@ jobs:
         with:
           name: veloria-ci-diagnostics
           path: |
-            VELORIA-RP/ci-typecheck.log
+            VELORIA-RP/ci-environment.log
+            VELORIA-RP/ci-install-root.log
+            VELORIA-RP/ci-install-cef.log
+            VELORIA-RP/ci-typecheck-server.log
+            VELORIA-RP/ci-typecheck-client.log
+            VELORIA-RP/ci-typecheck-cef.log
             VELORIA-RP/ci-migrate.log
             VELORIA-RP/ci-build.log
           if-no-files-found: ignore
