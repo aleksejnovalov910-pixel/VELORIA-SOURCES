@@ -62,7 +62,6 @@ export function registerVehicleRuntimeModule(): void {
     const garageId = Math.trunc(Number(rawGarageId));
     if(vehicleId<=0||garageId<=0)return;
 
-    let vehicle:VehicleMp|null=null;
     try {
       const [rows] = await mysql.query('SELECT * FROM character_vehicles WHERE id=? AND character_id=? LIMIT 1',[vehicleId,id]);
       const data = (rows as any[])[0];
@@ -72,22 +71,21 @@ export function registerVehicleRuntimeModule(): void {
       await takeVehicle(vehicleId,id,garageId);
       const position = vec(spawn, player.position);
       try{
-        vehicle = mp.vehicles.new(data.model, position, {
+        const spawnedVehicle = mp.vehicles.new(data.model, position, {
           heading: Number(spawn.heading ?? 0),
           numberPlate: String(data.plate ?? 'VELORIA'),
           locked: Boolean(data.locked),
           engine: Boolean(data.engine_on),
           dimension: player.dimension
         });
-        vehicle.setVariable('veloria:vehicleId', vehicleId);
-        (vehicle as any).veloriaVehicleId = vehicleId;
+        spawnedVehicle.setVariable('veloria:vehicleId', vehicleId);
+        (spawnedVehicle as any).veloriaVehicleId = vehicleId;
       }catch(spawnError){
         await parkVehicle(vehicleId,id,garageId);
         throw spawnError;
       }
       player.call('veloria:notify', ['success', `Автомобиль ${data.plate} выдан из гаража`]);
     } catch (error) {
-      if(vehicle){try{vehicle.destroy();}catch{}}
       notifyError(player,error,'Не удалось выдать автомобиль');
     }
   });
