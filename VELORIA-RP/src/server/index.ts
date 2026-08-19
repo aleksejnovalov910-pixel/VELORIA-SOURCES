@@ -5,6 +5,7 @@ import { initRedis } from './database/redis';
 import { registerAccountModule } from './modules/accounts';
 import { registerCharacterModule } from './modules/characters';
 import { registerGameplayModules } from './modules/gameplay';
+import { registerBankingModule } from './modules/banking';
 
 async function bootstrap() {
   logger.info('Starting VELORIA RP v0.1 core...');
@@ -14,6 +15,7 @@ async function bootstrap() {
   registerAccountModule();
   registerCharacterModule();
   registerGameplayModules();
+  registerBankingModule();
 
   mp.events.add('playerJoin', (player: PlayerMp) => {
     player.dimension = 1000 + player.id;
