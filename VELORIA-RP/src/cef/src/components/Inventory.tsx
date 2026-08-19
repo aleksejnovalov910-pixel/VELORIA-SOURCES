@@ -1,0 +1,3 @@
+import React from 'react';
+type Slot={slot:number;item:string;amount:number;metadata?:Record<string,unknown>};
+export function Inventory({items,onClose}:{items:Slot[];onClose:()=>void}){const slots=Array.from({length:40},(_,slot)=>items.find(i=>i.slot===slot));return <div className="inventory-shell"><header><div><b>Инвентарь</b><small>40 ячеек</small></div><button onClick={onClose}>×</button></header><div className="inventory-grid">{slots.map((item,i)=><button className="inventory-slot" key={i}>{item?<><strong>{item.item}</strong><span>x{item.amount}</span></>:<small>{i+1}</small>}</button>)}</div><footer>ЛКМ — выбрать · Перетащите предмет для перемещения</footer></div>}
