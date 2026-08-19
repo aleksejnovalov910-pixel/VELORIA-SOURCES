@@ -11,7 +11,7 @@ let activeOverlay: string | null = null;
 const ensureBrowser=()=>{if(!browser)browser=mp.browsers.new('package://veloria/index.html');return browser};
 const exec=(code:string)=>ensureBrowser().execute(code);const cursor=(state:boolean)=>mp.gui.cursor.show(state,state);
 function openAuth(){ensureBrowser();authenticated=false;activeOverlay=null;setHudVisible(false);cursor(true)}
-function closeAuth(){authenticated=true;activeOverlay=null;cursor(false);setHudVisible(true);mp.events.callRemote('veloria:settings:get')}
+function closeAuth(){authenticated=true;activeOverlay=null;cursor(false);setHudVisible(true);mp.events.callRemote('veloria:settings:get');mp.events.callRemote('veloria:hud:wallet:get')}
 function overlay(name:string,state:boolean,data:unknown={}){if(!authenticated)return;if(state){activeOverlay=name;cursor(true)}else if(activeOverlay===name){activeOverlay=null;cursor(false)}exec(`window.veloriaOverlay?.(${JSON.stringify(name)},${JSON.stringify(state)},${JSON.stringify(JSON.stringify(data))})`)}
 function parsed(json:string,fallback:unknown=[]){try{return JSON.parse(json)}catch{return fallback}}
 function normalizeRuntimeSettings(raw:any){const scale=Number(raw?.interfaceScale??100),voice=Number(raw?.voiceVolume??80);return{hud:typeof raw?.hud==='boolean'?raw.hud:true,minimap:typeof raw?.minimap==='boolean'?raw.minimap:true,voiceVolume:Number.isFinite(voice)?Math.max(0,Math.min(100,voice)):80,interfaceScale:Number.isFinite(scale)?Math.max(80,Math.min(120,scale)):100,keybinds:applyKeybinds(raw?.keybinds??DEFAULT_KEYBINDS)}}
