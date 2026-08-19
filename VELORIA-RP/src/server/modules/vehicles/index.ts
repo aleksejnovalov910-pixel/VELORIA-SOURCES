@@ -1,15 +1,8 @@
 import { mysql } from '../../core/mysql';
 
 export interface OwnedVehicle { id:number; characterId:number; model:string; plate:string; fuel:number; engineHealth:number; bodyHealth:number; locked:boolean; engineOn:boolean; position?:unknown; }
-
-export async function getCharacterVehicles(characterId:number):Promise<OwnedVehicle[]> {
-  const [rows] = await mysql.query('SELECT * FROM character_vehicles WHERE character_id=?', [characterId]);
-  return (rows as any[]).map(v => ({ id:v.id, characterId:v.character_id, model:v.model, plate:v.plate, fuel:v.fuel, engineHealth:v.engine_health, bodyHealth:v.body_health, locked:!!v.locked, engineOn:!!v.engine_on, position:v.position_json ? JSON.parse(v.position_json) : undefined }));
-}
-
-export async function setVehicleState(id:number, patch:Partial<Pick<OwnedVehicle,'fuel'|'engineHealth'|'bodyHealth'|'locked'|'engineOn'|'position'>>):Promise<void> {
-  const fields:string[]=[]; const values:any[]=[];
-  const map:any={fuel:'fuel',engineHealth:'engine_health',bodyHealth:'body_health',locked:'locked',engineOn:'engine_on',position:'position_json'};
-  for (const [k,column] of Object.entries(map)) if ((patch as any)[k] !== undefined) { fields.push(`${column}=?`); const value=(patch as any)[k]; values.push(k==='position'?JSON.stringify(value):value); }
-  if (!fields.length) return; values.push(id); await mysql.query(`UPDATE character_vehicles SET ${fields.join(',')} WHERE id=?`, values);
-}
+export async function getCharacterVehicles(characterId:number):Promise<OwnedVehicle[]> { const [rows]=await mysql.query('SELECT * FROM character_vehicles WHERE character_id=?',[characterId]); return (rows as any[]).map(v=>({id:v.id,characterId:v.character_id,model:v.model,plate:v.plate,fuel:v.fuel,engineHealth:v.engine_health,bodyHealth:v.body_health,locked:!!v.locked,engineOn:!!v.engine_on,position:v.position_json?JSON.parse(v.position_json):undefined})); }
+export async function createOwnedVehicle(characterId:number,model:string,plate:string,position?:unknown){ const [r]:any=await mysql.query('INSERT INTO character_vehicles(character_id,model,plate,position_json) VALUES(?,?,?,?)',[characterId,model,plate,position?JSON.stringify(position):null]); return r.insertId as number; }
+export async function transferVehicle(vehicleId:number,fromCharacterId:number,toCharacterId:number){ const [r]:any=await mysql.query('UPDATE character_vehicles SET character_id=? WHERE id=? AND character_id=?',[toCharacterId,vehicleId,fromCharacterId]); return r.affectedRows>0; }
+export async function setVehicleState(id:number,patch:Partial<Pick<OwnedVehicle,'fuel'|'engineHealth'|'bodyHealth'|'locked'|'engineOn'|'position'>>):Promise<void>{ const fields:string[]=[];const values:any[]=[];const map:any={fuel:'fuel',engineHealth:'engine_health',bodyHealth:'body_health',locked:'locked',engineOn:'engine_on',position:'position_json'};for(const[k,column]of Object.entries(map))if((patch as any)[k]!==undefined){fields.push(`${column}=?`);const value=(patch as any)[k];values.push(k==='position'?JSON.stringify(value):value);}if(!fields.length)return;values.push(id);await mysql.query(`UPDATE character_vehicles SET ${fields.join(',')} WHERE id=?`,values); }
+export async function consumeFuel(id:number,amount:number){ await mysql.query('UPDATE character_vehicles SET fuel=GREATEST(0,fuel-?) WHERE id=?',[Math.max(0,amount),id]); }
