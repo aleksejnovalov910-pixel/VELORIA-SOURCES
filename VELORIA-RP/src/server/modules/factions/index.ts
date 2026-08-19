@@ -1,8 +1,32 @@
 import { mysql } from '../../core/mysql';
-export async function getFactions(){const[rows]=await mysql.query('SELECT * FROM factions ORDER BY id');return rows as any[];}
-export async function getFactionByCharacter(characterId:number){const[rows]=await mysql.query('SELECT f.*,fm.rank FROM faction_members fm JOIN factions f ON f.id=fm.faction_id WHERE fm.character_id=? LIMIT 1',[characterId]);return(rows as any[])[0]??null;}
-export async function getFactionMembers(factionId:number){const[rows]=await mysql.query('SELECT fm.*,c.first_name,c.last_name FROM faction_members fm JOIN characters c ON c.id=fm.character_id WHERE fm.faction_id=? ORDER BY fm.rank DESC',[factionId]);return rows as any[];}
-export async function joinFaction(characterId:number,factionId:number,rank=1){await mysql.query('INSERT INTO faction_members(character_id,faction_id,rank) VALUES(?,?,?) ON DUPLICATE KEY UPDATE faction_id=VALUES(faction_id),rank=VALUES(rank)',[characterId,factionId,rank]);}
-export async function leaveFaction(characterId:number){await mysql.query('DELETE FROM faction_members WHERE character_id=?',[characterId]);}
-export async function setFactionRank(characterId:number,factionId:number,rank:number){await mysql.query('UPDATE faction_members SET rank=? WHERE character_id=? AND faction_id=?',[Math.max(1,Math.min(20,rank)),characterId,factionId]);}
-export async function logFactionAction(factionId:number,characterId:number|null,action:string,details:unknown={}){await mysql.query('INSERT INTO faction_logs(faction_id,character_id,action,details_json) VALUES(?,?,?,?)',[factionId,characterId,action,JSON.stringify(details)]);}
+
+export async function getFactions(){
+  const [rows]=await mysql.query('SELECT * FROM factions ORDER BY id');
+  return rows as any[];
+}
+
+export async function getFactionByCharacter(characterId:number){
+  const [rows]=await mysql.query('SELECT f.*,fm.`rank` AS `rank` FROM faction_members fm JOIN factions f ON f.id=fm.faction_id WHERE fm.character_id=? LIMIT 1',[characterId]);
+  return (rows as any[])[0]??null;
+}
+
+export async function getFactionMembers(factionId:number){
+  const [rows]=await mysql.query('SELECT fm.*,c.first_name,c.last_name FROM faction_members fm JOIN characters c ON c.id=fm.character_id WHERE fm.faction_id=? ORDER BY fm.`rank` DESC',[factionId]);
+  return rows as any[];
+}
+
+export async function joinFaction(characterId:number,factionId:number,rank=1){
+  await mysql.query('INSERT INTO faction_members(character_id,faction_id,`rank`) VALUES(?,?,?) ON DUPLICATE KEY UPDATE faction_id=VALUES(faction_id),`rank`=VALUES(`rank`)',[characterId,factionId,rank]);
+}
+
+export async function leaveFaction(characterId:number){
+  await mysql.query('DELETE FROM faction_members WHERE character_id=?',[characterId]);
+}
+
+export async function setFactionRank(characterId:number,factionId:number,rank:number){
+  await mysql.query('UPDATE faction_members SET `rank`=? WHERE character_id=? AND faction_id=?',[Math.max(1,Math.min(20,rank)),characterId,factionId]);
+}
+
+export async function logFactionAction(factionId:number,characterId:number|null,action:string,details:unknown={}){
+  await mysql.query('INSERT INTO faction_logs(faction_id,character_id,action,details_json) VALUES(?,?,?,?)',[factionId,characterId,action,JSON.stringify(details)]);
+}
