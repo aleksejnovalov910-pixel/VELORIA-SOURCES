@@ -1,18 +1,12 @@
 import { mysql } from '../../core/mysql';
 
-export type InventorySlot = { slot: number; item: string; amount: number; metadata: Record<string, unknown> };
-
-export async function getInventory(characterId: number): Promise<InventorySlot[]> {
-  const [rows] = await mysql.query('SELECT slot,item,amount,metadata_json FROM character_inventory WHERE character_id=? ORDER BY slot', [characterId]);
-  return (rows as any[]).map(r => ({ slot: r.slot, item: r.item, amount: r.amount, metadata: r.metadata_json ? JSON.parse(r.metadata_json) : {} }));
-}
-
-export async function saveSlot(characterId: number, slot: InventorySlot): Promise<void> {
-  await mysql.query(`INSERT INTO character_inventory(character_id,slot,item,amount,metadata_json) VALUES(?,?,?,?,?)
-    ON DUPLICATE KEY UPDATE item=VALUES(item), amount=VALUES(amount), metadata_json=VALUES(metadata_json)`,
-    [characterId, slot.slot, slot.item, slot.amount, JSON.stringify(slot.metadata ?? {})]);
-}
-
-export async function removeSlot(characterId: number, slot: number): Promise<void> {
-  await mysql.query('DELETE FROM character_inventory WHERE character_id=? AND slot=?', [characterId, slot]);
-}
+export type InventorySlot={slot:number;item:string;amount:number;metadata:Record<string,unknown>};
+export type ItemDefinition={id:string;name:string;weight:number;stack:number;category:string;usable?:boolean};
+export const ITEMS:Record<string,ItemDefinition>={water:{id:'water',name:'Вода',weight:0.5,stack:10,category:'food',usable:true},food:{id:'food',name:'Еда',weight:0.4,stack:10,category:'food',usable:true},medkit:{id:'medkit',name:'Аптечка',weight:0.8,stack:5,category:'medical',usable:true},phone:{id:'phone',name:'Телефон',weight:0.3,stack:1,category:'device'},vehicle_key:{id:'vehicle_key',name:'Ключ от автомобиля',weight:0.05,stack:1,category:'key'}};
+export async function getInventory(characterId:number):Promise<InventorySlot[]>{const[rows]=await mysql.query('SELECT slot,item,amount,metadata_json FROM character_inventory WHERE character_id=? ORDER BY slot',[characterId]);return(rows as any[]).map(r=>({slot:r.slot,item:r.item,amount:r.amount,metadata:r.metadata_json?(typeof r.metadata_json==='string'?JSON.parse(r.metadata_json):r.metadata_json):{}}));}
+export async function saveSlot(characterId:number,slot:InventorySlot):Promise<void>{if(slot.amount<=0)return removeSlot(characterId,slot.slot);await mysql.query(`INSERT INTO character_inventory(character_id,slot,item,amount,metadata_json) VALUES(?,?,?,?,?) ON DUPLICATE KEY UPDATE item=VALUES(item),amount=VALUES(amount),metadata_json=VALUES(metadata_json)`,[characterId,slot.slot,slot.item,slot.amount,JSON.stringify(slot.metadata??{})]);}
+export async function removeSlot(characterId:number,slot:number):Promise<void>{await mysql.query('DELETE FROM character_inventory WHERE character_id=? AND slot=?',[characterId,slot]);}
+export async function getInventoryWeight(characterId:number){const inv=await getInventory(characterId);return inv.reduce((sum,s)=>sum+(ITEMS[s.item]?.weight??0)*s.amount,0);}
+export async function moveItem(characterId:number,from:number,to:number){const conn=await mysql.getConnection();try{await conn.beginTransaction();const[rows]:any=await conn.query('SELECT * FROM character_inventory WHERE character_id=? AND slot IN (?,?) FOR UPDATE',[characterId,from,to]);const a=rows.find((r:any)=>r.slot===from);if(!a)throw new Error('EMPTY_SLOT');const b=rows.find((r:any)=>r.slot===to);await conn.query('DELETE FROM character_inventory WHERE character_id=? AND slot IN (?,?)',[characterId,from,to]);await conn.query('INSERT INTO character_inventory(character_id,slot,item,amount,metadata_json) VALUES(?,?,?,?,?)',[characterId,to,a.item,a.amount,a.metadata_json]);if(b)await conn.query('INSERT INTO character_inventory(character_id,slot,item,amount,metadata_json) VALUES(?,?,?,?,?)',[characterId,from,b.item,b.amount,b.metadata_json]);await conn.commit();}catch(e){await conn.rollback();throw e;}finally{conn.release();}}
+export async function addItem(characterId:number,item:string,amount=1,metadata:Record<string,unknown>={}){const def=ITEMS[item];if(!def)throw new Error('UNKNOWN_ITEM');if(amount<=0)throw new Error('INVALID_AMOUNT');const inv=await getInventory(characterId);let left=amount;for(const s of inv){if(s.item===item&&JSON.stringify(s.metadata)===JSON.stringify(metadata)&&s.amount<def.stack){const add=Math.min(left,def.stack-s.amount);await saveSlot(characterId,{...s,amount:s.amount+add});left-=add;if(!left)return;} }for(let slot=0;slot<40&&left>0;slot++){if(inv.some(s=>s.slot===slot))continue;const add=Math.min(left,def.stack);await saveSlot(characterId,{slot,item,amount:add,metadata});left-=add;}if(left)throw new Error('INVENTORY_FULL');}
+export async function removeItem(characterId:number,item:string,amount=1){const inv=(await getInventory(characterId)).filter(s=>s.item===item);if(inv.reduce((n,s)=>n+s.amount,0)<amount)throw new Error('NOT_ENOUGH_ITEMS');let left=amount;for(const s of inv){const take=Math.min(left,s.amount);await saveSlot(characterId,{...s,amount:s.amount-take});left-=take;if(!left)break;}}
