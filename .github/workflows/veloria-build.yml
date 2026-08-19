@@ -32,6 +32,15 @@ jobs:
           --health-interval=10s
           --health-timeout=5s
           --health-retries=10
+      redis:
+        image: redis:7-alpine
+        ports:
+          - '6379:6379'
+        options: >-
+          --health-cmd="redis-cli ping"
+          --health-interval=5s
+          --health-timeout=3s
+          --health-retries=10
 
     defaults:
       run:
@@ -43,6 +52,9 @@ jobs:
       MYSQL_USER: 'veloria'
       MYSQL_PASSWORD: 'veloria_ci'
       MYSQL_DATABASE: 'veloria'
+      REDIS_HOST: '127.0.0.1'
+      REDIS_PORT: '6379'
+      REDIS_PASSWORD: ''
 
     steps:
       - name: Checkout
@@ -69,6 +81,13 @@ jobs:
         run: |
           set -o pipefail
           npm --prefix src/cef install --no-audit --no-fund 2>&1 | tee ci-install-cef.log
+
+      - name: Dependency smoke test
+        id: deps_smoke
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          npm run deps:smoke 2>&1 | tee ci-deps-smoke.log
 
       - name: Typecheck server
         id: typecheck_server
@@ -100,7 +119,7 @@ jobs:
 
       - name: Build deploy bundle
         id: build_bundle
-        if: steps.typecheck_server.outcome == 'success' && steps.typecheck_client.outcome == 'success' && steps.typecheck_cef.outcome == 'success'
+        if: steps.deps_smoke.outcome == 'success' && steps.typecheck_server.outcome == 'success' && steps.typecheck_client.outcome == 'success' && steps.typecheck_cef.outcome == 'success'
         continue-on-error: true
         run: |
           set -o pipefail
@@ -129,6 +148,7 @@ jobs:
             echo
             echo '| Check | Result |'
             echo '|---|---|'
+            echo "| MySQL + Redis smoke | ${{ steps.deps_smoke.outcome }} |"
             echo "| Typecheck server | ${{ steps.typecheck_server.outcome }} |"
             echo "| Typecheck client | ${{ steps.typecheck_client.outcome }} |"
             echo "| Typecheck CEF | ${{ steps.typecheck_cef.outcome }} |"
@@ -136,7 +156,7 @@ jobs:
             echo "| Build bundle | ${{ steps.build_bundle.outcome }} |"
             echo "| Deploy layout | ${{ steps.deploy_layout.outcome }} |"
             echo
-            for file in ci-environment.log ci-install-root.log ci-install-cef.log ci-typecheck-server.log ci-typecheck-client.log ci-typecheck-cef.log ci-migrate.log ci-build.log; do
+            for file in ci-environment.log ci-install-root.log ci-install-cef.log ci-deps-smoke.log ci-typecheck-server.log ci-typecheck-client.log ci-typecheck-cef.log ci-migrate.log ci-build.log; do
               if [ -f "$file" ]; then
                 echo "### $file"
                 echo '```text'
@@ -156,6 +176,7 @@ jobs:
             VELORIA-RP/ci-environment.log
             VELORIA-RP/ci-install-root.log
             VELORIA-RP/ci-install-cef.log
+            VELORIA-RP/ci-deps-smoke.log
             VELORIA-RP/ci-typecheck-server.log
             VELORIA-RP/ci-typecheck-client.log
             VELORIA-RP/ci-typecheck-cef.log
@@ -168,6 +189,7 @@ jobs:
         run: |
           failed=0
           for result in \
+            "${{ steps.deps_smoke.outcome }}" \
             "${{ steps.typecheck_server.outcome }}" \
             "${{ steps.typecheck_client.outcome }}" \
             "${{ steps.typecheck_cef.outcome }}" \
