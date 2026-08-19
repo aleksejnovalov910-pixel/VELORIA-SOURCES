@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS factions (
 CREATE TABLE IF NOT EXISTS faction_members (
   character_id BIGINT UNSIGNED PRIMARY KEY,
   faction_id BIGINT UNSIGNED NOT NULL,
-  rank INT NOT NULL DEFAULT 1,
+  `rank` INT NOT NULL DEFAULT 1,
   joined_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY(character_id) REFERENCES characters(id) ON DELETE CASCADE,
   FOREIGN KEY(faction_id) REFERENCES factions(id) ON DELETE CASCADE
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS families (
 CREATE TABLE IF NOT EXISTS family_members (
   family_id BIGINT UNSIGNED NOT NULL,
   character_id BIGINT UNSIGNED NOT NULL,
-  rank INT NOT NULL DEFAULT 1,
+  `rank` INT NOT NULL DEFAULT 1,
   PRIMARY KEY(family_id,character_id),
   UNIQUE(character_id),
   FOREIGN KEY(family_id) REFERENCES families(id) ON DELETE CASCADE,
