@@ -53,13 +53,22 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '24'
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: |
+            VELORIA-RP/package-lock.json
+            VELORIA-RP/src/cef/package-lock.json
+
+      - name: Environment diagnostics
+        run: |
+          node --version
+          npm --version
 
       - name: Install server/client dependencies
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
 
       - name: Install CEF dependencies
-        run: npm --prefix src/cef install --no-audit --no-fund
+        run: npm --prefix src/cef ci --no-audit --no-fund
 
       - name: Typecheck
         run: |
