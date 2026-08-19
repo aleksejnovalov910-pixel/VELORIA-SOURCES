@@ -15,6 +15,8 @@ import { registerDealershipModule } from './modules/dealerships';
 import { registerDmvModule } from './modules/dmv';
 import { registerImpoundModule } from './modules/impound';
 import { registerVehicleMarketModule } from './modules/vehicleMarket';
+import { registerPropertyModule } from './modules/property';
+import { registerJobsModule } from './modules/jobs';
 
 async function bootstrap(){
   logger.info('Starting VELORIA RP v0.1 core...');
@@ -34,6 +36,8 @@ async function bootstrap(){
   registerDmvModule();
   registerImpoundModule();
   registerVehicleMarketModule();
+  registerPropertyModule();
+  registerJobsModule();
 
   mp.events.add('playerJoin',(player:PlayerMp)=>{
     player.dimension=1000+player.id;
