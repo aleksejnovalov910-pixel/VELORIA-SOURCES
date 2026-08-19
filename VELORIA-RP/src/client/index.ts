@@ -81,20 +81,32 @@ mp.events.add('veloria:inventory:data', (json: string) => {
 });
 
 mp.events.add('veloria:cef:tablet:open', (app: string) => {
-  if (app === 'bank') mp.events.callRemote('veloria:bank:balance');
-  else if (app === 'market') mp.events.callRemote('veloria:market:list');
-  else if (app === 'vehicles') mp.events.callRemote('veloria:tablet:data', 'transport');
-  else if (app === 'property') mp.events.callRemote('veloria:tablet:data', 'property');
-  else if (app === 'jobs') mp.events.callRemote('veloria:tablet:data', 'job');
-  else if (app === 'family') mp.events.callRemote('veloria:tablet:data', 'family');
-  else if (app === 'faction') mp.events.callRemote('veloria:tablet:data', 'faction');
-  else exec(`window.veloriaNotify?.('info',${JSON.stringify('Навигатор будет подключен после карты')})`);
+  const normalized = String(app ?? '').trim().toLowerCase();
+  if (normalized === 'bank') mp.events.callRemote('veloria:bank:balance');
+  else if (normalized === 'market') mp.events.callRemote('veloria:market:list');
+  else if (normalized === 'vehicles' || normalized === 'transport') mp.events.callRemote('veloria:tablet:data', 'transport');
+  else if (normalized === 'property') mp.events.callRemote('veloria:tablet:data', 'property');
+  else if (normalized === 'jobs' || normalized === 'job') mp.events.callRemote('veloria:tablet:data', 'job');
+  else if (normalized === 'family') mp.events.callRemote('veloria:tablet:data', 'family');
+  else if (normalized === 'faction') mp.events.callRemote('veloria:tablet:data', 'faction');
+  else if (normalized === 'business' || normalized === 'businesses') mp.events.callRemote('veloria:tablet:data', 'business');
+  else if (normalized === 'equipment' || normalized === 'clothes') mp.events.callRemote('veloria:tablet:data', 'equipment');
+  else exec(`window.veloriaNotify?.('info',${JSON.stringify('Раздел пока не подключен')})`);
 });
 mp.events.add('veloria:tablet:data', (section: string, json: string) => {
   let data: any = null;
   try { data = JSON.parse(json); } catch {}
-  const map: any = { transport: 'transport', property: 'property', job: 'job', family: 'family', faction: 'faction' };
-  overlay(map[section] ?? 'tablet', true, data);
+  const normalized = String(section ?? '').trim().toLowerCase();
+  const map: Record<string,string> = {
+    transport: 'transport',
+    property: 'property',
+    job: 'job',
+    family: 'family',
+    faction: 'faction',
+    business: 'business',
+    equipment: 'equipment'
+  };
+  overlay(map[normalized] ?? 'tablet', true, data);
 });
 
 mp.events.add('veloria:bank:balance', (cash: number, bank: number) => overlay('bank', true, { cash, bank }));
