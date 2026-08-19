@@ -1,16 +1,39 @@
 name: VELORIA Build
 on:
+  workflow_dispatch:
   push:
     branches: [veloria-core-v0.1]
     paths: ['VELORIA-RP/**','.github/workflows/veloria-build.yml']
   pull_request:
     paths: ['VELORIA-RP/**','.github/workflows/veloria-build.yml']
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: veloria
+          MYSQL_USER: veloria
+          MYSQL_PASSWORD: veloria_ci
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -uroot -proot"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
     defaults:
       run:
         working-directory: VELORIA-RP
+    env:
+      MYSQL_HOST: 127.0.0.1
+      MYSQL_PORT: 3306
+      MYSQL_USER: veloria
+      MYSQL_PASSWORD: veloria_ci
+      MYSQL_DATABASE: veloria
     steps:
       - uses: actions/checkout@v4
         with:
@@ -24,11 +47,15 @@ jobs:
         run: npm --prefix src/cef install
       - name: Typecheck
         run: npm run typecheck
+      - name: Migration smoke test
+        run: npm run migrate
       - name: Build deploy bundle
         run: npm run build
       - name: Validate deploy layout
         run: |
           test -f deploy/conf.json
+          test -f deploy/package.json
+          test -f deploy/scripts/migrate.mjs
           test -f deploy/packages/veloria/index.js
           test -f deploy/client_packages/index.js
           test -f deploy/client_packages/veloria/index.html
