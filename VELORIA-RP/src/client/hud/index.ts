@@ -1,4 +1,5 @@
 import { VeloriaEvents } from '../../shared/events/veloria';
-let visible = false;
-export function setHudVisible(state:boolean){ visible=state; mp.events.call(VeloriaEvents.HudSetVisible,state); }
-mp.events.add('render',()=>{ if(!visible) return; const p=mp.players.local; const veh=p.vehicle; mp.events.call(VeloriaEvents.HudUpdate, JSON.stringify({health:p.getHealth(),armour:p.getArmour(),vehicle:veh?{speed:Math.round(veh.getSpeed()*3.6),engine:veh.getIsEngineRunning()}:null})); });
+let visible=false;let last=0;let seatbelt=false;
+export function setHudVisible(state:boolean){visible=state;mp.events.call(VeloriaEvents.HudSetVisible,state);}
+mp.events.add('veloria:vehicle:seatbelt:state',(state:boolean)=>{seatbelt=state;});
+mp.events.add('render',()=>{if(!visible)return;const now=Date.now();if(now-last<100)return;last=now;const p=mp.players.local;const veh=p.vehicle;mp.events.call(VeloriaEvents.HudUpdate,JSON.stringify({health:p.getHealth(),armour:p.getArmour(),vehicle:veh?{speed:Math.round(veh.getSpeed()*3.6),engine:veh.getIsEngineRunning(),rpm:veh.rpm,seatbelt}:null}));});
