@@ -1,9 +1,5 @@
 {
-  "extends": "../../tsconfig.base.json",
-  "compilerOptions": {
-    "outDir": "../../dist/client",
-    "rootDir": "..",
-    "types": ["@ragempcommunity/types-client"]
-  },
-  "include": ["./**/*.ts", "../shared/**/*.ts"]
+  "extends":"../../tsconfig.base.json",
+  "compilerOptions":{"outDir":"../../build/client","rootDir":"..","types":["@ragempcommunity/types-client"],"sourceMap":false},
+  "include":["./**/*.ts","../shared/**/*.ts"]
 }
