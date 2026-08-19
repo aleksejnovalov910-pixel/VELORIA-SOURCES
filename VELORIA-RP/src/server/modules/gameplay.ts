@@ -4,7 +4,8 @@ import { setVehicleState } from './vehicles';
 import { ensurePhone } from './phone';
 
 function characterId(player: PlayerMp): number | null {
-  return Number((player as any).veloriaCharacterId ?? 0) || null;
+  const value = player.getVariable('veloria:characterId') ?? player.getVariable('characterId');
+  return typeof value === 'number' ? value : null;
 }
 
 export function registerGameplayModules() {
