@@ -14,6 +14,8 @@ function openAuth(){ensureBrowser();authenticated=false;activeOverlay=null;setHu
 function closeAuth(){authenticated=true;activeOverlay=null;cursor(false);setHudVisible(true);mp.events.callRemote('veloria:settings:get')}
 function overlay(name:string,state:boolean,data:unknown={}){if(!authenticated)return;if(state){activeOverlay=name;cursor(true)}else if(activeOverlay===name){activeOverlay=null;cursor(false)}exec(`window.veloriaOverlay?.(${JSON.stringify(name)},${JSON.stringify(state)},${JSON.stringify(JSON.stringify(data))})`)}
 function parsed(json:string,fallback:unknown=[]){try{return JSON.parse(json)}catch{return fallback}}
+function normalizeRuntimeSettings(raw:any){const scale=Number(raw?.interfaceScale??100),voice=Number(raw?.voiceVolume??80);return{hud:typeof raw?.hud==='boolean'?raw.hud:true,minimap:typeof raw?.minimap==='boolean'?raw.minimap:true,voiceVolume:Number.isFinite(voice)?Math.max(0,Math.min(100,voice)):80,interfaceScale:Number.isFinite(scale)?Math.max(80,Math.min(120,scale)):100,keybinds:applyKeybinds(raw?.keybinds??DEFAULT_KEYBINDS)}}
+function applyRuntimeSettings(raw:any){const data=normalizeRuntimeSettings(raw);if(authenticated)setHudVisible(data.hud);mp.game.ui.displayRadar(data.minimap);exec(`document.documentElement.style.zoom=${JSON.stringify(String(data.interfaceScale/100))}`);return data}
 
 mp.events.add('playerReady',openAuth);
 mp.events.add('veloria:cef:login',(u:string,p:string)=>mp.events.callRemote(Events.AuthLogin,u,p));
@@ -31,7 +33,7 @@ mp.events.add('veloria:cef:phone:contact:add',(number:string,name:string)=>mp.ev
 mp.events.add('veloria:cef:phone:message:send',(number:string,text:string)=>mp.events.callRemote('veloria:phone:message:send',number,text));
 mp.events.add(VeloriaEvents.TabletToggle,()=>overlay('tablet',activeOverlay!=='tablet'));
 mp.events.add(VeloriaEvents.SettingsToggle,()=>{const next=activeOverlay!=='settings';if(next)mp.events.callRemote('veloria:settings:get');else overlay('settings',false)});
-mp.events.add('veloria:settings:data',(json:string)=>{const data=parsed(json,{hud:true,minimap:true,voiceVolume:80,interfaceScale:100,keybinds:DEFAULT_KEYBINDS}) as any;data.keybinds=applyKeybinds(data?.keybinds);overlay('settings',true,data)});
+mp.events.add('veloria:settings:data',(json:string)=>{const data=applyRuntimeSettings(parsed(json,{hud:true,minimap:true,voiceVolume:80,interfaceScale:100,keybinds:DEFAULT_KEYBINDS}));overlay('settings',true,data)});
 mp.events.add(VeloriaEvents.InventoryToggle,()=>{const next=activeOverlay!=='inventory';if(next)mp.events.callRemote('veloria:inventory:data');else overlay('inventory',false)});
 mp.events.add('veloria:inventory:data',(json:string)=>overlay('inventory',true,parsed(json,[])));
 mp.events.add('veloria:cef:inventory:move',(from:number,to:number)=>mp.events.callRemote('veloria:inventory:move',from,to));
@@ -43,4 +45,6 @@ mp.events.add('veloria:vehicleMarket:data',(json:string)=>overlay('vehicleMarket
 mp.events.add('veloria:dealership:data',(dealershipId:number,json:string)=>overlay('dealership',true,{dealershipId,stock:parsed(json,[])}));mp.events.add('veloria:cef:dealership:buy',(stockId:number)=>mp.events.callRemote('veloria:dealership:buy',stockId));mp.events.add('veloria:dealership:purchased',()=>mp.events.callRemote('veloria:dealership:stock',1));
 mp.events.add('veloria:bank:balance',(cash:number,bank:number)=>overlay('bank',true,{cash,bank}));mp.events.add('veloria:cef:bank:deposit',(amount:number)=>mp.events.callRemote('veloria:bank:deposit',amount));mp.events.add('veloria:cef:bank:withdraw',(amount:number)=>mp.events.callRemote('veloria:bank:withdraw',amount));mp.events.add('veloria:cef:bank:transfer',(target:number,amount:number)=>mp.events.callRemote('veloria:bank:transfer',target,amount));
 mp.events.add('veloria:market:data',(json:string)=>overlay('market',true,parsed(json,[])));mp.events.add('veloria:cef:market:buy',(id:number)=>mp.events.callRemote('veloria:market:buy',id));mp.events.add('veloria:market:purchased',()=>mp.events.callRemote('veloria:market:list'));
-mp.events.add('veloria:cef:overlay:close',()=>{activeOverlay=null;cursor(false)});mp.events.add('veloria:cef:settings',(json:string)=>mp.events.callRemote('veloria:settings:save',json));mp.events.add(VeloriaEvents.Notify,(type:string,text:string)=>exec(`window.veloriaNotify?.(${JSON.stringify(type)},${JSON.stringify(text)})`));
+mp.events.add('veloria:cef:overlay:close',()=>{activeOverlay=null;cursor(false)});
+mp.events.add('veloria:cef:settings',(json:string)=>{const raw=parsed(json,{});applyRuntimeSettings(raw);mp.events.callRemote('veloria:settings:save',JSON.stringify(raw))});
+mp.events.add(VeloriaEvents.Notify,(type:string,text:string)=>exec(`window.veloriaNotify?.(${JSON.stringify(type)},${JSON.stringify(text)})`));
