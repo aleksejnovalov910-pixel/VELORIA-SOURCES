@@ -1,47 +1,59 @@
 name: VELORIA Build
+
 on:
   workflow_dispatch:
   push:
-    branches: [veloria-core-v0.1]
-    paths: ['VELORIA-RP/**','.github/workflows/veloria-build.yml']
+    branches:
+      - veloria-core-v0.1
+    paths:
+      - 'VELORIA-RP/**'
+      - '.github/workflows/veloria-build.yml'
   pull_request:
-    paths: ['VELORIA-RP/**','.github/workflows/veloria-build.yml']
+    paths:
+      - 'VELORIA-RP/**'
+      - '.github/workflows/veloria-build.yml'
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     services:
       mysql:
         image: mysql:8.4
         env:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: veloria
-          MYSQL_USER: veloria
-          MYSQL_PASSWORD: veloria_ci
+          MYSQL_ROOT_PASSWORD: 'root'
+          MYSQL_DATABASE: 'veloria'
+          MYSQL_USER: 'veloria'
+          MYSQL_PASSWORD: 'veloria_ci'
         ports:
-          - 3306:3306
+          - '3306:3306'
         options: >-
           --health-cmd="mysqladmin ping -h 127.0.0.1 -uroot -proot"
           --health-interval=10s
           --health-timeout=5s
           --health-retries=10
+
     defaults:
       run:
         working-directory: VELORIA-RP
+
     env:
-      MYSQL_HOST: 127.0.0.1
-      MYSQL_PORT: 3306
-      MYSQL_USER: veloria
-      MYSQL_PASSWORD: veloria_ci
-      MYSQL_DATABASE: veloria
+      MYSQL_HOST: '127.0.0.1'
+      MYSQL_PORT: '3306'
+      MYSQL_USER: 'veloria'
+      MYSQL_PASSWORD: 'veloria_ci'
+      MYSQL_DATABASE: 'veloria'
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
           lfs: false
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version: '24'
 
       - name: Install server/client dependencies
         run: npm install --no-audit --no-fund
