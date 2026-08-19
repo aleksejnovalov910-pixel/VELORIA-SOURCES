@@ -1,0 +1,119 @@
+CREATE TABLE IF NOT EXISTS character_inventory (
+  character_id BIGINT UNSIGNED NOT NULL,
+  slot INT NOT NULL,
+  item VARCHAR(100) NOT NULL,
+  amount INT NOT NULL DEFAULT 1,
+  metadata_json JSON NULL,
+  PRIMARY KEY(character_id,slot),
+  CONSTRAINT fk_inventory_character FOREIGN KEY(character_id) REFERENCES characters(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS character_vehicles (
+  id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  character_id BIGINT UNSIGNED NOT NULL,
+  model VARCHAR(100) NOT NULL,
+  plate VARCHAR(16) NOT NULL UNIQUE,
+  fuel DOUBLE NOT NULL DEFAULT 100,
+  engine_health DOUBLE NOT NULL DEFAULT 1000,
+  body_health DOUBLE NOT NULL DEFAULT 1000,
+  locked TINYINT(1) NOT NULL DEFAULT 1,
+  engine_on TINYINT(1) NOT NULL DEFAULT 0,
+  position_json JSON NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  INDEX(character_id),
+  CONSTRAINT fk_vehicle_character FOREIGN KEY(character_id) REFERENCES characters(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS properties (
+  id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  type VARCHAR(32) NOT NULL,
+  owner_character_id BIGINT UNSIGNED NULL,
+  price BIGINT NOT NULL DEFAULT 0,
+  position_json JSON NOT NULL,
+  interior_json JSON NULL,
+  locked TINYINT(1) NOT NULL DEFAULT 1,
+  FOREIGN KEY(owner_character_id) REFERENCES characters(id) ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS businesses (
+  id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  type VARCHAR(64) NOT NULL,
+  name VARCHAR(128) NOT NULL,
+  owner_character_id BIGINT UNSIGNED NULL,
+  balance BIGINT NOT NULL DEFAULT 0,
+  price BIGINT NOT NULL DEFAULT 0,
+  config_json JSON NULL,
+  FOREIGN KEY(owner_character_id) REFERENCES characters(id) ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS factions (
+  id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  code VARCHAR(32) UNIQUE NOT NULL,
+  name VARCHAR(100) NOT NULL,
+  type VARCHAR(32) NOT NULL,
+  config_json JSON NULL
+);
+CREATE TABLE IF NOT EXISTS faction_members (
+  character_id BIGINT UNSIGNED PRIMARY KEY,
+  faction_id BIGINT UNSIGNED NOT NULL,
+  rank INT NOT NULL DEFAULT 1,
+  joined_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY(character_id) REFERENCES characters(id) ON DELETE CASCADE,
+  FOREIGN KEY(faction_id) REFERENCES factions(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS families (
+  id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(64) UNIQUE NOT NULL,
+  owner_character_id BIGINT UNSIGNED NOT NULL,
+  balance BIGINT NOT NULL DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE IF NOT EXISTS family_members (
+  family_id BIGINT UNSIGNED NOT NULL,
+  character_id BIGINT UNSIGNED NOT NULL,
+  rank INT NOT NULL DEFAULT 1,
+  PRIMARY KEY(family_id,character_id),
+  UNIQUE(character_id),
+  FOREIGN KEY(family_id) REFERENCES families(id) ON DELETE CASCADE,
+  FOREIGN KEY(character_id) REFERENCES characters(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS character_jobs (
+  character_id BIGINT UNSIGNED PRIMARY KEY,
+  job_name VARCHAR(64) NOT NULL,
+  started_at DATETIME NOT NULL,
+  progress_json JSON NULL,
+  FOREIGN KEY(character_id) REFERENCES characters(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS phones (
+  character_id BIGINT UNSIGNED PRIMARY KEY,
+  number VARCHAR(20) UNIQUE NOT NULL,
+  settings_json JSON NULL,
+  FOREIGN KEY(character_id) REFERENCES characters(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS market_listings (
+  id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  seller_character_id BIGINT UNSIGNED NOT NULL,
+  category VARCHAR(64) NOT NULL,
+  title VARCHAR(160) NOT NULL,
+  price BIGINT NOT NULL,
+  quantity INT NOT NULL DEFAULT 1,
+  payload_json JSON NULL,
+  status ENUM('active','sold','cancelled') NOT NULL DEFAULT 'active',
+  created_at DATETIME NOT NULL,
+  INDEX(category,status,price),
+  FOREIGN KEY(seller_character_id) REFERENCES characters(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS admin_logs (
+  id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  account_id BIGINT UNSIGNED NOT NULL,
+  action VARCHAR(64) NOT NULL,
+  target VARCHAR(160) NOT NULL,
+  details_json JSON NULL,
+  created_at DATETIME NOT NULL,
+  INDEX(account_id,created_at)
+);
