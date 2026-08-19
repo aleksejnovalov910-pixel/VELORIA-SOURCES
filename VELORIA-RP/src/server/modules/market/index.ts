@@ -1,4 +1,5 @@
 import { mysql } from '../../core/mysql';
+import { changeBalance } from '../banking';
 
 export interface MarketListingInput {
   sellerCharacterId: number;
@@ -7,6 +8,18 @@ export interface MarketListingInput {
   price: number;
   quantity: number;
   payload: Record<string, unknown>;
+}
+
+function parsePayload(value: unknown): Record<string, unknown> {
+  if (!value) return {};
+  if (typeof value === 'object') return value as Record<string, unknown>;
+  if (typeof value !== 'string') return {};
+  try {
+    const parsed = JSON.parse(value);
+    return parsed && typeof parsed === 'object' ? parsed as Record<string, unknown> : {};
+  } catch {
+    return {};
+  }
 }
 
 export async function createListing(input: MarketListingInput): Promise<number> {
@@ -38,25 +51,30 @@ export async function buyListing(buyerCharacterId: number, listingId: number): P
     const [listingRows] = await connection.query("SELECT * FROM market_listings WHERE id=? AND status='active' FOR UPDATE", [listingId]);
     const listing = (listingRows as any[])[0];
     if (!listing) throw new Error('Listing unavailable');
-    if (Number(listing.seller_character_id) === buyerCharacterId) throw new Error('Own listing');
 
-    const price = Number(listing.price);
-    const [buyerRows] = await connection.query('SELECT bank FROM characters WHERE id=? FOR UPDATE', [buyerCharacterId]);
-    const [sellerRows] = await connection.query('SELECT bank FROM characters WHERE id=? FOR UPDATE', [listing.seller_character_id]);
-    const buyer = (buyerRows as any[])[0];
-    const seller = (sellerRows as any[])[0];
-    if (!buyer || !seller) throw new Error('Character not found');
-    if (Number(buyer.bank) < price) throw new Error('Insufficient funds');
+    const sellerCharacterId = Number(listing.seller_character_id);
+    if (sellerCharacterId === buyerCharacterId) throw new Error('Own listing');
 
-    await connection.query('UPDATE characters SET bank=bank-? WHERE id=?', [price, buyerCharacterId]);
-    await connection.query('UPDATE characters SET bank=bank+? WHERE id=?', [price, listing.seller_character_id]);
-    await connection.query("UPDATE market_listings SET status='sold' WHERE id=?", [listingId]);
-    await connection.query('INSERT INTO market_purchases(listing_id,buyer_character_id,seller_character_id,price,payload_json) VALUES(?,?,?,?,?)', [listingId, buyerCharacterId, listing.seller_character_id, price, listing.payload_json]);
+    const price = Math.trunc(Number(listing.price));
+    if (!Number.isSafeInteger(price) || price <= 0) throw new Error('Invalid listing price');
+
+    // Both balance changes use the same transaction and produce economy audit rows.
+    await changeBalance(buyerCharacterId, 'bank', -price, 'market_purchase', `listing:${listingId}`, connection);
+    await changeBalance(sellerCharacterId, 'bank', price, 'market_sale', `listing:${listingId}`, connection);
+
+    const [soldResult]: any = await connection.query(
+      "UPDATE market_listings SET status='sold' WHERE id=? AND status='active'",
+      [listingId]
+    );
+    if (Number(soldResult.affectedRows) !== 1) throw new Error('Listing unavailable');
+
+    await connection.query(
+      'INSERT INTO market_purchases(listing_id,buyer_character_id,seller_character_id,price,payload_json) VALUES(?,?,?,?,?)',
+      [listingId, buyerCharacterId, sellerCharacterId, price, listing.payload_json]
+    );
     await connection.commit();
 
-    let payload: Record<string, unknown> = {};
-    try { payload = listing.payload_json ? JSON.parse(listing.payload_json) : {}; } catch { payload = {}; }
-    return { sellerCharacterId: Number(listing.seller_character_id), price, payload };
+    return { sellerCharacterId, price, payload: parsePayload(listing.payload_json) };
   } catch (error) {
     await connection.rollback();
     throw error;
@@ -66,22 +84,29 @@ export async function buyListing(buyerCharacterId: number, listingId: number): P
 }
 
 function characterId(player: PlayerMp): number | null {
-  const value = player.getVariable('veloria:characterId');
-  return typeof value === 'number' ? value : null;
+  const primary = player.getVariable('veloria:characterId');
+  if (typeof primary === 'number') return primary;
+  const legacy = player.getVariable('characterId');
+  return typeof legacy === 'number' ? legacy : null;
 }
 
 export function registerMarketModule(): void {
   mp.events.add('veloria:market:list', async (player: PlayerMp, category?: string) => {
-    const rows = await listActive(category ? String(category) : undefined);
-    player.call('veloria:market:data', [JSON.stringify(rows)]);
+    try {
+      const rows = await listActive(category ? String(category) : undefined);
+      player.call('veloria:market:data', [JSON.stringify(rows)]);
+    } catch {
+      player.call('veloria:notify', ['error', 'Не удалось загрузить V-Market']);
+    }
   });
 
   mp.events.add('veloria:market:buy', async (player: PlayerMp, rawListingId: number) => {
     const id = characterId(player);
-    if (!id) return;
+    const listingId = Math.trunc(Number(rawListingId));
+    if (!id || !Number.isSafeInteger(listingId) || listingId <= 0) return;
     try {
-      const purchase = await buyListing(id, Number(rawListingId));
-      player.call('veloria:market:purchased', [Number(rawListingId), JSON.stringify(purchase.payload)]);
+      const purchase = await buyListing(id, listingId);
+      player.call('veloria:market:purchased', [listingId, JSON.stringify(purchase.payload)]);
       player.call('veloria:notify', ['success', `Покупка V-Market: $${purchase.price}`]);
     } catch (error) {
       player.call('veloria:notify', ['error', error instanceof Error ? error.message : 'Покупка не выполнена']);
