@@ -1,137 +1,21 @@
 import { useEffect, useMemo, useState } from 'react';
 
-type Character = {
-  id: number;
-  slot: 1 | 2 | 3;
-  firstName: string;
-  lastName: string;
-  level: number;
-  cash: number;
-  bank: number;
-};
+type Character = { id:number; slot:1|2|3; firstName:string; lastName:string; level:number; cash:number; bank:number; };
+type CreatorState = { slot:number; firstName:string; lastName:string; gender:'male'|'female'; mother:number; father:number; shapeMix:number; skinMix:number; hair:number; hairColor:number; eyeColor:number; eyebrows:number; beard:number; };
 
-declare global {
-  interface Window {
-    mp?: { trigger: (event: string, ...args: unknown[]) => void };
-    veloriaAuthResult?: (success: boolean, message: string) => void;
-    veloriaCharacterList?: (json: string) => void;
-  }
-}
+declare global { interface Window { mp?:{ trigger:(event:string,...args:unknown[])=>void }; veloriaAuthResult?:(success:boolean,message:string)=>void; veloriaCharacterList?:(json:string)=>void; } }
+const trigger=(event:string,...args:unknown[])=>window.mp?.trigger(event,...args);
+const defaultCreator=(slot:number):CreatorState=>({slot,firstName:'',lastName:'',gender:'male',mother:21,father:0,shapeMix:.5,skinMix:.5,hair:0,hairColor:0,eyeColor:0,eyebrows:0,beard:0});
 
-function trigger(event: string, ...args: unknown[]) {
-  window.mp?.trigger(event, ...args);
-}
+function Slider({label,value,min,max,step=.01,onChange}:{label:string;value:number;min:number;max:number;step?:number;onChange:(v:number)=>void}){ return <label>{label}<input type="range" min={min} max={max} step={step} value={value} onChange={e=>onChange(Number(e.target.value))}/><span>{value}</span></label>; }
 
-export function App() {
-  const [mode, setMode] = useState<'login' | 'register'>('login');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
-  const [characters, setCharacters] = useState<Character[] | null>(null);
-
-  useEffect(() => {
-    window.veloriaAuthResult = (success, text) => {
-      setMessage(text);
-      if (success) setMessage('');
-    };
-
-    window.veloriaCharacterList = (json) => {
-      try {
-        setCharacters(JSON.parse(json) as Character[]);
-      } catch {
-        setMessage('Не удалось загрузить персонажей');
-      }
-    };
-
-    return () => {
-      delete window.veloriaAuthResult;
-      delete window.veloriaCharacterList;
-    };
-  }, []);
-
-  const slots = useMemo(() => [1, 2, 3].map((slot) => characters?.find((character) => character.slot === slot)), [characters]);
-
-  if (characters) {
-    return (
-      <main className="screen">
-        <section className="panel character-panel">
-          <header className="brand">
-            <div className="brand-mark">V</div>
-            <div>
-              <h1>VELORIA RP</h1>
-              <p>Выбор персонажа</p>
-            </div>
-          </header>
-
-          <div className="character-grid">
-            {slots.map((character, index) => (
-              <button
-                key={index}
-                className={`character-card ${character ? 'filled' : 'empty'}`}
-                onClick={() => {
-                  if (character) trigger('veloria:cef:character:select', character.id);
-                  else setMessage(`Создание персонажа в слоте ${index + 1} подключим следующим модулем`);
-                }}
-              >
-                {character ? (
-                  <>
-                    <span className="slot-label">Слот {index + 1}</span>
-                    <strong>{character.firstName} {character.lastName}</strong>
-                    <span>Уровень {character.level}</span>
-                    <span>${character.cash.toLocaleString('ru-RU')}</span>
-                  </>
-                ) : (
-                  <>
-                    <span className="plus">+</span>
-                    <strong>Создать персонажа</strong>
-                    <span>Слот {index + 1}</span>
-                  </>
-                )}
-              </button>
-            ))}
-          </div>
-
-          {message && <div className="message">{message}</div>}
-        </section>
-      </main>
-    );
-  }
-
-  return (
-    <main className="screen">
-      <section className="panel auth-panel">
-        <header className="brand">
-          <div className="brand-mark">V</div>
-          <div>
-            <h1>VELORIA RP</h1>
-            <p>500 слотов · Los Santos</p>
-          </div>
-        </header>
-
-        <div className="mode-switch">
-          <button className={mode === 'login' ? 'active' : ''} onClick={() => setMode('login')}>Вход</button>
-          <button className={mode === 'register' ? 'active' : ''} onClick={() => setMode('register')}>Регистрация</button>
-        </div>
-
-        <label>
-          Логин
-          <input value={username} onChange={(event) => setUsername(event.target.value)} autoComplete="off" />
-        </label>
-
-        <label>
-          Пароль
-          <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
-        </label>
-
-        {message && <div className="message">{message}</div>}
-
-        <button
-          className="primary"
-          onClick={() => trigger(mode === 'login' ? 'veloria:cef:login' : 'veloria:cef:register', username, password)}
-        >
-          {mode === 'login' ? 'Войти' : 'Создать аккаунт'}
-        </button>
-      </section>
-    </main>
-  );
+export function App(){
+ const [mode,setMode]=useState<'login'|'register'>('login'); const [username,setUsername]=useState(''); const [password,setPassword]=useState(''); const [message,setMessage]=useState(''); const [characters,setCharacters]=useState<Character[]|null>(null); const [creator,setCreator]=useState<CreatorState|null>(null);
+ useEffect(()=>{ window.veloriaAuthResult=(success,text)=>{setMessage(text);if(success)setMessage('')}; window.veloriaCharacterList=json=>{try{setCharacters(JSON.parse(json) as Character[])}catch{setMessage('Не удалось загрузить персонажей')}}; return()=>{delete window.veloriaAuthResult;delete window.veloriaCharacterList};},[]);
+ const slots=useMemo(()=>[1,2,3].map(slot=>characters?.find(c=>c.slot===slot)),[characters]);
+ if(creator){ const save=()=>{ const appearance={gender:creator.gender,parents:{mother:creator.mother,father:creator.father,shapeMix:creator.shapeMix,skinMix:creator.skinMix},faceFeatures:{},hair:{style:creator.hair,color:creator.hairColor,highlight:creator.hairColor},eyeColor:creator.eyeColor,eyebrows:{index:creator.eyebrows,opacity:1,color:creator.hairColor},beard:{index:creator.beard,opacity:creator.gender==='male'?1:0,color:creator.hairColor},makeup:{index:0,opacity:0},blemishes:{index:0,opacity:0},ageing:{index:0,opacity:0},complexion:{index:0,opacity:0},sunDamage:{index:0,opacity:0},lipstick:{index:0,opacity:0},chestHair:{index:0,opacity:0},clothing:{}}; trigger('veloria:cef:character:create',creator.slot,creator.firstName,creator.lastName,JSON.stringify(appearance)); };
+  return <main className="screen creator-screen"><section className="panel creator-panel"><header className="brand"><div className="brand-mark">V</div><div><h1>VELORIA RP</h1><p>Создание персонажа</p></div></header><div className="creator-columns"><div><label>Имя<input value={creator.firstName} onChange={e=>setCreator({...creator,firstName:e.target.value})}/></label><label>Фамилия<input value={creator.lastName} onChange={e=>setCreator({...creator,lastName:e.target.value})}/></label><div className="mode-switch"><button className={creator.gender==='male'?'active':''} onClick={()=>setCreator({...creator,gender:'male'})}>Мужчина</button><button className={creator.gender==='female'?'active':''} onClick={()=>setCreator({...creator,gender:'female'})}>Женщина</button></div><h3>Родители</h3><Slider label="Мать" value={creator.mother} min={0} max={45} step={1} onChange={v=>setCreator({...creator,mother:v})}/><Slider label="Отец" value={creator.father} min={0} max={45} step={1} onChange={v=>setCreator({...creator,father:v})}/><Slider label="Сходство" value={creator.shapeMix} min={0} max={1} onChange={v=>setCreator({...creator,shapeMix:v})}/><Slider label="Тон кожи" value={creator.skinMix} min={0} max={1} onChange={v=>setCreator({...creator,skinMix:v})}/></div><div><h3>Внешность</h3><Slider label="Прическа" value={creator.hair} min={0} max={40} step={1} onChange={v=>setCreator({...creator,hair:v})}/><Slider label="Цвет волос" value={creator.hairColor} min={0} max={63} step={1} onChange={v=>setCreator({...creator,hairColor:v})}/><Slider label="Глаза" value={creator.eyeColor} min={0} max={31} step={1} onChange={v=>setCreator({...creator,eyeColor:v})}/><Slider label="Брови" value={creator.eyebrows} min={0} max={33} step={1} onChange={v=>setCreator({...creator,eyebrows:v})}/><Slider label="Борода" value={creator.beard} min={0} max={28} step={1} onChange={v=>setCreator({...creator,beard:v})}/><p className="hint">ЛКМ — вращение камеры, колесо — зум.</p></div></div><div className="creator-actions"><button onClick={()=>setCreator(null)}>Назад</button><button className="primary" onClick={save}>Создать персонажа</button></div></section></main>;
+ }
+ if(characters){ return <main className="screen"><section className="panel character-panel"><header className="brand"><div className="brand-mark">V</div><div><h1>VELORIA RP</h1><p>Выбор персонажа</p></div></header><div className="character-grid">{slots.map((character,index)=><button key={index} className={`character-card ${character?'filled':'empty'}`} onClick={()=>character?trigger('veloria:cef:character:select',character.id):setCreator(defaultCreator(index+1))}>{character?<><span className="slot-label">Слот {index+1}</span><strong>{character.firstName} {character.lastName}</strong><span>Уровень {character.level}</span><span>${character.cash.toLocaleString('ru-RU')}</span></>:<><span className="plus">+</span><strong>Создать персонажа</strong><span>Слот {index+1}</span></>}</button>)}</div>{message&&<div className="message">{message}</div>}</section></main>; }
+ return <main className="screen"><section className="panel auth-panel"><header className="brand"><div className="brand-mark">V</div><div><h1>VELORIA RP</h1><p>500 слотов · Los Santos</p></div></header><div className="mode-switch"><button className={mode==='login'?'active':''} onClick={()=>setMode('login')}>Вход</button><button className={mode==='register'?'active':''} onClick={()=>setMode('register')}>Регистрация</button></div><label>Логин<input value={username} onChange={e=>setUsername(e.target.value)} autoComplete="off"/></label><label>Пароль<input type="password" value={password} onChange={e=>setPassword(e.target.value)}/></label>{message&&<div className="message">{message}</div>}<button className="primary" onClick={()=>trigger(mode==='login'?'veloria:cef:login':'veloria:cef:register',username,password)}>{mode==='login'?'Войти':'Создать аккаунт'}</button></section></main>;
 }
