@@ -8,5 +8,6 @@ export const VELORIA_CONFIG = {
   creatorScene: { x: 402.8664, y: -996.4108, z: -99.00027, heading: 180 },
   phoneKey: 38,
   tabletKey: 40,
+  inventoryKey: 73,
   settingsKey: 113
 } as const;
