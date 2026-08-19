@@ -7,6 +7,7 @@ import { registerCharacterModule } from './modules/characters';
 import { registerGameplayModules } from './modules/gameplay';
 import { registerBankingModule } from './modules/banking';
 import { registerPhoneModule } from './modules/phone';
+import { registerMarketModule } from './modules/market';
 
 async function bootstrap() {
   logger.info('Starting VELORIA RP v0.1 core...');
@@ -18,6 +19,7 @@ async function bootstrap() {
   registerGameplayModules();
   registerBankingModule();
   registerPhoneModule();
+  registerMarketModule();
 
   mp.events.add('playerJoin', (player: PlayerMp) => {
     player.dimension = 1000 + player.id;
