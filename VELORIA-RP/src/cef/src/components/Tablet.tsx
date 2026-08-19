@@ -1,0 +1,2 @@
+import React from 'react';
+export function Tablet({onClose}:{onClose:()=>void}){const apps=['V-Market','Банк','Транспорт','Недвижимость','Работа','Семья','Организация','Навигатор'];return <div className="tablet-shell"><header><div><b>VELORIA TABLET</b><small>Личный центр управления</small></div><button onClick={onClose}>×</button></header><div className="tablet-apps">{apps.map(app=><button key={app}><span>{app.slice(0,1)}</span>{app}</button>)}</div></div>}
