@@ -1,0 +1,5 @@
+import { mysql } from '../../core/mysql';
+export type EquipmentSlot='hat'|'glasses'|'mask'|'top'|'undershirt'|'pants'|'shoes'|'accessory'|'watch'|'bracelet';
+export async function getEquipment(characterId:number){const[rows]=await mysql.query('SELECT slot,item,metadata_json FROM character_equipment WHERE character_id=?',[characterId]);return(rows as any[]).map(r=>({slot:r.slot,item:r.item,metadata:r.metadata_json?(typeof r.metadata_json==='string'?JSON.parse(r.metadata_json):r.metadata_json):{}}));}
+export async function equip(characterId:number,slot:EquipmentSlot,item:string,metadata:Record<string,unknown>={}){await mysql.query('INSERT INTO character_equipment(character_id,slot,item,metadata_json) VALUES(?,?,?,?) ON DUPLICATE KEY UPDATE item=VALUES(item),metadata_json=VALUES(metadata_json)',[characterId,slot,item,JSON.stringify(metadata)]);}
+export async function unequip(characterId:number,slot:EquipmentSlot){await mysql.query('DELETE FROM character_equipment WHERE character_id=? AND slot=?',[characterId,slot]);}
