@@ -10,5 +10,35 @@ import { registerPhoneModule } from './modules/phone';
 import { registerMarketModule } from './modules/market';
 import { registerUiBridgeModule } from './modules/uiBridge';
 import { registerTabletModule } from './modules/tablet';
-async function bootstrap(){logger.info('Starting VELORIA RP v0.1 core...');await initMySql();await initRedis();registerAccountModule();registerCharacterModule();registerGameplayModules();registerBankingModule();registerPhoneModule();registerMarketModule();registerUiBridgeModule();registerTabletModule();mp.events.add('playerJoin',(player:PlayerMp)=>{player.dimension=1000+player.id;logger.info(`Player connected: ${player.name} (${player.id})`)});mp.events.add('playerQuit',(player:PlayerMp,exitType:string,reason:string)=>logger.info(`Player disconnected: ${player.name}; ${exitType}; ${reason}`));logger.info('VELORIA RP core initialized')}
-void bootstrap().catch(error=>{logger.error('Fatal bootstrap error',error);process.exitCode=1});
+
+async function bootstrap(){
+  logger.info('Starting VELORIA RP v0.1 core...');
+  await initMySql();
+  await initRedis();
+
+  registerAccountModule();
+  registerCharacterModule();
+  registerGameplayModules();
+  registerBankingModule();
+  registerPhoneModule();
+  registerMarketModule();
+  registerUiBridgeModule();
+  registerTabletModule();
+
+  mp.events.add('playerJoin',(player:PlayerMp)=>{
+    player.dimension=1000+player.id;
+    player.setVariable('veloria:authenticated',false);
+    logger.info(`Player connected: ${player.name} (${player.id})`);
+  });
+
+  mp.events.add('playerQuit',(player:PlayerMp,exitType:string,reason:string)=>{
+    logger.info(`Player disconnected: ${player.name}; ${exitType}; ${reason}`);
+  });
+
+  logger.info('VELORIA RP core initialized');
+}
+
+void bootstrap().catch(error=>{
+  logger.error('Fatal bootstrap error',error);
+  process.exitCode=1;
+});
