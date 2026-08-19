@@ -47,7 +47,6 @@ jobs:
         working-directory: VELORIA-RP
 
     env:
-      NODE_ENV: 'production'
       MYSQL_HOST: '127.0.0.1'
       MYSQL_PORT: '3306'
       MYSQL_USER: 'veloria'
@@ -76,12 +75,12 @@ jobs:
       - name: Install server/client dependencies
         run: |
           set -o pipefail
-          npm install --no-audit --no-fund 2>&1 | tee ci-install-root.log
+          npm install --include=dev --no-audit --no-fund 2>&1 | tee ci-install-root.log
 
       - name: Install CEF dependencies
         run: |
           set -o pipefail
-          npm --prefix src/cef install --no-audit --no-fund 2>&1 | tee ci-install-cef.log
+          npm --prefix src/cef install --include=dev --no-audit --no-fund 2>&1 | tee ci-install-cef.log
 
       - name: Dependency smoke test
         id: deps_smoke
@@ -148,6 +147,8 @@ jobs:
         id: deploy_runtime
         if: steps.deploy_layout.outcome == 'success'
         continue-on-error: true
+        env:
+          NODE_ENV: production
         run: |
           set -o pipefail
           npm --prefix deploy install --omit=dev --no-audit --no-fund 2>&1 | tee ci-deploy-runtime.log
