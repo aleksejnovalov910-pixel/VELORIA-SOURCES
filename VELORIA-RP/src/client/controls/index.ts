@@ -59,7 +59,7 @@ function bindAll(bindings: ClientKeybinds) {
 function unbindAll(bindings: ClientKeybinds) {
   for (const name of Object.keys(bindings) as (keyof ClientKeybinds)[]) {
     try {
-      mp.keys.unbind(bindings[name], handlers[name]);
+      mp.keys.unbind(bindings[name], true);
     } catch {
       /* RAGE client may already have removed the bind */
     }
