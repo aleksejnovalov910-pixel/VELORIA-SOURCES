@@ -132,13 +132,25 @@ jobs:
         run: |
           set -euxo pipefail
           test -f deploy/conf.json
+          test -f deploy/.env.example
           test -f deploy/package.json
           test -f deploy/scripts/migrate.mjs
+          test -f deploy/scripts/dependency-smoke.mjs
           test -f deploy/packages/veloria/index.js
           test -f deploy/packages/veloria/server/index.js
           test -f deploy/client_packages/index.js
           test -f deploy/client_packages/veloria/index.html
           test -f deploy/client_packages/veloria/runtime/client/index.js
+
+      - name: Validate deploy runtime
+        id: deploy_runtime
+        if: steps.deploy_layout.outcome == 'success'
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          npm --prefix deploy install --omit=dev --no-audit --no-fund 2>&1 | tee ci-deploy-runtime.log
+          npm --prefix deploy run deps:smoke 2>&1 | tee -a ci-deploy-runtime.log
+          npm --prefix deploy run migrate 2>&1 | tee -a ci-deploy-runtime.log
 
       - name: Publish diagnostic summary
         if: always()
@@ -155,8 +167,9 @@ jobs:
             echo "| Migration | ${{ steps.migrate.outcome }} |"
             echo "| Build bundle | ${{ steps.build_bundle.outcome }} |"
             echo "| Deploy layout | ${{ steps.deploy_layout.outcome }} |"
+            echo "| Deploy runtime | ${{ steps.deploy_runtime.outcome }} |"
             echo
-            for file in ci-environment.log ci-install-root.log ci-install-cef.log ci-deps-smoke.log ci-typecheck-server.log ci-typecheck-client.log ci-typecheck-cef.log ci-migrate.log ci-build.log; do
+            for file in ci-environment.log ci-install-root.log ci-install-cef.log ci-deps-smoke.log ci-typecheck-server.log ci-typecheck-client.log ci-typecheck-cef.log ci-migrate.log ci-build.log ci-deploy-runtime.log; do
               if [ -f "$file" ]; then
                 echo "### $file"
                 echo '```text'
@@ -182,6 +195,7 @@ jobs:
             VELORIA-RP/ci-typecheck-cef.log
             VELORIA-RP/ci-migrate.log
             VELORIA-RP/ci-build.log
+            VELORIA-RP/ci-deploy-runtime.log
           if-no-files-found: ignore
 
       - name: Fail on validation errors
@@ -193,11 +207,12 @@ jobs:
             "${{ steps.typecheck_server.outcome }}" \
             "${{ steps.typecheck_client.outcome }}" \
             "${{ steps.typecheck_cef.outcome }}" \
-            "${{ steps.migrate.outcome }}"; do
+            "${{ steps.migrate.outcome }}" \
+            "${{ steps.build_bundle.outcome }}" \
+            "${{ steps.deploy_layout.outcome }}" \
+            "${{ steps.deploy_runtime.outcome }}"; do
             if [ "$result" != "success" ]; then failed=1; fi
           done
-          if [ "${{ steps.build_bundle.outcome }}" != "success" ]; then failed=1; fi
-          if [ "${{ steps.deploy_layout.outcome }}" != "success" ]; then failed=1; fi
           exit "$failed"
 
       - name: Upload deploy artifact
