@@ -1,0 +1,3 @@
+import { mysql } from '../../core/mysql';
+export async function getFamilyByCharacter(characterId:number){ const [rows]=await mysql.query(`SELECT f.*,fm.rank FROM family_members fm JOIN families f ON f.id=fm.family_id WHERE fm.character_id=? LIMIT 1`,[characterId]); return (rows as any[])[0] ?? null; }
+export async function createFamily(ownerCharacterId:number,name:string){ const [r]:any=await mysql.query('INSERT INTO families(name,owner_character_id,balance) VALUES(?,?,0)',[name,ownerCharacterId]); await mysql.query('INSERT INTO family_members(family_id,character_id,rank) VALUES(?,?,10)',[r.insertId,ownerCharacterId]); return r.insertId as number; }
