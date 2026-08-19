@@ -21,6 +21,7 @@ import { registerBusinessModule } from './modules/businesses';
 import { registerEquipmentModule } from './modules/equipment';
 import { registerFactionsModule } from './modules/factions/runtime';
 import { registerFamiliesModule } from './modules/families/runtime';
+import { registerAdminModule } from './modules/admin/runtime';
 
 async function bootstrap(){
   logger.info('Starting VELORIA RP v0.1 core...');
@@ -46,6 +47,7 @@ async function bootstrap(){
   registerEquipmentModule();
   registerFactionsModule();
   registerFamiliesModule();
+  registerAdminModule();
 
   mp.events.add('playerJoin',(player:PlayerMp)=>{
     player.dimension=1000+player.id;
