@@ -1,9 +1,24 @@
+import type { PoolConnection } from 'mysql2/promise';
 import { mysql } from '../../core/mysql';
-import { randomBytes } from 'crypto';
+import { randomBytes } from 'node:crypto';
+
 export interface OwnedVehicle{id:number;characterId:number;model:string;plate:string;vin?:string;fuel:number;engineHealth:number;bodyHealth:number;mileage?:number;oil?:number;battery?:number;locked:boolean;engineOn:boolean;position?:unknown;}
 const vin=()=>`VL${randomBytes(8).toString('hex').toUpperCase()}`;
-export async function getCharacterVehicles(characterId:number):Promise<OwnedVehicle[]>{const[rows]=await mysql.query('SELECT * FROM character_vehicles WHERE character_id=?',[characterId]);return(rows as any[]).map(v=>({id:v.id,characterId:v.character_id,model:v.model,plate:v.plate,vin:v.vin,fuel:v.fuel,engineHealth:v.engine_health,bodyHealth:v.body_health,mileage:v.mileage,oil:v.oil,battery:v.battery,locked:!!v.locked,engineOn:!!v.engine_on,position:v.position_json?(typeof v.position_json==='string'?JSON.parse(v.position_json):v.position_json):undefined}));}
-export async function createOwnedVehicle(characterId:number,model:string,plate:string,position?:unknown){const vehicleVin=vin();const[r]:any=await mysql.query('INSERT INTO character_vehicles(character_id,model,plate,vin,position_json) VALUES(?,?,?,?,?)',[characterId,model,plate,vehicleVin,position?JSON.stringify(position):null]);await giveVehicleKey(r.insertId,characterId);return{id:r.insertId,vin:vehicleVin};}
+
+export async function getCharacterVehicles(characterId:number):Promise<OwnedVehicle[]>{
+  const[rows]=await mysql.query('SELECT * FROM character_vehicles WHERE character_id=?',[characterId]);
+  return(rows as any[]).map(v=>({id:v.id,characterId:v.character_id,model:v.model,plate:v.plate,vin:v.vin,fuel:v.fuel,engineHealth:v.engine_health,bodyHealth:v.body_health,mileage:v.mileage,oil:v.oil,battery:v.battery,locked:!!v.locked,engineOn:!!v.engine_on,position:v.position_json?(typeof v.position_json==='string'?JSON.parse(v.position_json):v.position_json):undefined}));
+}
+
+export async function createOwnedVehicle(characterId:number,model:string,plate:string,position?:unknown,connection?:PoolConnection){
+  const vehicleVin=vin();
+  const executor=connection??mysql;
+  const[r]:any=await executor.query('INSERT INTO character_vehicles(character_id,model,plate,vin,position_json) VALUES(?,?,?,?,?)',[characterId,model,plate,vehicleVin,position?JSON.stringify(position):null]);
+  if(connection)await connection.query('INSERT IGNORE INTO vehicle_keys(vehicle_id,character_id) VALUES(?,?)',[r.insertId,characterId]);
+  else await giveVehicleKey(r.insertId,characterId);
+  return{id:r.insertId,vin:vehicleVin};
+}
+
 export async function hasVehicleKey(vehicleId:number,characterId:number){const[rows]=await mysql.query('SELECT 1 FROM vehicle_keys WHERE vehicle_id=? AND character_id=? LIMIT 1',[vehicleId,characterId]);return(rows as any[]).length>0;}
 export async function giveVehicleKey(vehicleId:number,characterId:number){await mysql.query('INSERT IGNORE INTO vehicle_keys(vehicle_id,character_id) VALUES(?,?)',[vehicleId,characterId]);}
 export async function revokeVehicleKey(vehicleId:number,characterId:number){await mysql.query('DELETE FROM vehicle_keys WHERE vehicle_id=? AND character_id=?',[vehicleId,characterId]);}
