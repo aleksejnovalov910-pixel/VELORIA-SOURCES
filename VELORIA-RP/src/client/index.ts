@@ -34,7 +34,8 @@ mp.events.add(VeloriaEvents.HudUpdate,(json:string)=>exec(`window.veloriaHudUpda
 mp.events.add(VeloriaEvents.PhoneToggle,()=>{const next=activeOverlay!=='phone';if(next)mp.events.callRemote('veloria:phone:data');else overlay('phone',false)});
 mp.events.add('veloria:phone:data',(json:string)=>overlay('phone',true,parsed(json,{})));
 mp.events.add(VeloriaEvents.TabletToggle,()=>overlay('tablet',activeOverlay!=='tablet'));
-mp.events.add(VeloriaEvents.SettingsToggle,()=>overlay('settings',activeOverlay!=='settings'));
+mp.events.add(VeloriaEvents.SettingsToggle,()=>{const next=activeOverlay!=='settings';if(next)mp.events.callRemote('veloria:settings:get');else overlay('settings',false)});
+mp.events.add('veloria:settings:data',(json:string)=>overlay('settings',true,parsed(json,{hud:true,minimap:true,voiceVolume:80,interfaceScale:100})));
 mp.events.add(VeloriaEvents.InventoryToggle,()=>{const next=activeOverlay!=='inventory';if(next)mp.events.callRemote('veloria:inventory:data');else overlay('inventory',false)});
 mp.events.add('veloria:inventory:data',(json:string)=>overlay('inventory',true,parsed(json,[])));
 
@@ -59,7 +60,6 @@ mp.events.add('veloria:tablet:data',(section:string,json:string)=>{const n=Strin
 mp.events.add('veloria:dmv:history',(json:string)=>overlay('dmv',true,parsed(json,[])));
 mp.events.add('veloria:impound:data',(json:string)=>overlay('impound',true,parsed(json,[])));
 mp.events.add('veloria:impound:released',()=>mp.events.callRemote('veloria:impound:list'));
-
 mp.events.add('veloria:vehicleMarket:data',(json:string)=>overlay('vehicleMarket',true,parsed(json,[])));
 mp.events.add('veloria:cef:vehicleMarket:buy',(vehicleId:number)=>mp.events.callRemote('veloria:vehicleMarket:buy',vehicleId));
 mp.events.add('veloria:cef:vehicleMarket:create',(vehicleId:number,price:number)=>mp.events.callRemote('veloria:vehicleMarket:create',vehicleId,price));
@@ -67,11 +67,9 @@ mp.events.add('veloria:cef:vehicleMarket:cancel',(vehicleId:number)=>mp.events.c
 mp.events.add('veloria:vehicleMarket:purchased',()=>mp.events.callRemote('veloria:vehicleMarket:list'));
 mp.events.add('veloria:vehicleMarket:listed',()=>mp.events.callRemote('veloria:vehicleMarket:list'));
 mp.events.add('veloria:vehicleMarket:cancelled',()=>mp.events.callRemote('veloria:vehicleMarket:list'));
-
 mp.events.add('veloria:dealership:data',(dealershipId:number,json:string)=>overlay('dealership',true,{dealershipId,stock:parsed(json,[])}));
 mp.events.add('veloria:cef:dealership:buy',(stockId:number)=>mp.events.callRemote('veloria:dealership:buy',stockId));
 mp.events.add('veloria:dealership:purchased',()=>mp.events.callRemote('veloria:dealership:stock',1));
-
 mp.events.add('veloria:bank:balance',(cash:number,bank:number)=>overlay('bank',true,{cash,bank}));
 mp.events.add('veloria:cef:bank:deposit',(amount:number)=>mp.events.callRemote('veloria:bank:deposit',amount));
 mp.events.add('veloria:cef:bank:withdraw',(amount:number)=>mp.events.callRemote('veloria:bank:withdraw',amount));
