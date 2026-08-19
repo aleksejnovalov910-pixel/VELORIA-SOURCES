@@ -51,12 +51,18 @@ function safeKey(value: unknown, fallback: number): number {
 }
 
 function bindAll(bindings: ClientKeybinds) {
-  for (const name of Object.keys(bindings) as (keyof ClientKeybinds)[]) mp.keys.bind(bindings[name], true, handlers[name]);
+  for (const name of Object.keys(bindings) as (keyof ClientKeybinds)[]) {
+    mp.keys.bind(bindings[name], true, handlers[name]);
+  }
 }
 
 function unbindAll(bindings: ClientKeybinds) {
   for (const name of Object.keys(bindings) as (keyof ClientKeybinds)[]) {
-    try { mp.keys.unbind(bindings[name], true, handlers[name]); } catch { /* RAGE client may already have removed the bind */ }
+    try {
+      mp.keys.unbind(bindings[name], handlers[name]);
+    } catch {
+      /* RAGE client may already have removed the bind */
+    }
   }
 }
 
