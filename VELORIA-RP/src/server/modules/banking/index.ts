@@ -36,26 +36,35 @@ async function moveBetweenAccounts(characterId:number,from:'cash'|'bank',to:'cas
 }
 
 function getCharacterId(player: PlayerMp): number | null {
-  const value = player.getVariable('veloria:characterId');
-  return typeof value === 'number' ? value : null;
+  const value = Number(player.getVariable('veloria:characterId'));
+  return Number.isSafeInteger(value) && value > 0 ? value : null;
+}
+
+function syncHudWallet(player: PlayerMp, wallet: {cash:number;bank:number}) {
+  player.call('veloria:hud:wallet', [Number(wallet.cash) || 0, Number(wallet.bank) || 0]);
 }
 
 export function registerBankingModule(): void {
+  mp.events.add('veloria:hud:wallet:get', async (player: PlayerMp) => {
+    const characterId=getCharacterId(player); if(!characterId)return;
+    try{syncHudWallet(player,await getWallet(characterId));}catch{}
+  });
+
   mp.events.add('veloria:bank:balance', async (player: PlayerMp) => {
     const characterId = getCharacterId(player); if (!characterId) return;
-    try { const wallet = await getWallet(characterId); player.call('veloria:bank:balance', [wallet.cash, wallet.bank]); }
+    try { const wallet = await getWallet(characterId); syncHudWallet(player,wallet); player.call('veloria:bank:balance', [wallet.cash, wallet.bank]); }
     catch { player.call('veloria:notify', ['error', 'Не удалось получить баланс']); }
   });
   mp.events.add('veloria:bank:deposit', async (player: PlayerMp, rawAmount: number) => {
-    const characterId=getCharacterId(player),amount=Math.trunc(Number(rawAmount)); if(!characterId||amount<=0)return;
-    try{const wallet=await moveBetweenAccounts(characterId,'cash','bank',amount,'bank_deposit');player.call('veloria:bank:balance',[wallet.cash,wallet.bank]);}catch{player.call('veloria:notify',['error','Недостаточно наличных']);}
+    const characterId=getCharacterId(player),amount=Math.trunc(Number(rawAmount)); if(!characterId||!Number.isSafeInteger(amount)||amount<=0)return;
+    try{const wallet=await moveBetweenAccounts(characterId,'cash','bank',amount,'bank_deposit');syncHudWallet(player,wallet);player.call('veloria:bank:balance',[wallet.cash,wallet.bank]);}catch{player.call('veloria:notify',['error','Недостаточно наличных']);}
   });
   mp.events.add('veloria:bank:withdraw', async (player: PlayerMp, rawAmount: number) => {
-    const characterId=getCharacterId(player),amount=Math.trunc(Number(rawAmount)); if(!characterId||amount<=0)return;
-    try{const wallet=await moveBetweenAccounts(characterId,'bank','cash',amount,'bank_withdraw');player.call('veloria:bank:balance',[wallet.cash,wallet.bank]);}catch{player.call('veloria:notify',['error','Недостаточно средств на счете']);}
+    const characterId=getCharacterId(player),amount=Math.trunc(Number(rawAmount)); if(!characterId||!Number.isSafeInteger(amount)||amount<=0)return;
+    try{const wallet=await moveBetweenAccounts(characterId,'bank','cash',amount,'bank_withdraw');syncHudWallet(player,wallet);player.call('veloria:bank:balance',[wallet.cash,wallet.bank]);}catch{player.call('veloria:notify',['error','Недостаточно средств на счете']);}
   });
   mp.events.add('veloria:bank:transfer', async (player: PlayerMp, targetCharacterId: number, rawAmount: number) => {
-    const characterId=getCharacterId(player),amount=Math.trunc(Number(rawAmount));if(!characterId||amount<=0||characterId===Number(targetCharacterId))return;
-    try{await transferBank(characterId,Number(targetCharacterId),amount);const wallet=await getWallet(characterId);player.call('veloria:bank:balance',[wallet.cash,wallet.bank]);player.call('veloria:notify',['success',`Переведено $${amount}`]);}catch{player.call('veloria:notify',['error','Перевод не выполнен']);}
+    const characterId=getCharacterId(player),target=Math.trunc(Number(targetCharacterId)),amount=Math.trunc(Number(rawAmount));if(!characterId||!Number.isSafeInteger(target)||target<=0||!Number.isSafeInteger(amount)||amount<=0||characterId===target)return;
+    try{await transferBank(characterId,target,amount);const wallet=await getWallet(characterId);syncHudWallet(player,wallet);player.call('veloria:bank:balance',[wallet.cash,wallet.bank]);player.call('veloria:notify',['success',`Переведено $${amount}`]);}catch{player.call('veloria:notify',['error','Перевод не выполнен']);}
   });
 }
