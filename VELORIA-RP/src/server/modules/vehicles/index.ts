@@ -12,8 +12,11 @@ export async function getCharacterVehicles(characterId:number):Promise<OwnedVehi
 
 export async function createOwnedVehicle(characterId:number,model:string,plate:string,position?:unknown,connection?:PoolConnection){
   const vehicleVin=vin();
-  const executor=connection??mysql;
-  const[r]:any=await executor.query('INSERT INTO character_vehicles(character_id,model,plate,vin,position_json) VALUES(?,?,?,?,?)',[characterId,model,plate,vehicleVin,position?JSON.stringify(position):null]);
+  const params=[characterId,model,plate,vehicleVin,position?JSON.stringify(position):null];
+  const result = connection
+    ? await connection.query('INSERT INTO character_vehicles(character_id,model,plate,vin,position_json) VALUES(?,?,?,?,?)',params)
+    : await mysql.query('INSERT INTO character_vehicles(character_id,model,plate,vin,position_json) VALUES(?,?,?,?,?)',params);
+  const r:any=result[0];
   if(connection)await connection.query('INSERT IGNORE INTO vehicle_keys(vehicle_id,character_id) VALUES(?,?)',[r.insertId,characterId]);
   else await giveVehicleKey(r.insertId,characterId);
   return{id:r.insertId,vin:vehicleVin};
