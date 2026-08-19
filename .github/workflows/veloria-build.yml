@@ -71,31 +71,45 @@ jobs:
           npm --prefix src/cef install --no-audit --no-fund 2>&1 | tee ci-install-cef.log
 
       - name: Typecheck server
+        id: typecheck_server
+        continue-on-error: true
         run: |
           set -o pipefail
           npm run typecheck:server 2>&1 | tee ci-typecheck-server.log
 
       - name: Typecheck client
+        id: typecheck_client
+        continue-on-error: true
         run: |
           set -o pipefail
           npm run typecheck:client 2>&1 | tee ci-typecheck-client.log
 
       - name: Typecheck CEF
+        id: typecheck_cef
+        continue-on-error: true
         run: |
           set -o pipefail
           npm run typecheck:cef 2>&1 | tee ci-typecheck-cef.log
 
       - name: Migration smoke test
+        id: migrate
+        continue-on-error: true
         run: |
           set -o pipefail
           npm run migrate 2>&1 | tee ci-migrate.log
 
       - name: Build deploy bundle
+        id: build_bundle
+        if: steps.typecheck_server.outcome == 'success' && steps.typecheck_client.outcome == 'success' && steps.typecheck_cef.outcome == 'success'
+        continue-on-error: true
         run: |
           set -o pipefail
           npm run build 2>&1 | tee ci-build.log
 
       - name: Validate deploy layout
+        id: deploy_layout
+        if: steps.build_bundle.outcome == 'success'
+        continue-on-error: true
         run: |
           set -euxo pipefail
           test -f deploy/conf.json
@@ -113,11 +127,20 @@ jobs:
           {
             echo '## VELORIA CI diagnostics'
             echo
+            echo '| Check | Result |'
+            echo '|---|---|'
+            echo "| Typecheck server | ${{ steps.typecheck_server.outcome }} |"
+            echo "| Typecheck client | ${{ steps.typecheck_client.outcome }} |"
+            echo "| Typecheck CEF | ${{ steps.typecheck_cef.outcome }} |"
+            echo "| Migration | ${{ steps.migrate.outcome }} |"
+            echo "| Build bundle | ${{ steps.build_bundle.outcome }} |"
+            echo "| Deploy layout | ${{ steps.deploy_layout.outcome }} |"
+            echo
             for file in ci-environment.log ci-install-root.log ci-install-cef.log ci-typecheck-server.log ci-typecheck-client.log ci-typecheck-cef.log ci-migrate.log ci-build.log; do
               if [ -f "$file" ]; then
                 echo "### $file"
                 echo '```text'
-                tail -n 80 "$file"
+                tail -n 120 "$file"
                 echo '```'
                 echo
               fi
@@ -139,6 +162,21 @@ jobs:
             VELORIA-RP/ci-migrate.log
             VELORIA-RP/ci-build.log
           if-no-files-found: ignore
+
+      - name: Fail on validation errors
+        if: always()
+        run: |
+          failed=0
+          for result in \
+            "${{ steps.typecheck_server.outcome }}" \
+            "${{ steps.typecheck_client.outcome }}" \
+            "${{ steps.typecheck_cef.outcome }}" \
+            "${{ steps.migrate.outcome }}"; do
+            if [ "$result" != "success" ]; then failed=1; fi
+          done
+          if [ "${{ steps.build_bundle.outcome }}" != "success" ]; then failed=1; fi
+          if [ "${{ steps.deploy_layout.outcome }}" != "success" ]; then failed=1; fi
+          exit "$failed"
 
       - name: Upload deploy artifact
         if: success()
