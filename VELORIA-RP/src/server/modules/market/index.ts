@@ -1,0 +1,4 @@
+import { mysql } from '../../core/mysql';
+export interface MarketListingInput { sellerCharacterId:number; category:string; title:string; price:number; quantity:number; payload:Record<string,unknown>; }
+export async function createListing(input:MarketListingInput){ const [r]:any=await mysql.query('INSERT INTO market_listings(seller_character_id,category,title,price,quantity,payload_json,status,created_at) VALUES(?,?,?,?,?,?,\'active\',NOW())',[input.sellerCharacterId,input.category,input.title,input.price,input.quantity,JSON.stringify(input.payload)]); return r.insertId as number; }
+export async function listActive(category?:string){ const [rows]=category?await mysql.query('SELECT * FROM market_listings WHERE status=\'active\' AND category=? ORDER BY price',[category]):await mysql.query('SELECT * FROM market_listings WHERE status=\'active\' ORDER BY created_at DESC'); return rows as any[]; }
