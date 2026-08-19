@@ -4,66 +4,78 @@ import { hasVehicleKey, setVehicleState } from './vehicles';
 import { ensurePhone } from './phone';
 
 function characterId(player: PlayerMp): number | null {
-  const value = player.getVariable('veloria:characterId') ?? player.getVariable('characterId');
-  return typeof value === 'number' ? value : null;
+  const value = Number(player.getVariable('veloria:characterId') ?? player.getVariable('characterId'));
+  return Number.isSafeInteger(value) && value > 0 ? value : null;
 }
 
 async function canControlVehicle(player: PlayerMp, vehicle: VehicleMp): Promise<boolean> {
   const id = characterId(player);
   const vehicleId = Number((vehicle as any).veloriaVehicleId ?? vehicle.getVariable('veloria:vehicleId') ?? 0);
-  if (!id || !vehicleId) return false;
+  if (!id || !Number.isSafeInteger(vehicleId) || vehicleId <= 0) return false;
   return hasVehicleKey(vehicleId, id);
 }
 
-function findVehicle(rawId: number): VehicleMp | null {
+function findVehicle(rawId: unknown): VehicleMp | null {
   const id = Number(rawId);
-  if (!Number.isFinite(id)) return null;
+  if (!Number.isSafeInteger(id) || id < 0) return null;
   return mp.vehicles.at(id) ?? null;
+}
+
+function notify(player: PlayerMp, type: 'info' | 'error', text: string) {
+  player.call(VeloriaEvents.Notify, [type, text]);
 }
 
 export function registerGameplayModules() {
   mp.events.add(VeloriaEvents.InventoryOpen, async (player: PlayerMp) => {
     const id = characterId(player);
     if (!id) return;
-    const inventory = await getInventory(id);
-    player.call(VeloriaEvents.InventorySync, [JSON.stringify(inventory)]);
+    try {
+      const inventory = await getInventory(id);
+      player.call(VeloriaEvents.InventorySync, [JSON.stringify(inventory)]);
+    } catch {
+      notify(player, 'error', 'Не удалось загрузить инвентарь');
+    }
   });
 
   mp.events.add(VeloriaEvents.PhoneToggle, async (player: PlayerMp) => {
     const id = characterId(player);
     if (!id) return;
-    const phone = await ensurePhone(id);
-    player.call(VeloriaEvents.PhoneToggle, [JSON.stringify(phone)]);
-  });
-
-  mp.events.add(VeloriaEvents.VehicleLock, async (player: PlayerMp, vehicleIdRaw: number) => {
-    const vehicle = findVehicle(vehicleIdRaw);
-    if (!vehicle) return;
-    if (!(await canControlVehicle(player, vehicle))) {
-      player.call(VeloriaEvents.Notify, ['error', 'У вас нет ключа от этого автомобиля']);
-      return;
+    try {
+      const phone = await ensurePhone(id);
+      player.call(VeloriaEvents.PhoneToggle, [JSON.stringify(phone)]);
+    } catch {
+      notify(player, 'error', 'Не удалось открыть телефон');
     }
-
-    const locked = !(vehicle as any).locked;
-    (vehicle as any).locked = locked;
-    const vehicleId = Number((vehicle as any).veloriaVehicleId ?? vehicle.getVariable('veloria:vehicleId') ?? 0);
-    if (vehicleId) await setVehicleState(vehicleId, { locked });
-    player.call(VeloriaEvents.Notify, ['info', locked ? 'Автомобиль закрыт' : 'Автомобиль открыт']);
   });
 
-  mp.events.add(VeloriaEvents.VehicleEngine, async (player: PlayerMp, vehicleIdRaw: number) => {
+  mp.events.add(VeloriaEvents.VehicleLock, async (player: PlayerMp, vehicleIdRaw: unknown) => {
+    const vehicle = findVehicle(vehicleIdRaw);
+    if (!vehicle) return notify(player, 'error', 'Автомобиль не найден');
+    try {
+      if (!(await canControlVehicle(player, vehicle))) return notify(player, 'error', 'У вас нет ключа от этого автомобиля');
+      const locked = !(vehicle as any).locked;
+      (vehicle as any).locked = locked;
+      const vehicleId = Number((vehicle as any).veloriaVehicleId ?? vehicle.getVariable('veloria:vehicleId') ?? 0);
+      if (Number.isSafeInteger(vehicleId) && vehicleId > 0) await setVehicleState(vehicleId, { locked });
+      notify(player, 'info', locked ? 'Автомобиль закрыт' : 'Автомобиль открыт');
+    } catch {
+      notify(player, 'error', 'Не удалось изменить состояние замка');
+    }
+  });
+
+  mp.events.add(VeloriaEvents.VehicleEngine, async (player: PlayerMp, vehicleIdRaw: unknown) => {
     const vehicle = findVehicle(vehicleIdRaw);
     if (!vehicle || player.vehicle !== vehicle) return;
-    if (!(await canControlVehicle(player, vehicle))) {
-      player.call(VeloriaEvents.Notify, ['error', 'Для запуска двигателя нужен ключ']);
-      return;
+    try {
+      if (!(await canControlVehicle(player, vehicle))) return notify(player, 'error', 'Для запуска двигателя нужен ключ');
+      const engineOn = !(vehicle as any).engine;
+      (vehicle as any).engine = engineOn;
+      const vehicleId = Number((vehicle as any).veloriaVehicleId ?? vehicle.getVariable('veloria:vehicleId') ?? 0);
+      if (Number.isSafeInteger(vehicleId) && vehicleId > 0) await setVehicleState(vehicleId, { engineOn });
+      notify(player, 'info', engineOn ? 'Двигатель запущен' : 'Двигатель заглушен');
+    } catch {
+      notify(player, 'error', 'Не удалось изменить состояние двигателя');
     }
-
-    const engineOn = !(vehicle as any).engine;
-    (vehicle as any).engine = engineOn;
-    const vehicleId = Number((vehicle as any).veloriaVehicleId ?? vehicle.getVariable('veloria:vehicleId') ?? 0);
-    if (vehicleId) await setVehicleState(vehicleId, { engineOn });
-    player.call(VeloriaEvents.Notify, ['info', engineOn ? 'Двигатель запущен' : 'Двигатель заглушен']);
   });
 
   mp.events.add(VeloriaEvents.VehicleSeatbelt, (player: PlayerMp) => {
@@ -72,6 +84,6 @@ export function registerGameplayModules() {
     const next = !current;
     player.setVariable('veloria:seatbelt', next);
     player.call('veloria:vehicle:seatbelt:state', [next]);
-    player.call(VeloriaEvents.Notify, ['info', next ? 'Ремень пристегнут' : 'Ремень отстегнут']);
+    notify(player, 'info', next ? 'Ремень пристегнут' : 'Ремень отстегнут');
   });
 }
