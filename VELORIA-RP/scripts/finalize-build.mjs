@@ -20,14 +20,19 @@ await cp(resolve(root, 'conf.json'), resolve(out, 'conf.json'));
 await cp(resolve(root, '.env.example'), resolve(out, '.env.example'));
 await cp(resolve(root, 'database'), resolve(out, 'database'), { recursive: true });
 await cp(resolve(root, 'scripts/migrate.mjs'), resolve(out, 'scripts/migrate.mjs'));
+await cp(resolve(root, 'scripts/dependency-smoke.mjs'), resolve(out, 'scripts/dependency-smoke.mjs'));
 
 const runtimePackage = {
   name: 'veloria-rp-runtime',
   private: true,
   version: '0.1.0',
   type: 'commonjs',
+  engines: {
+    node: '>=20'
+  },
   scripts: {
-    migrate: 'node scripts/migrate.mjs'
+    migrate: 'node scripts/migrate.mjs',
+    'deps:smoke': 'node scripts/dependency-smoke.mjs'
   },
   dependencies: {
     bcryptjs: '^3.0.2',
