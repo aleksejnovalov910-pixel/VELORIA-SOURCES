@@ -1,0 +1,4 @@
+import React from 'react';
+type Contact={id:number;name:string;number:string};
+type Message={id:number;from:string;text:string;createdAt:string};
+export function Phone({number,contacts=[],messages=[],onClose}:{number?:string;contacts?:Contact[];messages?:Message[];onClose:()=>void}){return <div className="phone-shell"><header><b>VELORIA</b><button onClick={onClose}>×</button></header><div className="phone-number">{number??'NO SIM'}</div><section><h3>Контакты</h3>{contacts.slice(0,6).map(c=><div className="phone-row" key={c.id}><span>{c.name}</span><small>{c.number}</small></div>)}</section><section><h3>Сообщения</h3>{messages.slice(0,5).map(m=><div className="phone-row" key={m.id}><span>{m.from}</span><small>{m.text}</small></div>)}</section><nav><button>Телефон</button><button>Контакты</button><button>Сообщения</button></nav></div>}
