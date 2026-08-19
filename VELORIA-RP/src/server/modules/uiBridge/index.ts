@@ -1,5 +1,5 @@
 import { mysql } from '../../core/mysql';
-import { getInventory } from '../inventory';
+import { getInventory, ITEMS, moveItem, removeItem } from '../inventory';
 
 type UiSettings = {
   hud: boolean;
@@ -16,20 +16,24 @@ const DEFAULT_SETTINGS: UiSettings = {
 };
 
 function characterId(player: PlayerMp): number | null {
-  const primary = player.getVariable('veloria:characterId');
-  if (typeof primary === 'number') return primary;
-  const legacy = player.getVariable('characterId');
-  return typeof legacy === 'number' ? legacy : null;
+  const value = Number(player.getVariable('veloria:characterId') ?? player.getVariable('characterId'));
+  return Number.isSafeInteger(value) && value > 0 ? value : null;
 }
 
 function normalizeSettings(value: unknown): UiSettings {
   const raw = value && typeof value === 'object' ? value as Record<string, unknown> : {};
+  const voiceVolume = Number(raw.voiceVolume ?? DEFAULT_SETTINGS.voiceVolume);
+  const interfaceScale = Number(raw.interfaceScale ?? DEFAULT_SETTINGS.interfaceScale);
   return {
     hud: typeof raw.hud === 'boolean' ? raw.hud : DEFAULT_SETTINGS.hud,
     minimap: typeof raw.minimap === 'boolean' ? raw.minimap : DEFAULT_SETTINGS.minimap,
-    voiceVolume: Math.max(0, Math.min(100, Number(raw.voiceVolume ?? DEFAULT_SETTINGS.voiceVolume))),
-    interfaceScale: Math.max(80, Math.min(120, Number(raw.interfaceScale ?? DEFAULT_SETTINGS.interfaceScale)))
+    voiceVolume: Number.isFinite(voiceVolume) ? Math.max(0, Math.min(100, voiceVolume)) : DEFAULT_SETTINGS.voiceVolume,
+    interfaceScale: Number.isFinite(interfaceScale) ? Math.max(80, Math.min(120, interfaceScale)) : DEFAULT_SETTINGS.interfaceScale
   };
+}
+
+async function syncInventory(player: PlayerMp, id: number) {
+  player.call('veloria:inventory:data', [JSON.stringify(await getInventory(id))]);
 }
 
 export function registerUiBridgeModule(): void {
@@ -37,9 +41,48 @@ export function registerUiBridgeModule(): void {
     const id = characterId(player);
     if (!id) return;
     try {
-      player.call('veloria:inventory:data', [JSON.stringify(await getInventory(id))]);
+      await syncInventory(player, id);
     } catch {
       player.call('veloria:notify', ['error', 'Не удалось открыть инвентарь']);
+    }
+  });
+
+  mp.events.add('veloria:inventory:move', async (player: PlayerMp, fromRaw: unknown, toRaw: unknown) => {
+    const id = characterId(player);
+    const from = Number(fromRaw), to = Number(toRaw);
+    if (!id || !Number.isSafeInteger(from) || !Number.isSafeInteger(to)) return;
+    try {
+      await moveItem(id, from, to);
+      await syncInventory(player, id);
+    } catch (error) {
+      const code = error instanceof Error ? error.message : '';
+      player.call('veloria:notify', ['error', code === 'EMPTY_SLOT' ? 'В этой ячейке нет предмета' : 'Не удалось переместить предмет']);
+    }
+  });
+
+  mp.events.add('veloria:inventory:use', async (player: PlayerMp, slotRaw: unknown) => {
+    const id = characterId(player), slot = Number(slotRaw);
+    if (!id || !Number.isSafeInteger(slot) || slot < 0 || slot >= 40) return;
+    try {
+      const inventory = await getInventory(id);
+      const entry = inventory.find(item => item.slot === slot);
+      if (!entry) throw new Error('EMPTY_SLOT');
+      const def = ITEMS[entry.item];
+      if (!def?.usable) throw new Error('NOT_USABLE');
+
+      if (entry.item === 'medkit') {
+        const current = Math.max(0, Number(player.health ?? 0));
+        if (current >= 100) throw new Error('HEALTH_FULL');
+        player.health = Math.min(100, current + 35);
+      }
+
+      await removeItem(id, entry.item, 1);
+      player.call('veloria:notify', ['success', entry.item === 'water' ? 'Вы выпили воду' : entry.item === 'food' ? 'Вы поели' : entry.item === 'medkit' ? 'Аптечка использована' : `${def.name} использован`]);
+      await syncInventory(player, id);
+    } catch (error) {
+      const code = error instanceof Error ? error.message : '';
+      const text = code === 'EMPTY_SLOT' ? 'В этой ячейке нет предмета' : code === 'NOT_USABLE' ? 'Этот предмет нельзя использовать' : code === 'HEALTH_FULL' ? 'Здоровье уже полное' : 'Не удалось использовать предмет';
+      player.call('veloria:notify', ['error', text]);
     }
   });
 
