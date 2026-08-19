@@ -1,23 +1,71 @@
 import { mysql } from '../../core/mysql';
 import { getInventory, ITEMS, moveItem, removeItem } from '../inventory';
 
+type KeybindSettings = {
+  phone: number;
+  tablet: number;
+  inventory: number;
+  settings: number;
+  vehicleLock: number;
+  vehicleEngine: number;
+  seatbelt: number;
+};
+
 type UiSettings = {
   hud: boolean;
   minimap: boolean;
   voiceVolume: number;
   interfaceScale: number;
+  keybinds: KeybindSettings;
+};
+
+const DEFAULT_KEYBINDS: KeybindSettings = {
+  phone: 38,
+  tablet: 40,
+  inventory: 73,
+  settings: 113,
+  vehicleLock: 76,
+  vehicleEngine: 74,
+  seatbelt: 66
 };
 
 const DEFAULT_SETTINGS: UiSettings = {
   hud: true,
   minimap: true,
   voiceVolume: 80,
-  interfaceScale: 100
+  interfaceScale: 100,
+  keybinds: { ...DEFAULT_KEYBINDS }
 };
 
 function characterId(player: PlayerMp): number | null {
   const value = Number(player.getVariable('veloria:characterId') ?? player.getVariable('characterId'));
   return Number.isSafeInteger(value) && value > 0 ? value : null;
+}
+
+function validKey(value: unknown, fallback: number): number {
+  const key = Number(value);
+  return Number.isSafeInteger(key) && key >= 8 && key <= 255 ? key : fallback;
+}
+
+function normalizeKeybinds(value: unknown): KeybindSettings {
+  const raw = value && typeof value === 'object' ? value as Record<string, unknown> : {};
+  const proposed: KeybindSettings = {
+    phone: validKey(raw.phone, DEFAULT_KEYBINDS.phone),
+    tablet: validKey(raw.tablet, DEFAULT_KEYBINDS.tablet),
+    inventory: validKey(raw.inventory, DEFAULT_KEYBINDS.inventory),
+    settings: validKey(raw.settings, DEFAULT_KEYBINDS.settings),
+    vehicleLock: validKey(raw.vehicleLock, DEFAULT_KEYBINDS.vehicleLock),
+    vehicleEngine: validKey(raw.vehicleEngine, DEFAULT_KEYBINDS.vehicleEngine),
+    seatbelt: validKey(raw.seatbelt, DEFAULT_KEYBINDS.seatbelt)
+  };
+
+  const used = new Set<number>();
+  for (const name of Object.keys(proposed) as (keyof KeybindSettings)[]) {
+    const key = proposed[name];
+    if (used.has(key)) proposed[name] = DEFAULT_KEYBINDS[name];
+    used.add(proposed[name]);
+  }
+  return proposed;
 }
 
 function normalizeSettings(value: unknown): UiSettings {
@@ -28,7 +76,8 @@ function normalizeSettings(value: unknown): UiSettings {
     hud: typeof raw.hud === 'boolean' ? raw.hud : DEFAULT_SETTINGS.hud,
     minimap: typeof raw.minimap === 'boolean' ? raw.minimap : DEFAULT_SETTINGS.minimap,
     voiceVolume: Number.isFinite(voiceVolume) ? Math.max(0, Math.min(100, voiceVolume)) : DEFAULT_SETTINGS.voiceVolume,
-    interfaceScale: Number.isFinite(interfaceScale) ? Math.max(80, Math.min(120, interfaceScale)) : DEFAULT_SETTINGS.interfaceScale
+    interfaceScale: Number.isFinite(interfaceScale) ? Math.max(80, Math.min(120, interfaceScale)) : DEFAULT_SETTINGS.interfaceScale,
+    keybinds: normalizeKeybinds(raw.keybinds)
   };
 }
 
@@ -40,11 +89,8 @@ export function registerUiBridgeModule(): void {
   mp.events.add('veloria:inventory:data', async (player: PlayerMp) => {
     const id = characterId(player);
     if (!id) return;
-    try {
-      await syncInventory(player, id);
-    } catch {
-      player.call('veloria:notify', ['error', 'Не удалось открыть инвентарь']);
-    }
+    try { await syncInventory(player, id); }
+    catch { player.call('veloria:notify', ['error', 'Не удалось открыть инвентарь']); }
   });
 
   mp.events.add('veloria:inventory:move', async (player: PlayerMp, fromRaw: unknown, toRaw: unknown) => {
@@ -69,13 +115,11 @@ export function registerUiBridgeModule(): void {
       if (!entry) throw new Error('EMPTY_SLOT');
       const def = ITEMS[entry.item];
       if (!def?.usable) throw new Error('NOT_USABLE');
-
       if (entry.item === 'medkit') {
         const current = Math.max(0, Number(player.health ?? 0));
         if (current >= 100) throw new Error('HEALTH_FULL');
         player.health = Math.min(100, current + 35);
       }
-
       await removeItem(id, entry.item, 1);
       player.call('veloria:notify', ['success', entry.item === 'water' ? 'Вы выпили воду' : entry.item === 'food' ? 'Вы поели' : entry.item === 'medkit' ? 'Аптечка использована' : `${def.name} использован`]);
       await syncInventory(player, id);
@@ -96,7 +140,9 @@ export function registerUiBridgeModule(): void {
       if (row?.ui_json) {
         try { parsed = typeof row.ui_json === 'string' ? JSON.parse(row.ui_json) : row.ui_json; } catch { parsed = {}; }
       }
-      player.call('veloria:settings:data', [JSON.stringify(normalizeSettings(parsed))]);
+      const settings = normalizeSettings(parsed);
+      player.setVariable('veloria:settings', JSON.stringify(settings));
+      player.call('veloria:settings:data', [JSON.stringify(settings)]);
     } catch {
       player.call('veloria:settings:data', [JSON.stringify(DEFAULT_SETTINGS)]);
     }
@@ -114,6 +160,7 @@ export function registerUiBridgeModule(): void {
         [id, JSON.stringify(settings)]
       );
       player.setVariable('veloria:settings', JSON.stringify(settings));
+      player.call('veloria:settings:data', [JSON.stringify(settings)]);
     } catch {
       player.call('veloria:notify', ['error', 'Некорректные настройки']);
     }
