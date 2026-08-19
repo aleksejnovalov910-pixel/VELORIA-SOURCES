@@ -10,6 +10,7 @@ import { registerPhoneModule } from './modules/phone';
 import { registerMarketModule } from './modules/market';
 import { registerUiBridgeModule } from './modules/uiBridge';
 import { registerTabletModule } from './modules/tablet';
+import { registerVehicleRuntimeModule } from './modules/vehicleRuntime';
 
 async function bootstrap(){
   logger.info('Starting VELORIA RP v0.1 core...');
@@ -24,6 +25,7 @@ async function bootstrap(){
   registerMarketModule();
   registerUiBridgeModule();
   registerTabletModule();
+  registerVehicleRuntimeModule();
 
   mp.events.add('playerJoin',(player:PlayerMp)=>{
     player.dimension=1000+player.id;
