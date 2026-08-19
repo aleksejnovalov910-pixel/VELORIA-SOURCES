@@ -21,6 +21,7 @@ await cp(resolve(root, '.env.example'), resolve(out, '.env.example'));
 await cp(resolve(root, 'database'), resolve(out, 'database'), { recursive: true });
 await cp(resolve(root, 'scripts/migrate.mjs'), resolve(out, 'scripts/migrate.mjs'));
 await cp(resolve(root, 'scripts/dependency-smoke.mjs'), resolve(out, 'scripts/dependency-smoke.mjs'));
+await cp(resolve(root, 'scripts/host-preflight.mjs'), resolve(out, 'scripts/host-preflight.mjs'));
 
 const runtimePackage = {
   name: 'veloria-rp-runtime',
@@ -31,6 +32,7 @@ const runtimePackage = {
     node: '>=20'
   },
   scripts: {
+    preflight: 'node scripts/host-preflight.mjs',
     migrate: 'node scripts/migrate.mjs',
     'deps:smoke': 'node scripts/dependency-smoke.mjs'
   },
