@@ -82,6 +82,17 @@ jobs:
           set -o pipefail
           npm --prefix src/cef install --include=dev --no-audit --no-fund 2>&1 | tee ci-install-cef.log
 
+      - name: Verify build toolchain
+        run: |
+          set -euxo pipefail
+          ./node_modules/.bin/tsc --version
+          ./src/cef/node_modules/.bin/tsc --version
+          test -f node_modules/@ragempcommunity/types-server/index.d.ts
+          test -f node_modules/@ragempcommunity/types-client/index.d.ts
+          test -f src/cef/node_modules/@types/react/index.d.ts
+          test -f src/cef/node_modules/@types/react-dom/index.d.ts
+          test -x src/cef/node_modules/.bin/vite
+
       - name: Dependency smoke test
         id: deps_smoke
         continue-on-error: true
