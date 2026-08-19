@@ -1,7 +1,7 @@
 import { Events } from '../shared/events';
 import { VeloriaEvents } from '../shared/events/veloria';
 import { setHudVisible } from './hud';
-import './controls';
+import { applyKeybinds, DEFAULT_KEYBINDS } from './controls';
 import './vehicles';
 import './character/creator';
 
@@ -11,7 +11,7 @@ let activeOverlay: string | null = null;
 const ensureBrowser=()=>{if(!browser)browser=mp.browsers.new('package://veloria/index.html');return browser};
 const exec=(code:string)=>ensureBrowser().execute(code);const cursor=(state:boolean)=>mp.gui.cursor.show(state,state);
 function openAuth(){ensureBrowser();authenticated=false;activeOverlay=null;setHudVisible(false);cursor(true)}
-function closeAuth(){authenticated=true;activeOverlay=null;cursor(false);setHudVisible(true)}
+function closeAuth(){authenticated=true;activeOverlay=null;cursor(false);setHudVisible(true);mp.events.callRemote('veloria:settings:get')}
 function overlay(name:string,state:boolean,data:unknown={}){if(!authenticated)return;if(state){activeOverlay=name;cursor(true)}else if(activeOverlay===name){activeOverlay=null;cursor(false)}exec(`window.veloriaOverlay?.(${JSON.stringify(name)},${JSON.stringify(state)},${JSON.stringify(JSON.stringify(data))})`)}
 function parsed(json:string,fallback:unknown=[]){try{return JSON.parse(json)}catch{return fallback}}
 
@@ -31,7 +31,7 @@ mp.events.add('veloria:cef:phone:contact:add',(number:string,name:string)=>mp.ev
 mp.events.add('veloria:cef:phone:message:send',(number:string,text:string)=>mp.events.callRemote('veloria:phone:message:send',number,text));
 mp.events.add(VeloriaEvents.TabletToggle,()=>overlay('tablet',activeOverlay!=='tablet'));
 mp.events.add(VeloriaEvents.SettingsToggle,()=>{const next=activeOverlay!=='settings';if(next)mp.events.callRemote('veloria:settings:get');else overlay('settings',false)});
-mp.events.add('veloria:settings:data',(json:string)=>overlay('settings',true,parsed(json,{hud:true,minimap:true,voiceVolume:80,interfaceScale:100})));
+mp.events.add('veloria:settings:data',(json:string)=>{const data=parsed(json,{hud:true,minimap:true,voiceVolume:80,interfaceScale:100,keybinds:DEFAULT_KEYBINDS}) as any;data.keybinds=applyKeybinds(data?.keybinds);overlay('settings',true,data)});
 mp.events.add(VeloriaEvents.InventoryToggle,()=>{const next=activeOverlay!=='inventory';if(next)mp.events.callRemote('veloria:inventory:data');else overlay('inventory',false)});
 mp.events.add('veloria:inventory:data',(json:string)=>overlay('inventory',true,parsed(json,[])));
 mp.events.add('veloria:cef:inventory:move',(from:number,to:number)=>mp.events.callRemote('veloria:inventory:move',from,to));
