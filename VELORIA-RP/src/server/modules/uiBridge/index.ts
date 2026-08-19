@@ -1,0 +1,3 @@
+import { getInventory } from '../inventory';
+function characterId(player:PlayerMp){const id=player.getVariable('veloria:characterId');return typeof id==='number'?id:null}
+export function registerUiBridgeModule(){mp.events.add('veloria:inventory:data',async(player:PlayerMp)=>{const id=characterId(player);if(!id)return;try{player.call('veloria:inventory:data',[JSON.stringify(await getInventory(id))])}catch{player.call('veloria:notify',['error','Не удалось открыть инвентарь'])}});mp.events.add('veloria:settings:save',(player:PlayerMp,json:string)=>{const id=characterId(player);if(!id)return;try{const settings=JSON.parse(json);player.setVariable('veloria:settings',settings)}catch{player.call('veloria:notify',['error','Некорректные настройки'])}})}
