@@ -91,6 +91,8 @@ mp.events.add('veloria:cef:tablet:open', (app: string) => {
   else if (normalized === 'faction') mp.events.callRemote('veloria:tablet:data', 'faction');
   else if (normalized === 'business' || normalized === 'businesses') mp.events.callRemote('veloria:tablet:data', 'business');
   else if (normalized === 'equipment' || normalized === 'clothes') mp.events.callRemote('veloria:tablet:data', 'equipment');
+  else if (normalized === 'dmv') mp.events.callRemote('veloria:dmv:history');
+  else if (normalized === 'impound') mp.events.callRemote('veloria:impound:list');
   else exec(`window.veloriaNotify?.('info',${JSON.stringify('Раздел пока не подключен')})`);
 });
 mp.events.add('veloria:tablet:data', (section: string, json: string) => {
@@ -108,6 +110,18 @@ mp.events.add('veloria:tablet:data', (section: string, json: string) => {
   };
   overlay(map[normalized] ?? 'tablet', true, data);
 });
+
+mp.events.add('veloria:dmv:history', (json: string) => {
+  let data: unknown = [];
+  try { data = JSON.parse(json); } catch {}
+  overlay('dmv', true, data);
+});
+mp.events.add('veloria:impound:data', (json: string) => {
+  let data: unknown = [];
+  try { data = JSON.parse(json); } catch {}
+  overlay('impound', true, data);
+});
+mp.events.add('veloria:impound:released', () => mp.events.callRemote('veloria:impound:list'));
 
 mp.events.add('veloria:bank:balance', (cash: number, bank: number) => overlay('bank', true, { cash, bank }));
 mp.events.add('veloria:cef:bank:deposit', (amount: number) => mp.events.callRemote('veloria:bank:deposit', amount));
