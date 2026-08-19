@@ -13,7 +13,8 @@ const required = [
   'client_packages/index.js',
   'client_packages/veloria/index.html',
   'client_packages/veloria/runtime/client/index.js',
-  'scripts/migrate.mjs'
+  'scripts/migrate.mjs',
+  'scripts/dependency-smoke.mjs'
 ];
 
 for (const file of required) {
@@ -49,5 +50,8 @@ const pkg = JSON.parse(await readFile(resolve(deploy, 'package.json'), 'utf8'));
 for (const dep of ['bcryptjs','dotenv','ioredis','mysql2']) {
   if (!pkg.dependencies?.[dep]) throw new Error(`Missing runtime dependency: ${dep}`);
 }
+if (!pkg.scripts?.migrate) throw new Error('Missing runtime migrate script');
+if (!pkg.scripts?.['deps:smoke']) throw new Error('Missing runtime dependency smoke script');
+if (!pkg.engines?.node) throw new Error('Missing runtime Node.js engine requirement');
 
 console.log(`VELORIA preflight OK: ${numbered.length} migrations, deploy layout complete`);
