@@ -39,10 +39,6 @@ async function resolveClientRequire(sourceFile, request) {
   return null;
 }
 
-// RAGE:MP resolves client require() requests from client_packages root rather
-// than with Node's normal per-file resolution. Rewrite every relative require
-// emitted by TypeScript to an explicit client_packages-root path and verify its
-// target exists. This prevents the recurring `could not locate file` failures.
 const clientJsFiles = (await files(runtime)).filter(path => path.endsWith('.js'));
 const unresolved = [];
 let rewritten = 0;
@@ -70,7 +66,6 @@ if (unresolved.length) {
   throw new Error(`Unresolved client requires:\n${unresolved.join('\n')}`);
 }
 
-// Audit the rewritten runtime: no relative Node-style require may remain.
 const remaining = [];
 for (const file of clientJsFiles) {
   const source = await readFile(file, 'utf8');
@@ -86,7 +81,15 @@ if (remaining.length) {
 }
 
 await writeFile(resolve(out, 'packages/veloria/index.js'), "require('./server/index.js');\n", 'utf8');
-await writeFile(resolve(out, 'client_packages/index.js'), "require('./veloria/runtime/client/index.js');\n", 'utf8');
+await writeFile(
+  resolve(out, 'client_packages/index.js'),
+  [
+    "require('./veloria/runtime/client/index.js');",
+    "require('./veloria/runtime/client/shops.js');",
+    ''
+  ].join('\n'),
+  'utf8'
+);
 
 await cp(resolve(root, 'conf.json'), resolve(out, 'conf.json'));
 await cp(resolve(root, '.env.example'), resolve(out, '.env.example'));
