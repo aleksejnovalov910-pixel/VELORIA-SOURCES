@@ -47,7 +47,7 @@ function show(json: string) {
   if (!Number.isSafeInteger(Number(data?.id))) return;
   openStationId = Number(data.id);
   mp.gui.cursor.show(true, true);
-  const payload = JSON.stringify(data).replaceAll('<', '\\u003c');
+  const payload = JSON.stringify(data).replace(/</g, '\\u003c');
   execAll(`(() => {
     const data = ${payload};
     document.getElementById('veloria-rental-overlay')?.remove();
