@@ -7,4 +7,5 @@ import './dealerships';
 import './jobs';
 import './vehicleService';
 import './dmvWorld';
+import './vehicleTuning';
 import './interactionMenu';
