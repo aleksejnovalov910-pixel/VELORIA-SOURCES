@@ -4,6 +4,8 @@ import { VeloriaEvents } from '../../../shared/events/veloria';
 import { CharacterAppearance, CharacterSummary } from '../../../shared/types/character';
 import { db } from '../../database/mysql';
 import { logger } from '../../core/logger';
+import { addItem } from '../inventory';
+import { ensurePhone } from '../phone';
 
 interface CharacterRow extends RowDataPacket {
   id: number;
@@ -113,6 +115,14 @@ function parseAppearance(json: string): CharacterAppearance | null {
   }
 }
 
+async function initializeStarterState(characterId: number) {
+  await ensurePhone(characterId);
+  await addItem(characterId, 'phone', 1);
+  await addItem(characterId, 'water', 3);
+  await addItem(characterId, 'food', 3);
+  await addItem(characterId, 'medkit', 1);
+}
+
 export async function sendCharacterList(player: PlayerMp) {
   const id = authenticatedAccountId(player);
   if (!id) return;
@@ -184,7 +194,14 @@ async function createCharacter(player: PlayerMp, slotRaw: number, firstNameRaw: 
     [id, slot, firstName, lastName, JSON.stringify(appearance)]
   );
 
-  logger.info(`Character created: ${firstName} ${lastName} #${result.insertId} account=${id} slot=${slot}`);
+  const characterId = Number(result.insertId);
+  try {
+    await initializeStarterState(characterId);
+  } catch (error) {
+    logger.error(`Starter state initialization failed for character #${characterId}`, error);
+  }
+
+  logger.info(`Character created: ${firstName} ${lastName} #${characterId} account=${id} slot=${slot}`);
   notify(player, 'success', 'Персонаж создан.');
   await sendCharacterList(player);
 }
@@ -227,6 +244,7 @@ async function selectCharacter(player: PlayerMp, characterIdRaw: number) {
   player.position = new mp.Vector3(position[0], position[1], position[2]);
   player.heading = heading;
   player.call(Events.CharacterSpawned, [Number(character.id), character.appearance_json]);
+  player.call('veloria:hud:wallet', [Number(character.cash), Number(character.bank)]);
   logger.info(`Character selected: #${character.id} ${character.first_name} ${character.last_name} player=${player.name}`);
 }
 
