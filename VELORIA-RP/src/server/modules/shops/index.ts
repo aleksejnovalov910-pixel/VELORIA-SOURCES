@@ -12,7 +12,10 @@ const CATALOG: Record<string, { price: number; name: string }> = {
   water: { price: 45, name: 'Вода' },
   food: { price: 85, name: 'Сэндвич' },
   medkit: { price: 650, name: 'Аптечка' },
-  phone: { price: 1250, name: 'Телефон' }
+  phone: { price: 1250, name: 'Телефон' },
+  cloth: { price: 120, name: 'Ткань' },
+  scrap: { price: 160, name: 'Металлолом' },
+  metal: { price: 280, name: 'Металлическая деталь' }
 };
 
 function characterId(player: PlayerMp): number | null {
