@@ -1,24 +1,89 @@
-import { cp, mkdir, rm, writeFile } from 'node:fs/promises';
-import { resolve } from 'node:path';
+import { cp, mkdir, readdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
+import { dirname, relative, resolve } from 'node:path';
 
 const root = resolve(process.cwd());
 const out = resolve(root, 'deploy');
+const runtime = resolve(out, 'client_packages/veloria/runtime');
 
 await rm(out, { recursive: true, force: true });
 await mkdir(resolve(out, 'packages/veloria'), { recursive: true });
-await mkdir(resolve(out, 'client_packages/veloria/runtime'), { recursive: true });
+await mkdir(runtime, { recursive: true });
 await mkdir(resolve(out, 'scripts'), { recursive: true });
 
 await cp(resolve(root, 'build/server'), resolve(out, 'packages/veloria'), { recursive: true });
-await cp(resolve(root, 'build/client'), resolve(out, 'client_packages/veloria/runtime'), { recursive: true });
+await cp(resolve(root, 'build/client'), runtime, { recursive: true });
 await cp(resolve(root, 'client_packages/veloria'), resolve(out, 'client_packages/veloria'), { recursive: true, force: true });
 
-// RAGE:MP's client require resolver does not reliably resolve directories to index.js.
-// Create explicit compatibility aliases for directory-style imports emitted by TypeScript.
-await writeFile(resolve(out, 'client_packages/veloria/runtime/shared/events.js'), "module.exports = require('./events/index.js');\n", 'utf8');
-await writeFile(resolve(out, 'client_packages/veloria/runtime/client/hud.js'), "module.exports = require('./hud/index.js');\n", 'utf8');
-await writeFile(resolve(out, 'client_packages/veloria/runtime/client/controls.js'), "module.exports = require('./controls/index.js');\n", 'utf8');
-await writeFile(resolve(out, 'client_packages/veloria/runtime/client/vehicles.js'), "require('./vehicles/index.js');\n", 'utf8');
+async function exists(path) {
+  try { await stat(path); return true; } catch { return false; }
+}
+
+async function files(dir) {
+  const result = [];
+  for (const entry of await readdir(dir, { withFileTypes: true })) {
+    const path = resolve(dir, entry.name);
+    if (entry.isDirectory()) result.push(...await files(path));
+    else result.push(path);
+  }
+  return result;
+}
+
+async function resolveClientRequire(sourceFile, request) {
+  const base = resolve(dirname(sourceFile), request);
+  const candidates = request.endsWith('.js') || request.endsWith('.json')
+    ? [base]
+    : [base, `${base}.js`, `${base}.json`, resolve(base, 'index.js')];
+  for (const candidate of candidates) {
+    if (await exists(candidate)) return candidate;
+  }
+  return null;
+}
+
+// RAGE:MP resolves client require() requests from client_packages root rather
+// than with Node's normal per-file resolution. Rewrite every relative require
+// emitted by TypeScript to an explicit client_packages-root path and verify its
+// target exists. This prevents the recurring `could not locate file` failures.
+const clientJsFiles = (await files(runtime)).filter(path => path.endsWith('.js'));
+const unresolved = [];
+let rewritten = 0;
+
+for (const file of clientJsFiles) {
+  let source = await readFile(file, 'utf8');
+  const pattern = /require\((['"])(\.\.?\/[^'"]+)\1\)/g;
+  const matches = [...source.matchAll(pattern)];
+  for (const match of matches) {
+    const request = match[2];
+    const target = await resolveClientRequire(file, request);
+    if (!target) {
+      unresolved.push(`${relative(runtime, file)} -> ${request}`);
+      continue;
+    }
+    const targetRelative = relative(runtime, target).replaceAll('\\', '/');
+    const rageRequest = `./veloria/runtime/${targetRelative}`;
+    source = source.replace(match[0], `require(${JSON.stringify(rageRequest)})`);
+    rewritten += 1;
+  }
+  await writeFile(file, source, 'utf8');
+}
+
+if (unresolved.length) {
+  throw new Error(`Unresolved client requires:\n${unresolved.join('\n')}`);
+}
+
+// Audit the rewritten runtime: no relative Node-style require may remain.
+const remaining = [];
+for (const file of clientJsFiles) {
+  const source = await readFile(file, 'utf8');
+  const pattern = /require\((['"])(\.\.?\/[^'"]+)\1\)/g;
+  for (const match of source.matchAll(pattern)) {
+    if (!match[2].startsWith('./veloria/runtime/')) {
+      remaining.push(`${relative(runtime, file)} -> ${match[2]}`);
+    }
+  }
+}
+if (remaining.length) {
+  throw new Error(`Unsafe client requires remain after rewrite:\n${remaining.join('\n')}`);
+}
 
 await writeFile(resolve(out, 'packages/veloria/index.js'), "require('./server/index.js');\n", 'utf8');
 await writeFile(resolve(out, 'client_packages/index.js'), "require('./veloria/runtime/client/index.js');\n", 'utf8');
@@ -35,9 +100,7 @@ const runtimePackage = {
   private: true,
   version: '0.1.0',
   type: 'commonjs',
-  engines: {
-    node: '>=12'
-  },
+  engines: { node: '>=12' },
   scripts: {
     preflight: 'node scripts/host-preflight.mjs',
     migrate: 'node scripts/migrate.mjs',
@@ -53,4 +116,5 @@ const runtimePackage = {
 };
 await writeFile(resolve(out, 'package.json'), JSON.stringify(runtimePackage, null, 2) + '\n', 'utf8');
 
-console.log('VELORIA deploy bundle created:', out);
+console.log(`VELORIA deploy bundle created: ${out}`);
+console.log(`RAGE:MP client require paths rewritten: ${rewritten}`);
