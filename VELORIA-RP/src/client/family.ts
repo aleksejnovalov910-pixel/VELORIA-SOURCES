@@ -35,13 +35,14 @@ mp.events.add('veloria:families:invite:received', (jsonRaw: string) => {
   const safeName = JSON.stringify(familyName).replace(/</g, '\\u003c');
   mp.gui.cursor.show(true, true);
   execAll(`(() => {
+    const familyName = ${safeName};
     document.getElementById('veloria-family-invite')?.remove();
     const root = document.createElement('div');
     root.id = 'veloria-family-invite';
     root.style.cssText = 'position:fixed;inset:0;z-index:100001;display:flex;align-items:center;justify-content:center;background:rgba(2,4,9,.48);font-family:Inter,Arial,sans-serif;color:#fff';
     const card = document.createElement('section');
     card.style.cssText = 'width:min(420px,88vw);padding:24px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(145deg,rgba(19,24,37,.99),rgba(8,11,18,.99));box-shadow:0 24px 80px rgba(0,0,0,.5)';
-    card.innerHTML = '<div style="font-size:11px;letter-spacing:.2em;opacity:.5">VELORIA FAMILY</div><h2 style="margin:7px 0 8px">Приглашение</h2><p style="margin:0 0 18px;opacity:.72">Вас пригласили в семью <b>'+${safeName}+'</b>. Приглашение действительно 10 минут.</p><div style="display:flex;gap:9px"><button data-family-answer="0" style="flex:1;border:1px solid rgba(255,255,255,.1);border-radius:11px;padding:11px;background:rgba(255,255,255,.06);color:#fff;cursor:pointer">Отклонить</button><button data-family-answer="1" style="flex:1;border:0;border-radius:11px;padding:11px;background:rgba(126,106,255,.92);color:#fff;font-weight:800;cursor:pointer">Принять</button></div>';
+    card.innerHTML = '<div style="font-size:11px;letter-spacing:.2em;opacity:.5">VELORIA FAMILY</div><h2 style="margin:7px 0 8px">Приглашение</h2><p style="margin:0 0 18px;opacity:.72">Вас пригласили в семью <b>'+familyName+'</b>. Приглашение действительно 10 минут.</p><div style="display:flex;gap:9px"><button data-family-answer="0" style="flex:1;border:1px solid rgba(255,255,255,.1);border-radius:11px;padding:11px;background:rgba(255,255,255,.06);color:#fff;cursor:pointer">Отклонить</button><button data-family-answer="1" style="flex:1;border:0;border-radius:11px;padding:11px;background:rgba(126,106,255,.92);color:#fff;font-weight:800;cursor:pointer">Принять</button></div>';
     root.appendChild(card);
     root.addEventListener('click', event => {
       const button = event.target?.closest?.('[data-family-answer]');
