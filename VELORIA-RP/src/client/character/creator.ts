@@ -1,6 +1,7 @@
 import { VeloriaEvents } from '../../shared/events/veloria';
 import type { CharacterAppearance } from '../../shared/types/appearance';
 import { VELORIA_CONFIG } from '../../shared/config/server';
+import { suspendAuthCamera, resumeAuthCamera } from '../authScene';
 import { applyAppearance } from './appearance';
 
 let creatorCam: CameraMp | null = null;
@@ -24,13 +25,18 @@ function refreshCamera() {
 }
 
 export function openCreator(initial?: Partial<CharacterAppearance>) {
+  if (active) return;
   active = true;
   yaw = 180;
   distance = 2.1;
+  suspendAuthCamera();
+
   const s = VELORIA_CONFIG.creatorScene;
   mp.players.local.position = new mp.Vector3(s.x, s.y, s.z);
   mp.players.local.setHeading(s.heading);
   mp.players.local.freezePosition(true);
+  try { mp.players.local.setAlpha(255); } catch { /* compatibility */ }
+
   creatorCam = mp.cameras.new('default', cameraPosition(), new mp.Vector3(0, 0, 0), 45);
   refreshCamera();
   creatorCam.setActive(true);
@@ -41,16 +47,19 @@ export function openCreator(initial?: Partial<CharacterAppearance>) {
 }
 
 export function closeCreator() {
+  if (!active) return;
   active = false;
   mouseDown = false;
-  mp.players.local.freezePosition(false);
-  mp.gui.cursor.show(false, false);
-  mp.gui.chat.show(true);
+  mp.players.local.freezePosition(true);
+  try { mp.players.local.setAlpha(0); } catch { /* compatibility */ }
+  mp.gui.cursor.show(true, true);
+  mp.gui.chat.show(false);
   if (creatorCam) {
     creatorCam.destroy();
     creatorCam = null;
   }
   mp.game.cam.renderScriptCams(false, false, 0, true, false);
+  resumeAuthCamera();
   mp.events.call(VeloriaEvents.CharacterCreatorClose);
 }
 
@@ -83,5 +92,23 @@ mp.events.add('veloria:creator:appearance', (appearanceJson: string) => {
     applyAppearance(JSON.parse(String(appearanceJson ?? '{}')) as CharacterAppearance);
   } catch {
     return;
+  }
+});
+
+mp.events.add('veloria:cef:character:creator:open', (initialJson?: string) => {
+  let initial: Partial<CharacterAppearance> = {};
+  try { initial = JSON.parse(String(initialJson ?? '{}')) as Partial<CharacterAppearance>; } catch { /* defaults */ }
+  openCreator(initial);
+});
+
+mp.events.add('veloria:cef:character:creator:close', closeCreator);
+mp.events.add('veloria:character:spawned', () => {
+  if (active) {
+    active = false;
+    mouseDown = false;
+    if (creatorCam) {
+      creatorCam.destroy();
+      creatorCam = null;
+    }
   }
 });
