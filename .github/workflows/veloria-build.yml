@@ -163,9 +163,7 @@ jobs:
         run: |
           set -o pipefail
           npm --prefix deploy install --omit=dev --no-audit --no-fund 2>&1 | tee ci-deploy-runtime.log
-          npm --prefix deploy run preflight 2>&1 | tee -a ci-deploy-runtime.log
-          npm --prefix deploy run deps:smoke 2>&1 | tee -a ci-deploy-runtime.log
-          npm --prefix deploy run migrate 2>&1 | tee -a ci-deploy-runtime.log
+          npm --prefix deploy run validate:host 2>&1 | tee -a ci-deploy-runtime.log
 
       - name: Publish diagnostic summary
         if: always()
@@ -182,7 +180,7 @@ jobs:
             echo "| Migration | ${{ steps.migrate.outcome }} |"
             echo "| Build bundle | ${{ steps.build_bundle.outcome }} |"
             echo "| Deploy layout | ${{ steps.deploy_layout.outcome }} |"
-            echo "| Deploy runtime + host preflight | ${{ steps.deploy_runtime.outcome }} |"
+            echo "| Deploy runtime + validate:host | ${{ steps.deploy_runtime.outcome }} |"
             echo
             for file in ci-environment.log ci-install-root.log ci-install-cef.log ci-deps-smoke.log ci-typecheck-server.log ci-typecheck-client.log ci-typecheck-cef.log ci-migrate.log ci-build.log ci-deploy-runtime.log; do
               if [ -f "$file" ]; then
