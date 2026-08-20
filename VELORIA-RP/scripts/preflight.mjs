@@ -54,6 +54,12 @@ for (const dep of ['bcryptjs','dotenv','ioredis','mysql2']) {
 if (!pkg.scripts?.migrate) throw new Error('Missing runtime migrate script');
 if (!pkg.scripts?.['deps:smoke']) throw new Error('Missing runtime dependency smoke script');
 if (!pkg.scripts?.preflight) throw new Error('Missing runtime host preflight script');
+if (!pkg.scripts?.['validate:host']) throw new Error('Missing runtime validate:host script');
 if (!pkg.engines?.node) throw new Error('Missing runtime Node.js engine requirement');
+
+const validateHost = String(pkg.scripts['validate:host']);
+for (const command of ['npm run preflight', 'npm run deps:smoke', 'npm run migrate']) {
+  if (!validateHost.includes(command)) throw new Error(`validate:host is missing required command: ${command}`);
+}
 
 console.log(`VELORIA preflight OK: ${numbered.length} migrations, deploy layout complete`);
