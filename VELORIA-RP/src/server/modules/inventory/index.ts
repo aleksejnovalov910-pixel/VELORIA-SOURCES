@@ -2,7 +2,19 @@ import { mysql } from '../../core/mysql';
 
 export type InventorySlot={slot:number;item:string;amount:number;metadata:Record<string,unknown>};
 export type ItemDefinition={id:string;name:string;weight:number;stack:number;category:string;usable?:boolean};
-export const ITEMS:Record<string,ItemDefinition>={water:{id:'water',name:'Вода',weight:0.5,stack:10,category:'food',usable:true},food:{id:'food',name:'Еда',weight:0.4,stack:10,category:'food',usable:true},medkit:{id:'medkit',name:'Аптечка',weight:0.8,stack:5,category:'medical',usable:true},phone:{id:'phone',name:'Телефон',weight:0.3,stack:1,category:'device'},vehicle_key:{id:'vehicle_key',name:'Ключ от автомобиля',weight:0.05,stack:1,category:'key'}};
+export const ITEMS:Record<string,ItemDefinition>={
+  water:{id:'water',name:'Вода',weight:0.5,stack:10,category:'food',usable:true},
+  food:{id:'food',name:'Еда',weight:0.4,stack:10,category:'food',usable:true},
+  medkit:{id:'medkit',name:'Аптечка',weight:0.8,stack:5,category:'medical',usable:true},
+  phone:{id:'phone',name:'Телефон',weight:0.3,stack:1,category:'device'},
+  vehicle_key:{id:'vehicle_key',name:'Ключ от автомобиля',weight:0.05,stack:1,category:'key'},
+  scrap:{id:'scrap',name:'Металлолом',weight:0.35,stack:20,category:'material'},
+  metal:{id:'metal',name:'Металлическая деталь',weight:0.45,stack:20,category:'material'},
+  cloth:{id:'cloth',name:'Ткань',weight:0.12,stack:20,category:'material'},
+  bandage:{id:'bandage',name:'Бинт',weight:0.08,stack:10,category:'medical',usable:true},
+  lockpick:{id:'lockpick',name:'Набор отмычек',weight:0.18,stack:5,category:'tool'},
+  repair_kit:{id:'repair_kit',name:'Ремкомплект',weight:1.2,stack:3,category:'tool'}
+};
 
 function parseMetadata(value:unknown):Record<string,unknown>{
   if(!value)return{};
