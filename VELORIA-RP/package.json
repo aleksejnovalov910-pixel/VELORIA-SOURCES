@@ -4,5 +4,5 @@
   "version":"0.1.0",
   "scripts":{"typecheck:server":"tsc -p src/server/tsconfig.json --noEmit","typecheck:client":"tsc -p src/client/tsconfig.json --noEmit","typecheck:cef":"npm --prefix src/cef run typecheck","typecheck":"npm run typecheck:server && npm run typecheck:client && npm run typecheck:cef","build:server":"tsc -p src/server/tsconfig.json","build:client":"tsc -p src/client/tsconfig.json","build:cef":"npm --prefix src/cef run build","preflight":"node scripts/preflight.mjs","deps:smoke":"node scripts/dependency-smoke.mjs","build":"npm run typecheck && npm run build:server && npm run build:client && npm run build:cef && node scripts/finalize-build.mjs && npm run preflight","migrate":"node scripts/migrate.mjs"},
   "dependencies":{"bcryptjs":"2.4.3","dotenv":"10.0.0","ioredis":"4.28.5","mysql2":"2.3.3"},
-  "devDependencies":{"@ragempcommunity/types-client":"^2.1.6","@ragempcommunity/types-server":"^2.1.9","@types/node":"^20.19.11","typescript":"^5.9.2"}
+  "devDependencies":{"@ragempcommunity/types-client":"^2.1.6","@ragempcommunity/types-server":"^2.1.9","@types/bcryptjs":"2.4.6","@types/ioredis":"4.28.10","@types/node":"^20.19.11","typescript":"^5.9.2"}
 }
