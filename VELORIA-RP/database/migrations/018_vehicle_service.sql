@@ -1,9 +1,9 @@
-ALTER TABLE character_vehicles ADD COLUMN IF NOT EXISTS vin VARCHAR(32) NULL;
-ALTER TABLE character_vehicles ADD COLUMN IF NOT EXISTS mileage DOUBLE NOT NULL DEFAULT 0;
-ALTER TABLE character_vehicles ADD COLUMN IF NOT EXISTS oil DOUBLE NOT NULL DEFAULT 100;
-ALTER TABLE character_vehicles ADD COLUMN IF NOT EXISTS battery DOUBLE NOT NULL DEFAULT 100;
-ALTER TABLE character_vehicles ADD COLUMN IF NOT EXISTS inspection_until DATETIME NULL;
-ALTER TABLE character_vehicles ADD COLUMN IF NOT EXISTS insurance_until DATETIME NULL;
+ALTER TABLE character_vehicles ADD COLUMN vin VARCHAR(32) NULL;
+ALTER TABLE character_vehicles ADD COLUMN mileage DOUBLE NOT NULL DEFAULT 0;
+ALTER TABLE character_vehicles ADD COLUMN oil DOUBLE NOT NULL DEFAULT 100;
+ALTER TABLE character_vehicles ADD COLUMN battery DOUBLE NOT NULL DEFAULT 100;
+ALTER TABLE character_vehicles ADD COLUMN inspection_until DATETIME NULL;
+ALTER TABLE character_vehicles ADD COLUMN insurance_until DATETIME NULL;
 ALTER TABLE character_vehicles ADD UNIQUE KEY uq_character_vehicles_vin (vin);
 
 CREATE TABLE IF NOT EXISTS vehicle_service_history(
