@@ -68,6 +68,9 @@ jobs:
       - name: Migrations
         run: npm run migrate
 
+      - name: Database runtime smoke
+        run: npm run db:smoke
+
       - name: Build deploy
         run: npm run build
 
@@ -79,7 +82,6 @@ jobs:
           test -f deploy/client_packages/index.js
           test -f deploy/client_packages/veloria/index.html
           test -f deploy/client_packages/veloria/runtime/client/index.js
-          ! grep -R --include='*.js' -nE "require\((['\"])(\.\.?/)(?!veloria/runtime/)" deploy/client_packages/veloria/runtime || true
           npm --prefix deploy install --omit=dev --no-audit --no-fund
           npm --prefix deploy run preflight
 
