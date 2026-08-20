@@ -34,7 +34,8 @@ const runtimePackage = {
   scripts: {
     preflight: 'node scripts/host-preflight.mjs',
     migrate: 'node scripts/migrate.mjs',
-    'deps:smoke': 'node scripts/dependency-smoke.mjs'
+    'deps:smoke': 'node scripts/dependency-smoke.mjs',
+    'validate:host': 'npm run preflight && npm run deps:smoke && npm run migrate'
   },
   dependencies: {
     bcryptjs: '^3.0.2',
