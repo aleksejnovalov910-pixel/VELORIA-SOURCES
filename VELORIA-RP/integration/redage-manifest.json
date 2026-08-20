@@ -1,0 +1,70 @@
+{
+  "upstream": "redage_v3-main",
+  "role": "primary-gameplay-upstream",
+  "runtimeEnabled": false,
+  "phase": "account-character-playable-slice",
+  "serverModules": [
+    "Accounts",
+    "Character",
+    "Chars",
+    "Core",
+    "Database",
+    "Handles",
+    "Inventory",
+    "MoneySystem",
+    "Players",
+    "Quests",
+    "BattlePass"
+  ],
+  "supportProjects": [
+    "NeptuneEvoSDK",
+    "Localization"
+  ],
+  "clientModules": [
+    "player",
+    "inventory",
+    "phone",
+    "camera",
+    "events",
+    "configs",
+    "constants",
+    "utils"
+  ],
+  "cef": {
+    "source": "src_cef",
+    "stack": "svelte",
+    "requiredAreas": [
+      "authorization",
+      "registration",
+      "character-selection",
+      "character-creation",
+      "hud",
+      "inventory"
+    ]
+  },
+  "databaseSources": [
+    "database/main.sql",
+    "database/mainconfig.sql",
+    "database/mainlogs.sql"
+  ],
+  "dataSources": [
+    "settings",
+    "json"
+  ],
+  "acceptance": [
+    "registration",
+    "login",
+    "three-character-slots",
+    "create-character",
+    "save-customization",
+    "load-character-after-reconnect",
+    "spawn",
+    "hud-init",
+    "inventory-init"
+  ],
+  "notes": [
+    "Do not enable this upstream directly on GTA5HOST until C# runtime support is verified.",
+    "Do not merge donor SQL wholesale into the live VELORIA database; derive migrations.",
+    "Do not expose NeptuneEvo/RedAge branding in player-facing UI."
+  ]
+}
