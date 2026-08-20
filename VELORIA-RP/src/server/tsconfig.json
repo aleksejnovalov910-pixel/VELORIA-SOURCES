@@ -1,5 +1,5 @@
 {
   "extends":"../../tsconfig.base.json",
-  "compilerOptions":{"outDir":"../../build/server","rootDir":"..","types":["@ragempcommunity/types-server"],"sourceMap":false},
+  "compilerOptions":{"outDir":"../../build/server","rootDir":"..","types":["@ragempcommunity/types-server","node"],"sourceMap":false},
   "include":["./**/*.ts","../shared/**/*.ts"]
 }
