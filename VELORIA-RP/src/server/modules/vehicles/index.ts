@@ -1,6 +1,6 @@
 import type { PoolConnection } from 'mysql2/promise';
 import { mysql } from '../../core/mysql';
-import { randomBytes } from 'node:crypto';
+import { randomBytes } from 'crypto';
 
 export interface OwnedVehicle{id:number;characterId:number;model:string;plate:string;vin?:string;fuel:number;engineHealth:number;bodyHealth:number;mileage?:number;oil?:number;battery?:number;locked:boolean;engineOn:boolean;position?:unknown;}
 const vin=()=>`VL${randomBytes(8).toString('hex').toUpperCase()}`;

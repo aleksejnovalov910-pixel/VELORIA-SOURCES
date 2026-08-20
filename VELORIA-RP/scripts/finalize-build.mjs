@@ -29,7 +29,7 @@ const runtimePackage = {
   version: '0.1.0',
   type: 'commonjs',
   engines: {
-    node: '>=20'
+    node: '>=12'
   },
   scripts: {
     preflight: 'node scripts/host-preflight.mjs',
@@ -38,10 +38,10 @@ const runtimePackage = {
     'validate:host': 'npm run preflight && npm run deps:smoke && npm run migrate'
   },
   dependencies: {
-    bcryptjs: '^3.0.2',
-    dotenv: '^17.2.3',
-    ioredis: '^5.7.0',
-    mysql2: '^3.14.4'
+    bcryptjs: '2.4.3',
+    dotenv: '10.0.0',
+    ioredis: '4.28.5',
+    mysql2: '2.3.3'
   }
 };
 await writeFile(resolve(out, 'package.json'), JSON.stringify(runtimePackage, null, 2) + '\n', 'utf8');
