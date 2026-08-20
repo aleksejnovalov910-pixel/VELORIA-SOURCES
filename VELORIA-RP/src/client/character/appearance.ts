@@ -40,16 +40,38 @@ function clamp(value: number, min: number, max: number) {
   return Math.max(min, Math.min(max, Number.isFinite(value) ? value : min));
 }
 
+/**
+ * RAGE MP Player#setHeadOverlay has had different JS signatures between
+ * client builds. Calling the entity helper with only three arguments causes
+ * "argument count does not match function definition" on Legacy clients.
+ * Use the GTA V native wrappers instead; their signatures are stable.
+ */
 function applyOverlay(ped: any, name: string, overlay: OverlayStyle | undefined) {
   if (!overlay) return;
   const overlayId = OVERLAY_INDEX[name];
   if (overlayId === undefined) return;
+
   const index = Math.max(0, Math.trunc(Number(overlay.index ?? 0)));
   const opacity = clamp(Number(overlay.opacity ?? 0), 0, 1);
-  ped.setHeadOverlay?.(overlayId, index, opacity);
-  if (overlay.color !== undefined) {
-    const colorType = name === 'makeup' || name === 'lipstick' ? 2 : 1;
-    ped.setHeadOverlayColor?.(overlayId, colorType, Math.max(0, Math.trunc(Number(overlay.color))), Math.max(0, Math.trunc(Number(overlay.secondaryColor ?? overlay.color))));
+  const handle = Number(ped?.handle ?? 0);
+  if (!handle) return;
+
+  try {
+    mp.game.ped.setPedHeadOverlay(handle, overlayId, index, opacity);
+  } catch {
+    // Do not abort character selection/spawn if a specific client build
+    // rejects an optional cosmetic native.
+    return;
+  }
+
+  if (overlay.color === undefined) return;
+  const colorType = name === 'makeup' || name === 'lipstick' ? 2 : 1;
+  const primary = Math.max(0, Math.trunc(Number(overlay.color)));
+  const secondary = Math.max(0, Math.trunc(Number(overlay.secondaryColor ?? overlay.color)));
+  try {
+    mp.game.ped.setPedHeadOverlayColor(handle, overlayId, colorType, primary, secondary);
+  } catch {
+    // Color support is cosmetic; keep the player flow alive on Legacy builds.
   }
 }
 
