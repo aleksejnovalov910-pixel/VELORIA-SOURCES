@@ -52,7 +52,7 @@ function showShop(json: string) {
   openShopId = shopId;
   mp.gui.cursor.show(true, true);
 
-  const payload = JSON.stringify(parsed).replaceAll('<', '\\u003c');
+  const payload = JSON.stringify(parsed).replace(/</g, '\\u003c');
   execAll(`(() => {
     const data = ${payload};
     document.getElementById('veloria-shop-overlay')?.remove();
