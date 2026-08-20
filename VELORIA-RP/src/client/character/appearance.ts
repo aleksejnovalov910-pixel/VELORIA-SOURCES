@@ -41,10 +41,10 @@ function clamp(value: number, min: number, max: number) {
 }
 
 /**
- * RAGE MP Player#setHeadOverlay has had different JS signatures between
- * client builds. Calling the entity helper with only three arguments causes
- * "argument count does not match function definition" on Legacy clients.
- * Use the GTA V native wrappers instead; their signatures are stable.
+ * Legacy RAGE MP builds reject Player#setHeadOverlay when the wrapper receives
+ * the wrong number of arguments. The native calls are more stable across client
+ * versions, but the community typings expose different method names, so the
+ * native ped namespace is intentionally accessed through a compatibility cast.
  */
 function applyOverlay(ped: any, name: string, overlay: OverlayStyle | undefined) {
   if (!overlay) return;
@@ -53,25 +53,33 @@ function applyOverlay(ped: any, name: string, overlay: OverlayStyle | undefined)
 
   const index = Math.max(0, Math.trunc(Number(overlay.index ?? 0)));
   const opacity = clamp(Number(overlay.opacity ?? 0), 0, 1);
+  const primary = Math.max(0, Math.trunc(Number(overlay.color ?? 0)));
+  const secondary = Math.max(0, Math.trunc(Number(overlay.secondaryColor ?? overlay.color ?? 0)));
   const handle = Number(ped?.handle ?? 0);
   if (!handle) return;
 
+  const nativePed: any = mp.game.ped as any;
   try {
-    mp.game.ped.setPedHeadOverlay(handle, overlayId, index, opacity);
+    if (typeof nativePed.setPedHeadOverlay === 'function') {
+      nativePed.setPedHeadOverlay(handle, overlayId, index, opacity);
+    } else if (typeof ped.setHeadOverlay === 'function') {
+      // Five-argument form is required by Legacy Player wrappers.
+      ped.setHeadOverlay(overlayId, index, opacity, primary, secondary);
+    }
   } catch {
-    // Do not abort character selection/spawn if a specific client build
-    // rejects an optional cosmetic native.
     return;
   }
 
   if (overlay.color === undefined) return;
   const colorType = name === 'makeup' || name === 'lipstick' ? 2 : 1;
-  const primary = Math.max(0, Math.trunc(Number(overlay.color)));
-  const secondary = Math.max(0, Math.trunc(Number(overlay.secondaryColor ?? overlay.color)));
   try {
-    mp.game.ped.setPedHeadOverlayColor(handle, overlayId, colorType, primary, secondary);
+    if (typeof nativePed.setPedHeadOverlayColor === 'function') {
+      nativePed.setPedHeadOverlayColor(handle, overlayId, colorType, primary, secondary);
+    } else if (typeof ped.setHeadOverlayColor === 'function') {
+      ped.setHeadOverlayColor(overlayId, colorType, primary, secondary);
+    }
   } catch {
-    // Color support is cosmetic; keep the player flow alive on Legacy builds.
+    // Color is cosmetic and must not interrupt the onboarding flow.
   }
 }
 
@@ -84,11 +92,13 @@ export function applyAppearance(appearance: CharacterAppearance) {
   if (ped.model !== model) ped.model = model;
 
   const parents = appearance.parents;
-  ped.setHeadBlendData?.(
-    Math.trunc(parents.mother), Math.trunc(parents.father), 0,
-    Math.trunc(parents.mother), Math.trunc(parents.father), 0,
-    clamp(parents.shapeMix, 0, 1), clamp(parents.skinMix, 0, 1), 0, false
-  );
+  if (parents) {
+    ped.setHeadBlendData?.(
+      Math.trunc(parents.mother), Math.trunc(parents.father), 0,
+      Math.trunc(parents.mother), Math.trunc(parents.father), 0,
+      clamp(parents.shapeMix, 0, 1), clamp(parents.skinMix, 0, 1), 0, false
+    );
+  }
 
   for (const [name, raw] of Object.entries(appearance.faceFeatures ?? {})) {
     const index = FEATURE_INDEX[name];
@@ -96,7 +106,10 @@ export function applyAppearance(appearance: CharacterAppearance) {
   }
 
   ped.setComponentVariation?.(2, Math.max(0, Math.trunc(appearance.hair?.style ?? 0)), 0, 0);
-  ped.setHairColor?.(Math.max(0, Math.trunc(appearance.hair?.color ?? 0)), Math.max(0, Math.trunc(appearance.hair?.highlight ?? appearance.hair?.color ?? 0)));
+  ped.setHairColor?.(
+    Math.max(0, Math.trunc(appearance.hair?.color ?? 0)),
+    Math.max(0, Math.trunc(appearance.hair?.highlight ?? appearance.hair?.color ?? 0))
+  );
   ped.setEyeColor?.(Math.max(0, Math.trunc(appearance.eyeColor ?? 0)));
 
   applyOverlay(ped, 'eyebrows', appearance.eyebrows);
@@ -109,11 +122,20 @@ export function applyAppearance(appearance: CharacterAppearance) {
   applyOverlay(ped, 'lipstick', appearance.lipstick);
   applyOverlay(ped, 'chestHair', appearance.chestHair);
 
-  const componentMap: Record<string, number> = { mask: 1, torso: 3, legs: 4, bags: 5, shoes: 6, accessories: 7, undershirt: 8, armor: 9, decals: 10, tops: 11 };
+  const componentMap: Record<string, number> = {
+    mask: 1, torso: 3, legs: 4, bags: 5, shoes: 6,
+    accessories: 7, undershirt: 8, armor: 9, decals: 10, tops: 11
+  };
+
   for (const [name, item] of Object.entries(appearance.clothing ?? {})) {
     const component = componentMap[name];
     if (component === undefined || !item) continue;
-    ped.setComponentVariation?.(component, Math.max(0, Math.trunc(Number(item.drawable ?? 0))), Math.max(0, Math.trunc(Number(item.texture ?? 0))), 0);
+    ped.setComponentVariation?.(
+      component,
+      Math.max(0, Math.trunc(Number(item.drawable ?? 0))),
+      Math.max(0, Math.trunc(Number(item.texture ?? 0))),
+      0
+    );
   }
 }
 
