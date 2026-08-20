@@ -3,4 +3,5 @@ import './rentals';
 import './parkingHouse';
 import './crafting';
 import './family';
+import './dealerships';
 import './interactionMenu';
