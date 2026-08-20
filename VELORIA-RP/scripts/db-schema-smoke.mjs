@@ -20,6 +20,8 @@ const requiredTables = [
   'player_settings',
   'character_vehicles',
   'vehicle_rentals',
+  'garages',
+  'garage_vehicles',
   'properties',
   'businesses',
   'factions',
@@ -47,6 +49,11 @@ try {
   for (const name of ['id', 'username', 'password_hash', 'created_at', 'last_login_at']) {
     if (!accountColumns.has(name)) throw new Error(`accounts.${name} is missing`);
   }
+
+  const [garageSeedRows] = await connection.query(
+    'SELECT id,name,slots,position_json,spawn_json FROM garages WHERE id IN (1,2,3,4) ORDER BY id'
+  );
+  if (garageSeedRows.length !== 4) throw new Error('Public garage seed is incomplete');
 
   await connection.beginTransaction();
   const username = `ci_smoke_${Date.now()}_${Math.floor(Math.random() * 1e6)}`;
@@ -86,8 +93,8 @@ try {
 
   await connection.execute('UPDATE accounts SET last_login_at=NOW() WHERE id=?', [accountId]);
   await connection.execute(
-    'INSERT INTO character_inventory(character_id,slot,item,amount,metadata_json) VALUES(?,0,\'phone\',1,\'{}\')',
-    [characterId]
+    'INSERT INTO character_inventory(character_id,slot,item,amount,metadata_json) VALUES(?,0,\'phone\',1,\'{}\'),(?,1,\'cloth\',4,\'{}\'),(?,2,\'scrap\',5,\'{}\'),(?,3,\'metal\',4,\'{}\')',
+    [characterId, characterId, characterId, characterId]
   );
   await connection.execute(
     'INSERT INTO player_settings(character_id,ui_json) VALUES(?,?)',
@@ -97,6 +104,18 @@ try {
     `INSERT INTO vehicle_rentals(character_id,model,plate,price,started_at,expires_at,active)
      VALUES(?, 'blista', 'CISMOKE', 500, NOW(), DATE_ADD(NOW(), INTERVAL 30 MINUTE), 1)`,
     [characterId]
+  );
+
+  const [vehicle] = await connection.execute(
+    `INSERT INTO character_vehicles(character_id,model,plate,fuel,engine_health,body_health,locked,engine_on)
+     VALUES(?, 'blista', ?, 100, 1000, 1000, 1, 0)`,
+    [characterId, `CI${String(Date.now()).slice(-8)}`]
+  );
+  const vehicleId = Number(vehicle.insertId);
+  if (!Number.isSafeInteger(vehicleId) || vehicleId <= 0) throw new Error('Vehicle insert did not return an id');
+  await connection.execute(
+    'INSERT INTO garage_vehicles(vehicle_id,garage_id,parked_at) VALUES(?,1,NOW())',
+    [vehicleId]
   );
 
   const [rows] = await connection.query(
@@ -110,6 +129,29 @@ try {
     [characterId]
   );
   if (rentalRows.length !== 1 || Number(rentalRows[0].active) !== 1) throw new Error('Vehicle rental state cannot be loaded');
+
+  const [garageVehicleRows] = await connection.query(
+    `SELECT gv.vehicle_id,gv.garage_id,v.character_id,v.model,v.plate
+       FROM garage_vehicles gv
+       JOIN character_vehicles v ON v.id=gv.vehicle_id
+      WHERE gv.vehicle_id=? AND gv.garage_id=1`,
+    [vehicleId]
+  );
+  if (garageVehicleRows.length !== 1 || Number(garageVehicleRows[0].character_id) !== characterId) {
+    throw new Error('Garage vehicle state cannot be loaded');
+  }
+
+  const [materialRows] = await connection.query(
+    `SELECT item,SUM(amount) AS total
+       FROM character_inventory
+      WHERE character_id=? AND item IN ('cloth','scrap','metal')
+      GROUP BY item`,
+    [characterId]
+  );
+  const materialMap = new Map(materialRows.map(row => [String(row.item), Number(row.total)]));
+  if (materialMap.get('cloth') !== 4 || materialMap.get('scrap') !== 5 || materialMap.get('metal') !== 4) {
+    throw new Error('Crafting material inventory state cannot be loaded');
+  }
 
   await connection.rollback();
   console.log(`VELORIA DB runtime smoke OK (${requiredTables.length} required tables)`);
