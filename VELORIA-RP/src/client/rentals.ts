@@ -1,3 +1,5 @@
+export {};
+
 const STATIONS = [
   { id: 1, name: 'VELORIA Rent — Airport', x: -1034.7, y: -2732.5, z: 20.17 },
   { id: 2, name: 'VELORIA Rent — Downtown', x: -507.3, y: -670.2, z: 33.18 }
