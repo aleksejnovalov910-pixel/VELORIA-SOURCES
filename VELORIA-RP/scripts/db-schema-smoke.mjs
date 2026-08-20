@@ -19,6 +19,7 @@ const requiredTables = [
   'phone_messages',
   'player_settings',
   'character_vehicles',
+  'vehicle_rentals',
   'properties',
   'businesses',
   'factions',
@@ -92,12 +93,23 @@ try {
     'INSERT INTO player_settings(character_id,ui_json) VALUES(?,?)',
     [characterId, JSON.stringify({ hud: true, minimap: true })]
   );
+  await connection.execute(
+    `INSERT INTO vehicle_rentals(character_id,model,plate,price,started_at,expires_at,active)
+     VALUES(?, 'blista', 'CISMOKE', 500, NOW(), DATE_ADD(NOW(), INTERVAL 30 MINUTE), 1)`,
+    [characterId]
+  );
 
   const [rows] = await connection.query(
     'SELECT id,account_id,slot,appearance_json,pos_x,pos_y,pos_z,heading FROM characters WHERE id=?',
     [characterId]
   );
   if (rows.length !== 1) throw new Error('Inserted character cannot be loaded');
+
+  const [rentalRows] = await connection.query(
+    'SELECT model,plate,active,expires_at FROM vehicle_rentals WHERE character_id=?',
+    [characterId]
+  );
+  if (rentalRows.length !== 1 || Number(rentalRows[0].active) !== 1) throw new Error('Vehicle rental state cannot be loaded');
 
   await connection.rollback();
   console.log(`VELORIA DB runtime smoke OK (${requiredTables.length} required tables)`);
