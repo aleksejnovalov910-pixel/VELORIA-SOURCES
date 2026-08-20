@@ -86,6 +86,7 @@ await writeFile(
   [
     "require('./veloria/runtime/client/index.js');",
     "require('./veloria/runtime/client/shops.js');",
+    "require('./veloria/runtime/client/rentals.js');",
     ''
   ].join('\n'),
   'utf8'
