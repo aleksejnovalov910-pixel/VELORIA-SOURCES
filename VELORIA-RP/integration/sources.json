@@ -1,0 +1,15 @@
+{
+  "project": "VELORIA-RP",
+  "primary": {
+    "name": "redage_v3-main",
+    "server": "dotnet/resources/NeptuneEvo",
+    "client": "client_packages",
+    "database": "database"
+  },
+  "donors": [
+    {"name": "clean_diamond", "role": "Node/JS gameplay and SQL donor"},
+    {"name": "Moldova RealLife (Farko)", "role": "C# gameplay/database/client donor"},
+    {"name": "ShadowRP_ragemppro", "role": "C# gameplay/database/client donor"}
+  ],
+  "firstSlice": ["Accounts", "Character", "Chars"]
+}

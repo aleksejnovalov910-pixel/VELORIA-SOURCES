@@ -35,7 +35,7 @@ export function registerTabletModule() {
         data = await getJob(id);
       } else if (section === 'family') {
         const family = await getFamilyByCharacter(id);
-        data = family ? { family, members: await getFamilyMembers(Number(family.id)) } : null;
+        data = family ? { selfCharacterId: id, family, members: await getFamilyMembers(Number(family.id)) } : { selfCharacterId: id, family: null, members: [] };
       } else if (section === 'faction') {
         const faction = await getFactionByCharacter(id);
         data = faction ? { faction, members: await getFactionMembers(Number(faction.id)) } : null;

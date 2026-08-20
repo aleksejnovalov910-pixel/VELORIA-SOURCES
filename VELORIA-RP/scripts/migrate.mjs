@@ -17,6 +17,72 @@ async function sqlFiles(dir) {
 
 const order = file => Number((basename(file).match(/^(\d+)/) || [])[1] ?? 999999);
 
+function versionTuple(raw) {
+  const match = String(raw ?? '').match(/(\d+)\.(\d+)(?:\.(\d+))?/);
+  return match ? [Number(match[1]), Number(match[2]), Number(match[3] ?? 0)] : [999, 999, 999];
+}
+
+function olderThan(tuple, major, minor) {
+  return tuple[0] < major || (tuple[0] === major && tuple[1] < minor);
+}
+
+function splitSqlArgs(source) {
+  const out = [];
+  let token = '';
+  let quoted = false;
+  for (let i = 0; i < source.length; i += 1) {
+    const char = source[i];
+    if (char === "'" && source[i - 1] !== '\\') quoted = !quoted;
+    if (char === ',' && !quoted) {
+      out.push(token.trim());
+      token = '';
+    } else token += char;
+  }
+  if (token.trim()) out.push(token.trim());
+  return out;
+}
+
+function sqlLiteralToJson(raw) {
+  const value = raw.trim();
+  if (/^NULL$/i.test(value)) return 'null';
+  if (/^-?\d+(?:\.\d+)?$/.test(value)) return value;
+  if (/^'(?:[^']|'')*'$/.test(value)) {
+    const text = value.slice(1, -1).replaceAll("''", "'");
+    return JSON.stringify(text);
+  }
+  return null;
+}
+
+function replaceJsonObjectCalls(sql) {
+  return sql.replace(/JSON_OBJECT\(([^()]*)\)/gi, (full, inner) => {
+    if (!inner.trim()) return "'{}'";
+    const args = splitSqlArgs(inner);
+    if (args.length % 2 !== 0) return full;
+    const object = {};
+    for (let i = 0; i < args.length; i += 2) {
+      const keyRaw = args[i];
+      if (!/^'(?:[^']|'')*'$/.test(keyRaw)) return full;
+      const key = keyRaw.slice(1, -1).replaceAll("''", "'");
+      const jsonValue = sqlLiteralToJson(args[i + 1]);
+      if (jsonValue === null) return full;
+      object[key] = JSON.parse(jsonValue);
+    }
+    return `'${JSON.stringify(object).replaceAll("'", "''")}'`;
+  });
+}
+
+function legacyMariaSql(sql) {
+  let out = sql;
+  // MariaDB 10.0/10.1 used by some game-hosting panels has neither a native
+  // JSON alias nor JSON_OBJECT(). VELORIA stores these payloads as JSON text,
+  // so LONGTEXT is wire-compatible with mysql2 + JSON.parse on the runtime.
+  out = out.replace(/\bJSON\b/gi, 'LONGTEXT');
+  out = replaceJsonObjectCalls(out);
+  out = out.replace(/JSON_ARRAY\(\s*\)/gi, "'[]'");
+  out = out.replace(/,?\s*CONSTRAINT\s+chk_character_slot\s+CHECK\s*\(\s*slot\s+BETWEEN\s+1\s+AND\s+3\s*\)/gi, '');
+  return out;
+}
+
 const db = await mysql.createConnection({
   host: process.env.MYSQL_HOST ?? '127.0.0.1',
   port: Number(process.env.MYSQL_PORT ?? 3306),
@@ -27,6 +93,12 @@ const db = await mysql.createConnection({
 });
 
 try {
+  const [versionRows] = await db.query('SELECT VERSION() AS version');
+  const serverVersion = String(versionRows?.[0]?.version ?? 'unknown');
+  const isMariaDb = /mariadb/i.test(serverVersion);
+  const legacyMaria = isMariaDb && olderThan(versionTuple(serverVersion), 10, 2);
+  console.log(`Database server: ${serverVersion}${legacyMaria ? ' (legacy compatibility enabled)' : ''}`);
+
   await db.query('CREATE TABLE IF NOT EXISTS schema_migrations(name VARCHAR(255) PRIMARY KEY, applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)');
 
   const files = (await sqlFiles(root)).sort((a, b) => order(a) - order(b) || a.localeCompare(b));
@@ -42,12 +114,12 @@ try {
       continue;
     }
 
-    const sql = await readFile(full, 'utf8');
+    const sourceSql = await readFile(full, 'utf8');
+    const sql = legacyMaria ? legacyMariaSql(sourceSql) : sourceSql;
     console.log(`\n=== apply ${name} ===`);
     try {
-      // MySQL DDL implicitly commits, so wrapping schema migrations in a transaction
-      // gives a false sense of rollback safety. Execute the migration directly and
-      // record it only after every statement succeeds.
+      // MySQL/MariaDB DDL implicitly commits. Record a migration only after all
+      // statements in that migration have completed successfully.
       await db.query(sql);
       await db.query('INSERT INTO schema_migrations(name) VALUES(?)', [name]);
       console.log('ok', name);
