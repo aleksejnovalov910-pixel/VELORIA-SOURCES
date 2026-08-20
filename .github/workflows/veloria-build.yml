@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
+      - main
       - veloria-core-v0.1
     paths:
       - 'VELORIA-RP/**'
