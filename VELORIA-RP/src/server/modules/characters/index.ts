@@ -46,20 +46,62 @@ function authenticatedAccountId(player: PlayerMp): number | null {
   return accountId(player);
 }
 
-function isFiniteNumber(value: unknown): value is number {
+function finite(value: unknown): value is number {
   return typeof value === 'number' && Number.isFinite(value);
+}
+
+function validOverlay(value: unknown): boolean {
+  if (!value || typeof value !== 'object') return false;
+  const overlay = value as Record<string, unknown>;
+  return finite(overlay.index) && finite(overlay.opacity) && overlay.opacity >= 0 && overlay.opacity <= 1;
 }
 
 function validAppearance(value: unknown): value is CharacterAppearance {
   if (!value || typeof value !== 'object') return false;
   const a = value as Partial<CharacterAppearance>;
-  if (a.gender !== 0 && a.gender !== 1) return false;
-  if (![a.father, a.mother, a.hairStyle, a.hairColor, a.eyeColor, a.eyebrows, a.beard].every(isFiniteNumber)) return false;
-  if (!isFiniteNumber(a.resemblance) || a.resemblance < 0 || a.resemblance > 1) return false;
-  if (!isFiniteNumber(a.skinMix) || a.skinMix < 0 || a.skinMix > 1) return false;
-  if (!Array.isArray(a.faceFeatures) || a.faceFeatures.length > 20) return false;
-  if (!a.faceFeatures.every((n) => isFiniteNumber(n) && n >= -1 && n <= 1)) return false;
+  if (a.gender !== 'male' && a.gender !== 'female') return false;
+
+  const parents = a.parents as CharacterAppearance['parents'] | undefined;
+  if (!parents || !finite(parents.mother) || !finite(parents.father) || !finite(parents.shapeMix) || !finite(parents.skinMix)) return false;
+  if (parents.shapeMix < 0 || parents.shapeMix > 1 || parents.skinMix < 0 || parents.skinMix > 1) return false;
+
+  const hair = a.hair as CharacterAppearance['hair'] | undefined;
+  if (!hair || !finite(hair.style) || !finite(hair.color) || !finite(hair.highlight)) return false;
+  if (!finite(a.eyeColor)) return false;
+  if (!a.faceFeatures || typeof a.faceFeatures !== 'object' || Array.isArray(a.faceFeatures)) return false;
+  for (const value of Object.values(a.faceFeatures)) if (!finite(value) || value < -1 || value > 1) return false;
+
+  if (!validOverlay(a.eyebrows) || !validOverlay(a.beard)) return false;
+  if (a.makeup !== undefined && !validOverlay(a.makeup)) return false;
+  if (a.blemishes !== undefined && !validOverlay(a.blemishes)) return false;
+  if (a.ageing !== undefined && !validOverlay(a.ageing)) return false;
+  if (a.complexion !== undefined && !validOverlay(a.complexion)) return false;
+  if (a.sunDamage !== undefined && !validOverlay(a.sunDamage)) return false;
+  if (a.lipstick !== undefined && !validOverlay(a.lipstick)) return false;
+  if (a.chestHair !== undefined && !validOverlay(a.chestHair)) return false;
+  if (a.clothing !== undefined && (!a.clothing || typeof a.clothing !== 'object' || Array.isArray(a.clothing))) return false;
   return true;
+}
+
+function defaultAppearance(): CharacterAppearance {
+  const emptyOverlay = { index: 0, opacity: 0 };
+  return {
+    gender: 'male',
+    parents: { mother: 21, father: 0, shapeMix: 0.5, skinMix: 0.5 },
+    faceFeatures: {},
+    hair: { style: 0, color: 0, highlight: 0 },
+    eyeColor: 0,
+    eyebrows: { index: 0, opacity: 1, color: 0 },
+    beard: emptyOverlay,
+    makeup: emptyOverlay,
+    blemishes: emptyOverlay,
+    ageing: emptyOverlay,
+    complexion: emptyOverlay,
+    sunDamage: emptyOverlay,
+    lipstick: emptyOverlay,
+    chestHair: emptyOverlay,
+    clothing: {}
+  };
 }
 
 function parseAppearance(json: string): CharacterAppearance | null {
@@ -88,19 +130,7 @@ export async function sendCharacterList(player: PlayerMp) {
     level: Number(row.level),
     cash: Number(row.cash),
     bank: Number(row.bank),
-    appearance: parseAppearance(row.appearance_json) ?? {
-      gender: 0,
-      father: 0,
-      mother: 0,
-      resemblance: 0.5,
-      skinMix: 0.5,
-      hairStyle: 0,
-      hairColor: 0,
-      eyeColor: 0,
-      eyebrows: 0,
-      beard: 0,
-      faceFeatures: []
-    }
+    appearance: parseAppearance(row.appearance_json) ?? defaultAppearance()
   }));
 
   player.call(Events.CharacterList, [JSON.stringify(characters)]);
