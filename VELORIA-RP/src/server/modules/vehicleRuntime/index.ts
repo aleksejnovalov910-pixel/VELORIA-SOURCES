@@ -56,7 +56,9 @@ export function registerVehicleRuntimeModule(): void {
       const spawn = await garageSpawn(garageId); await takeVehicle(vehicleId,id,garageId); const position = vec(spawn, player.position);
       try{
         const spawnedVehicle = mp.vehicles.new(data.model, position, {heading:Number(spawn.heading ?? 0),numberPlate:String(data.plate ?? 'VELORIA'),locked:Boolean(data.locked),engine:Boolean(data.engine_on),dimension:player.dimension});
-        spawnedVehicle.setVariable('veloria:vehicleId', vehicleId); (spawnedVehicle as any).veloriaVehicleId = vehicleId; (spawnedVehicle as any).engineHealth=Number(data.engine_health??1000); (spawnedVehicle as any).bodyHealth=Number(data.body_health??1000);
+        spawnedVehicle.setVariable('veloria:vehicleId', vehicleId);
+        spawnedVehicle.setVariable('veloria:tuning',typeof data.tuning_json==='string'?data.tuning_json:JSON.stringify(data.tuning_json??{}));
+        (spawnedVehicle as any).veloriaVehicleId = vehicleId; (spawnedVehicle as any).engineHealth=Number(data.engine_health??1000); (spawnedVehicle as any).bodyHealth=Number(data.body_health??1000);
       }catch(spawnError){await parkVehicle(vehicleId,id,garageId);throw spawnError;}
       player.call('veloria:notify', ['success', `Автомобиль ${data.plate} выдан из гаража`]);
     } catch (error) { notifyError(player,error,'Не удалось выдать автомобиль'); }
