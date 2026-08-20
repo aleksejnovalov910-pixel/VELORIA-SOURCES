@@ -11,10 +11,14 @@ await mkdir(resolve(out, 'scripts'), { recursive: true });
 
 await cp(resolve(root, 'build/server'), resolve(out, 'packages/veloria'), { recursive: true });
 await cp(resolve(root, 'build/client'), resolve(out, 'client_packages/veloria/runtime'), { recursive: true });
-// Client build imports ../shared/* from runtime/client/*, so shared output must
-// be deployed next to client under runtime/shared.
-await cp(resolve(root, 'build/shared'), resolve(out, 'client_packages/veloria/runtime/shared'), { recursive: true });
 await cp(resolve(root, 'client_packages/veloria'), resolve(out, 'client_packages/veloria'), { recursive: true, force: true });
+
+// RAGE:MP's client require resolver does not reliably resolve directories to index.js.
+// Create explicit compatibility aliases for directory-style imports emitted by TypeScript.
+await writeFile(resolve(out, 'client_packages/veloria/runtime/shared/events.js'), "module.exports = require('./events/index.js');\n", 'utf8');
+await writeFile(resolve(out, 'client_packages/veloria/runtime/client/hud.js'), "module.exports = require('./hud/index.js');\n", 'utf8');
+await writeFile(resolve(out, 'client_packages/veloria/runtime/client/controls.js'), "module.exports = require('./controls/index.js');\n", 'utf8');
+await writeFile(resolve(out, 'client_packages/veloria/runtime/client/vehicles.js'), "require('./vehicles/index.js');\n", 'utf8');
 
 await writeFile(resolve(out, 'packages/veloria/index.js'), "require('./server/index.js');\n", 'utf8');
 await writeFile(resolve(out, 'client_packages/index.js'), "require('./veloria/runtime/client/index.js');\n", 'utf8');
