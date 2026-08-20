@@ -2,9 +2,25 @@ import Redis from 'ioredis';
 import { logger } from '../core/logger';
 
 let redis: Redis | null = null;
+let redisDisabled = false;
 
-export async function initRedis(): Promise<Redis> {
+function envFlag(name: string, fallback = false): boolean {
+  const raw = String(process.env[name] ?? '').trim().toLowerCase();
+  if (!raw) return fallback;
+  return ['1', 'true', 'yes', 'on'].includes(raw);
+}
+
+export function isRedisEnabled(): boolean {
+  return envFlag('REDIS_ENABLED', false);
+}
+
+export async function initRedis(): Promise<Redis | null> {
   if (redis) return redis;
+  if (redisDisabled || !isRedisEnabled()) {
+    redisDisabled = true;
+    logger.info('Redis disabled; VELORIA will run in MySQL-only mode');
+    return null;
+  }
 
   const client = new Redis({
     host: process.env.REDIS_HOST ?? '127.0.0.1',
@@ -24,12 +40,16 @@ export async function initRedis(): Promise<Redis> {
     return client;
   } catch (error) {
     client.disconnect();
-    logger.error('Redis connection failed. Check REDIS_HOST/REDIS_PORT/REDIS_PASSWORD.', error);
-    throw error;
+    if (envFlag('REDIS_REQUIRED', false)) {
+      logger.error('Redis connection failed and REDIS_REQUIRED=true', error);
+      throw error;
+    }
+    redisDisabled = true;
+    logger.warn('Redis unavailable; continuing in MySQL-only mode');
+    return null;
   }
 }
 
-export function cache(): Redis {
-  if (!redis) throw new Error('Redis has not been initialized');
+export function cache(): Redis | null {
   return redis;
 }
