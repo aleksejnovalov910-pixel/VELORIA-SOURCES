@@ -1,3 +1,5 @@
+export {};
+
 const SHOPS = [
   { id: 1, name: '24/7 Strawberry', x: 25.74, y: -1347.33, z: 29.5 },
   { id: 2, name: '24/7 Vinewood', x: 373.88, y: 325.9, z: 103.57 },
