@@ -1,4 +1,6 @@
-let open = false;
+export {};
+
+let menuOpen = false;
 
 function loaded(): boolean {
   return Number(mp.players.local.getVariable('veloria:characterId') ?? 0) > 0;
@@ -9,15 +11,15 @@ function execAll(code: string) {
 }
 
 function closeMenu() {
-  if (!open) return;
-  open = false;
+  if (!menuOpen) return;
+  menuOpen = false;
   execAll(`document.getElementById('veloria-interaction-menu')?.remove()`);
   mp.gui.cursor.show(false, false);
 }
 
 function openMenu() {
-  if (open || !loaded()) return;
-  open = true;
+  if (menuOpen || !loaded()) return;
+  menuOpen = true;
   mp.gui.cursor.show(true, true);
   execAll(`(() => {
     document.getElementById('veloria-interaction-menu')?.remove();
@@ -58,11 +60,11 @@ function openMenu() {
 
 mp.keys.bind(0x47, true, () => {
   if (!loaded()) return;
-  if (open) closeMenu(); else openMenu();
+  if (menuOpen) closeMenu(); else openMenu();
 });
 
 mp.keys.bind(0x1B, true, () => {
-  if (open) closeMenu();
+  if (menuOpen) closeMenu();
 });
 
 mp.events.add('veloria:cef:interaction:action', (actionRaw: string) => {
