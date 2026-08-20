@@ -1,7 +1,7 @@
 import Redis from 'ioredis';
 import { logger } from '../core/logger';
 
-let redis: Redis | null = null;
+let redis: any = null;
 let redisDisabled = false;
 
 function envFlag(name: string, fallback = false): boolean {
@@ -14,7 +14,7 @@ export function isRedisEnabled(): boolean {
   return envFlag('REDIS_ENABLED', false);
 }
 
-export async function initRedis(): Promise<Redis | null> {
+export async function initRedis(): Promise<any | null> {
   if (redis) return redis;
   if (redisDisabled || !isRedisEnabled()) {
     redisDisabled = true;
@@ -50,6 +50,6 @@ export async function initRedis(): Promise<Redis | null> {
   }
 }
 
-export function cache(): Redis | null {
+export function cache(): any | null {
   return redis;
 }
