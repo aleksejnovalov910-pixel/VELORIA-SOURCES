@@ -1,0 +1,91 @@
+name: VELORIA Full Integration
+
+on:
+  push:
+    branches:
+      - veloria-full-integration
+    paths:
+      - 'VELORIA-RP/**'
+      - '.github/workflows/veloria-integration.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'VELORIA-RP/**'
+      - '.github/workflows/veloria-integration.yml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: veloria
+          MYSQL_USER: veloria
+          MYSQL_PASSWORD: veloria_ci
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -uroot -proot"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=20
+
+    defaults:
+      run:
+        working-directory: VELORIA-RP
+
+    env:
+      MYSQL_HOST: 127.0.0.1
+      MYSQL_PORT: 3306
+      MYSQL_USER: veloria
+      MYSQL_PASSWORD: veloria_ci
+      MYSQL_DATABASE: veloria
+      REDIS_ENABLED: 'false'
+      REDIS_REQUIRED: 'false'
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install root dependencies
+        run: npm install --include=dev --no-audit --no-fund
+
+      - name: Install CEF dependencies
+        run: npm --prefix src/cef install --include=dev --no-audit --no-fund
+
+      - name: Dependency smoke
+        run: npm run deps:smoke
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Migrations
+        run: npm run migrate
+
+      - name: Build deploy
+        run: npm run build
+
+      - name: Validate deploy contract
+        run: |
+          set -euxo pipefail
+          test -f deploy/packages/veloria/index.js
+          test -f deploy/packages/veloria/server/index.js
+          test -f deploy/client_packages/index.js
+          test -f deploy/client_packages/veloria/index.html
+          test -f deploy/client_packages/veloria/runtime/client/index.js
+          ! grep -R --include='*.js' -nE "require\((['\"])(\.\.?/)(?!veloria/runtime/)" deploy/client_packages/veloria/runtime || true
+          npm --prefix deploy install --omit=dev --no-audit --no-fund
+          npm --prefix deploy run preflight
+
+      - name: Upload deploy artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: veloria-full-integration-deploy
+          path: VELORIA-RP/deploy
+          if-no-files-found: error
