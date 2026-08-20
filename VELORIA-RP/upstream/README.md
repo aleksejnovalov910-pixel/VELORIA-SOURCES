@@ -1,0 +1,1 @@
+This directory contains read-only upstream snapshots used while porting real systems into VELORIA-RP. Do not edit upstream snapshots directly; adapt their logic into src/server, src/client and database migrations.
