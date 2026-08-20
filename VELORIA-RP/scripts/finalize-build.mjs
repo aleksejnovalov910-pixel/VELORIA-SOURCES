@@ -11,6 +11,9 @@ await mkdir(resolve(out, 'scripts'), { recursive: true });
 
 await cp(resolve(root, 'build/server'), resolve(out, 'packages/veloria'), { recursive: true });
 await cp(resolve(root, 'build/client'), resolve(out, 'client_packages/veloria/runtime'), { recursive: true });
+// Client build imports ../shared/* from runtime/client/*, so shared output must
+// be deployed next to client under runtime/shared.
+await cp(resolve(root, 'build/shared'), resolve(out, 'client_packages/veloria/runtime/shared'), { recursive: true });
 await cp(resolve(root, 'client_packages/veloria'), resolve(out, 'client_packages/veloria'), { recursive: true, force: true });
 
 await writeFile(resolve(out, 'packages/veloria/index.js'), "require('./server/index.js');\n", 'utf8');
