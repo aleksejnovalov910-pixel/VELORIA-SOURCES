@@ -4,7 +4,7 @@ ALTER TABLE character_vehicles ADD COLUMN IF NOT EXISTS oil DOUBLE NOT NULL DEFA
 ALTER TABLE character_vehicles ADD COLUMN IF NOT EXISTS battery DOUBLE NOT NULL DEFAULT 100;
 ALTER TABLE character_vehicles ADD COLUMN IF NOT EXISTS inspection_until DATETIME NULL;
 ALTER TABLE character_vehicles ADD COLUMN IF NOT EXISTS insurance_until DATETIME NULL;
-CREATE UNIQUE INDEX IF NOT EXISTS uq_character_vehicles_vin ON character_vehicles(vin);
+ALTER TABLE character_vehicles ADD UNIQUE KEY uq_character_vehicles_vin (vin);
 
 CREATE TABLE IF NOT EXISTS vehicle_service_history(
   id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
