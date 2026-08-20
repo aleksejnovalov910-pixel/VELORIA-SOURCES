@@ -1,16 +1,6 @@
-export interface CharacterAppearance {
-  gender: 0 | 1;
-  father: number;
-  mother: number;
-  resemblance: number;
-  skinMix: number;
-  hairStyle: number;
-  hairColor: number;
-  eyeColor: number;
-  eyebrows: number;
-  beard: number;
-  faceFeatures: number[];
-}
+import type { CharacterAppearance } from './appearance';
+
+export type { CharacterAppearance } from './appearance';
 
 export interface CharacterSummary {
   id: number;
